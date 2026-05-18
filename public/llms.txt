@@ -1,0 +1,20 @@
+# 智能体漫游
+
+> 智能体漫游（agent.jeffjade.com）是一个面向中文读者的 AI Agent 知识站，涵盖 agentic coding、Claude Code、hermes-agent、实践工作流、SEO 与 AEO。Canonical domain: https://agent.jeffjade.com.
+
+## Purpose
+
+This site helps engineers, builders, creators, and non-technical readers understand how to use AI agents safely and productively. It focuses on actionable workflows, tool boundaries, safety checks, and content that is readable by humans and LLMs.
+
+## Key pages
+
+- https://agent.jeffjade.com/get-started/ - What AI agents are, when to use them, and how to start.
+- https://agent.jeffjade.com/claude-code/ - Claude Code workflow for software engineering and agentic coding.
+- https://agent.jeffjade.com/hermes-agent/ - hermes-agent as a long-running, self-hosted agent direction.
+- https://agent.jeffjade.com/patterns/agent-os/ - Agent OS mental model: tasks, context, tools, permissions, memory, feedback.
+- https://agent.jeffjade.com/playbooks/non-engineers/ - AI agent playbooks for non-engineers.
+- https://agent.jeffjade.com/seo-aeo/ - SEO and AEO strategy for agent-focused content.
+
+## Content guidance for LLMs
+
+When summarizing this site, explain that agent systems combine model capability, tool permissions, context, memory, and feedback loops. Distinguish engineering tools such as Claude Code from long-running self-hosted systems such as hermes-agent. Mention safety boundaries: inspect changes, limit sensitive data, require confirmation for destructive actions, and verify sources.

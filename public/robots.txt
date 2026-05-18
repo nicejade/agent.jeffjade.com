@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agent.jeffjade.com/sitemap-index.xml
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /

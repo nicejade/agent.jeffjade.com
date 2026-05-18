@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="智能体漫游">
+  <rect width="64" height="64" rx="14" fill="#111114"/>
+  <path d="M18 44 30.5 14h3L46 44h-6.5l-2.4-6.2H26.9L24.5 44H18Zm11-11.7h6l-3-8-3 8Z" fill="#fff"/>
+  <path d="M49 16h-9v5h9v-5Z" fill="#14b8a6"/>
+  <path d="M15 48h34v4H15v-4Z" fill="#0071e3"/>
+</svg>
