@@ -1,6 +1,8 @@
 ---
 title: SubAgents：上下文隔离与复杂任务拆解
 description: 学会用 SubAgents 实现独立上下文、权限隔离与并行执行，解决复杂多步骤任务的上下文污染问题。
+sidebar:
+  order: 10
 ---
 
 ## SubAgents 的设计哲学

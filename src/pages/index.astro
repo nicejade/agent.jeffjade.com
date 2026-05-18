@@ -1,11 +1,70 @@
 ---
-import AgentLab from '../components/AgentLab.svelte';
 import '../styles/global.css';
 
 const site = 'https://agent.jeffjade.com';
 const title = '智能体漫游 | agent.jeffjade.com';
 const description =
-  '一个面向工程师、创造者与普通人的 Agent 探索性网站，系统梳理 Claude Code、hermes-agent、Agent 工作流、SEO 与 AEO。';
+  '16 章系统掌握 Claude Code：从 Agentic Coding 心智模型、安装上手、代理循环与 Plan Mode，到 CLAUDE.md、Hooks、Skills、SubAgents、MCP 与完整实战工作流。';
+
+const parts = [
+  {
+    label: '第一部分',
+    title: '基础认知',
+    chapters: [
+      { n: 1, title: 'Claude Code 是什么', href: '/claude-code/what-is-claude-code/' },
+      { n: 2, title: '10 倍提升效率', href: '/claude-code/core-advantages/' },
+    ],
+  },
+  {
+    label: '第二部分',
+    title: '快速上手',
+    chapters: [
+      { n: 3, title: '安装与配置', href: '/claude-code/installation-setup/' },
+      { n: 4, title: '第一个会话', href: '/claude-code/first-session/' },
+    ],
+  },
+  {
+    label: '第三部分',
+    title: '工作原理',
+    chapters: [
+      { n: 5, title: '代理循环与工具', href: '/claude-code/agent-loop/' },
+      { n: 6, title: 'Plan Mode', href: '/claude-code/plan-mode/' },
+    ],
+  },
+  {
+    label: '第四部分',
+    title: '项目记忆',
+    chapters: [{ n: 7, title: 'CLAUDE.md 的艺术', href: '/claude-code/claude-md/' }],
+  },
+  {
+    label: '第五部分',
+    title: '高级扩展',
+    chapters: [
+      { n: 8, title: 'Hooks', href: '/claude-code/hooks/' },
+      { n: 9, title: 'Skills', href: '/claude-code/skills/' },
+      { n: 10, title: 'SubAgents', href: '/claude-code/subagents/' },
+      { n: 11, title: 'MCP', href: '/claude-code/mcp/' },
+    ],
+  },
+  {
+    label: '第六部分',
+    title: '实战与最佳实践',
+    chapters: [
+      { n: 12, title: '提示工程秘诀', href: '/claude-code/prompt-engineering/' },
+      { n: 13, title: '完整实战工作流', href: '/claude-code/complete-workflow/' },
+      { n: 14, title: '生态深度集成', href: '/claude-code/ecosystem-integration/' },
+    ],
+  },
+  {
+    label: '第七部分',
+    title: '反思与进阶',
+    chapters: [
+      { n: 15, title: '局限性与应对', href: '/claude-code/limitations/' },
+      { n: 16, title: 'AI 时代的开发者', href: '/claude-code/reflection/' },
+    ],
+  },
+];
+
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -13,11 +72,6 @@ const structuredData = {
   url: site,
   inLanguage: 'zh-CN',
   description,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${site}/search?q={search_term_string}`,
-    'query-input': 'required name=search_term_string',
-  },
 };
 ---
 
@@ -55,126 +109,100 @@ const structuredData = {
           <span>智能体漫游</span>
         </a>
         <nav class="nav-links" aria-label="站点导航">
-          <a href="/get-started/">开始</a>
-          <a href="/claude-code/">Claude Code</a>
-          <a href="/hermes-agent/">hermes-agent</a>
-          <a href="/seo-aeo/">SEO/AEO</a>
+          <a href="/claude-code/">阅读指南</a>
+          <a class="nav-cta" href="/claude-code/what-is-claude-code/">从第 1 章开始</a>
         </nav>
       </header>
 
       <main>
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-scene" aria-hidden="true">
-            <span class="signal-line"></span>
-            <span class="signal-line"></span>
-            <span class="signal-line"></span>
-          </div>
+        <section class="hero hero-guide" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">agent.jeffjade.com</p>
-            <h1 id="hero-title">把 Agent 从<span>会聊天</span>带到能完成事情。</h1>
+            <p class="eyebrow">agent.jeffjade.com · 16 章</p>
+            <h1 id="hero-title">系统掌握 <span>Claude Code</span></h1>
             <p class="hero-lede">
-              这是一个探索 Agent 实践的知识站：既给工程师拆解 Claude Code、hermes-agent 与工作流，也给普通人提供可靠的日常 Agent 使用路径。内容同时面向搜索引擎与 LLM，让知识能被人读懂，也能被机器引用。
+              这不是聊天教程，而是一份面向工程师的 Agentic Coding 指南：从心智模型与安装上手，到代理循环、Plan Mode、项目记忆、Hooks / Skills / SubAgents / MCP，再到完整工作流与生态集成。
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="/get-started/">进入知识库</a>
-              <a class="button" href="/claude-code/">看 Claude Code 路线</a>
+              <a class="button primary" href="/claude-code/">进入指南首页</a>
+              <a class="button" href="/claude-code/installation-setup/">直接安装配置</a>
             </div>
+            <ul class="hero-highlights" aria-label="指南亮点">
+              <li>本地仓库上下文 + Shell / Git 感知</li>
+              <li>Plan Mode 先规划再执行</li>
+              <li>Hooks、Skills、SubAgents、MCP 扩展体系</li>
+            </ul>
           </div>
-          <AgentLab client:load />
+
+          <aside class="hero-aside" aria-label="目录结构">
+            <p class="aside-label">目录结构</p>
+            <ol class="aside-parts">
+              {parts.map((part) => (
+                <li>
+                  <span class="aside-part-name">{part.label}</span>
+                  <span class="aside-part-title">{part.title}</span>
+                </li>
+              ))}
+            </ol>
+          </aside>
         </section>
 
-        <section class="metric-strip" aria-label="站点重点">
+        <section class="metric-strip" aria-label="指南概览">
           <div class="metric">
-            <strong>3</strong>
-            <span>工程、个人、组织三类 Agent 入口</span>
+            <strong>16</strong>
+            <span>章节，从认知到实战闭环</span>
           </div>
           <div class="metric">
-            <strong>2</strong>
-            <span>Claude Code 与 hermes-agent 深度路线</span>
+            <strong>7</strong>
+            <span>部分，按学习路径递进编排</span>
           </div>
           <div class="metric">
-            <strong>AEO</strong>
-            <span>面向 LLM 摘要、引用与检索的内容结构</span>
+            <strong>CC</strong>
+            <span>面向 Claude Code 的专属知识库</span>
           </div>
           <div class="metric">
-            <strong>GA4</strong>
-            <span>内置 G-JXTFG9M3EK 访问分析</span>
+            <strong>中文</strong>
+            <span>面向中文读者的系统整理</span>
           </div>
         </section>
 
-        <section class="section kicker" aria-labelledby="paths-title">
+        <section class="section" aria-labelledby="catalog-title">
           <div class="section-header">
-            <p>exploration routes</p>
-            <h2 id="paths-title">不是“工具清单”，而是一张可行动的 Agent 地图。</h2>
-            <p>
-              Agent 的价值不止在回答问题，而在把上下文、工具、权限、记忆和反馈闭环组合起来。这个站点把技术细节翻译成路线，让不同背景的人都能找到下一步。
-            </p>
+            <p>table of contents</p>
+            <h2 id="catalog-title">按部分浏览全部章节</h2>
+            <p>进入文档后，侧边栏仅展示本指南的章节导航，不会被其他主题分散注意力。</p>
           </div>
-          <div class="path-grid">
-            <article class="path-card">
-              <span class="tag">For engineers</span>
-              <h3>从仓库现场出发</h3>
-              <p>围绕 Claude Code、命令行、MCP、测试、审阅和发布流程，建立“可验证的自动化协作”。</p>
-            </article>
-            <article class="path-card">
-              <span class="tag">For builders</span>
-              <h3>沉淀长期 Agent</h3>
-              <p>研究 hermes-agent 这类自托管路线，把记忆、技能、消息入口和模型选择变成长期生产力系统。</p>
-            </article>
-            <article class="path-card">
-              <span class="tag">For everyone</span>
-              <h3>把日常任务变简单</h3>
-              <p>旅行、学习、写作、家庭计划、资料整理，都可以从“目标、约束、检查点”三件事开始。</p>
-            </article>
-          </div>
-        </section>
 
-        <section class="section" aria-labelledby="map-title">
-          <div class="section-header">
-            <p>human + llm readable</p>
-            <h2 id="map-title">内容同时服务浏览器搜索、AI 摘要和真实决策。</h2>
-            <p>
-              每篇核心页面都会围绕清晰标题、摘要、FAQ、实践步骤、风险边界和可引用结论设计。这样更适合 SEO，也更适合 LLM 在回答中正确引用。
-            </p>
-          </div>
-          <div class="map-panel">
-            <div class="map-note">
-              <p>
-                首页负责吸引与分流，Starlight 文档负责深读、搜索和持续扩展。后续可以增加工具评测、Agent 案例库、Prompt 模板、MCP 目录、周报与实验日志。
-              </p>
-              <a href="/seo-aeo/">查看 SEO/AEO 设计</a>
-            </div>
-            <div class="map-table" role="table" aria-label="Agent 内容矩阵">
-              <div class="map-row" role="row">
-                <div role="cell"><strong>学习</strong></div>
-                <div role="cell"><span>概念、术语、示例、常见误区</span></div>
-                <div role="cell"><span>适合新读者与 LLM 摘要</span></div>
-              </div>
-              <div class="map-row" role="row">
-                <div role="cell"><strong>实践</strong></div>
-                <div role="cell"><span>Claude Code、hermes-agent、MCP、权限</span></div>
-                <div role="cell"><span>适合工程师和独立创造者</span></div>
-              </div>
-              <div class="map-row" role="row">
-                <div role="cell"><strong>评估</strong></div>
-                <div role="cell"><span>成本、自治程度、可解释性、安全边界</span></div>
-                <div role="cell"><span>适合采购、选型和长期运营</span></div>
-              </div>
-            </div>
+          <div class="catalog-grid">
+            {parts.map((part) => (
+              <article class="catalog-part">
+                <header class="catalog-part-head">
+                  <span>{part.label}</span>
+                  <h3>{part.title}</h3>
+                </header>
+                <ul class="chapter-list">
+                  {part.chapters.map((chapter) => (
+                    <li>
+                      <a href={chapter.href}>
+                        <span class="chapter-num">{chapter.n}</span>
+                        <span class="chapter-title">{chapter.title}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
 
           <div class="closing-band">
-            <h2>下一步：让这个站点成为你的 Agent 实验基地。</h2>
-            <p>
-              我已经预留了内容结构和技术底座。接下来可以持续补充真实实验记录、工具横评、视频脚本、中文搜索词库、英文摘要页，以及给 LLM 抓取的结构化索引。
-            </p>
-            <a class="button primary" href="/get-started/">开始阅读</a>
+            <h2>准备好把 Claude Code 变成日常工程能力了吗？</h2>
+            <p>从第 1 章理解 Agentic Coding 范式，或跳到安装配置直接开干。全部内容集中在 /claude-code/ 路径下。</p>
+            <a class="button primary" href="/claude-code/what-is-claude-code/">开始第 1 章</a>
           </div>
         </section>
       </main>
 
       <footer class="home-footer">
-        <p>智能体漫游 · agent.jeffjade.com · Built with Astro, Starlight, Svelte and Tailwind CSS.</p>
+        <p>智能体漫游 · agent.jeffjade.com · Built with Astro, Starlight and Tailwind CSS.</p>
       </footer>
     </div>
   </body>

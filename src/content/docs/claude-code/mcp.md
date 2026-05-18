@@ -1,6 +1,8 @@
 ---
 title: MCP：Claude Code 的万能接口
 description: 理解 Model Context Protocol，用 MCP Server 将 Claude Code 连接到 GitHub、数据库、浏览器、Figma 等外部工具与服务。
+sidebar:
+  order: 11
 ---
 
 ## MCP（Model Context Protocol）是什么？

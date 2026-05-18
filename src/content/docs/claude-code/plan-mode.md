@@ -1,6 +1,8 @@
 ---
 title: Plan Mode：Claude Code 的杀手级功能
 description: 掌握「先规划再执行」的工作流模式，用 Plan Mode 避免 AI 编码的灾难循环，实现可控的高质量输出。
+sidebar:
+  order: 6
 ---
 
 ## 为什么需要 Plan Mode？

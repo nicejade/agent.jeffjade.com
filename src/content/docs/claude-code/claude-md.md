@@ -1,6 +1,8 @@
 ---
 title: CLAUDE.md 文件的艺术
 description: 用 CLAUDE.md 为项目注入持久记忆、编码规范与架构灵魂，让 Claude Code 真正理解你的项目。
+sidebar:
+  order: 7
 ---
 
 ## CLAUDE.md 是什么？

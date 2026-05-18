@@ -1,6 +1,8 @@
 ---
 title: Claude Code 的安装、登录与环境配置
 description: 从零开始完成 Claude Code 的 CLI 安装、API 配置、IDE 集成，以及 Node.js 环境准备的全流程指南。
+sidebar:
+  order: 3
 ---
 
 ## 环境准备

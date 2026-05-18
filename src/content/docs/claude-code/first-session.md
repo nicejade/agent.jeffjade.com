@@ -1,6 +1,8 @@
 ---
 title: 启动你的第一个 Claude Code 会话
 description: 掌握基础命令、交互模式、权限管理，完成从启动到第一个成功任务的完整流程。
+sidebar:
+  order: 4
 ---
 
 ## 启动会话

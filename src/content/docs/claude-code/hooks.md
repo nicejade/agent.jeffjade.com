@@ -1,6 +1,8 @@
 ---
 title: Hooks：自动化、安全校验与生命周期控制
 description: 掌握 PreToolUse、PostToolUse、Stop 等 Hook 触发器，设计自己的自动化工作流与安全护栏。
+sidebar:
+  order: 8
 ---
 
 ## Hooks 机制概述

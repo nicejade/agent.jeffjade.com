@@ -1,6 +1,8 @@
 ---
 title: 高效提示工程的秘诀
 description: 掌握与 Claude Code 高效沟通的方法论——BMAD 方法、上下文管理、迭代策略，最大化 Agent 的生产力与一致性。
+sidebar:
+  order: 12
 ---
 
 ## Agent 时代的提示工程

@@ -1,4 +1,4 @@
-@layer base, starlight, theme, components, utilities;
+@layer base, starlight, rapide, theme, components, utilities;
 
 @import '@astrojs/starlight-tailwind';
 @import 'tailwindcss/theme.css' layer(theme);
@@ -35,14 +35,6 @@
 
 :root {
   color-scheme: light;
-  --sl-font: var(--font-sans);
-  --sl-font-mono: var(--font-mono);
-  --sl-color-accent-low: #e8f3ff;
-  --sl-color-accent: #0071e3;
-  --sl-color-accent-high: #003a75;
-  --sl-content-width: 54rem;
-  --sl-sidebar-width: 18rem;
-  --sl-text-5xl: 3rem;
   --surface: #fbfbfd;
   --surface-elevated: rgba(255, 255, 255, 0.78);
   --ink: #111114;
@@ -55,23 +47,10 @@
   --brand-yellow: #f6c343;
 }
 
-:root[data-theme='dark'] {
-  color-scheme: dark;
-  --sl-color-accent-low: #0b2a44;
-  --sl-color-accent: #66b7ff;
-  --sl-color-accent-high: #d8edff;
-}
-
-html {
+html:has(.site-shell) {
   background: var(--surface);
   scroll-behavior: smooth;
   text-rendering: geometricPrecision;
-}
-
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  letter-spacing: 0;
 }
 
 a {
@@ -84,17 +63,12 @@ a {
   background: #b9ddff;
 }
 
-.sl-markdown-content :is(h1, h2, h3) {
-  letter-spacing: 0;
-}
-
-.sl-markdown-content code {
-  border-radius: 6px;
-}
-
 .site-shell {
   min-height: 100svh;
+  margin: 0;
   overflow: clip;
+  font-family: var(--font-sans);
+  letter-spacing: 0;
   color: var(--ink);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 245, 247, 0.94) 46%, rgba(255, 255, 255, 1)),
@@ -178,6 +152,193 @@ a {
   grid-template-columns: minmax(0, 0.95fr) minmax(410px, 1.05fr);
   align-items: center;
   gap: 4rem;
+}
+
+.hero-guide {
+  min-height: auto;
+  padding-top: 3rem;
+  padding-bottom: 3.5rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+}
+
+.hero-highlights {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-highlights li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.hero-highlights li::before {
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-blue);
+  content: "";
+}
+
+.hero-aside {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 54px rgba(17, 17, 20, 0.06);
+  backdrop-filter: blur(18px);
+}
+
+.aside-label {
+  margin: 0 0 1rem;
+  color: var(--brand-blue);
+  font-size: 0.76rem;
+  font-weight: 720;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.aside-parts {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aside-parts li {
+  display: grid;
+  gap: 0.12rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.aside-parts li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.aside-part-name {
+  color: rgba(17, 17, 20, 0.52);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.aside-part-title {
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 620;
+}
+
+.nav-links a.nav-cta {
+  color: #fff;
+  background: var(--brand-blue);
+}
+
+.nav-links a.nav-cta:hover {
+  color: #fff;
+  background: #005ec2;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.catalog-part {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 18px 54px rgba(17, 17, 20, 0.055);
+  overflow: hidden;
+}
+
+.catalog-part-head {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--soft-line);
+  background: rgba(0, 113, 227, 0.04);
+}
+
+.catalog-part-head span {
+  color: var(--brand-blue);
+  font-size: 0.76rem;
+  font-weight: 720;
+  letter-spacing: 0.06em;
+}
+
+.catalog-part-head h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+}
+
+.chapter-list {
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+}
+
+.chapter-list a {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.62rem 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.chapter-list a:hover {
+  background: rgba(0, 113, 227, 0.06);
+}
+
+.chapter-num {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border-radius: 6px;
+  color: var(--brand-blue);
+  background: rgba(0, 113, 227, 0.1);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.chapter-title {
+  font-size: 0.94rem;
+  font-weight: 580;
+  line-height: 1.4;
+}
+
+/* Starlight: Claude Code guide sidebar */
+:root[data-theme='light'],
+:root {
+  --sl-color-accent-low: #d8edff;
+  --sl-color-accent: #0071e3;
+  --sl-color-accent-high: #005ec2;
+}
+
+.sidebar-content .top-level > li > details > summary,
+.sidebar-content .top-level > li > a {
+  font-weight: 620;
+}
+
+.sidebar-content .top-level > li > details > ul a {
+  font-size: 0.9rem;
 }
 
 .hero-scene {
@@ -520,7 +681,8 @@ a {
 }
 
 @media (max-width: 980px) {
-  .hero {
+  .hero,
+  .hero-guide {
     grid-template-columns: 1fr;
     gap: 2rem;
     padding-top: 2.6rem;
@@ -532,7 +694,8 @@ a {
 
   .metric-strip,
   .path-grid,
-  .map-panel {
+  .map-panel,
+  .catalog-grid {
     grid-template-columns: 1fr;
   }
 
@@ -608,8 +771,18 @@ a {
   .map-note,
   .map-table,
   .metric-strip,
+  .hero-aside,
+  .catalog-part,
   .button:not(.primary) {
     background: rgba(28, 29, 33, 0.72);
+  }
+
+  .catalog-part-head {
+    background: rgba(0, 113, 227, 0.12);
+  }
+
+  .chapter-list a:hover {
+    background: rgba(0, 113, 227, 0.14);
   }
 
   .nav-links a,

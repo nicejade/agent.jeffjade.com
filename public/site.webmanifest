@@ -1,7 +1,7 @@
 {
   "name": "智能体漫游",
   "short_name": "智能体漫游",
-  "description": "面向工程师、创造者与普通人的 Agent 实践知识站。",
+  "description": "16 章系统掌握 Claude Code 的中文指南。",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f5f7",

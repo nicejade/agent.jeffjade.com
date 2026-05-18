@@ -1,6 +1,8 @@
 ---
 title: Claude Code 的工作原理：代理循环与工具调用
 description: 深入理解 Agent Loop 机制、内置工具集、权限管理与安全边界，真正掌握 Claude Code 的运行逻辑。
+sidebar:
+  order: 5
 ---
 
 ## Agent Loop（代理循环）

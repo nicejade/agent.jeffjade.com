@@ -1,6 +1,8 @@
 ---
 title: Claude Code 完整实战工作流
 description: 从代码理解、调试、重构到完整项目构建，掌握 Claude Code 的端到端实战方法论。
+sidebar:
+  order: 13
 ---
 
 ## 工作流全景

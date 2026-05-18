@@ -1,6 +1,8 @@
 ---
 title: Skills：构建可重用提示模板与工作流
 description: 理解 Skills 与普通提示的本质区别，学会设计、组织与调用 Skills，让 Claude Code 成为领域专家。
+sidebar:
+  order: 9
 ---
 
 ## Skills 是什么？

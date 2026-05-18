@@ -1,6 +1,8 @@
 ---
 title: 反思与进阶：AI Agent 时代的开发者
 description: 从"写代码的人"到"指挥 Agent 的人"，思考 AI Agent 时代开发者应具备的新技能与心智模型。
+sidebar:
+  order: 16
 ---
 
 ## 角色转变：从 Coder 到 Conductor

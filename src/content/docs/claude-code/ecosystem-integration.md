@@ -1,6 +1,8 @@
 ---
 title: Claude Code 与生态的深度集成
 description: 了解 Claude Code 如何与 IDE、CI/CD、GitHub Actions 等开发工具链深度融合，以及团队协作场景下的落地策略。
+sidebar:
+  order: 14
 ---
 
 ## IDE 深度集成

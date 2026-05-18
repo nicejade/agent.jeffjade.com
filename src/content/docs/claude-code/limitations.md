@@ -1,6 +1,8 @@
 ---
 title: Claude Code 的局限性与应对策略
 description: 正视 Claude Code 的局限性——安全风险、成本控制、上下文窗口、幻觉问题等，掌握实用的应对与规避策略。
+sidebar:
+  order: 15
 ---
 
 ## 已知局限性

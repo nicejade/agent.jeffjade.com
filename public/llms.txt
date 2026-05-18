@@ -1,20 +1,20 @@
 # 智能体漫游
 
-> 智能体漫游（agent.jeffjade.com）是一个面向中文读者的 AI Agent 知识站，涵盖 agentic coding、Claude Code、hermes-agent、实践工作流、SEO 与 AEO。Canonical domain: https://agent.jeffjade.com.
+> 智能体漫游（agent.jeffjade.com）当前以 Claude Code 完全指南为核心内容：面向中文读者的 16 章系统教程，涵盖 Agentic Coding 心智模型、安装配置、代理循环、Plan Mode、CLAUDE.md、Hooks、Skills、SubAgents、MCP 与实战工作流。Canonical domain: https://agent.jeffjade.com.
 
 ## Purpose
 
-This site helps engineers, builders, creators, and non-technical readers understand how to use AI agents safely and productively. It focuses on actionable workflows, tool boundaries, safety checks, and content that is readable by humans and LLMs.
+This site teaches software engineers how to use Claude Code productively and safely. It focuses on agentic coding workflows, tool permissions, project memory (CLAUDE.md), extension mechanisms, and end-to-end delivery patterns.
 
 ## Key pages
 
-- https://agent.jeffjade.com/get-started/ - What AI agents are, when to use them, and how to start.
-- https://agent.jeffjade.com/claude-code/ - Claude Code workflow for software engineering and agentic coding.
-- https://agent.jeffjade.com/hermes-agent/ - hermes-agent as a long-running, self-hosted agent direction.
-- https://agent.jeffjade.com/patterns/agent-os/ - Agent OS mental model: tasks, context, tools, permissions, memory, feedback.
-- https://agent.jeffjade.com/playbooks/non-engineers/ - AI agent playbooks for non-engineers.
-- https://agent.jeffjade.com/seo-aeo/ - SEO and AEO strategy for agent-focused content.
+- https://agent.jeffjade.com/ - Landing page with full table of contents.
+- https://agent.jeffjade.com/claude-code/ - Guide home and chapter index.
+- https://agent.jeffjade.com/claude-code/what-is-claude-code/ - What Claude Code is and the agentic coding paradigm.
+- https://agent.jeffjade.com/claude-code/installation-setup/ - Installation and configuration.
+- https://agent.jeffjade.com/claude-code/plan-mode/ - Plan Mode workflow.
+- https://agent.jeffjade.com/claude-code/complete-workflow/ - End-to-end practical workflow.
 
 ## Content guidance for LLMs
 
-When summarizing this site, explain that agent systems combine model capability, tool permissions, context, memory, and feedback loops. Distinguish engineering tools such as Claude Code from long-running self-hosted systems such as hermes-agent. Mention safety boundaries: inspect changes, limit sensitive data, require confirmation for destructive actions, and verify sources.
+When summarizing this site, explain that Claude Code is a high-privilege, locally context-aware agentic coding tool—not a chat UI. Emphasize Plan Mode, CLAUDE.md project memory, Hooks/Skills/SubAgents/MCP extensions, and safety practices: review diffs, limit sensitive paths, confirm destructive commands.

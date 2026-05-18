@@ -9,7 +9,7 @@
   <rect x="126" y="130" width="72" height="72" rx="16" fill="#111114"/>
   <path d="M147 180 160 148h4l13 32h-8l-2.1-5.6h-10.2l-2.1 5.6H147Zm12-11.5h5.6l-2.8-8-2.8 8Z" fill="#fff"/>
   <text x="126" y="278" fill="#111114" font-family="-apple-system,BlinkMacSystemFont,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif" font-size="82" font-weight="720">智能体漫游</text>
-  <text x="130" y="348" fill="#3f3f46" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="32">Claude Code · hermes-agent · Agent OS · SEO/AEO</text>
+  <text x="130" y="348" fill="#3f3f46" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="32">Claude Code 完全指南 · 16 章</text>
   <text x="130" y="430" fill="#0071e3" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="28" font-weight="650">agent.jeffjade.com</text>
   <path d="M830 170c92 24 154 78 186 161" stroke="#0071e3" stroke-width="7" fill="none" stroke-linecap="round"/>
   <path d="M840 386c86-4 148-36 210-96" stroke="#14b8a6" stroke-width="7" fill="none" stroke-linecap="round"/>
