@@ -1,73 +1,43 @@
 ---
-title: Claude Code 路线
-description: Claude Code 的定位、适用场景、工程工作流和安全边界。
+title: Claude Code 完全指南
+description: 从基础认知到高级扩展，16 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
 ---
 
-[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。它运行在开发环境中，可以读取代码库、编辑文件、运行命令，并与 MCP 等开发工具集成。
+[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。本指南从心智模型、快速上手、工作原理、项目记忆、高级扩展、实战方法到反思进阶，共 16 章，帮助你系统掌握 Claude Code。
 
-## 它最适合什么
+## 第一部分：基础认知
 
-Claude Code 的优势在“仓库现场”。它不是只补全几行代码，而是可以围绕一个目标理解文件结构、提出计划、修改多个文件、运行测试、解释失败原因，再继续迭代。
+1. [Claude Code 究竟是什么？](./01-what-is-claude-code/)——定位、本质与 Agentic Coding 范式
+2. [为什么能 10 倍提升效率？](./02-core-advantages/)——核心优势与竞品对比
 
-典型任务包括：
+## 第二部分：快速上手
 
-- 快速理解陌生代码库。
-- 实现小到中等规模功能。
-- 修复测试失败、类型错误或构建问题。
-- 迁移框架版本、调整配置、整理文档。
-- 把模糊需求拆成可执行的工程步骤。
+3. [安装与配置](./03-installation-setup/)——从零到可用的全流程
+4. [第一个会话](./04-first-session/)——基础命令与交互模式
 
-## 推荐工作流
+## 第三部分：工作原理
 
-### 1. 先让它读环境
+5. [代理循环与工具调用](./05-agent-loop/)——理解 Agent Loop 内核
+6. [Plan Mode](./06-plan-mode/)——先规划再执行的杀手级功能
 
-给 Claude Code 一个清晰目标，但让它先观察项目结构：
+## 第四部分：项目记忆
 
-```bash
-claude "先阅读这个仓库的结构和关键配置，不要改文件。告诉我这个项目如何运行、如何测试。"
-```
+7. [CLAUDE.md 的艺术](./07-claude-md/)——为项目注入持久记忆与规范
 
-### 2. 再限定变更范围
+## 第五部分：高级扩展
 
-范围越清楚，Agent 越稳定：
+8. [Hooks](./08-hooks/)——自动化、安全校验与生命周期控制
+9. [Skills](./09-skills/)——可重用提示模板与工作流
+10. [SubAgents](./10-subagents/)——上下文隔离与任务拆解
+11. [MCP 万能接口](./11-mcp/)——连接外部工具与服务
 
-```bash
-claude "只修改 src/components 和 src/styles，完成首页交互优化。完成后运行构建并总结变更。"
-```
+## 第六部分：实战与最佳实践
 
-### 3. 始终保留检查点
+12. [提示工程秘诀](./12-prompt-engineering/)——高效沟通方法论
+13. [完整实战工作流](./13-complete-workflow/)——从理解到部署
+14. [生态集成](./14-ecosystem-integration/)——IDE、CI/CD 与团队协作
 
-在真实项目里，Agent 产出的价值来自“能检查”。常见检查点包括：
+## 第七部分：反思与进阶
 
-- `git diff`
-- `pnpm build`
-- `pnpm test`
-- Playwright 截图
-- 代码评审问题清单
-- 用户验收步骤
-
-## 与 MCP 的关系
-
-MCP 可以让 Claude Code 接入外部上下文，例如设计文档、Issue、数据库、内部工具或浏览器。可以把 MCP 理解成“让 Agent 拥有可靠工具接口”的方式。
-
-不要为了炫技接入所有东西。先从最稳定的两个入口开始：项目文件和任务系统。等到边界清晰后，再加入更多工具。
-
-## 风险边界
-
-Claude Code 越强，越需要边界：
-
-- 破坏性命令必须人工确认。
-- 密钥、生产数据库和账单系统不要默认开放。
-- 大规模重构要分阶段执行。
-- 不要把测试失败解释当作测试通过。
-- 让 Agent 写总结，但以 diff 和日志为准。
-
-## 适合本站继续扩展的内容
-
-后续可以增加：
-
-- Claude Code 中文快速上手。
-- 常见任务 Prompt 模板。
-- MCP 配置示例。
-- 与 Codex、Cursor、GitHub Copilot 的使用边界比较。
-- 真实项目改造案例。
+15. [局限性与应对](./15-limitations/)——安全、成本与常见坑
+16. [AI Agent 时代的开发者](./16-reflection/)——角色转变与新技能体系
