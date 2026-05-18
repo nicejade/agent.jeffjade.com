@@ -58,6 +58,13 @@ a {
   text-underline-offset: 0.18em;
 }
 
+svg {
+  --sl-icon-size: 1.2rem !important;
+  font-size: var(--sl-icon-size) !important;
+  width: var(--sl-icon-size) !important;
+  height: var(--sl-icon-size) !important;
+}
+
 ::selection {
   color: #06131e;
   background: #b9ddff;

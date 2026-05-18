@@ -46,6 +46,15 @@ export default defineConfig({
           lang: 'zh-CN',
         },
       },
+      social: [
+        { icon: 'external', label: '晚晴幽草轩', href: 'https://www.jeffjade.com/' },
+				{ icon: 'mastodon', label: 'Mastodon', href: 'https://mastodon.social/@nicejade' },
+				{ icon: 'telegram', label: 'Telegram', href: 'https://t.me/nicejade' },
+				{ icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@MarshalXuan' },
+				{ icon: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/nice.jade.yang' },
+				{ icon: 'x.com', label: 'X', href: 'https://x.com/MarshalXuan' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/nicejade/agent.jeffjade.com' },
+			],
       customCss: ['./src/styles/global.css'],
       sidebar: claudeCodeSidebar,
       head: [
