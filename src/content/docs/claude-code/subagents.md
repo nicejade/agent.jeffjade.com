@@ -437,4 +437,6 @@ Fork 与**命名子代理**对比：前者共享历史与系统提示，后者�
 
 ---
 
-下一章：[MCP](/claude-code/mcp/)——用 Model Context Protocol 把 GitHub、数据库、浏览器等外部系统接到 Claude Code，并学会把 MCP 只 scoped 给特定子代理以节省主会话上下文。
+下一章：[上下文管理与多代理架构](/claude-code/context-management/)——窗口用到 80% 时会发生什么，以及 SubAgents、`/handoff` 与 `/clear` 如何组成可恢复的长任务工作流。
+
+再下一章：[MCP](/claude-code/mcp/)——用 Model Context Protocol 把 GitHub、数据库、浏览器等外部系统接到 Claude Code，并学会把 MCP 只 scoped 给特定子代理以节省主会话上下文。

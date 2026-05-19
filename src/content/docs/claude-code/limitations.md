@@ -2,7 +2,7 @@
 title: Claude Code 的局限性与应对策略
 description: 正视上下文、幻觉、权限与成本边界，用可操作的缓解手段与排障路径，把 Claude Code 放在「放大器」而非「自动驾驶」的位置。
 sidebar:
-  order: 15
+  order: 16
 ---
 
 *「它看起来很自信，测试也绿了，上线后才发现改错了分支上的鉴权逻辑。」*
@@ -53,6 +53,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 | `/clear` | 换无关任务；同一 bug 纠正多次仍失败时重写提示 |
 | `/rename` + `claude --resume` | 清窗口前给会话起名，便于找回 |
 | [SubAgents](/claude-code/subagents/) | 大探索、长日志、全量测试输出隔离出去 |
+| [上下文管理与多代理](/claude-code/context-management/) | 70% 阈值 handoff、`/clear` 冷启动、A/B/C 组合剧本 |
 | 精简 [CLAUDE.md](/claude-code/claude-md/) | 只留高频规则；专项流程进 [Skills](/claude-code/skills/) |
 | 分块 Read | 要求「只读 L100-200」而非整文件 |
 | 关闭无用 [MCP](/claude-code/mcp/) | `/mcp` 查看，停用不用的服务器 |
@@ -277,7 +278,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 | 局限 | 优先翻 |
 |------|--------|
-| 上下文满 | [prompt-engineering](/claude-code/prompt-engineering/)、[subagents](/claude-code/subagents/) |
+| 上下文满 | [context-management](/claude-code/context-management/)、[prompt-engineering](/claude-code/prompt-engineering/)、[subagents](/claude-code/subagents/) |
 | 乱改/先探索 | [plan-mode](/claude-code/plan-mode/) |
 | 权限事故 | [installation-setup](/claude-code/installation-setup/)、[hooks](/claude-code/hooks/)、[ecosystem-integration](/claude-code/ecosystem-integration/) |
 | 成本飙升 | 本章降本表、[costs 官方](https://code.claude.com/docs/en/costs) |

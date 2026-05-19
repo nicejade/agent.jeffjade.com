@@ -2,7 +2,7 @@
 title: 高效提示工程的秘诀
 description: 在 Agentic Coding 里用可验证目标、分阶段节奏与上下文管理指挥 Claude Code，而不是堆长提示或逐步遥控。
 sidebar:
-  order: 12
+  order: 13
 ---
 
 *「帮我改进一下代码。」——二十分钟后 diff 满天飞，测试红了，你仍说不清最初要达成什么。」*
@@ -171,7 +171,7 @@ CLI 会注入文件内容，比「请读 package.json」可靠。多文件：`@s
 用子代理调查 token 刷新实现和是否已有 OAuth 工具函数，只把结论和文件路径列表返回给我。
 ```
 
-机制见 [SubAgents](/claude-code/subagents/)。原则：**高体积中间结果进子代理，主会话留结论与下一步。**
+机制见 [SubAgents](/claude-code/subagents/)。原则：**高体积中间结果进子代理，主会话留结论与下一步。** 窗口快到顶时的 handoff 与 `/clear` 组合剧本见 [上下文管理与多代理架构](/claude-code/context-management/)。
 
 ---
 

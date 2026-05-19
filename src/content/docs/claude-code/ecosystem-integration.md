@@ -2,7 +2,7 @@
 title: Claude Code 与生态的深度集成
 description: 在 VS Code、JetBrains 与终端中落地开发体验，用 GitHub Actions 与托管策略把 Claude Code 纳入团队工作流与企业合规。
 sidebar:
-  order: 14
+  order: 15
 ---
 
 *「个人在终端里用得顺手，但团队要统一权限、PR 里要能 @ 机器人、JetBrains 同事也要 diff 进 IDE。」*

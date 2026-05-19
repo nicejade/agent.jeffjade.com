@@ -44,6 +44,7 @@ export const claudeCodeSidebar = [
     items: [
       { label: '提示工程秘诀', link: '/claude-code/prompt-engineering/' },
       { label: '完整实战工作流', link: '/claude-code/complete-workflow/' },
+      { label: '上下文管理与多代理', link: '/claude-code/context-management/' },
       { label: '生态深度集成', link: '/claude-code/ecosystem-integration/' },
     ],
   },

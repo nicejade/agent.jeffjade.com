@@ -19,6 +19,7 @@ const claudeCodeRedirects = {
   '/claude-code/08-hooks': '/claude-code/hooks',
   '/claude-code/09-skills': '/claude-code/skills',
   '/claude-code/10-subagents': '/claude-code/subagents',
+  '/claude-code/11-context-management': '/claude-code/context-management',
   '/claude-code/11-mcp': '/claude-code/mcp',
   '/claude-code/12-prompt-engineering': '/claude-code/prompt-engineering',
   '/claude-code/13-complete-workflow': '/claude-code/complete-workflow',
