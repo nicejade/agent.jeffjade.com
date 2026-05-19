@@ -129,7 +129,10 @@ Claude Code 可以驱动任何兼容 Anthropic Messages API 的模型。这意�
 {
   "env": {
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-    "ANTHROPIC_API_KEY": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "ANTHROPIC_API_KEY": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
   }
 }
 ```
@@ -223,7 +226,7 @@ alias cc-openrouter='ANTHROPIC_BASE_URL="https://openrouter.ai/api/anthropic" AN
 alias cc-deepseek='ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" ANTHROPIC_API_KEY="sk-xxx" claude'
 ```
 
-## 推荐添加的配置
+## 推荐设置的环境变量配置
 
 针对你这个使用第三方代理的场景，建议补充以下配置（更多配置参见 [Claude Code 环境变量文档](https://code.claude.com/docs/en/env-vars)）：
 
@@ -232,9 +235,9 @@ alias cc-deepseek='ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" ANTHR
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "sk-your-deepseek-api-key",
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-	"ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+	  "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]"
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
 
     "API_TIMEOUT_MS": "3000000",
     "DISABLE_TELEMETRY": "1",
@@ -314,7 +317,7 @@ alias cc-deepseek='ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" ANTHR
 
 ---
 
-### ⚠️ 注意事项
+### ⚠️ 特别注意事项
 
 **`CLAUDE_CODE_AUTO_COMPACT_WINDOW`** 你设置的是 `120000`（约 12 万 token），如果你的代理模型实际 context window 比这小，建议改成和模型实际窗口匹配的值，否则压缩触发时机会算错。
 
@@ -374,7 +377,7 @@ Claude Code 依赖以下 Anthropic Messages API 特性，请确认你的第三�
 - GPT-4 的 tool_use 机制与 Claude 的工具调用不同，Agent 循环可能不稳定。
 - **这不是官方支持的用法**，遇到问题需要自己排查。
 
-## 选择指南
+## 方案选择指南
 
 没有银弹，只有适合你的方案：
 

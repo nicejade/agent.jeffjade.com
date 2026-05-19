@@ -99,7 +99,7 @@ claude -r "auth-refactor" "继续上次未完的 PR"  # 按名称或 ID 恢复
 /permissions   # 为常见只读/测试命令预置 allow，少被打断
 ```
 
-细节见后续 [CLAUDE.md](/claude-code/claude-md/) 与 [代理循环](/claude-code/agent-loop/)。
+细节见后续 [CLAUDE.md](/claude-code/claude-md/)；更多命令分类与日常组合见 [Slash 命令](/claude-code/slash-commands/)。
 
 **动手：** 运行 `/context` 看占用；多聊几轮后 `/compact`，看任务是否仍连贯；再 `/clear` 开新话题。
 
@@ -260,4 +260,4 @@ Claude Code 能执行 Bash、改文件。若全无确认，一次误判就可能
 
 ---
 
-下一章：[代理循环与工具调用](/claude-code/agent-loop/)——本章的直觉会落到机制上：Claude Code 如何决定下一步、何时停止、工具与安全边界如何配合。
+下一章：[Slash 命令与常用功能](/claude-code/slash-commands/)——把会话控制面板系统过一遍；再读 [代理循环与工具调用](/claude-code/agent-loop/)，理解命令背后的执行机制。

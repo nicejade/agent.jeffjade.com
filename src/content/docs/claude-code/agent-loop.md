@@ -7,7 +7,7 @@ sidebar:
 
 *「它刚才一连读了五个文件、跑了两遍测试，最后才回我一句话。这中间到底发生了什么？」*
 
-上一章你已经在真实项目里跑通过一次会话。本章把那种「它自己在干活」的直觉，换成可核对的一套机制：**代理循环**、**工具**、**权限**。读完后，你能根据终端里的工具名和权限弹窗，判断 Agent 处在循环的哪一步，以及为什么会被拦住或停下来。
+上一章你已跑通会话，并熟悉了 [Slash 命令](/claude-code/slash-commands/) 面板。本章把那种「它自己在干活」的直觉，换成可核对的一套机制：**代理循环**、**工具**、**权限**。读完后，你能根据终端里的工具名和权限弹窗，判断 Agent 处在循环的哪一步，以及为什么会被拦住或停下来。
 
 官方机制说明见 [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop) 与 [How Claude Code works](https://code.claude.com/en/how-claude-code-works)。CLI 与 Agent SDK 共用同一套循环；下文以终端会话为主，并标注与 SDK 选项的对应关系。
 

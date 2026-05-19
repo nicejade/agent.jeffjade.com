@@ -37,7 +37,7 @@ export default defineConfig({
       plugins: [starlightThemeRapide()],
       title: '智能体漫游',
       description:
-        '从基础认知到高级扩展，16 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。',
+        '从基础认知到高级扩展，18 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。',
       favicon: '/favicon.svg',
       titleDelimiter: '·',
       lastUpdated: false,

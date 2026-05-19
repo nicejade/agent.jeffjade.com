@@ -1,6 +1,6 @@
 # 智能体漫游
 
-> 智能体漫游（agent.jeffjade.com）当前以 Claude Code 完全指南为核心内容：面向中文读者的 16 章系统教程，涵盖 Agentic Coding 心智模型、安装配置、代理循环、Plan Mode、CLAUDE.md、Hooks、Skills、SubAgents、MCP 与实战工作流。Canonical domain: https://agent.jeffjade.com.
+> 智能体漫游（agent.jeffjade.com）当前以 Claude Code 完全指南为核心内容：面向中文读者的 18 章系统教程，涵盖 Agentic Coding 心智模型、安装配置、Slash 命令、代理循环、Plan Mode、CLAUDE.md、Hooks、Skills、SubAgents、MCP 与实战工作流。Canonical domain: https://agent.jeffjade.com.
 
 ## Purpose
 
@@ -12,6 +12,7 @@ This site teaches software engineers how to use Claude Code productively and saf
 - https://agent.jeffjade.com/claude-code/ - Guide home and chapter index.
 - https://agent.jeffjade.com/claude-code/what-is-claude-code/ - What Claude Code is and the agentic coding paradigm.
 - https://agent.jeffjade.com/claude-code/installation-setup/ - Installation and configuration.
+- https://agent.jeffjade.com/claude-code/slash-commands/ - Slash commands reference and daily workflow.
 - https://agent.jeffjade.com/claude-code/plan-mode/ - Plan Mode workflow.
 - https://agent.jeffjade.com/claude-code/complete-workflow/ - End-to-end practical workflow.
 

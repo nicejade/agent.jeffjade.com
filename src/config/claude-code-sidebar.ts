@@ -17,6 +17,7 @@ export const claudeCodeSidebar = [
       { label: '安装与配置', link: '/claude-code/installation-setup/' },
       { label: '基于第三方 API', link: '/claude-code/third-party-api/' },
       { label: '第一个会话', link: '/claude-code/first-session/' },
+      { label: 'Slash 命令', link: '/claude-code/slash-commands/' },
     ],
   },
   {
