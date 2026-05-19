@@ -121,6 +121,21 @@ claude --model anthropic/claude-sonnet-4-6
 
 Claude Code 可以驱动任何兼容 Anthropic Messages API 的模型。这意味着你不仅能用 Claude 系列——你还可以用 Gemini、DeepSeek、Qwen 等。
 
+### DeepSeek
+
+[DeepSeek](https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code) 是性价比最高的选择之一——它的 API 部分兼容 Anthropic 格式：
+
+```json
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+    "ANTHROPIC_API_KEY": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  }
+}
+```
+
+> 注意：DeepSeek 的 Anthropic 兼容端点可能不支持全部 Messages API 特性（如 tool_use 的流式返回），Claude Code 的一些高级功能可能受限。建议查阅 [DeepSeek 官方文档](https://platform.deepseek.com/api-docs) 确认最新兼容性。
+
 ### Google Gemini
 
 通过支持 Anthropic API 格式的代理（如 [gemini-openai-proxy](https://github.com/zhu327/gemini-openai-proxy) 或自建网关），可以让 Claude Code 用上 Gemini：
@@ -135,21 +150,6 @@ Claude Code 可以驱动任何兼容 Anthropic Messages API 的模型。这意�
 ```
 
 > Google 官方未提供 Anthropic 格式兼容端点，需要中间代理层转换格式。大多数社区方案已覆盖了 Messages API 的主要字段。
-
-### DeepSeek
-
-[DeepSeek](https://platform.deepseek.com) 是性价比最高的选择之一——它的 API 部分兼容 Anthropic 格式：
-
-```json
-{
-  "env": {
-    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-    "ANTHROPIC_API_KEY": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  }
-}
-```
-
-> 注意：DeepSeek 的 Anthropic 兼容端点可能不支持全部 Messages API 特性（如 tool_use 的流式返回），Claude Code 的一些高级功能可能受限。建议查阅 [DeepSeek 官方文档](https://platform.deepseek.com/api-docs) 确认最新兼容性。
 
 ### 自定义 LiteLLM 代理
 
@@ -222,6 +222,103 @@ alias cc-native='ANTHROPIC_BASE_URL="" ANTHROPIC_API_KEY="sk-ant-xxx" claude'
 alias cc-openrouter='ANTHROPIC_BASE_URL="https://openrouter.ai/api/anthropic" ANTHROPIC_API_KEY="sk-or-v1-xxx" claude'
 alias cc-deepseek='ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" ANTHROPIC_API_KEY="sk-xxx" claude'
 ```
+
+## 推荐添加的配置
+
+针对你这个使用第三方代理的场景，建议补充以下配置（更多配置参见 [Claude Code 环境变量文档](https://code.claude.com/docs/en/env-vars)）：
+
+```json
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-your-deepseek-api-key",
+    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+	"ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]"
+
+    "API_TIMEOUT_MS": "3000000",
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1"
+
+    "CLAUDE_CODE_ATTRIBUTION_HEADER": "0",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "120000",
+
+    "DISABLE_PROMPT_CACHING": "0",
+    "ENABLE_PROMPT_CACHING_1H": "1",
+
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "32000",
+    "MAX_THINKING_TOKENS": "10000",
+
+    "DISABLE_AUTO_COMPACT": "0",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80",
+
+    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "0",
+    "CLAUDE_CODE_EFFORT_LEVEL": "auto",
+
+    "BASH_DEFAULT_TIMEOUT_MS": "300000",
+    "BASH_MAX_TIMEOUT_MS": "1800000",
+    "BASH_MAX_OUTPUT_LENGTH": "50000",
+
+    "CLAUDE_CODE_MAX_RETRIES": "5",
+    "CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY": "5"
+  },
+  "model": "opus",
+  "skipDangerousModePermissionPrompt": true
+}
+```
+
+### 📋 各参数说明
+
+#### 缓存相关（对代理场景最重要）
+
+| 参数 | 建议值 | 说明 |
+|---|---|---|
+| `CLAUDE_CODE_ATTRIBUTION_HEADER` | `0` | 设置为启用后，系统提示符开头将省略归属信息块（客户端版本和提示符指纹）。禁用此功能可提高通过 [LLM 网关](https://code.claude.com/docs/en/llm-gateway) 路由时的提示符缓存命中率。Anthropic API 缓存不受影响。|
+| `DISABLE_PROMPT_CACHING` | `0` | 确保缓存开启，你已经关掉了 attribution header，缓存应该能正常命中 |
+| `ENABLE_PROMPT_CACHING_1H` | `1` | 请求 1 小时 TTL 缓存（默认只有 5 分钟），长任务节省大量 token |
+
+#### 输出与思考 token
+
+| 参数 | 建议值 | 说明 |
+|---|---|---|
+| `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | `32000` | 防止代理截断过长的输出，按需调整 |
+| `MAX_THINKING_TOKENS` | `10000` | 使用 Haiku 模型时建议控制思考 token，避免浪费 |
+
+#### 压缩策略
+
+| 参数 | 建议值 | 说明 |
+|---|---|---|
+| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | `80` | 上下文用到 80% 时触发压缩（默认较高），提前压缩避免超限报错 |
+
+#### 稳定性相关
+
+| 参数 | 建议值 | 说明 |
+|---|---|---|
+| `CLAUDE_CODE_MAX_RETRIES` | `5` | 代理偶发不稳定时的重试次数，默认 10 可以适当降低 |
+| `CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY` | `5` | 默认 10 并发，代理有并发限制时应降低 |
+| `BASH_DEFAULT_TIMEOUT_MS` | `300000` | bash 命令默认超时 5 分钟（原来 2 分钟），长编译任务不会中断 |
+
+#### 隐私与流量
+
+| 参数 | 建议值 | 说明 |
+|---|---|---|
+| `DISABLE_TELEMETRY` | `1` | 设置为 `1` “关闭”可选择退出遥测。遥测事件不包含用户数据，例如代码、文件路径或 Bash 命令。同时，此功能还会禁用功能标志，因此某些仍在逐步推出的功能可能无法使用。 |
+| `DISABLE_ERROR_REPORTING` | `1` | 你已禁用遥测，顺便禁掉 Sentry 错误上报，避免本地信息外泄 |
+
+#### 持久自动化
+
+| 参数 | 建议值 | 说明 |
+|---|---|---|
+| `skipDangerousModePermissionPrompt` | `true` | 它会彻底跳过每次进入 bypassPermissions（危险/全权模式） 时的“Are you sure?” 二次确认弹窗，让 Claude Code 能够真正零中断地自动运行所有操作（读写文件、执行命令、改代码等）。最大好处是解锁“无人值守”的极致自动化工作流，尤其适合你已经在容器、VM 或完全信任的环境中重度使用时，效率大幅提升。**风险提醒**：仅在你明确知道自己在做什么且环境安全时开启，否则风险较高。 |
+
+---
+
+### ⚠️ 注意事项
+
+**`CLAUDE_CODE_AUTO_COMPACT_WINDOW`** 你设置的是 `120000`（约 12 万 token），如果你的代理模型实际 context window 比这小，建议改成和模型实际窗口匹配的值，否则压缩触发时机会算错。
+
+**`model: "haiku"`** 使用 Haiku 时，adaptive thinking 和 effort level 对它效果有限，如果代理后端映射的模型不支持思考，建议加上 `CLAUDE_CODE_DISABLE_THINKING: "1"` 避免报错。
 
 ## 常见问题与排错
 
