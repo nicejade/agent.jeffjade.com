@@ -1,6 +1,6 @@
 # 智能体漫游
 
-> 智能体漫游（agent.jeffjade.com）当前以 Claude Code 完全指南为核心内容：面向中文读者的 18 章系统教程，涵盖 Agentic Coding 心智模型、安装配置、Slash 命令、代理循环、Plan Mode、CLAUDE.md、Hooks、Skills、SubAgents、MCP 与实战工作流。Canonical domain: https://agent.jeffjade.com.
+> 智能体漫游（agent.jeffjade.com）专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。Canonical domain: https://agent.jeffjade.com.
 
 ## Purpose
 

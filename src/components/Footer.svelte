@@ -13,7 +13,8 @@
     {
       title: '友情链接',
       branch: [
-        { title: '清风明月轩', url: 'https://www.lovejade.cn/' },
+        { title: '逍遥自在轩', url: 'https://www.niceshare.site' },
+        { title: '慧悟万象阁', url: 'https://meta.niceshare.site/zh' },
         { title: '晚晴幽草轩', url: 'https://www.jeffjade.com/' },
         { title: '玉桃文飨轩', url: 'https://share.lovejade.cn/' },
         { title: '智析单词书', url: 'https://word.lovejade.cn/' },

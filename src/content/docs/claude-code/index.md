@@ -1,5 +1,5 @@
 ---
-title: Claude Code 完全指南
+title: Claude Code 漫游指南
 description: 从基础认知到高级扩展，18 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
 sidebar:
   order: 0
@@ -15,6 +15,7 @@ sidebar:
 ## 第二部分：快速上手
 
 3. [安装与配置](./installation-setup/)——从零到可用的全流程
+4. [基于第三方 API](/claude-code/third-party-api/)——基于第三方 API 使用 Claude Code
 4. [第一个会话](./first-session/)——基础命令与交互模式
 5. [Slash 命令](./slash-commands/)——常用命令与分类查阅
 
