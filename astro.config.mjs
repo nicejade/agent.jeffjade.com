@@ -4,6 +4,7 @@ import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import starlightThemeRapide from 'starlight-theme-rapide';
 import { claudeCodeSidebar } from './src/config/claude-code-sidebar.ts';
+import { tableWrapIntegration } from './src/integrations/table-wrap.ts';
 
 const site = 'https://agent.jeffjade.com';
 const gaId = 'G-JXTFG9M3EK';
@@ -94,6 +95,7 @@ gtag('config', '${gaId}');`,
         },
       ],
     }),
+    tableWrapIntegration(),
   ],
   vite: {
     plugins: [tailwindcss()],
