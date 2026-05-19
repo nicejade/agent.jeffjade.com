@@ -59,7 +59,10 @@ export default defineConfig({
 				{ icon: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/nice.jade.yang' },
 				{ icon: 'x.com', label: 'X', href: 'https://x.com/MarshalXuan' },
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/nicejade/agent.jeffjade.com' },
-			],
+      ],
+      components: {
+				Footer: './src/components/Footer.astro',
+      },
       customCss: ['./src/styles/global.css'],
       sidebar: claudeCodeSidebar,
       head: [
@@ -88,10 +91,7 @@ export default defineConfig({
         },
         {
           tag: 'script',
-          content: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${gaId}');`,
+          content: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${gaId}');`,
         },
       ],
     }),
