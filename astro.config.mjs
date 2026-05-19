@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
@@ -30,6 +30,9 @@ const claudeCodeRedirects = {
 
 export default defineConfig({
   site,
+  image: {
+    service: passthroughImageService(),
+  },
   redirects: claudeCodeRedirects,
   integrations: [
     svelte(),
