@@ -470,7 +470,9 @@ svg {
     border-inline-end-color: var(--doc-line) !important;
   }
   :root[data-theme='light'] .sidebar-pane {
-    background-color: rgba(251, 251, 253, 0.72) !important;
+    background-color: rgba(251, 251, 253, 0.58) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
   }
   :root[data-theme='dark'] .sidebar-pane {
     background-color: rgba(11, 12, 15, 0.7) !important;
