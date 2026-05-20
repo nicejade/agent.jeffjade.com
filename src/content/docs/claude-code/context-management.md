@@ -7,7 +7,7 @@ sidebar:
 
 *「上下文已经 80%，它还在改第十四个文件。测试绿了，但我已经说不清它还记得最初要动哪条业务规则。」*
 
-前面各章分别讲了 [CLAUDE.md](/claude-code-guide/claude-md/)、[Skills](/claude-code-guide/skills/)、[Hooks](/claude-code-guide/hooks/)、[SubAgents](/claude-code-guide/subagents/)。它们解决的是**规则、流程、隔离**怎么配。本章解决的是**长任务跑满窗口之后怎么办**：症状是什么、三种递进的应对方式、如何把 SubAgents 与跨会话交接合成一条可重复的工作流。
+前面各章分别讲了 [CLAUDE.md](/claude-code/claude-md/)、[Skills](/claude-code/skills/)、[Hooks](/claude-code/hooks/)、[SubAgents](/claude-code/subagents/)。它们解决的是**规则、流程、隔离**怎么配。本章解决的是**长任务跑满窗口之后怎么办**：症状是什么、三种递进的应对方式、如何把 SubAgents 与跨会话交接合成一条可重复的工作流。
 
 官方参考：[Context window](https://code.claude.com/en/context-window)、[Best practices](https://code.claude.com/docs/en/best-practices)、[Commands](https://code.claude.com/docs/en/commands)（`/context`、`/compact`、`/clear`）、[Sub-agents](https://code.claude.com/docs/en/sub-agents)。
 
@@ -15,12 +15,12 @@ sidebar:
 
 ## 窗口快满时，实际会发生什么
 
-[代理循环](/claude-code-guide/agent-loop/) 每一轮都会把工具输出写回主会话。复杂任务里常见组合是：
+[代理循环](/claude-code/agent-loop/) 每一轮都会把工具输出写回主会话。复杂任务里常见组合是：
 
 - 大量 `Read` / `Grep` 片段
 - 长 `Bash` 日志或测试全文
 - 多文件 diff 与来回纠正
-- [CLAUDE.md](/claude-code-guide/claude-md/) 与 [MCP](/claude-code-guide/mcp/) 工具定义占用的固定开销
+- [CLAUDE.md](/claude-code/claude-md/) 与 [MCP](/claude-code/mcp/) 工具定义占用的固定开销
 
 当用量接近上限，模型**不会**先停下来提醒你，而是继续按当前上下文推理。可观察后果包括：
 
@@ -69,9 +69,9 @@ flowchart LR
 |------|----------|------|------|
 | **A** | `/context`、`/compact`、`/clear` | 已污染、需立刻止血 | 压缩丢细节；`/clear` 丢对话史 |
 | **B** | 写 `HANDOFF.md` 再开新会话 | 任务跨天、需冷启动恢复 | 依赖你维护交接质量 |
-| **C** | 重活进 [SubAgents](/claude-code-guide/subagents/) | 大探索、长日志、并行调研 | 委派描述要准；摘要仍占主窗口 |
+| **C** | 重活进 [SubAgents](/claude-code/subagents/) | 大探索、长日志、并行调研 | 委派描述要准；摘要仍占主窗口 |
 
-社区讨论见 [anthropics/claude-code#11455](https://github.com/anthropics/claude-code-guide/issues/11455)。截至 2026 年初，**内置 `/handoff` 尚未作为官方命令发布**；下文方案 B 用项目内自定义斜杠命令实现，与 Issue 中的实践一致。
+社区讨论见 [anthropics/claude-code#11455](https://github.com/anthropics/claude-code/issues/11455)。截至 2026 年初，**内置 `/handoff` 尚未作为官方命令发布**；下文方案 B 用项目内自定义斜杠命令实现，与 Issue 中的实践一致。
 
 ---
 
@@ -89,7 +89,7 @@ flowchart LR
 /compact Focus on: failing test auth.middleware.test.ts, last diff in src/middleware, open decision on session TTL
 ```
 
-压缩后 [CLAUDE.md](/claude-code-guide/claude-md/) 仍会随新轮次加载；部分技能与规则在压缩中的保留行为见官方 [What survives compaction](https://code.claude.com/en/context-window#what-survives-compaction)。
+压缩后 [CLAUDE.md](/claude-code/claude-md/) 仍会随新轮次加载；部分技能与规则在压缩中的保留行为见官方 [What survives compaction](https://code.claude.com/en/context-window#what-survives-compaction)。
 
 ### `/clear`：换题或重来
 
@@ -115,7 +115,7 @@ flowchart LR
 
 ### 第一步：自定义 `/handoff` 命令
 
-在项目创建 `.claude/commands/handoff.md`（与 [Skills](/claude-code-guide/skills/) 同名时 Skill 优先，此处用纯 command 即可）：
+在项目创建 `.claude/commands/handoff.md`（与 [Skills](/claude-code/skills/) 同名时 Skill 优先，此处用纯 command 即可）：
 
 ```markdown
 ---
@@ -140,7 +140,7 @@ Create a HANDOFF.md file in the project root with this exact structure:
 "Continue from HANDOFF.md. Read it first, then proceed with Next steps."
 ```
 
-会话里输入 `/handoff`，Agent 按模板写入 `HANDOFF.md`。也可在自然语言里说「准备 handoff」，若 [CLAUDE.md](/claude-code-guide/claude-md/) 里写了相同约定。
+会话里输入 `/handoff`，Agent 按模板写入 `HANDOFF.md`。也可在自然语言里说「准备 handoff」，若 [CLAUDE.md](/claude-code/claude-md/) 里写了相同约定。
 
 ### 第二步：让新会话自动读交接单
 
@@ -151,7 +151,7 @@ Create a HANDOFF.md file in the project root with this exact structure:
 如果项目根目录存在 HANDOFF.md，在做任何事之前先读它。
 ```
 
-[CLAUDE.md 加载机制](/claude-code-guide/claude-md/#加载机制什么时候读到从哪读) 保证每次 `/clear` 后新会话仍会看到这条规则，从而主动打开 `HANDOFF.md`。
+[CLAUDE.md 加载机制](/claude-code/claude-md/#加载机制什么时候读到从哪读) 保证每次 `/clear` 后新会话仍会看到这条规则，从而主动打开 `HANDOFF.md`。
 
 ### 第三步：约定触发时机
 
@@ -195,17 +195,17 @@ Use an explorer subagent to scan all files under src/payments/,
 identify the three most complex functions, and return only a summary.
 ```
 
-主会话会收到短摘要，而不是两百个 `Read` 块。内置 [Explore](/claude-code-guide/subagents/#内置子代理) 默认只读，适合扫库；要改码用 **general-purpose** 或自定义子代理。
+主会话会收到短摘要，而不是两百个 `Read` 块。内置 [Explore](/claude-code/subagents/#内置子代理) 默认只读，适合扫库；要改码用 **general-purpose** 或自定义子代理。
 
 ### 与 Plan Mode 的分工
 
-[Plan Mode](/claude-code-guide/plan-mode/) 在规划阶段也会委派 **Plan** 子代理做只读调研，避免「探索日志 + 执行 diff」堆在同一窗口。执行阶段再把改动留在主会话或按文件拆给子代理。
+[Plan Mode](/claude-code/plan-mode/) 在规划阶段也会委派 **Plan** 子代理做只读调研，避免「探索日志 + 执行 diff」堆在同一窗口。执行阶段再把改动留在主会话或按文件拆给子代理。
 
 ### 边界
 
 - 子代理**不能**再派子代理；多层分工由主会话串联。
 - 摘要仍占主窗口 token，只是体积小得多。
-- 后台子代理对需弹窗批准的操作会自动拒绝，见 [SubAgents 权限](/claude-code-guide/subagents/#前台后台与权限)。
+- 后台子代理对需弹窗批准的操作会自动拒绝，见 [SubAgents 权限](/claude-code/subagents/#前台后台与权限)。
 
 ---
 
@@ -227,7 +227,7 @@ identify the three most complex functions, and return only a summary.
 仍失真？→ /compact 或再 handoff   ← 方案 A
 ```
 
-与 [完整实战工作流](/claude-code-guide/complete-workflow/) 的关系：该章讲阶段划分；本章讲**同一阶段内窗口如何不被撑爆**。与 [提示工程](/claude-code-guide/prompt-engineering/#把上下文给对而不是给满) 的关系：提示侧少塞文件，架构侧用子代理承接体积。
+与 [完整实战工作流](/claude-code/complete-workflow/) 的关系：该章讲阶段划分；本章讲**同一阶段内窗口如何不被撑爆**。与 [提示工程](/claude-code/prompt-engineering/#把上下文给对而不是给满) 的关系：提示侧少塞文件，架构侧用子代理承接体积。
 
 ---
 
@@ -289,4 +289,4 @@ identify the three most complex functions, and return only a summary.
 
 ---
 
-下一章：[MCP](/claude-code-guide/mcp/)——连接 GitHub、数据库、浏览器等外部系统，并控制 MCP 工具定义对主窗口的占用。
+下一章：[MCP](/claude-code/mcp/)——连接 GitHub、数据库、浏览器等外部系统，并控制 MCP 工具定义对主窗口的占用。

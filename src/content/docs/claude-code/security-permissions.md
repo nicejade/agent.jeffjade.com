@@ -7,7 +7,7 @@ sidebar:
 
 *「为了不被弹窗打断，我加了 `--dangerously-skip-permissions`。一周后才发现 `.env` 被改过，而 deny 列表里从没写过 `Edit(.env*)`。」*
 
-[安装与配置](/claude-code-guide/installation-setup/) 与 [局限性与应对](/claude-code-guide/limitations/) 提过安全，但未系统讲**权限设计**。本章把官方 [Security](https://code.claude.com/docs/en/security)、[Configure permissions](https://code.claude.com/docs/en/permissions)、[Permission modes](https://code.claude.com/docs/en/permission-modes) 落成可执行的规则与边界。
+[安装与配置](/claude-code/installation-setup/) 与 [局限性与应对](/claude-code/limitations/) 提过安全，但未系统讲**权限设计**。本章把官方 [Security](https://code.claude.com/docs/en/security)、[Configure permissions](https://code.claude.com/docs/en/permissions)、[Permission modes](https://code.claude.com/docs/en/permission-modes) 落成可执行的规则与边界。
 
 ---
 
@@ -19,7 +19,7 @@ Claude Code 的权限系统回答一个问题：**哪类工具调用可以在无
 |------|------|------|
 | default | 敏感操作弹窗 | 日常开发 |
 | acceptEdits | 自动批准文件编辑 | 信任范围内的改码 |
-| plan | 只读探索 | 见 [Plan Mode](/claude-code-guide/plan-mode/) |
+| plan | 只读探索 | 见 [Plan Mode](/claude-code/plan-mode/) |
 | bypassPermissions | 跳过几乎全部确认 | **仅**隔离环境 |
 
 启用 bypass 的 CLI 标志包括：
@@ -94,7 +94,7 @@ Claude Code 的权限系统回答一个问题：**哪类工具调用可以在无
 | allow | 高 | 预授权只读/测试 |
 | PreToolUse Hook | 最高 | 组织策略、审计、动态判断 |
 
-Hook **早于** allow 规则，见 [Hooks](/claude-code-guide/hooks/#在代理循环中的位置)。企业可 Hook 拦截即使用户本机配置了宽 allow。
+Hook **早于** allow 规则，见 [Hooks](/claude-code/hooks/#在代理循环中的位置)。企业可 Hook 拦截即使用户本机配置了宽 allow。
 
 ### Plan 模式下的「边界」
 
@@ -136,7 +136,7 @@ docker run --rm -it \
 
 团队常用：专用云主机、/ephemeral CI runner、GitHub Codespace。原则相同：**可销毁、无生产凭证、快照可回滚**。
 
-### 与 [生态集成](/claude-code-guide/ecosystem-integration/) 的关系
+### 与 [生态集成](/claude-code/ecosystem-integration/) 的关系
 
 GitHub Actions 跑 `claude -p` 时，应用**最小权限** secrets、只读默认、合 main 前人工 review。无人值守 ≠ 无人负责。
 
@@ -188,4 +188,4 @@ GitHub Actions 跑 `claude -p` 时，应用**最小权限** secrets、只读默�
 
 ---
 
-下一章：[测试驱动协作与代码质量保障](/claude-code-guide/tdd-quality/)——先红测试再实现、Hooks 与 CI 门禁，以及 diff 与安全扫描审查 AI 输出。
+下一章：[测试驱动协作与代码质量保障](/claude-code/tdd-quality/)——先红测试再实现、Hooks 与 CI 门禁，以及 diff 与安全扫描审查 AI 输出。

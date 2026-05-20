@@ -10,7 +10,7 @@ import { tableWrapIntegration } from './src/integrations/table-wrap.ts';
 const site = 'https://agent.jeffjade.com';
 const gaId = 'G-JXTFG9M3EK';
 
-const claudeCodeGuideSlugs = [
+const claudeCodeSlugs = [
   'what-is-claude-code',
   'core-advantages',
   'installation-setup',
@@ -39,35 +39,35 @@ const claudeCodeGuideSlugs = [
 ];
 
 const claudeCodeLegacyNumberedRedirects = {
-  '/claude-code/01-what-is-claude-code': '/claude-code-guide/what-is-claude-code',
-  '/claude-code/02-core-advantages': '/claude-code-guide/core-advantages',
-  '/claude-code/03-installation-setup': '/claude-code-guide/installation-setup',
-  '/claude-code/04-first-session': '/claude-code-guide/first-session',
-  '/claude-code/05-agent-loop': '/claude-code-guide/agent-loop',
-  '/claude-code/06-plan-mode': '/claude-code-guide/plan-mode',
-  '/claude-code/07-claude-md': '/claude-code-guide/claude-md',
-  '/claude-code/08-hooks': '/claude-code-guide/hooks',
-  '/claude-code/09-skills': '/claude-code-guide/skills',
-  '/claude-code/10-subagents': '/claude-code-guide/subagents',
-  '/claude-code/11-context-management': '/claude-code-guide/context-management',
-  '/claude-code/11-mcp': '/claude-code-guide/mcp',
-  '/claude-code/12-prompt-engineering': '/claude-code-guide/prompt-engineering',
-  '/claude-code/13-complete-workflow': '/claude-code-guide/complete-workflow',
-  '/claude-code/14-ecosystem-integration': '/claude-code-guide/ecosystem-integration',
-  '/claude-code/15-limitations': '/claude-code-guide/limitations',
-  '/claude-code/16-reflection': '/claude-code-guide/reflection',
+  '/claude-code/01-what-is-claude-code': '/claude-code/what-is-claude-code',
+  '/claude-code/02-core-advantages': '/claude-code/core-advantages',
+  '/claude-code/03-installation-setup': '/claude-code/installation-setup',
+  '/claude-code/04-first-session': '/claude-code/first-session',
+  '/claude-code/05-agent-loop': '/claude-code/agent-loop',
+  '/claude-code/06-plan-mode': '/claude-code/plan-mode',
+  '/claude-code/07-claude-md': '/claude-code/claude-md',
+  '/claude-code/08-hooks': '/claude-code/hooks',
+  '/claude-code/09-skills': '/claude-code/skills',
+  '/claude-code/10-subagents': '/claude-code/subagents',
+  '/claude-code/11-context-management': '/claude-code/context-management',
+  '/claude-code/11-mcp': '/claude-code/mcp',
+  '/claude-code/12-prompt-engineering': '/claude-code/prompt-engineering',
+  '/claude-code/13-complete-workflow': '/claude-code/complete-workflow',
+  '/claude-code/14-ecosystem-integration': '/claude-code/ecosystem-integration',
+  '/claude-code/15-limitations': '/claude-code/limitations',
+  '/claude-code/16-reflection': '/claude-code/reflection',
 };
 
-const claudeCodeSlugRedirects = Object.fromEntries(
-  claudeCodeGuideSlugs.map((slug) => [
-    `/claude-code/${slug}/`,
-    `/claude-code-guide/${slug}/`,
-  ]),
-);
+const claudeCodeGuideLegacyRedirects = {
+  '/claude-code-guide/': '/claude-code/',
+  ...Object.fromEntries(
+    claudeCodeSlugs.map((slug) => [`/claude-code-guide/${slug}/`, `/claude-code/${slug}/`]),
+  ),
+};
 
 const claudeCodeRedirects = {
   ...claudeCodeLegacyNumberedRedirects,
-  ...claudeCodeSlugRedirects,
+  ...claudeCodeGuideLegacyRedirects,
 };
 
 const hermesAgentGuideSlugs = [

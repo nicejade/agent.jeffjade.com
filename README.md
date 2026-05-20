@@ -58,7 +58,7 @@ agent.jeffjade.com/
 ├── HANDOFF.md                    # Hermes 系列制作进度（维护用）
 ├── src/
 │   ├── content/docs/
-│   │   ├── claude-code-guide/    # Claude Code 正文章节
+│   │   ├── claude-code/          # Claude Code 正文章节
 │   │   └── hermes-agent/         # Hermes Agent 正文章节
 │   ├── config/
 │   │   ├── claude-code-sidebar.ts
@@ -75,8 +75,8 @@ agent.jeffjade.com/
 | 路径 | 说明 |
 | --- | --- |
 | `/` | 首页，展示各教程轨道入口 |
-| `/claude-code/` | Claude Code 专题落地页与章节目录 |
-| `/claude-code-guide/` | Claude Code 正文章节（Starlight） |
+| `/claude-code/` | Claude Code 专题落地页；章节正文为 `/claude-code/<slug>/` |
+| `/claude-code-guide/` | 旧路径，重定向到 `/claude-code/` |
 | `/hermes-agent/` | Hermes Agent 漫游指南索引 |
 | `/hermes-agent/<slug>/` | Hermes 各章节正文 |
 

@@ -7,9 +7,9 @@ sidebar:
 
 *「它说已经修好了，测试却红了一片；再让它修，又动了三个无关文件。」*
 
-上一章你理解了 [代理循环](/claude-code-guide/agent-loop/)：模型可以一轮接一轮地 Read、Edit、跑 Bash。循环越强，**在错误方向上跑得越快**的风险也越大。本章讲的 Plan Mode，是在同一套循环上加一层**人控检查点**：先只探索、写出可审查的计划，你点头后再进入改代码阶段。
+上一章你理解了 [代理循环](/claude-code/agent-loop/)：模型可以一轮接一轮地 Read、Edit、跑 Bash。循环越强，**在错误方向上跑得越快**的风险也越大。本章讲的 Plan Mode，是在同一套循环上加一层**人控检查点**：先只探索、写出可审查的计划，你点头后再进入改代码阶段。
 
-官方说明见 [Choose a permission mode · Analyze before you edit with plan mode](https://docs.anthropic.com/en/docs/claude-code-guide/permission-modes#analyze-before-you-edit-with-plan-mode) 与工具表中的 [`EnterPlanMode` / `ExitPlanMode`](https://code.claude.com/docs/en/tools-reference)。
+官方说明见 [Choose a permission mode · Analyze before you edit with plan mode](https://docs.anthropic.com/en/docs/claude-code/permission-modes#analyze-before-you-edit-with-plan-mode) 与工具表中的 [`EnterPlanMode` / `ExitPlanMode`](https://code.claude.com/docs/en/tools-reference)。
 
 ---
 
@@ -26,7 +26,7 @@ sidebar:
 
 根因往往不是你「没盯紧」，而是**缺少可验证的中间态**：在动源码之前，双方对「改哪些文件、按什么顺序、怎样算完成」没有对齐。
 
-Plan Mode 要解决的，正是把 [代理循环](/claude-code-guide/agent-loop/) 拆成两段：
+Plan Mode 要解决的，正是把 [代理循环](/claude-code/agent-loop/) 拆成两段：
 
 1. **规划段**：读代码、跑探索性命令、产出结构化计划，**不改你的业务源码**。
 2. **执行段**：你批准计划后，再按选定权限模式去 Edit、Write、跑测试。
@@ -41,7 +41,7 @@ Plan Mode 要解决的，正是把 [代理循环](/claude-code-guide/agent-loop/
 
 ### 权限模式 `plan`
 
-`plan` 是六种 [权限模式](https://docs.anthropic.com/en/docs/claude-code-guide/permission-modes) 之一。进入后，Claude **不会编辑你的源码文件**，但可以 Read、Grep、Glob，并按与 `default` 相同的规则向你申请 Bash 等操作。官方表述是：可以调研、写计划，**不直接改源文件**；敏感命令仍会弹窗。
+`plan` 是六种 [权限模式](https://docs.anthropic.com/en/docs/claude-code/permission-modes) 之一。进入后，Claude **不会编辑你的源码文件**，但可以 Read、Grep、Glob，并按与 `default` 相同的规则向你申请 Bash 等操作。官方表述是：可以调研、写计划，**不直接改源文件**；敏感命令仍会弹窗。
 
 状态栏会显示当前模式。`Shift+Tab` 在交互会话里循环切换，默认顺序为 `default` → `acceptEdits` → `plan`，具体可见你安装版本里的状态栏提示。
 
@@ -165,7 +165,7 @@ VS Code 扩展里也可在提示框底部切换模式；Plan 模式下计划常�
 | 你不知道它打算动哪些文件 | `ExitPlanMode` 强制呈现计划供审查 |
 | 完成标准模糊 | 计划里应写明验收命令 |
 
-Plan Mode **不能**代替代码审查：批准后若你选了较宽松的模式，模型仍可能执行宽泛的 Bash。权限 `deny`、沙箱与 [Hooks](/claude-code-guide/hooks/) 仍是长期防线。
+Plan Mode **不能**代替代码审查：批准后若你选了较宽松的模式，模型仍可能执行宽泛的 Bash。权限 `deny`、沙箱与 [Hooks](/claude-code/hooks/) 仍是长期防线。
 
 ---
 
@@ -185,7 +185,7 @@ Plan Mode **不能**代替代码审查：批准后若你选了较宽松的模式
 
 **3. 选择批准方式**
 
-不熟代码库：选「逐条审查编辑」。信任目录且测试齐全：可选「批准后 acceptEdits」。仅在满足官方要求的账号与环境上才考虑 auto 类选项，并阅读 [auto mode](https://docs.anthropic.com/en/docs/claude-code-guide/permission-modes#eliminate-prompts-with-auto-mode) 的限制。
+不熟代码库：选「逐条审查编辑」。信任目录且测试齐全：可选「批准后 acceptEdits」。仅在满足官方要求的账号与环境上才考虑 auto 类选项，并阅读 [auto mode](https://docs.anthropic.com/en/docs/claude-code/permission-modes#eliminate-prompts-with-auto-mode) 的限制。
 
 **4. 执行中抽查**
 
@@ -216,7 +216,7 @@ Plan Mode **不能**代替代码审查：批准后若你选了较宽松的模式
 | 支付、鉴权、生产数据路径 | Plan Mode + 严格 deny + 人工审查每步 diff |
 | 已有详细设计 doc / RFC | 可把 doc `@` 进会话，缩短规划轮次，但仍建议列验收 |
 
-与 [CLAUDE.md](/claude-code-guide/claude-md/) 的配合：在 CLAUDE.md 里写「大改前先 `/plan`」「测试命令是 `pnpm test`」「禁止动 `migrations/`」，计划与执行都会更一致。那是下一章主题。
+与 [CLAUDE.md](/claude-code/claude-md/) 的配合：在 CLAUDE.md 里写「大改前先 `/plan`」「测试命令是 `pnpm test`」「禁止动 `migrations/`」，计划与执行都会更一致。那是下一章主题。
 
 团队协作时，可把批准前的计划粘贴到 PR 描述或 issue，让人类 reviewer 与 Agent 共享同一份「契约」，减少「Agent 以为可以改、人以为不能改」的分歧。
 
@@ -240,4 +240,4 @@ Plan Mode **不能**代替代码审查：批准后若你选了较宽松的模式
 
 ---
 
-下一章：[CLAUDE.md 的艺术](/claude-code-guide/claude-md/)——把项目约定写进持久记忆，让规划与执行阶段都默认遵守同一套规范。
+下一章：[CLAUDE.md 的艺术](/claude-code/claude-md/)——把项目约定写进持久记忆，让规划与执行阶段都默认遵守同一套规范。

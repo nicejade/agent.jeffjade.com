@@ -7,7 +7,7 @@ sidebar:
 
 *「我还是在写『帮我找一下 X 在哪』，同事却用一句话描述业务结果，让 Agent 自己规划读哪些文件。同样的工具，差的是提问范式。」*
 
-[反思与进阶](/claude-code-guide/reflection/) 讨论 AI 时代开发者的能力重心；本章给**可练习的迁移路径**：怎么问、什么时候放手、什么思考必须留在你脑子里。不重复哲学段落，只落行为与检查表。
+[反思与进阶](/claude-code/reflection/) 讨论 AI 时代开发者的能力重心；本章给**可练习的迁移路径**：怎么问、什么时候放手、什么思考必须留在你脑子里。不重复哲学段落，只落行为与检查表。
 
 ---
 
@@ -37,7 +37,7 @@ Read auth.ts 然后告诉我有什么问题
 边界：只动 src/auth/ 与 tests/auth/；先 /plan 列出假设与文件清单。
 ```
 
-意图式不等于模糊。「尽量优化」仍差；**对象、动作、规则、异常、验收**五元组齐全才稳，与 [反思与进阶](/claude-code-guide/reflection/) 中的任务分解一致。
+意图式不等于模糊。「尽量优化」仍差；**对象、动作、规则、异常、验收**五元组齐全才稳，与 [反思与进阶](/claude-code/reflection/) 中的任务分解一致。
 
 ---
 
@@ -62,20 +62,20 @@ flowchart TD
 - 已有清晰 CLAUDE.md 与测试门禁的仓库  
 - 失败成本低、Git 可回滚  
 
-配合：预置 `allow`、子代理隔离探索，见 [Token 经济学](/claude-code-guide/token-economics/)。
+配合：预置 `allow`、子代理隔离探索，见 [Token 经济学](/claude-code/token-economics/)。
 
 ### 必须细粒度干预
 
 - 架构分叉（新状态放哪层、是否引入新依赖）  
 - 安全、权限、密钥、合规  
 - 产品行为歧义（「用户体验更好」未定义）  
-- Agent 连续两轮无进展或出现 [调试与错误恢复](/claude-code-guide/debug-error-recovery/) 中的失败信号  
+- Agent 连续两轮无进展或出现 [调试与错误恢复](/claude-code/debug-error-recovery/) 中的失败信号  
 
 干预方式优先：**改验收/边界** > 口头否定 > 在长会话里堆补丁。
 
 ### Plan Mode 是中间的「握手」
 
-大改、不熟域、多人协作模块：先 [Plan Mode](/claude-code-guide/plan-mode/)，批准后再执行。这是「放手」与「干预」之间的契约，不是拖延。
+大改、不熟域、多人协作模块：先 [Plan Mode](/claude-code/plan-mode/)，批准后再执行。这是「放手」与「干预」之间的契约，不是拖延。
 
 ---
 
@@ -101,7 +101,7 @@ flowchart TD
 - 文档初稿、changelog 起草  
 - 依规范重命名、迁移 codemod  
 
-边界原则：**Agent 产出必须能被你的验收规则 falsify**，见 [TDD 与质量](/claude-code-guide/tdd-quality/)。
+边界原则：**Agent 产出必须能被你的验收规则 falsify**，见 [TDD 与质量](/claude-code/tdd-quality/)。
 
 ---
 
@@ -114,7 +114,7 @@ flowchart TD
 | 3 | 实现与审查会话分离 | 至少一次 reviewer 抓出问题 |
 | 4 | 纠正写入 CLAUDE.md 或 rules | 同类错误不重复第三次 |
 
-每周只问 [反思章](/claude-code-guide/reflection/) 的三问：哪错重复、哪条可外置、哪验证仍靠猜。
+每周只问 [反思章](/claude-code/reflection/) 的三问：哪错重复、哪条可外置、哪验证仍靠猜。
 
 ---
 
@@ -122,11 +122,11 @@ flowchart TD
 
 | 你想练 | 读 |
 |--------|-----|
-| 跑偏恢复 | [调试与错误恢复](/claude-code-guide/debug-error-recovery/) |
-| 少烧钱 | [Token 经济学](/claude-code-guide/token-economics/) |
-| 少出事 | [安全边界](/claude-code-guide/security-permissions/) |
-| 可上线 | [TDD 与质量](/claude-code-guide/tdd-quality/) |
-| 多人一致 | [团队落地](/claude-code-guide/team-organization/) |
+| 跑偏恢复 | [调试与错误恢复](/claude-code/debug-error-recovery/) |
+| 少烧钱 | [Token 经济学](/claude-code/token-economics/) |
+| 少出事 | [安全边界](/claude-code/security-permissions/) |
+| 可上线 | [TDD 与质量](/claude-code/tdd-quality/) |
+| 多人一致 | [团队落地](/claude-code/team-organization/) |
 
 ---
 
@@ -148,4 +148,4 @@ flowchart TD
 
 ---
 
-本系列第八部分至此收尾。回到 [Claude Code 漫游指南](/claude-code-guide/) 按需重读；也可从 [完整实战工作流](/claude-code-guide/complete-workflow/) 挑一个真实 ticket，用意图式提示 + Plan + TDD + 人审 diff 走通一整条链。
+本系列第八部分至此收尾。回到 [Claude Code 漫游指南](/claude-code/) 按需重读；也可从 [完整实战工作流](/claude-code/complete-workflow/) 挑一个真实 ticket，用意图式提示 + Plan + TDD + 人审 diff 走通一整条链。

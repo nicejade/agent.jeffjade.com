@@ -66,7 +66,7 @@ Agent 自创建的 Skill 可能越积越多。[Curator](https://hermes-agent.nou
 | 自改进闭环 | 官方默认路径 | 一般无 | 易漂移、难维护 | 无默认实现 |
 | 模型选择 | `hermes model`，多 Provider，要求 **≥64K** 上下文 | 绑定厂商 | 视配置 | 任意 |
 
-与本站 [Claude Code 专题](/claude-code-guide/what-is-claude-code/) 的关系：Claude Code 强在**绑定代码库、高权限本地工程循环**；Hermes 强在**长期驻留、多平台触达、自编写 Skill 与网关自动化**。二者可并存：例如在仓库里用 Claude Code 改代码，在 VPS 上用 Hermes 跑定时巡检并把结果推到 Telegram。
+与本站 [Claude Code 专题](/claude-code/what-is-claude-code/) 的关系：Claude Code 强在**绑定代码库、高权限本地工程循环**；Hermes 强在**长期驻留、多平台触达、自编写 Skill 与网关自动化**。二者可并存：例如在仓库里用 Claude Code 改代码，在 VPS 上用 Hermes 跑定时巡检并把结果推到 Telegram。
 
 关于 **OpenClaw** 等其它 Agent 产品：功能重叠会随版本变化。撰写对比时只写你能从官方文档或发布说明核实的条目，其余标为「未核实」。
 

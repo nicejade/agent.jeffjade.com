@@ -7,7 +7,7 @@ sidebar:
 
 *「我让 Claude『看一下整个 monorepo 有没有类似实现』，十分钟后测试才跑完。账单里那一格上下文占用，我直到变慢才想起来去看。」*
 
-[上下文管理与多代理](/claude-code-guide/context-management/) 讲**窗口满了怎么办**；本章建立**成本意识**：哪些动作在烧钱、如何在读数上做决策、如何用配置把探索范围收窄。官方见 [Manage costs](https://code.claude.com/docs/en/costs)、[Context window](https://code.claude.com/en/context-window)、[Commands](https://code.claude.com/docs/en/commands)。
+[上下文管理与多代理](/claude-code/context-management/) 讲**窗口满了怎么办**；本章建立**成本意识**：哪些动作在烧钱、如何在读数上做决策、如何用配置把探索范围收窄。官方见 [Manage costs](https://code.claude.com/docs/en/costs)、[Context window](https://code.claude.com/en/context-window)、[Commands](https://code.claude.com/docs/en/commands)。
 
 ---
 
@@ -29,7 +29,7 @@ sidebar:
 
 ## 上下文经济学：钱花在哪里
 
-每一轮 [代理循环](/claude-code-guide/agent-loop/) 都会把以下内容送入模型：
+每一轮 [代理循环](/claude-code/agent-loop/) 都会把以下内容送入模型：
 
 | 来源 | 特点 |
 |------|------|
@@ -51,14 +51,14 @@ Bedrock / Vertex / Foundry 走云账单时，Console 的 Claude Code 指标可�
 
 ## 何时 `/compact`，何时新开会话
 
-与 [调试与错误恢复](/claude-code-guide/debug-error-recovery/) 决策树一致，从**成本**角度补充：
+与 [调试与错误恢复](/claude-code/debug-error-recovery/) 决策树一致，从**成本**角度补充：
 
 | 信号 | 优先动作 | 原因 |
 |------|----------|------|
 | 同一任务、历史长、仍记得目标 | `/compact` + 聚焦说明 | 保留任务语义，扔掉噪声 |
 | 任务换了、或纠正三轮仍失败 | `/clear` 或新会话 | 避免为纠错付重复全文 token |
 | Autocompact thrashing | 子代理跑重探索，或 `/clear` | 压缩救不了「立刻又灌满」 |
-| 跨天续作 | `HANDOFF.md` + 新会话 | 见 [上下文管理](/claude-code-guide/context-management/) |
+| 跨天续作 | `HANDOFF.md` + 新会话 | 见 [上下文管理](/claude-code/context-management/) |
 | 探索完成、进入窄范围实现 | `/clear` + 短提示 + `@` 关键文件 | 执行段只要少量文件 |
 
 `/compact` 示例：
@@ -71,7 +71,7 @@ Bedrock / Vertex / Foundry 走云账单时，Console 的 Claude Code 指标可�
 
 ### `/btw` 与旁路提问
 
-中途查概念、不想污染主线时，用 `/btw`，见 [Slash 命令 · /btw](/claude-code-guide/slash-commands/#btw不抢主线的旁白)。比在主任务里插入大段解释更省上下文。
+中途查概念、不想污染主线时，用 `/btw`，见 [Slash 命令 · /btw](/claude-code/slash-commands/#btw不抢主线的旁白)。比在主任务里插入大段解释更省上下文。
 
 ---
 
@@ -115,7 +115,7 @@ paths:
 ### MCP 与模型选择
 
 - `/mcp` 停用不用的服务器，减少工具定义占用。  
-- 简单任务 `/model` 选 Sonnet、`/effort low`，难题再用 Opus。见 [Slash 命令](/claude-code-guide/slash-commands/)。
+- 简单任务 `/model` 选 Sonnet、`/effort low`，难题再用 Opus。见 [Slash 命令](/claude-code/slash-commands/)。
 
 ### Hooks 预处理
 
@@ -132,7 +132,7 @@ paths:
 | managed settings | 统一禁用 bypass、限制 MCP |
 | 共享降本 CLAUDE.md | 「禁止全库 Grep」等约定 |
 
-组织部署细节见 [生态集成](/claude-code-guide/ecosystem-integration/) 与 [团队与组织级落地](/claude-code-guide/team-organization/)。
+组织部署细节见 [生态集成](/claude-code/ecosystem-integration/) 与 [团队与组织级落地](/claude-code/team-organization/)。
 
 ---
 
@@ -166,4 +166,4 @@ paths:
 
 ---
 
-下一章：[安全边界与权限心智](/claude-code-guide/security-permissions/)——`--dangerously-skip-permissions` 的真实代价、allow/deny 设计，以及沙箱与人类确认边界。
+下一章：[安全边界与权限心智](/claude-code/security-permissions/)——`--dangerously-skip-permissions` 的真实代价、allow/deny 设计，以及沙箱与人类确认边界。

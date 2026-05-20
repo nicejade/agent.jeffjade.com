@@ -109,7 +109,7 @@ Claude Code 还提供 apt、dnf、apk 仓库签名包：
 sudo install -d -m 0755 /etc/apt/keyrings
 sudo curl -fsSL https://downloads.claude.ai/keys/claude-code.asc \
   -o /etc/apt/keyrings/claude-code.asc
-echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code-guide/apt/stable stable main" \
+echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/stable stable main" \
   | sudo tee /etc/apt/sources.list.d/claude-code.list
 sudo apt update
 sudo apt install claude-code
@@ -121,7 +121,7 @@ sudo apt install claude-code
 sudo tee /etc/yum.repos.d/claude-code.repo <<'EOF'
 [claude-code]
 name=Claude Code
-baseurl=https://downloads.claude.ai/claude-code-guide/rpm/stable
+baseurl=https://downloads.claude.ai/claude-code/rpm/stable
 enabled=1
 gpgcheck=1
 gpgkey=https://downloads.claude.ai/keys/claude-code.asc
@@ -363,4 +363,4 @@ rm -f ~/.claude.json
 
 ---
 
-下一章：[基于第三方 API 使用 Claude Code](/claude-code-guide/third-party-api/)，如果你所在地区无法直接访问 Anthropic API，或想用 OpenRouter、DeepSeek 等第三方接入——这一章给你答案。
+下一章：[基于第三方 API 使用 Claude Code](/claude-code/third-party-api/)，如果你所在地区无法直接访问 Anthropic API，或想用 OpenRouter、DeepSeek 等第三方接入——这一章给你答案。

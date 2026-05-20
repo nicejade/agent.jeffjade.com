@@ -10,12 +10,11 @@ This site teaches software engineers how to use Claude Code productively and saf
 
 - https://agent.jeffjade.com/ - Site home for 智能体漫游.
 - https://agent.jeffjade.com/claude-code/ - Claude Code guide landing and chapter catalog.
-- https://agent.jeffjade.com/claude-code-guide/ - Guide docs home (Starlight).
-- https://agent.jeffjade.com/claude-code-guide/what-is-claude-code/ - What Claude Code is and the agentic coding paradigm.
-- https://agent.jeffjade.com/claude-code-guide/installation-setup/ - Installation and configuration.
-- https://agent.jeffjade.com/claude-code-guide/slash-commands/ - Slash commands reference and daily workflow.
-- https://agent.jeffjade.com/claude-code-guide/plan-mode/ - Plan Mode workflow.
-- https://agent.jeffjade.com/claude-code-guide/complete-workflow/ - End-to-end practical workflow.
+- https://agent.jeffjade.com/claude-code/what-is-claude-code/ - What Claude Code is and the agentic coding paradigm.
+- https://agent.jeffjade.com/claude-code/installation-setup/ - Installation and configuration.
+- https://agent.jeffjade.com/claude-code/slash-commands/ - Slash commands reference and daily workflow.
+- https://agent.jeffjade.com/claude-code/plan-mode/ - Plan Mode workflow.
+- https://agent.jeffjade.com/claude-code/complete-workflow/ - End-to-end practical workflow.
 
 ## Content guidance for LLMs
 

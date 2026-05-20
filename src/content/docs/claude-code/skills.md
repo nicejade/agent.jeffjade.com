@@ -7,7 +7,7 @@ sidebar:
 
 *「每次提 PR 都要粘贴同一段审查清单；CLAUDE.md 已经长到每次会话都占一大块上下文。」*
 
-[CLAUDE.md](/claude-code-guide/claude-md/) 适合写**项目事实**：命令、目录、规范。 [Hooks](/claude-code-guide/hooks/) 适合**到点必跑**的脚本。Skills 解决另一类问题：你把同一套**多步骤流程或领域说明**反复贴进对话，或某段 CLAUDE.md 已经变成「操作手册」而不是「记忆卡片」。
+[CLAUDE.md](/claude-code/claude-md/) 适合写**项目事实**：命令、目录、规范。 [Hooks](/claude-code/hooks/) 适合**到点必跑**的脚本。Skills 解决另一类问题：你把同一套**多步骤流程或领域说明**反复贴进对话，或某段 CLAUDE.md 已经变成「操作手册」而不是「记忆卡片」。
 
 Skills 把流程写进 `SKILL.md`。正文**只在被调用时**进入上下文，长参考材料平时几乎不占窗口。官方说明见 [Extend Claude with skills](https://code.claude.com/docs/en/skills)，内置斜杠命令与捆绑技能见 [Commands](https://code.claude.com/docs/en/commands)。
 
@@ -174,7 +174,7 @@ disable-model-invocation: true
 4. 验证部署结果
 ```
 
-正文一旦加载，会在会话中**持续占用上下文**（见下文生命周期）。写技能时与 [CLAUDE.md 最佳实践](/claude-code-guide/claude-md/) 相同：只写模型缺少的信息，避免冗长解释。
+正文一旦加载，会在会话中**持续占用上下文**（见下文生命周期）。写技能时与 [CLAUDE.md 最佳实践](/claude-code/claude-md/) 相同：只写模型缺少的信息，避免冗长解释。
 
 ---
 
@@ -191,7 +191,7 @@ disable-model-invocation: true
 - **仅手动**：`/deploy`、`/commit` 类有副作用流程，加 `disable-model-invocation: true`。
 - **仅模型**：`legacy-system-context` 类背景说明，加 `user-invocable: false`，菜单里不出现无意义的斜杠命令。
 
-在 [权限](/claude-code-guide/agent-loop/) 中还可 `deny` 整个 `Skill` 工具，或用 `Skill(commit)`、`Skill(deploy *)` 细粒度放行或拒绝。`user-invocable: false` **不**阻止 Skill 工具调用；要禁止模型选用需用 `disable-model-invocation: true` 或权限规则。
+在 [权限](/claude-code/agent-loop/) 中还可 `deny` 整个 `Skill` 工具，或用 `Skill(commit)`、`Skill(deploy *)` 细粒度放行或拒绝。`user-invocable: false` **不**阻止 Skill 工具调用；要禁止模型选用需用 `disable-model-invocation: true` 或权限规则。
 
 `/skills` 菜单配合 `skillOverrides` 可在不修改 `SKILL.md` 的情况下折叠描述或关闭技能，写入 `.claude/settings.local.json`。详见官方 [Override skill visibility](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings)。
 
@@ -215,7 +215,7 @@ disable-model-invocation: true
 | `context: fork` | 在子代理隔离环境中执行正文 |
 | `agent` | 与 `context: fork` 配合，如 `Explore`、`Plan` |
 | `model` / `effort` | 本回合临时覆盖模型或推理力度 |
-| `hooks` | 技能生命周期内的 Hook，见 [Hooks 章节](/claude-code-guide/hooks/) |
+| `hooks` | 技能生命周期内的 Hook，见 [Hooks 章节](/claude-code/hooks/) |
 
 ### 参数替换
 
@@ -261,7 +261,7 @@ git status --short
 
 调用技能后，渲染后的 `SKILL.md` 内容作为**一条消息**进入对话，并在后续回合中保留。Claude Code **不会**每轮重新读磁盘上的文件；若希望全程生效，把约束写成持续有效的指令，而不是「第一步做一次」的一次性说明。
 
-[自动压缩](/claude-code-guide/agent-loop/) 时，每个技能保留最近一次调用的前 5000 token，多技能合计约 25000 token，**从最近调用的技能开始填充**。调用很多技能后，较早的技能可能在压缩后只剩摘要或消失。若发现技能「说着说着就不听了」，可 `/skill-name` 重新调用，或把关键约束改到 [Hook](/claude-code-guide/hooks/) 里做确定性 enforcement。
+[自动压缩](/claude-code/agent-loop/) 时，每个技能保留最近一次调用的前 5000 token，多技能合计约 25000 token，**从最近调用的技能开始填充**。调用很多技能后，较早的技能可能在压缩后只剩摘要或消失。若发现技能「说着说着就不听了」，可 `/skill-name` 重新调用，或把关键约束改到 [Hook](/claude-code/hooks/) 里做确定性 enforcement。
 
 ---
 
@@ -285,7 +285,7 @@ git status --short
 
 ## 与子代理的配合
 
-两种组合方式（详见下一章 [SubAgents](/claude-code-guide/subagents/)）：
+两种组合方式（详见下一章 [SubAgents](/claude-code/subagents/)）：
 
 | 方式 | 谁写任务 | 谁提供系统能力 |
 |------|----------|----------------|
@@ -384,4 +384,4 @@ git status --short
 
 ---
 
-下一章：[SubAgents](/claude-code-guide/subagents/)——在独立上下文中委派探索、规划与并行任务，并与 Skills 的 `context: fork`、预加载技能配合使用。
+下一章：[SubAgents](/claude-code/subagents/)——在独立上下文中委派探索、规划与并行任务，并与 Skills 的 `context: fork`、预加载技能配合使用。

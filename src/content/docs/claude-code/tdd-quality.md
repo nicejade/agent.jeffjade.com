@@ -7,7 +7,7 @@ sidebar:
 
 *「Agent 说测试全绿了。上线后才发现断言只检查了 mock 返回值，真实鉴权路径从未执行。」*
 
-[完整实战工作流](/claude-code-guide/complete-workflow/) 覆盖端到端顺序；本章回答：**生成代码之后，你如何证明可以上生产**。方法可验证：本地命令、CI 日志、diff 行数、扫描报告。
+[完整实战工作流](/claude-code/complete-workflow/) 覆盖端到端顺序；本章回答：**生成代码之后，你如何证明可以上生产**。方法可验证：本地命令、CI 日志、diff 行数、扫描报告。
 
 ---
 
@@ -44,7 +44,7 @@ sidebar:
 新开只读审查：列出测试未覆盖的分支与 over-mock 风险。不要改文件。
 ```
 
-与 [Plan Mode](/claude-code-guide/plan-mode/) 配合：大功能在计划里写「测试文件列表 + 必须先红的用例名」。
+与 [Plan Mode](/claude-code/plan-mode/) 配合：大功能在计划里写「测试文件列表 + 必须先红的用例名」。
 
 ---
 
@@ -62,7 +62,7 @@ sidebar:
 
 ### Hooks：到点必跑
 
-[Hooks](/claude-code-guide/hooks/) 在 `PostToolUse` 对 `Edit`/`Write` 触发格式化或测试子集：
+[Hooks](/claude-code/hooks/) 在 `PostToolUse` 对 `Edit`/`Write` 触发格式化或测试子集：
 
 ```json
 {
@@ -113,7 +113,7 @@ jobs:
       - run: pnpm lint
 ```
 
-[生态集成](/claude-code-guide/ecosystem-integration/) 中的 `@claude`、本地 `claude -p` 适合**起草** PR，**合并权**仍应留在 CI 绿 + 人审之后。
+[生态集成](/claude-code/ecosystem-integration/) 中的 `@claude`、本地 `claude -p` 适合**起草** PR，**合并权**仍应留在 CI 绿 + 人审之后。
 
 ### 覆盖率：防「数字游戏」
 
@@ -141,7 +141,7 @@ jobs:
 
 ### 2. Writer / Reviewer 分离
 
-实现会话与审查会话分开，见 [提示工程 · 双会话](/claude-code-guide/prompt-engineering/#writer--reviewer-双会话)。审查提示只给 diff 与测试输出，不给「我花了很大力气实现」的叙事。
+实现会话与审查会话分开，见 [提示工程 · 双会话](/claude-code/prompt-engineering/#writer--reviewer-双会话)。审查提示只给 diff 与测试输出，不给「我花了很大力气实现」的叙事。
 
 ### 3. 安全扫描
 
@@ -161,7 +161,7 @@ jobs:
 | 单元测试绿 | 集成路径是否走到 |
 | lint 无 warning | 并发与权限边界 |
 
-[局限性与应对](/claude-code-guide/limitations/#幻觉与看起来对) 中的「测试绿但行为错」应用本章流程挡在 merge 前。
+[局限性与应对](/claude-code/limitations/#幻觉与看起来对) 中的「测试绿但行为错」应用本章流程挡在 merge 前。
 
 ---
 
@@ -173,7 +173,7 @@ jobs:
 | 写红测试 + 实现 | 主会话，顺序严格 |
 | 跑 10 分钟 E2E | 子代理，主会话只收 pass/fail |
 
-避免主会话吞 E2E 全文日志，见 [上下文管理](/claude-code-guide/context-management/)。
+避免主会话吞 E2E 全文日志，见 [上下文管理](/claude-code/context-management/)。
 
 ---
 
@@ -195,4 +195,4 @@ jobs:
 
 ---
 
-下一章：[团队与组织级落地](/claude-code-guide/team-organization/)——Managed CLAUDE.md 治理、PR 透明度与新成员 onboarding。
+下一章：[团队与组织级落地](/claude-code/team-organization/)——Managed CLAUDE.md 治理、PR 透明度与新成员 onboarding。

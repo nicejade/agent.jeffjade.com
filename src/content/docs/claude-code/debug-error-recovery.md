@@ -7,7 +7,7 @@ sidebar:
 
 *「它改了三轮，测试绿了，但改的是错误分支上的鉴权。我本能想再发一条消息纠正，可上一轮已经污染了上下文。」*
 
-[代理循环](/claude-code-guide/agent-loop/) 与 [局限性与应对](/claude-code-guide/limitations/) 讲清了机制与边界。本章回答一个更实操的问题：**跑偏之后第一步该做什么**。官方排障见 [Troubleshooting](https://code.claude.com/docs/en/troubleshooting)、[Error reference](https://code.claude.com/docs/en/errors)；回滚见 [Checkpointing](https://code.claude.com/docs/en/checkpointing)；命令见 [Commands](https://code.claude.com/docs/en/commands)。
+[代理循环](/claude-code/agent-loop/) 与 [局限性与应对](/claude-code/limitations/) 讲清了机制与边界。本章回答一个更实操的问题：**跑偏之后第一步该做什么**。官方排障见 [Troubleshooting](https://code.claude.com/docs/en/troubleshooting)、[Error reference](https://code.claude.com/docs/en/errors)；回滚见 [Checkpointing](https://code.claude.com/docs/en/checkpointing)；命令见 [Commands](https://code.claude.com/docs/en/commands)。
 
 ---
 
@@ -26,7 +26,7 @@ sidebar:
 | 再描述一遍需求 | 先 `/diff` 或 `git diff` 看工作区实际变了什么 |
 | 继续在同一长会话里纠 | 先 `/context`，判断该 `/rewind`、`/compact` 还是 `/clear` |
 | 让它「撤销刚才的」 | 用 `/rewind`（别名 `/undo`、`/checkpoint`），而不是口头要求 |
-| 大方向错了 | 切 [Plan Mode](/claude-code-guide/plan-mode/) 或 `/plan`，冻结改码 |
+| 大方向错了 | 切 [Plan Mode](/claude-code/plan-mode/) 或 `/plan`，冻结改码 |
 
 ---
 
@@ -53,7 +53,7 @@ sidebar:
 | 「已修复」但无测试输出 | 未跑或未贴 Bash 结果 |
 | 解释合理但与仓库框架不符 | 训练先验压过本地证据 |
 
-**应对：** 要求「先 Read 再 Edit」「把测试完整输出贴进下一轮」。必要时开**只读**子代理或第二会话做 [Writer/Reviewer](/claude-code-guide/prompt-engineering/#writer--reviewer-双会话) 审查。
+**应对：** 要求「先 Read 再 Edit」「把测试完整输出贴进下一轮」。必要时开**只读**子代理或第二会话做 [Writer/Reviewer](/claude-code/prompt-engineering/#writer--reviewer-双会话) 审查。
 
 ### 3. 工具与权限死锁
 
@@ -69,7 +69,7 @@ sidebar:
 
 | 症状 | 可能机制 |
 |------|----------|
-| 忘记 CLAUDE.md 禁止项 | 规则被挤占，见 [上下文管理](/claude-code-guide/context-management/) |
+| 忘记 CLAUDE.md 禁止项 | 规则被挤占，见 [上下文管理](/claude-code/context-management/) |
 | Autocompact thrashing | 压缩后立刻又被大输出填满，见 [Troubleshooting · thrashing](https://code.claude.com/docs/en/troubleshooting#auto-compaction-stops-with-a-thrashing-error) |
 | 偏离已批准计划 | 计划阶段约束被后续 diff 淹没 |
 
@@ -110,17 +110,17 @@ flowchart TD
 
 ### `/clear`：换题或策略破产
 
-`/clear` 清空当前对话历史；[CLAUDE.md](/claude-code-guide/claude-md/) 与项目文件仍在。适合：
+`/clear` 清空当前对话历史；[CLAUDE.md](/claude-code/claude-md/) 与项目文件仍在。适合：
 
 - 任务彻底更换
 - **同一 bug 纠正三轮仍失败**（官方 [Best practices](https://code.claude.com/docs/en/best-practices) 常见建议）
-- 准备按 `HANDOFF.md` 冷启动，见 [上下文管理](/claude-code-guide/context-management/)
+- 准备按 `HANDOFF.md` 冷启动，见 [上下文管理](/claude-code/context-management/)
 
 清窗前可用 `/rename` 命名会话，便于 `/resume` 找回旧轨迹。
 
 ### `/compact`：同任务、历史太长
 
-`/compact` 压缩对话，**不换任务**。与 `/clear` 的区别见 [Slash 命令](/claude-code-guide/slash-commands/#clear-与-compact-别混用)。示例：
+`/compact` 压缩对话，**不换任务**。与 `/clear` 的区别见 [Slash 命令](/claude-code/slash-commands/#clear-与-compact-别混用)。示例：
 
 ```text
 /compact Focus: failing test auth.middleware.test.ts, last good commit abc1234, do not touch migrations/
@@ -133,7 +133,7 @@ flowchart TD
 - `Shift+Tab` 或 `/plan` 进入计划模式
 - 要求只读探索 + 书面计划，你批准后再执行
 
-见 [Plan Mode](/claude-code-guide/plan-mode/)。
+见 [Plan Mode](/claude-code/plan-mode/)。
 
 ### 何时新开 `claude` 会话
 
@@ -162,7 +162,7 @@ claude --resume   # 列出可恢复会话
 | 测试通过但断言过弱 | `改 auth 必须跑 pnpm test auth && pnpm test integration` |
 | 探索时扫全库 | `先用 Glob 限定 src/api/，禁止根目录无范围 Grep` |
 
-路径相关规则放进 `.claude/rules/` 的 `paths` frontmatter，避免根 `CLAUDE.md` 膨胀，见 [CLAUDE.md 的艺术](/claude-code-guide/claude-md/#organize-with-rules)。
+路径相关规则放进 `.claude/rules/` 的 `paths` frontmatter，避免根 `CLAUDE.md` 膨胀，见 [CLAUDE.md 的艺术](/claude-code/claude-md/#organize-with-rules)。
 
 ### 反馈闭环模板
 
@@ -174,7 +174,7 @@ claude --resume   # 列出可恢复会话
 - 改 API 前必须先 Read OpenAPI 片段 tests/fixtures/openapi/auth.yaml
 ```
 
-与 [Hooks](/claude-code-guide/hooks/) 分工：CLAUDE.md 降低概率；Hook 对高风险操作**确定性拦截**。
+与 [Hooks](/claude-code/hooks/) 分工：CLAUDE.md 降低概率；Hook 对高风险操作**确定性拦截**。
 
 ---
 
@@ -207,4 +207,4 @@ claude --resume   # 列出可恢复会话
 
 ---
 
-下一章：[Token 成本感知与会话经济学](/claude-code-guide/token-economics/)——用 `/context`、`/usage` 与按需规则建立成本意识，避免每次扫全库才知道账单。
+下一章：[Token 成本感知与会话经济学](/claude-code/token-economics/)——用 `/context`、`/usage` 与按需规则建立成本意识，避免每次扫全库才知道账单。

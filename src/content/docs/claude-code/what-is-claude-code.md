@@ -133,4 +133,4 @@ Claude Code 拥有高权限——它能删文件、改配置、执行任意 Shel
 
 ---
 
-下一章：[为什么 Claude Code 能 10 倍提升开发效率？](/claude-code-guide/core-advantages/)，我们将量化它的生产力优势，并深入对比它与每种工具的差异。
+下一章：[为什么 Claude Code 能 10 倍提升开发效率？](/claude-code/core-advantages/)，我们将量化它的生产力优势，并深入对比它与每种工具的差异。

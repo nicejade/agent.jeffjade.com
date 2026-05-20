@@ -7,7 +7,7 @@ sidebar:
 
 *「让它全库搜一遍鉴权实现，主会话里塞了几十份文件片段；接着改代码时模型已经记不住我最初只要动 middleware。」*
 
-[代理循环](/claude-code-guide/agent-loop/) 里，每一轮工具结果都会留在主会话上下文中。探索越大，后面执行越容易被噪声淹没。[Skills](/claude-code-guide/skills/) 解决「流程模板懒加载」；[Hooks](/claude-code-guide/hooks/) 解决「到点必跑」的脚本。**SubAgents** 解决另一类问题：有一块工作会产生大量中间输出，或需要不同的工具权限与模型，但**最终你只需要一段摘要**回到主会话。
+[代理循环](/claude-code/agent-loop/) 里，每一轮工具结果都会留在主会话上下文中。探索越大，后面执行越容易被噪声淹没。[Skills](/claude-code/skills/) 解决「流程模板懒加载」；[Hooks](/claude-code/hooks/) 解决「到点必跑」的脚本。**SubAgents** 解决另一类问题：有一块工作会产生大量中间输出，或需要不同的工具权限与模型，但**最终你只需要一段摘要**回到主会话。
 
 官方说明见 [Create custom subagents](https://code.claude.com/docs/en/sub-agents)。本章目标：理解子代理何时被委派、如何自建与约束能力，并与 Skills、Plan Mode、权限规则配合使用。
 
@@ -18,9 +18,9 @@ sidebar:
 | 手段 | 上下文 | 典型场景 |
 |------|--------|----------|
 | 主会话直接循环 | 共享，越跑越长 | 小改、需要频繁来回澄清 |
-| [Plan Mode](/claude-code-guide/plan-mode/) | 共享，但先只读规划 | 大改前先对齐计划 |
+| [Plan Mode](/claude-code/plan-mode/) | 共享，但先只读规划 | 大改前先对齐计划 |
 | **SubAgents** | **独立窗口**，只回传摘要 | 全库探索、并行调研、高噪声命令输出 |
-| [Skills](/claude-code-guide/skills/) `context: fork` | 由技能正文驱动子代理 | 斜杠一键跑隔离任务 |
+| [Skills](/claude-code/skills/) `context: fork` | 由技能正文驱动子代理 | 斜杠一键跑隔离任务 |
 | `/compact` | 压缩主会话 | 已污染时的补救，不如事前隔离 |
 
 子代理不是「更聪明的模型」，而是**分工**：
@@ -52,11 +52,11 @@ sidebar:
 
 要点：
 
-- **子代理不能再派子代理**。需要多层分工时，由主会话串联多个子代理，或用 [Skills 的 `context: fork`](/claude-code-guide/skills/#与子代理的配合) 从技能侧发起。
+- **子代理不能再派子代理**。需要多层分工时，由主会话串联多个子代理，或用 [Skills 的 `context: fork`](/claude-code/skills/#与子代理的配合) 从技能侧发起。
 - **权限继承再裁剪**：子代理继承主会话权限上下文，再按 frontmatter 收窄；后台子代理对会弹窗的操作**自动拒绝**，见下文。
 - **令牌单独计费**：子代理窗口里的输入输出计入该次委派，与主会话分开。
 
-与 [Plan Mode](/claude-code-guide/plan-mode/) 的关系：在 `plan` 权限模式下，Claude 需要大量读库调研时，会委派内置 **Plan** 子代理做只读探索，避免规划阶段与执行阶段抢同一窗口，也避免子代理嵌套子代理。
+与 [Plan Mode](/claude-code/plan-mode/) 的关系：在 `plan` 权限模式下，Claude 需要大量读库调研时，会委派内置 **Plan** 子代理做只读探索，避免规划阶段与执行阶段抢同一窗口，也避免子代理嵌套子代理。
 
 ---
 
@@ -67,7 +67,7 @@ Claude Code 自带若干子代理，一般无需你手动注册。主模型按�
 | 名称 | 模型倾向 | 工具倾向 | 何时委派 |
 |------|----------|----------|----------|
 | **Explore** | Haiku，低延迟 | 只读（无 Write/Edit） | 搜文件、读结构、摸清代码库 |
-| **Plan** | 继承主会话 | 只读 | [Plan Mode](/claude-code-guide/plan-mode/) 下为写计划做调研 |
+| **Plan** | 继承主会话 | 只读 | [Plan Mode](/claude-code/plan-mode/) 下为写计划做调研 |
 | **general-purpose** | 继承主会话 | 全套工具 | 既要探索又要改码的多步任务 |
 | **claude-code-guide** | Haiku | 受限 | 问 Claude Code 产品功能时 |
 | **statusline-setup** | Sonnet | 受限 | 运行 `/statusline` 配置状态栏时 |
@@ -281,7 +281,7 @@ frontmatter 加 `isolation: worktree`，子代理在临时 worktree 里改文件
 
 ## 与 Skills 的两种组合
 
-上一章 [Skills](/claude-code-guide/skills/#与子代理的配合) 已预告，这里对齐机制：
+上一章 [Skills](/claude-code/skills/#与子代理的配合) 已预告，这里对齐机制：
 
 | 方向 | 配置 | 谁写系统提示 | 谁写任务 |
 |------|------|--------------|----------|
@@ -301,7 +301,7 @@ frontmatter 加 `isolation: worktree`，子代理在临时 worktree 里改文件
 - 在子代理 frontmatter 的 `hooks`：仅该子代理存活时运行；`Stop` 会当作 `SubagentStop`。
 - 在 `settings.json` 的 `SubagentStart` / `SubagentStop`：主会话在子代理启停时跑脚本，例如 `db-agent` 启动时连测试库。
 
-只读数据库子代理可结合 `PreToolUse` + `exit 2` 拦截写 SQL，模式与 [Hooks 一章](/claude-code-guide/hooks/) 相同。官方 [db-reader 示例](https://code.claude.com/docs/en/sub-agents#database-query-validator) 可照搬。
+只读数据库子代理可结合 `PreToolUse` + `exit 2` 拦截写 SQL，模式与 [Hooks 一章](/claude-code/hooks/) 相同。官方 [db-reader 示例](https://code.claude.com/docs/en/sub-agents#database-query-validator) 可照搬。
 
 ### MCP 仅给子代理
 
@@ -351,7 +351,7 @@ Fork 与**命名子代理**对比：前者共享历史与系统提示，后者�
 | 确定性 | 低 | 中，靠描述与工具限制 | 中 | 高 |
 | 适合 | 迭代式改码、频繁澄清 | 探索、并行、噪声隔离 | 可复用流程模板 | 必须执行的检查 |
 
-记忆口诀（与 [Skills](/claude-code-guide/skills/#skillshookssubagents-如何分工) 一致）：
+记忆口诀（与 [Skills](/claude-code/skills/#skillshookssubagents-如何分工) 一致）：
 
 - **CLAUDE.md**：项目事实与默认约束。
 - **Skills**：这类任务**怎么做**。
@@ -390,7 +390,7 @@ Fork 与**命名子代理**对比：前者共享历史与系统提示，后者�
 
 - 两三轮就能说完的小改。
 - 需要你每步盯着改、频繁改口的任务。
-- 规划与实现强耦合、中间态都要参与讨论（可 [Plan Mode](/claude-code-guide/plan-mode/) + 主会话执行）。
+- 规划与实现强耦合、中间态都要参与讨论（可 [Plan Mode](/claude-code/plan-mode/) + 主会话执行）。
 
 **改用 Skill 而非单独子代理文件：**
 
@@ -412,7 +412,7 @@ Fork 与**命名子代理**对比：前者共享历史与系统提示，后者�
 
 1. **项目子代理入仓**：把 `.claude/agents/` 与 `.claude/settings.json` 一并 review；`tools: Bash` 配合 `hooks` 做只读库访问。
 2. **描述可测试**：PR 模板问「是否新增/改了子代理 description，触发场景是否写清」。
-3. **与 CI 分工**：子代理适合交互式探索；无人值守流水线更宜用脚本 + [生态集成](/claude-code-guide/ecosystem-integration/) 或 SDK [subagents](https://code.claude.com/docs/en/agent-sdk/subagents)。
+3. **与 CI 分工**：子代理适合交互式探索；无人值守流水线更宜用脚本 + [生态集成](/claude-code/ecosystem-integration/) 或 SDK [subagents](https://code.claude.com/docs/en/agent-sdk/subagents)。
 4. **成本意识**：Explore 用 Haiku 省钱；大段 Sonnet 并行审查前评估配额。
 5. **禁用噪声代理**：统一在 managed settings 里 `deny` 不需要的内置 Explore，若团队只希望主会话探索。
 
@@ -437,6 +437,6 @@ Fork 与**命名子代理**对比：前者共享历史与系统提示，后者�
 
 ---
 
-下一章：[上下文管理与多代理架构](/claude-code-guide/context-management/)——窗口用到 80% 时会发生什么，以及 SubAgents、`/handoff` 与 `/clear` 如何组成可恢复的长任务工作流。
+下一章：[上下文管理与多代理架构](/claude-code/context-management/)——窗口用到 80% 时会发生什么，以及 SubAgents、`/handoff` 与 `/clear` 如何组成可恢复的长任务工作流。
 
-再下一章：[MCP](/claude-code-guide/mcp/)——用 Model Context Protocol 把 GitHub、数据库、浏览器等外部系统接到 Claude Code，并学会把 MCP 只 scoped 给特定子代理以节省主会话上下文。
+再下一章：[MCP](/claude-code/mcp/)——用 Model Context Protocol 把 GitHub、数据库、浏览器等外部系统接到 Claude Code，并学会把 MCP 只 scoped 给特定子代理以节省主会话上下文。

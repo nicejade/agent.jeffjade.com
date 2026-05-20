@@ -9,7 +9,7 @@ sidebar:
 
 本指南按「入门 → 核心机制 → 实战 → 进阶」组织。若你刚接触 Hermes，建议从 [认识 Hermes Agent](/hermes-agent/what-is-hermes-agent/) 读起，再完成 [安装与环境准备](/hermes-agent/installation-setup/)。
 
-与本站 [Claude Code 漫游指南](/claude-code-guide/) 的关系：Claude Code 侧重代码库内的 Agentic 工程循环；Hermes 侧重长期驻留、多平台 Gateway 与自编写 Skill。二者可配合使用。
+与本站 [Claude Code 漫游指南](/claude-code/) 的关系：Claude Code 侧重代码库内的 Agentic 工程循环；Hermes 侧重长期驻留、多平台 Gateway 与自编写 Skill。二者可配合使用。
 
 ## 第一部分：入门
 

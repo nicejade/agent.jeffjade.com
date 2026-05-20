@@ -8,7 +8,7 @@ Project goal: produce high-quality tutorial docs so readers understand mechanism
 
 ## Repository map
 
-1. `src/content/docs/claude-code-guide/`: Claude Code tutorial chapters.
+1. `src/content/docs/claude-code/`: Claude Code tutorial chapters.
 2. `src/pages/claude-code/index.astro`: Claude Code guide landing at `/claude-code/`.
 3. `src/pages/index.astro`: Site home at `/`.
 4. `src/config/claude-code-sidebar.ts`: Claude Code guide sidebar order.
@@ -147,7 +147,7 @@ Before finishing a tutorial, check:
 
 ## Local conventions
 
-1. Existing docs live under `/claude-code-guide/` as Starlight Markdown.
+1. Existing docs live under `/claude-code/` as Starlight Markdown.
 2. Guide landing lives at `/claude-code/` as a custom Astro page.
 3. Sidebar order matches `src/config/claude-code-sidebar.ts`.
 4. Chinese body text uses Chinese punctuation.

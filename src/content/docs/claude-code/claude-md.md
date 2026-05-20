@@ -7,7 +7,7 @@ sidebar:
 
 *「Plan Mode 里的计划写得挺好，可一批准执行，它又跑了 `npm test` 而不是我们仓库里的 `pnpm test`。」*
 
-前三章你已理解 [代理循环](/claude-code-guide/agent-loop/) 与 [Plan Mode](/claude-code-guide/plan-mode/)：模型每轮都会读当前上下文里的项目说明，再决定调用哪些工具。缺的不是「更聪明的提示」，而是**跨会话仍生效的项目入职文档**。本指南把这一块单独收成**第四部分 · 项目记忆**：只谈 Claude 如何记住你的项目，以及你应把什么写进记忆、什么交给别的机制。
+前三章你已理解 [代理循环](/claude-code/agent-loop/) 与 [Plan Mode](/claude-code/plan-mode/)：模型每轮都会读当前上下文里的项目说明，再决定调用哪些工具。缺的不是「更聪明的提示」，而是**跨会话仍生效的项目入职文档**。本指南把这一块单独收成**第四部分 · 项目记忆**：只谈 Claude 如何记住你的项目，以及你应把什么写进记忆、什么交给别的机制。
 
 官方说明见 [How Claude remembers your project](https://code.claude.com/docs/en/memory)。
 
@@ -33,7 +33,7 @@ Claude Code 提供两套互补机制：
 | 适用 | 每条会话都应遵守的硬事实 | 调试心得、临时决策、个人习惯 |
 | 加载 | 会话启动时全文注入 | `MEMORY.md` 前 200 行或 25KB |
 
-两者都是**上下文**，不是客户端强制配置。写得越具体，遵守越稳定；要「无论模型怎么想都必须执行」的步骤，见 [Hooks](/claude-code-guide/hooks/) 与 [代理循环](/claude-code-guide/agent-loop/) 中的权限规则。
+两者都是**上下文**，不是客户端强制配置。写得越具体，遵守越稳定；要「无论模型怎么想都必须执行」的步骤，见 [Hooks](/claude-code/hooks/) 与 [代理循环](/claude-code/agent-loop/) 中的权限规则。
 
 ---
 
@@ -74,7 +74,7 @@ Claude Code 提供两套互补机制：
 - Code Review 指出「它本该知道」的仓库约定
 - 你刚在上个会话里打过的说明，这次又要再打一遍
 
-若某条说明只属于**单一子目录**或**多步流程**，优先考虑 [`.claude/rules/`](#organize-with-rules) 的路径规则，或第五部分的 [Skills](/claude-code-guide/skills/)，而不是全部堆进根 `CLAUDE.md`。
+若某条说明只属于**单一子目录**或**多步流程**，优先考虑 [`.claude/rules/`](#organize-with-rules) 的路径规则，或第五部分的 [Skills](/claude-code/skills/)，而不是全部堆进根 `CLAUDE.md`。
 
 ---
 
@@ -107,7 +107,7 @@ Claude Code 从**当前工作目录**向上走到文件系统根，收集沿途�
 
 | 范围 | 位置 | 用途 |
 | --- | --- | --- |
-| 托管策略 | macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md`；Linux/WSL: `/etc/claude-code-guide/CLAUDE.md`；Windows: `C:\Program Files\ClaudeCode\CLAUDE.md` | 组织统一安全与合规说明 |
+| 托管策略 | macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md`；Linux/WSL: `/etc/claude-code/CLAUDE.md`；Windows: `C:\Program Files\ClaudeCode\CLAUDE.md` | 组织统一安全与合规说明 |
 | 用户 | `~/.claude/CLAUDE.md` | 跨项目个人偏好 |
 | 用户规则 | `~/.claude/rules/*.md` | 模块化个人规则 |
 | 项目 | `./CLAUDE.md` 或 `./.claude/CLAUDE.md` | 团队共享，应纳入 Git |
@@ -280,12 +280,12 @@ Claude Code 读 `CLAUDE.md`，不自动读 `AGENTS.md`。可让 `CLAUDE.md` 导�
 | 你想达到的效果 | 用哪种机制 |
 | --- | --- |
 | 默认测试命令、命名风格 | `CLAUDE.md` |
-| 大改前先规划 | `CLAUDE.md` 提醒 + [Plan Mode](/claude-code-guide/plan-mode/) |
+| 大改前先规划 | `CLAUDE.md` 提醒 + [Plan Mode](/claude-code/plan-mode/) |
 | 禁止 `git push --force` 或 `rm -rf` | `permissions.deny`，不是 CLAUDE.md |
-| Edit 后必须跑 Prettier | [Hooks](/claude-code-guide/hooks/) `PostToolUse` |
-| 多步发布流程、偶尔才用 | [Skills](/claude-code-guide/skills/) |
+| Edit 后必须跑 Prettier | [Hooks](/claude-code/hooks/) `PostToolUse` |
+| 多步发布流程、偶尔才用 | [Skills](/claude-code/skills/) |
 
-[代理循环](/claude-code-guide/agent-loop/) 已说明：CLAUDE.md 写在上下文里，**挡不住**已授权的 Bash。在 CLAUDE.md 里写「禁止删文件」不等于安全；`deny` 规则或 Hook 才是硬边界。
+[代理循环](/claude-code/agent-loop/) 已说明：CLAUDE.md 写在上下文里，**挡不住**已授权的 Bash。在 CLAUDE.md 里写「禁止删文件」不等于安全；`deny` 规则或 Hook 才是硬边界。
 
 组织部署时，官方区分：
 
@@ -336,7 +336,7 @@ git commit -m "添加项目 CLAUDE.md，统一 AI 协作约定"
 | 仅编辑 `*.tsx` 时格式化 | `.claude/rules/` + `paths` |
 | 每次提交前必须 lint | Hook，不是 CLAUDE.md |
 
-长任务的窗口挤占与 handoff 属于 [上下文管理与多代理](/claude-code-guide/context-management/)，本章只解决「什么该被记住、记在哪」。
+长任务的窗口挤占与 handoff 属于 [上下文管理与多代理](/claude-code/context-management/)，本章只解决「什么该被记住、记在哪」。
 
 ---
 
@@ -359,4 +359,4 @@ git commit -m "添加项目 CLAUDE.md，统一 AI 协作约定"
 
 ---
 
-下一章：[Hooks 机制](/claude-code-guide/hooks/)——在工具调用前后用确定性脚本补上一道关。CLAUDE.md 表达「希望怎么做」；Hooks 在生命周期节点保证「一定执行或一定拦住」。
+下一章：[Hooks 机制](/claude-code/hooks/)——在工具调用前后用确定性脚本补上一道关。CLAUDE.md 表达「希望怎么做」；Hooks 在生命周期节点保证「一定执行或一定拦住」。

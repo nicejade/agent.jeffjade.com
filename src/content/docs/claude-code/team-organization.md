@@ -7,7 +7,7 @@ sidebar:
 
 *「每个人本地的 CLAUDE.md 都不一样，PR 里看不出哪段是人写的。新人问：该信仓库里的文档，还是老员工嘴里的习惯？」*
 
-[生态集成](/claude-code-guide/ecosystem-integration/) 散布了协作片段；本章把**组织级共识**收成一套可维护结构。官方见 [Admin setup](https://code.claude.com/docs/en/admin-setup)、[Memory](https://code.claude.com/docs/en/memory)、[Managed settings](https://code.claude.com/docs/en/managed-settings)、[Settings](https://code.claude.com/docs/en/settings)。
+[生态集成](/claude-code/ecosystem-integration/) 散布了协作片段；本章把**组织级共识**收成一套可维护结构。官方见 [Admin setup](https://code.claude.com/docs/en/admin-setup)、[Memory](https://code.claude.com/docs/en/memory)、[Managed settings](https://code.claude.com/docs/en/managed-settings)、[Settings](https://code.claude.com/docs/en/settings)。
 
 ---
 
@@ -42,7 +42,7 @@ Claude Code 的记忆与配置分**多层作用域**，冲突时高层优先：
 
 1. **Onboarding：** 新人第一周缺的纠正，优先入库。  
 2. **PR review：** 「Agent 本该知道」的项，开 issue 更新 CLAUDE.md。  
-3. **季度瘦身：** 删过时规则，迁到 `paths` 或 [Skills](/claude-code-guide/skills/)。  
+3. **季度瘦身：** 删过时规则，迁到 `paths` 或 [Skills](/claude-code/skills/)。  
 
 Owner 可指定为**模块 maintainer 轮值**或**平台组**，关键是 PR 有明确 reviewer，而不是「人人改、无人删」。
 
@@ -95,7 +95,7 @@ Tests: pnpm test --filter bulk-disable
 
 ### GitHub Actions 与 @claude
 
-Issue/PR 评论触发 Agent 时，仓库 policy 应写明：禁止自动合 main、secrets 最小权限。详见 [生态集成](/claude-code-guide/ecosystem-integration/)。
+Issue/PR 评论触发 Agent 时，仓库 policy 应写明：禁止自动合 main、secrets 最小权限。详见 [生态集成](/claude-code/ecosystem-integration/)。
 
 ---
 
@@ -107,7 +107,7 @@ Issue/PR 评论触发 Agent 时，仓库 policy 应写明：禁止自动合 main
 
 ```markdown
 ## Claude Code 入职
-1. 安装：见 docs/claude-code-guide/installation-setup
+1. 安装：见 docs/claude-code/installation-setup
 2. 根目录 `claude`，运行 `/doctor`
 3. 阅读 CLAUDE.md 与 .claude/rules/
 4. 运行 `/permissions` 确认无意外 bypass
@@ -169,4 +169,4 @@ Issue/PR 评论触发 Agent 时，仓库 policy 应写明：禁止自动合 main
 
 ---
 
-下一章：[从工具使用到心智模型迁移](/claude-code-guide/mental-model-migration/)——意图式提问、自主与干预的平衡，以及哪些思考不应外包给 AI。
+下一章：[从工具使用到心智模型迁移](/claude-code/mental-model-migration/)——意图式提问、自主与干预的平衡，以及哪些思考不应外包给 AI。
