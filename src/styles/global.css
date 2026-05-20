@@ -1784,27 +1784,6 @@ svg {
   height: 100%;
 }
 
-.closing-band {
-  margin-top: 0;
-  padding: 2rem;
-  border: 1px solid rgba(0, 113, 227, 0.18);
-  border-radius: 8px;
-  color: #fff;
-  background:
-    linear-gradient(135deg, rgba(17, 17, 20, 0.94), rgba(7, 63, 127, 0.9)),
-    linear-gradient(90deg, rgba(20, 184, 166, 0.28), transparent);
-}
-
-.closing-band h2 {
-  color: #fff;
-}
-
-.closing-band p {
-  max-width: 700px;
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.72;
-}
-
 /* ---------- Portal footer slot ---------- */
 html:has(.site-shell) {
   --sl-color-gray-2: #2c2c2e;

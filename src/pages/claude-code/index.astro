@@ -2,7 +2,7 @@
 import '../../styles/global.css';
 import Footer from '../../components/Footer.astro';
 import SeoExtras from '../../components/seo/SeoExtras.astro';
-import { GA_ID, SITE_URL } from '../../config/site-seo';
+import { GA_ID, OG_IMAGE, SITE_URL } from '../../config/site-seo';
 
 const site = SITE_URL;
 const pageUrl = `${site}/claude-code/`;
@@ -100,13 +100,13 @@ const hermesGuide = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={pageUrl} />
-    <meta property="og:image" content={`${site}/og.svg`} />
+    <meta property="og:image" content={OG_IMAGE} />
     <meta name="twitter:card" content="summary_large_image" />
     <SeoExtras
       canonical={pageUrl}
       title={title}
       description={description}
-      pageType="webpage"
+      pageType="collection"
       includeWebSiteSchema={false}
     />
     <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
@@ -256,11 +256,13 @@ const hermesGuide = {
           </div>
         </section>
 
-        <section class="section" aria-labelledby="closing-title">
-          <div class="closing-band">
+        <section class="portal-cta" aria-labelledby="closing-title">
+          <div class="portal-cta-inner">
             <h2 id="closing-title">准备好把 Claude Code 变成日常工程能力了吗？</h2>
             <p>从第 1 章理解 Agentic Coding 范式，或跳到安装配置直接开干。章节正文位于 /claude-code/ 路径下。</p>
-            <a class="btn btn-primary" href="/claude-code/what-is-claude-code/">开始第 1 章</a>
+            <div class="hero-actions portal-cta-actions">
+              <a class="btn btn-primary" href="/claude-code/what-is-claude-code/">开始第 1 章</a>
+            </div>
           </div>
         </section>
       </main>

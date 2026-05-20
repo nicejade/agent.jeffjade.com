@@ -28,6 +28,30 @@ export function buildWebSiteSchema(description: string): JsonLd {
       name: SITE_NAME,
       url: SITE_URL,
     },
+    about: [
+      { '@type': 'Thing', name: 'Claude Code', url: `${SITE_URL}/claude-code/` },
+      { '@type': 'Thing', name: 'Hermes Agent', url: `${SITE_URL}/hermes-agent/` },
+    ],
+  };
+}
+
+export function buildCollectionPageSchema(input: {
+  name: string;
+  url: string;
+  description: string;
+}): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: input.name,
+    url: input.url,
+    description: input.description,
+    inLanguage: 'zh-CN',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
   };
 }
 

@@ -1,20 +1,22 @@
 ---
-import { OG_IMAGE } from '../../config/site-seo';
+import { SITE_DEFAULT_DESCRIPTION, twitterMetaHead } from '../../config/site-seo';
 import {
   buildArticleGraph,
   canonicalFromHead,
 } from '../../lib/seo-structured-data';
 
-const { head } = Astro.locals.starlightRoute;
+const route = Astro.locals.starlightRoute;
+const { head } = route;
 const canonical = canonicalFromHead(head);
+const title = route.entry.data.title;
+const description = route.entry.data.description ?? SITE_DEFAULT_DESCRIPTION;
 
 const structuredData =
-  canonical !== undefined ? buildArticleGraph(Astro.locals.starlightRoute, canonical) : [];
+  canonical !== undefined ? buildArticleGraph(route, canonical) : [];
 ---
 
 {head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="twitter:image" content={OG_IMAGE} />
+{twitterMetaHead(title, description).map(({ tag: Tag, attrs }) => <Tag {...attrs} />)}
 {structuredData.map((schema) => (
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 ))}

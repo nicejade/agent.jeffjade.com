@@ -5,7 +5,15 @@ import tailwindcss from '@tailwindcss/vite';
 import starlightThemeRapide from 'starlight-theme-rapide';
 import { claudeCodeSidebar } from './src/config/claude-code-sidebar.ts';
 import { hermesAgentSidebar } from './src/config/hermes-agent-sidebar.ts';
-import { globalSeoHead, GA_ID, OG_IMAGE, SITE_URL } from './src/config/site-seo.ts';
+import { applySitemapPriority, shouldIncludeInSitemap } from './src/config/sitemap-priority.ts';
+import {
+  globalSeoHead,
+  GA_ID,
+  OG_IMAGE,
+  ROBOTS_CONTENT,
+  SITE_DEFAULT_DESCRIPTION,
+  SITE_URL,
+} from './src/config/site-seo.ts';
 import { tableWrapIntegration } from './src/integrations/table-wrap.ts';
 
 const site = SITE_URL;
@@ -80,29 +88,15 @@ export default defineConfig({
   },
   redirects: { ...claudeCodeRedirects, ...hermesAgentRedirects },
   sitemap: {
-    filter: (page) => !page.includes('/pagefind/'),
-    serialize(item) {
-      const { url } = item;
-      if (url === `${site}/`) {
-        item.priority = 1;
-        item.changefreq = 'weekly';
-      } else if (url === `${site}/claude-code/` || url === `${site}/hermes-agent/`) {
-        item.priority = 0.9;
-        item.changefreq = 'weekly';
-      } else if (url.startsWith(`${site}/claude-code/`) || url.startsWith(`${site}/hermes-agent/`)) {
-        item.priority = 0.8;
-        item.changefreq = 'monthly';
-      }
-      return item;
-    },
+    filter: (page) => shouldIncludeInSitemap(page),
+    serialize: (item) => applySitemapPriority({ ...item }, site),
   },
   integrations: [
     svelte(),
     starlight({
       plugins: [starlightThemeRapide()],
       title: '智能体漫游',
-      description:
-        '智能体漫游：快速掌握 Claude Code 等主流 AI Agent 的实用教程、案例与最新实践。',
+      description: SITE_DEFAULT_DESCRIPTION,
       favicon: '/favicon.svg',
       titleDelimiter: '·',
       lastUpdated: false,
@@ -129,6 +123,10 @@ export default defineConfig({
       customCss: ['./src/styles/global.css'],
       sidebar: [...claudeCodeSidebar, ...hermesAgentSidebar],
       head: [
+        {
+          tag: 'meta',
+          attrs: { name: 'robots', content: ROBOTS_CONTENT },
+        },
         {
           tag: 'meta',
           attrs: { name: 'theme-color', content: '#f5f5f7' },

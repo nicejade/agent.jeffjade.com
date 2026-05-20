@@ -11,6 +11,7 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/sitemap": "3.7.2",
     "@astrojs/starlight": "0.39.2",
     "@astrojs/starlight-tailwind": "5.0.0",
     "@astrojs/svelte": "8.1.1",

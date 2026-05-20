@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@astrojs/sitemap':
+        specifier: 3.7.2
+        version: 3.7.2
       '@astrojs/starlight':
         specifier: 0.39.2
         version: 0.39.2(astro@6.3.3(@types/node@24.12.4)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(yaml@2.9.0))(typescript@5.9.3)

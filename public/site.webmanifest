@@ -2,7 +2,7 @@
   "id": "/",
   "name": "智能体漫游",
   "short_name": "智能体漫游",
-  "description": "16 章系统掌握 Claude Code 的中文指南。",
+  "description": "Claude Code 与 Hermes Agent 等主流 AI Agent 的中文系统教程。",
   "lang": "zh-CN",
   "dir": "ltr",
   "start_url": "/",

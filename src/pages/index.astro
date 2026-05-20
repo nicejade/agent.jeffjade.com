@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import SeoExtras from '../components/seo/SeoExtras.astro';
-import { GA_ID, SITE_URL } from '../config/site-seo';
+import { GA_ID, OG_IMAGE, SITE_URL } from '../config/site-seo';
 
 const site = SITE_URL;
 const canonical = `${site}/`;
@@ -51,7 +51,7 @@ const tracks = [
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={`${site}/og.svg`} />
+    <meta property="og:image" content={OG_IMAGE} />
     <meta name="twitter:card" content="summary_large_image" />
     <SeoExtras canonical={canonical} title={title} description={description} pageType="website" />
     <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>

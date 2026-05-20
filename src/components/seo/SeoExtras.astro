@@ -1,12 +1,16 @@
 ---
-import { globalSeoHead, OG_IMAGE, SITE_NAME } from '../../config/site-seo';
-import { buildWebPageSchema, buildWebSiteSchema } from '../../lib/seo-structured-data';
+import { globalSeoHead, ROBOTS_CONTENT, twitterMetaHead } from '../../config/site-seo';
+import {
+  buildCollectionPageSchema,
+  buildWebPageSchema,
+  buildWebSiteSchema,
+} from '../../lib/seo-structured-data';
 
 interface Props {
   canonical: string;
   title: string;
   description: string;
-  pageType?: 'website' | 'webpage';
+  pageType?: 'website' | 'webpage' | 'collection';
   includeWebSiteSchema?: boolean;
 }
 
@@ -18,17 +22,17 @@ const {
   includeWebSiteSchema = pageType === 'website',
 } = Astro.props;
 
-const schemas = includeWebSiteSchema
-  ? [buildWebSiteSchema(description)]
-  : [
-      buildWebPageSchema({
-        name: title,
-        url: canonical,
-        description,
-      }),
-    ];
+const schemas = includeWebSiteSchema ? [buildWebSiteSchema(description)] : [];
 
-if (includeWebSiteSchema && pageType === 'website') {
+if (pageType === 'collection') {
+  schemas.push(
+    buildCollectionPageSchema({
+      name: title,
+      url: canonical,
+      description,
+    }),
+  );
+} else {
   schemas.push(
     buildWebPageSchema({
       name: title,
@@ -39,14 +43,8 @@ if (includeWebSiteSchema && pageType === 'website') {
 }
 ---
 
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta property="og:locale" content="zh-CN" />
-<meta property="og:site_name" content={SITE_NAME} />
-<meta name="twitter:site" content="@MarshalXuan" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={OG_IMAGE} />
-<link rel="sitemap" href="/sitemap-index.xml" />
+<meta name="robots" content={ROBOTS_CONTENT} />
+{twitterMetaHead(title, description).map(({ tag: Tag, attrs }) => <Tag {...attrs} />)}
 {globalSeoHead.map((entry) => {
   const Tag = entry.tag;
   return <Tag {...entry.attrs} />;

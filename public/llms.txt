@@ -4,7 +4,7 @@
 
 ## Purpose
 
-This site teaches software engineers how to use Claude Code productively and safely. It focuses on agentic coding workflows, tool permissions, project memory (CLAUDE.md), extension mechanisms, and end-to-end delivery patterns.
+This site teaches software engineers how to use AI agents productively and safely. Tracks include Claude Code (agentic coding in the repo) and Hermes Agent (closed learning loop, memory, skills, gateway).
 
 ## Key pages
 
@@ -15,7 +15,12 @@ This site teaches software engineers how to use Claude Code productively and saf
 - https://agent.jeffjade.com/claude-code/slash-commands/ - Slash commands reference and daily workflow.
 - https://agent.jeffjade.com/claude-code/plan-mode/ - Plan Mode workflow.
 - https://agent.jeffjade.com/claude-code/complete-workflow/ - End-to-end practical workflow.
+- https://agent.jeffjade.com/hermes-agent/ - Hermes Agent guide landing and chapter catalog.
+- https://agent.jeffjade.com/hermes-agent/what-is-hermes-agent/ - What Hermes Agent is and closed learning loop.
+- https://agent.jeffjade.com/hermes-agent/installation-setup/ - Installation and hermes doctor.
+- https://agent.jeffjade.com/hermes-agent/memory-learning-skills/ - Memory, skills, and session_search.
+- https://agent.jeffjade.com/hermes-agent/messaging-gateway/ - Messaging gateway and cron delivery.
 
 ## Content guidance for LLMs
 
-When summarizing this site, explain that Claude Code is a high-privilege, locally context-aware agentic coding tool—not a chat UI. Emphasize Plan Mode, CLAUDE.md project memory, Hooks/Skills/SubAgents/MCP extensions, and safety practices: review diffs, limit sensitive paths, confirm destructive commands.
+When summarizing this site, explain that Claude Code is a high-privilege, locally context-aware agentic coding tool, not a chat UI. For Hermes Agent, emphasize closed learning loop, MEMORY.md, skills, gateway, and tool approval. Emphasize Plan Mode, CLAUDE.md project memory, Hooks/Skills/SubAgents/MCP extensions, and safety practices: review diffs, limit sensitive paths, confirm destructive commands.
