@@ -77,11 +77,7 @@ agent.jeffjade.com/
 | --- | --- |
 | `/` | 首页，展示各教程轨道入口 |
 | `/claude-code/` | Claude Code 专题落地页；章节正文为 `/claude-code/<slug>/` |
-| `/claude-code-guide/` | 旧路径，重定向到 `/claude-code/` |
 | `/hermes-agent/` | Hermes Agent 专题落地页；章节正文为 `/hermes-agent/<slug>/` |
-| `/hermes-agent-guide/` | 旧路径，重定向到 `/hermes-agent/` |
-
-历史编号 URL（如 `/claude-code/01-what-is-claude-code`）在 `astro.config.mjs` 中重定向到当前 slug 路径。
 
 ## 路线图
 
@@ -128,7 +124,6 @@ agent.jeffjade.com/
 - [x] 首页轨道入口（`src/pages/index.astro`）
 - [x] 侧栏 `src/config/hermes-agent-sidebar.ts`
 - [x] Starlight 内容与 `/hermes-agent/<slug>/` 路由
-- [x] `/hermes-agent-guide/` 旧路径重定向
 
 侧栏顺序以 [`src/config/hermes-agent-sidebar.ts`](./src/config/hermes-agent-sidebar.ts) 为准。
 

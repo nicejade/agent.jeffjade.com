@@ -38,26 +38,6 @@ const claudeCodeSlugs = [
   'mental-model-migration',
 ];
 
-const claudeCodeLegacyNumberedRedirects = {
-  '/claude-code/01-what-is-claude-code': '/claude-code/what-is-claude-code',
-  '/claude-code/02-core-advantages': '/claude-code/core-advantages',
-  '/claude-code/03-installation-setup': '/claude-code/installation-setup',
-  '/claude-code/04-first-session': '/claude-code/first-session',
-  '/claude-code/05-agent-loop': '/claude-code/agent-loop',
-  '/claude-code/06-plan-mode': '/claude-code/plan-mode',
-  '/claude-code/07-claude-md': '/claude-code/claude-md',
-  '/claude-code/08-hooks': '/claude-code/hooks',
-  '/claude-code/09-skills': '/claude-code/skills',
-  '/claude-code/10-subagents': '/claude-code/subagents',
-  '/claude-code/11-context-management': '/claude-code/context-management',
-  '/claude-code/11-mcp': '/claude-code/mcp',
-  '/claude-code/12-prompt-engineering': '/claude-code/prompt-engineering',
-  '/claude-code/13-complete-workflow': '/claude-code/complete-workflow',
-  '/claude-code/14-ecosystem-integration': '/claude-code/ecosystem-integration',
-  '/claude-code/15-limitations': '/claude-code/limitations',
-  '/claude-code/16-reflection': '/claude-code/reflection',
-};
-
 const claudeCodeGuideLegacyRedirects = {
   '/claude-code-guide/': '/claude-code/',
   ...Object.fromEntries(
@@ -65,10 +45,7 @@ const claudeCodeGuideLegacyRedirects = {
   ),
 };
 
-const claudeCodeRedirects = {
-  ...claudeCodeLegacyNumberedRedirects,
-  ...claudeCodeGuideLegacyRedirects,
-};
+const claudeCodeRedirects = claudeCodeGuideLegacyRedirects;
 
 const hermesAgentGuideSlugs = [
   'what-is-hermes-agent',
