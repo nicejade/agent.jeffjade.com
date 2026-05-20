@@ -1,8 +1,11 @@
 ---
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
+import SeoExtras from '../components/seo/SeoExtras.astro';
+import { GA_ID, SITE_URL } from '../config/site-seo';
 
-const site = 'https://agent.jeffjade.com';
+const site = SITE_URL;
+const canonical = `${site}/`;
 const title = '智能体漫游 | agent.jeffjade.com';
 const description =
   '专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。';
@@ -31,14 +34,6 @@ const tracks = [
   },
 ];
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: '智能体漫游',
-  url: site,
-  inLanguage: 'zh-CN',
-  description,
-};
 ---
 
 <!doctype html>
@@ -49,23 +44,23 @@ const structuredData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#fbfbfd" />
-    <link rel="canonical" href={site} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={site} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:image" content={`${site}/og.svg`} />
     <meta name="twitter:card" content="summary_large_image" />
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-JXTFG9M3EK"></script>
-    <script is:inline>
+    <SeoExtras canonical={canonical} title={title} description={description} pageType="website" />
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script is:inline define:vars={{ gaId: GA_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-JXTFG9M3EK');
+      gtag('config', gaId);
     </script>
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <div class="site-shell">

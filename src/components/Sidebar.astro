@@ -1,0 +1,44 @@
+---
+import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro';
+import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro';
+import SidebarSublist from '@astrojs/starlight/components/SidebarSublist.astro';
+import type { SidebarEntry } from '@astrojs/starlight/utils/routing/types';
+
+const { sidebar } = Astro.locals.starlightRoute;
+const pathname = Astro.url.pathname;
+
+function linkInSection(entry: SidebarEntry, prefix: string): boolean {
+  if (entry.type === 'link') {
+    return entry.href.startsWith(prefix);
+  }
+  return entry.entries.some((child) => linkInSection(child, prefix));
+}
+
+function filterSidebar(entries: SidebarEntry[], prefix: string): SidebarEntry[] {
+  return entries
+    .filter((entry) => linkInSection(entry, prefix))
+    .map((entry) => {
+      if (entry.type === 'link') return entry;
+      return {
+        ...entry,
+        entries: entry.entries.filter((child) => linkInSection(child, prefix)),
+      };
+    });
+}
+
+let displaySidebar = sidebar;
+
+if (pathname.startsWith('/hermes-agent/')) {
+  displaySidebar = filterSidebar(sidebar, '/hermes-agent/');
+} else if (pathname.startsWith('/claude-code/')) {
+  displaySidebar = filterSidebar(sidebar, '/claude-code/');
+}
+---
+
+<SidebarPersister>
+  <SidebarSublist sublist={displaySidebar} />
+</SidebarPersister>
+
+<div class="md:sl-hidden">
+  <MobileMenuFooter />
+</div>

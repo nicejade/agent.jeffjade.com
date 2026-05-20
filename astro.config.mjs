@@ -5,10 +5,10 @@ import tailwindcss from '@tailwindcss/vite';
 import starlightThemeRapide from 'starlight-theme-rapide';
 import { claudeCodeSidebar } from './src/config/claude-code-sidebar.ts';
 import { hermesAgentSidebar } from './src/config/hermes-agent-sidebar.ts';
+import { globalSeoHead, GA_ID, OG_IMAGE, SITE_URL } from './src/config/site-seo.ts';
 import { tableWrapIntegration } from './src/integrations/table-wrap.ts';
 
-const site = 'https://agent.jeffjade.com';
-const gaId = 'G-JXTFG9M3EK';
+const site = SITE_URL;
 
 const claudeCodeSlugs = [
   'what-is-claude-code',
@@ -87,10 +87,28 @@ const hermesAgentRedirects = Object.fromEntries([
 
 export default defineConfig({
   site,
+  trailingSlash: 'always',
   image: {
     service: passthroughImageService(),
   },
   redirects: { ...claudeCodeRedirects, ...hermesAgentRedirects },
+  sitemap: {
+    filter: (page) => !page.includes('/pagefind/'),
+    serialize(item) {
+      const { url } = item;
+      if (url === `${site}/`) {
+        item.priority = 1;
+        item.changefreq = 'weekly';
+      } else if (url === `${site}/claude-code/` || url === `${site}/hermes-agent/`) {
+        item.priority = 0.9;
+        item.changefreq = 'weekly';
+      } else if (url.startsWith(`${site}/claude-code/`) || url.startsWith(`${site}/hermes-agent/`)) {
+        item.priority = 0.8;
+        item.changefreq = 'monthly';
+      }
+      return item;
+    },
+  },
   integrations: [
     svelte(),
     starlight({
@@ -117,7 +135,9 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/nicejade/agent.jeffjade.com' },
       ],
       components: {
-				Footer: './src/components/Footer.astro',
+        Head: './src/components/starlight/Head.astro',
+        Footer: './src/components/Footer.astro',
+        Sidebar: './src/components/Sidebar.astro',
       },
       customCss: ['./src/styles/global.css'],
       sidebar: [...claudeCodeSidebar, ...hermesAgentSidebar],
@@ -128,7 +148,7 @@ export default defineConfig({
         },
         {
           tag: 'meta',
-          attrs: { property: 'og:image', content: `${site}/og.svg` },
+          attrs: { property: 'og:image', content: OG_IMAGE },
         },
         {
           tag: 'meta',
@@ -138,16 +158,17 @@ export default defineConfig({
           tag: 'link',
           attrs: { rel: 'manifest', href: '/site.webmanifest' },
         },
+        ...globalSeoHead,
         {
           tag: 'script',
           attrs: {
             async: true,
-            src: `https://www.googletagmanager.com/gtag/js?id=${gaId}`,
+            src: `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`,
           },
         },
         {
           tag: 'script',
-          content: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${gaId}');`,
+          content: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GA_ID}');`,
         },
       ],
     }),

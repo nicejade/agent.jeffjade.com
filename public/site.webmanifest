@@ -1,8 +1,12 @@
 {
+  "id": "/",
   "name": "智能体漫游",
   "short_name": "智能体漫游",
   "description": "16 章系统掌握 Claude Code 的中文指南。",
+  "lang": "zh-CN",
+  "dir": "ltr",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f5f5f7",
   "theme_color": "#f5f5f7",
