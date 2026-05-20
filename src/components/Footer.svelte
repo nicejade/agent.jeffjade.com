@@ -43,7 +43,7 @@
     <div class="px-6 sm:px-10! py-8">
       <div class="flex flex-col lg:flex-row! gap-12 lg:gap-16!">
         <!-- Brand & Social -->
-        <div class="flex flex-col items-start gap-0 w-full lg:w-1/3!">
+        <div class="flex flex-col items-start gap-0 w-full lg:w-1/2!">
           <div class="footer-brand flex items-center gap-4 select-none pb-0! mb-0!">
             <img class="block h-9 w-9 shrink-0 opacity-90" src="/favicon.svg" alt="Logo" />
             <span class="text-2xl font-bold leading-none tracking-tight bg-clip-text pb-0! text-transparent bg-gradient-to-br from-[var(--sl-color-text-accent)] to-[#d1d5db] [:root[data-theme='light']_&]:to-[#6b7280]">
@@ -52,7 +52,7 @@
           </div>
 
           <div class="w-full mt-3">
-            <p class="text-sm m-0! mb-4! text-[var(--sl-color-gray-3)] leading-relaxed max-w-sm">
+            <p class="text-sm m-0! mb-4! text-[var(--sl-color-gray-3)] leading-relaxed">
               “智能体漫游”专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。
             </p>
 
@@ -78,9 +78,13 @@
         </div>
 
         <!-- Navigation Links -->
-        <div class="grid grid-cols-2 flex-1 gap-10 lg:gap-12! justify-items-start">
-          {#each footerInfoArr as item (item.title)}
-            <div class="flex w-full flex-col items-start text-left">
+        <div class="grid grid-cols-2 flex-1 gap-10 lg:gap-12! lg:w-1/2! w-full">
+          {#each footerInfoArr as item, index (item.title)}
+            <div
+              class="flex w-full flex-col {index === 0
+                ? 'items-start text-left justify-self-start'
+                : 'items-end text-right justify-self-end'}"
+            >
               <h3 class="text-sm m-0! font-bold tracking-[0.1em] text-[var(--sl-color-gray-2)] uppercase opacity-80 px-2 py-1">
                 {item.title}
               </h3>
