@@ -294,4 +294,4 @@ Honcho、Mem0、Hindsight 等提供语义检索、知识图谱等能力。选型
 
 ---
 
-下一章：配置与个性化（撰写中），展开 `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md` 与 Profile（`hermes -p`）。
+下一章：[配置与个性化](./configuration-personalization/)，展开 `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md` 与 Profile（`hermes -p`）。

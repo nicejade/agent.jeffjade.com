@@ -75,6 +75,16 @@ const hermesAgentGuideSlugs = [
   'installation-setup',
   'first-conversation',
   'memory-learning-skills',
+  'configuration-personalization',
+  'tools-system',
+  'messaging-gateway',
+  'skills-in-practice',
+  'advanced-features',
+  'security-performance-best-practices',
+  'architecture-deep-dive',
+  'build-your-own-agent',
+  'contributing-and-community',
+  'series-summary-and-self-test',
 ];
 
 const hermesAgentRedirects = Object.fromEntries([

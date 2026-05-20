@@ -65,7 +65,8 @@ agent.jeffjade.com/
 │   │   └── hermes-agent-sidebar.ts
 │   ├── pages/
 │   │   ├── index.astro           # 站点首页 /
-│   │   └── claude-code/          # Claude Code 专题落地页
+│   │   ├── claude-code/          # Claude Code 专题落地页
+│   │   └── hermes-agent/         # Hermes Agent 专题落地页
 │   └── styles/global.css
 └── README.md
 ```
@@ -77,8 +78,8 @@ agent.jeffjade.com/
 | `/` | 首页，展示各教程轨道入口 |
 | `/claude-code/` | Claude Code 专题落地页；章节正文为 `/claude-code/<slug>/` |
 | `/claude-code-guide/` | 旧路径，重定向到 `/claude-code/` |
-| `/hermes-agent/` | Hermes Agent 漫游指南索引 |
-| `/hermes-agent/<slug>/` | Hermes 各章节正文 |
+| `/hermes-agent/` | Hermes Agent 专题落地页；章节正文为 `/hermes-agent/<slug>/` |
+| `/hermes-agent-guide/` | 旧路径，重定向到 `/hermes-agent/` |
 
 历史编号 URL（如 `/claude-code/01-what-is-claude-code`）在 `astro.config.mjs` 中重定向到当前 slug 路径。
 
@@ -111,31 +112,23 @@ agent.jeffjade.com/
 
 ### Hermes Agent 教程
 
-**状态：连载中（4 章已发布，首页轨道仍显示「筹备中」直至落地页与导航就绪）**
+**状态：已上线（14 章）**
 
-| 阶段 | 章节 | 状态 |
+| 区块 | 主题 | 状态 |
 | --- | --- | --- |
-| 入门 | 认识 Hermes Agent | 已发布 |
-| 入门 | 安装与环境准备 | 已发布 |
-| 入门 | 第一次对话 | 已发布 |
-| 核心机制 | 记忆、学习与 Skill | 已发布 |
-| 核心机制 | 配置与个性化 | 待撰写 |
-| 核心机制 | 工具系统 | 待撰写 |
-| 实战 | 消息网关 | 待撰写 |
-| 实战 | 技能系统实战 | 待撰写 |
-| 实战 | 高级特性（Voice、ACP 等） | 待撰写 |
-| 进阶 | 安全、性能与最佳实践 | 待撰写 |
-| 进阶 | 架构拆解 | 待撰写 |
-| 进阶 | 从零实现类似 Agent | 待撰写 |
-| 进阶 | 贡献与社区 | 待撰写 |
-| 收尾 | 系列总结与自测 | 待撰写 |
+| 入门 | 认识、安装、第一次对话 | 已发布 |
+| 核心机制 | 记忆与 Skill、配置、工具系统 | 已发布 |
+| 实战 | 消息网关、技能实战、高级特性 | 已发布 |
+| 进阶 | 安全与性能、架构、从零实现、贡献与社区 | 已发布 |
+| 收尾 | 系列总结与自测 | 已发布 |
 
-**站点配套（与正文并行）**
+**站点配套**
 
-- [ ] Hermes 专题落地页 `src/pages/hermes-agent/index.astro`
-- [ ] 首页轨道改为可进入（`src/pages/index.astro`）
+- [x] Hermes 专题落地页 `src/pages/hermes-agent/index.astro`
+- [x] 首页轨道入口（`src/pages/index.astro`）
 - [x] 侧栏 `src/config/hermes-agent-sidebar.ts`
-- [x] Starlight 内容与 `/hermes-agent/` 路由
+- [x] Starlight 内容与 `/hermes-agent/<slug>/` 路由
+- [x] `/hermes-agent-guide/` 旧路径重定向
 
 侧栏顺序以 [`src/config/hermes-agent-sidebar.ts`](./src/config/hermes-agent-sidebar.ts) 为准。
 
@@ -144,8 +137,7 @@ agent.jeffjade.com/
 | 项 | 状态 |
 | --- | --- |
 | 双轨道首页与 Claude Code 落地页 | 已上线 |
-| Hermes 正文与文档侧栏 | 已上线 |
-| Hermes 首页入口与专题落地页 | 进行中 |
+| Hermes 正文、侧栏与专题落地页 | 已上线 |
 | 新 Agent 专题（第三条轨道） | 规划中，随选题与证据就绪再开 |
 
 ## 参与撰写

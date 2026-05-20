@@ -23,39 +23,39 @@
 
 - [x] **记忆、学习与 Skill** — `MEMORY.md`/`USER.md`、frozen snapshot、`session_search`、`skill_manage`、Curator、可选 Honcho 等  
   - 文稿：`src/content/docs/hermes-agent/memory-learning-skills.md`
-- [ ] **配置与个性化** — `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md`、Profile（`hermes -p`）  
-  - 来源：[Configuration](https://hermes-agent.nousresearch.com/docs/user-guide/configuration)、[Personality](https://hermes-agent.nousresearch.com/docs/user-guide/features/personality)、[Context Files](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files)
-- [ ] **工具系统** — Toolsets、`hermes tools`、执行环境（local/docker/ssh 等）、审批与沙箱、MCP  
-  - 来源：[Tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/tools)、[Security](https://hermes-agent.nousresearch.com/docs/user-guide/security)、[MCP](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+- [x] **配置与个性化** — `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md`、Profile（`hermes -p`）  
+  - 文稿：`src/content/docs/hermes-agent/configuration-personalization.md`
+- [x] **工具系统** — Toolsets、`hermes tools`、执行环境（local/docker/ssh 等）、审批与沙箱、MCP  
+  - 文稿：`src/content/docs/hermes-agent/tools-system.md`
 
 ### 实战
 
-- [ ] **消息网关** — `hermes gateway setup`、多平台、授权与配对、Cron 推送  
-  - 来源：[Messaging](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/)
-- [ ] **技能系统实战** — `SKILL.md` 结构、Hub 安装、`hermes curator`、手写与 Agent 自创建 Skill  
-  - 来源：[Skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills)
-- [ ] **高级特性** — Voice、浏览器/视觉/TTS、子 Agent 委托、`hermes acp`、`execute_code`  
-  - 来源：[Voice Mode](https://hermes-agent.nousresearch.com/docs/user-guide/features/voice-mode)、[ACP](https://hermes-agent.nousresearch.com/docs/user-guide/features/acp)
+- [x] **消息网关** — `hermes gateway setup`、多平台、授权与配对、Cron 推送  
+  - 文稿：`src/content/docs/hermes-agent/messaging-gateway.md`
+- [x] **技能系统实战** — `SKILL.md` 结构、Hub 安装、`hermes curator`、手写与 Agent 自创建 Skill  
+  - 文稿：`src/content/docs/hermes-agent/skills-in-practice.md`
+- [x] **高级特性** — Voice、浏览器/视觉/TTS、子 Agent 委托、`hermes acp`、`execute_code`  
+  - 文稿：`src/content/docs/hermes-agent/advanced-features.md`
 
 ### 进阶
 
-- [ ] **安全、性能与最佳实践** — 命令审批、容器隔离、Prompt Caching、`auxiliary.*`、`hermes doctor`  
-  - 来源：[Security](https://hermes-agent.nousresearch.com/docs/user-guide/security)、[Tips](https://hermes-agent.nousresearch.com/docs/guides/tips)、[Context Compression & Caching](https://hermes-agent.nousresearch.com/docs/developer-guide/context-compression-and-caching)
-- [ ] **架构拆解** — Agent Loop、Prompt 组装、`tools/registry.py`、`COMMAND_REGISTRY`、Gateway/Cron 数据流  
-  - 来源：[Architecture](https://hermes-agent.nousresearch.com/docs/developer-guide/architecture)、[Agent Loop](https://hermes-agent.nousresearch.com/docs/developer-guide/agent-loop)、[Prompt Assembly](https://hermes-agent.nousresearch.com/docs/developer-guide/prompt-assembly)
-- [ ] **从零实现类似 Agent** — Loop、CLI、工具注册表、记忆与 Persona、Skill 披露、Gateway、MCP、Profile  
-  - 来源：[DEV Build-Your-Own](https://dev.to/truongpx396/hermes-agent-deep-dive-build-your-own-guide-1pcc)、Contributing
-- [ ] **贡献与社区** — Skills Hub 发布、核心仓库 PR、Trajectories/Atropos、生产案例  
-  - 来源：GitHub CONTRIBUTING、Trajectories 文档
-- [ ] **系列总结与自测** — 能力边界、自测项、下一步真实项目  
-  - 自测项见下文「读者自测」
+- [x] **安全、性能与最佳实践** — 命令审批、容器隔离、Prompt Caching、`auxiliary.*`、`hermes doctor`  
+  - 文稿：`src/content/docs/hermes-agent/security-performance-best-practices.md`
+- [x] **架构拆解** — Agent Loop、Prompt 组装、`tools/registry.py`、`COMMAND_REGISTRY`、Gateway/Cron 数据流  
+  - 文稿：`src/content/docs/hermes-agent/architecture-deep-dive.md`
+- [x] **从零实现类似 Agent** — Loop、CLI、工具注册表、记忆与 Persona、Skill 披露、Gateway、MCP、Profile  
+  - 文稿：`src/content/docs/hermes-agent/build-your-own-agent.md`
+- [x] **贡献与社区** — Skills Hub 发布、核心仓库 PR、Trajectories/Atropos、生产案例  
+  - 文稿：`src/content/docs/hermes-agent/contributing-and-community.md`
+- [x] **系列总结与自测** — 能力边界、自测项、下一步真实项目  
+  - 文稿：`src/content/docs/hermes-agent/series-summary-and-self-test.md`
 
 ### 站点与配套（非正文章节）
 
-- [ ] Hermes 专题落地页 `src/pages/hermes-agent/index.astro`
-- [ ] 侧栏 `src/config/hermes-agent-sidebar.ts`
+- [x] Hermes 专题落地页 `src/pages/hermes-agent/index.astro`
+- [x] 侧栏 `src/config/hermes-agent-sidebar.ts`（含进阶三章）
 - [x] 首页轨道改为可进入（`src/pages/index.astro`）
-- [ ] `astro.config.mjs` 路由/重定向（若需要）
+- [x] `astro.config.mjs` 旧路径 `/hermes-agent-guide/<slug>/` 重定向（14 章 slug）
 
 ---
 
@@ -113,3 +113,9 @@ Hermes 是模型无关的自主 Agent：**闭环自改进**（`skill_manage` + `
 | 2026-05-20 | 改为主题清单 + 完成状态，移除 Part/天数/阶段/月路线图 |
 | 2026-05-20 | 完成入门第 1–2 章文稿并接入 Starlight 侧栏 |
 | 2026-05-20 | 完成入门第 3 章与核心机制第 4 章，更新侧栏与漫游指南索引 |
+| 2026-05-20 | 完成核心机制第 5–6 章（配置与个性化、工具系统），更新侧栏与 HANDOFF |
+| 2026-05-20 | 完成实战第 7–8 章（消息网关、技能系统实战），更新侧栏与漫游指南索引 |
+| 2026-05-20 | 完成实战第 9 章（高级特性），更新侧栏与漫游指南索引 |
+| 2026-05-20 | 完成进阶第 10–12 章（安全与性能、架构拆解、从零实现），更新侧栏与漫游指南 |
+| 2026-05-20 | 完成进阶第 13–14 章（贡献与社区、系列总结与自测），Hermes 正文章节全部完结 |
+| 2026-05-20 | Hermes 专题落地页、首页/Claude 落地页交叉链接、`hermes-agent-guide` 全 slug 重定向 |

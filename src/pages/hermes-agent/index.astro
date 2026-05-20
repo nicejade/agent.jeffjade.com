@@ -5,84 +5,62 @@ import SeoExtras from '../../components/seo/SeoExtras.astro';
 import { GA_ID, SITE_URL } from '../../config/site-seo';
 
 const site = SITE_URL;
-const pageUrl = `${site}/claude-code/`;
-const title = 'Claude Code 漫游指南 | 智能体漫游';
+const pageUrl = `${site}/hermes-agent/`;
+const title = 'Hermes Agent 漫游指南 | 智能体漫游';
 const description =
-  '18 章系统掌握 Claude Code：从 Agentic Coding 心智模型、安装上手、Slash 命令、代理循环与 Plan Mode，到 CLAUDE.md、Hooks、Skills、SubAgents、MCP 与完整实战工作流。';
+  '14 章系统掌握 Hermes Agent：closed learning loop、MEMORY.md 与 Skill、工具系统与 Gateway、安全与架构拆解，以及从零实现与社区贡献。';
 
 const parts = [
   {
     label: '第一部分',
-    title: '基础认知',
+    title: '入门',
     chapters: [
-      { n: 1, title: 'Claude Code 是什么', href: '/claude-code/what-is-claude-code/' },
-      { n: 2, title: '10 倍提升效率', href: '/claude-code/core-advantages/' },
+      { n: 1, title: '认识 Hermes Agent', href: '/hermes-agent/what-is-hermes-agent/' },
+      { n: 2, title: '安装与环境准备', href: '/hermes-agent/installation-setup/' },
+      { n: 3, title: '第一次对话', href: '/hermes-agent/first-conversation/' },
     ],
   },
   {
     label: '第二部分',
-    title: '快速上手',
+    title: '核心机制',
     chapters: [
-      { n: 3, title: '安装与配置', href: '/claude-code/installation-setup/' },
-      { n: 4, title: '第一个会话', href: '/claude-code/first-session/' },
-      { n: 5, title: 'Slash 命令', href: '/claude-code/slash-commands/' },
+      { n: 4, title: '记忆、学习与 Skill', href: '/hermes-agent/memory-learning-skills/' },
+      { n: 5, title: '配置与个性化', href: '/hermes-agent/configuration-personalization/' },
+      { n: 6, title: '工具系统', href: '/hermes-agent/tools-system/' },
     ],
   },
   {
     label: '第三部分',
-    title: '工作原理',
+    title: '实战',
     chapters: [
-      { n: 6, title: '代理循环与工具', href: '/claude-code/agent-loop/' },
-      { n: 7, title: 'Plan Mode', href: '/claude-code/plan-mode/' },
+      { n: 7, title: '消息网关', href: '/hermes-agent/messaging-gateway/' },
+      { n: 8, title: '技能系统实战', href: '/hermes-agent/skills-in-practice/' },
+      { n: 9, title: '高级特性', href: '/hermes-agent/advanced-features/' },
     ],
   },
   {
     label: '第四部分',
-    title: '项目记忆',
-    chapters: [{ n: 8, title: 'CLAUDE.md 的艺术', href: '/claude-code/claude-md/' }],
-  },
-  {
-    label: '第五部分',
-    title: '高级扩展',
+    title: '进阶',
     chapters: [
-      { n: 9, title: 'Hooks', href: '/claude-code/hooks/' },
-      { n: 10, title: 'Skills', href: '/claude-code/skills/' },
-      { n: 11, title: 'SubAgents', href: '/claude-code/subagents/' },
-      { n: 12, title: 'MCP', href: '/claude-code/mcp/' },
-    ],
-  },
-  {
-    label: '第六部分',
-    title: '实战与最佳实践',
-    chapters: [
-      { n: 13, title: '提示工程秘诀', href: '/claude-code/prompt-engineering/' },
-      { n: 14, title: '完整实战工作流', href: '/claude-code/complete-workflow/' },
-      { n: 15, title: '生态深度集成', href: '/claude-code/ecosystem-integration/' },
-    ],
-  },
-  {
-    label: '第七部分',
-    title: '反思与进阶',
-    chapters: [
-      { n: 16, title: '局限性与应对', href: '/claude-code/limitations/' },
-      { n: 17, title: 'AI 时代的开发者', href: '/claude-code/reflection/' },
+      {
+        n: 10,
+        title: '安全、性能与最佳实践',
+        href: '/hermes-agent/security-performance-best-practices/',
+      },
+      { n: 11, title: '架构拆解', href: '/hermes-agent/architecture-deep-dive/' },
+      { n: 12, title: '从零实现类似 Agent', href: '/hermes-agent/build-your-own-agent/' },
+      { n: 13, title: '贡献与社区', href: '/hermes-agent/contributing-and-community/' },
+      { n: 14, title: '系列总结与自测', href: '/hermes-agent/series-summary-and-self-test/' },
     ],
   },
 ];
 
-const hermesGuide = {
-  href: '/hermes-agent/',
-  startHref: '/hermes-agent/what-is-hermes-agent/',
+const claudeGuide = {
+  href: '/claude-code/',
+  startHref: '/claude-code/what-is-claude-code/',
   summary:
-    '模型无关的自主 Agent：closed learning loop、MEMORY.md 与 Skill、Gateway 与 70+ 工具。14 章已全部发布，含架构拆解与系列自测。',
-  chapters: [
-    { n: 1, title: '认识 Hermes Agent', href: '/hermes-agent/what-is-hermes-agent/' },
-    { n: 2, title: '安装与环境准备', href: '/hermes-agent/installation-setup/' },
-    { n: 7, title: '消息网关', href: '/hermes-agent/messaging-gateway/' },
-    { n: 14, title: '系列总结与自测', href: '/hermes-agent/series-summary-and-self-test/' },
-  ],
+    '面向代码库的 Agentic Coding：代理循环、Plan Mode、CLAUDE.md、Hooks / Skills / SubAgents / MCP 与完整工程工作流。',
 };
-
 ---
 
 <!doctype html>
@@ -126,8 +104,8 @@ const hermesGuide = {
         </a>
         <nav class="nav-links" id="nav-menu" aria-label="站点导航">
           <a href="/">站点首页</a>
-          <a href="/hermes-agent/">Hermes Agent</a>
-          <a class="nav-cta" href="/claude-code/what-is-claude-code/">从第 1 章开始</a>
+          <a href="/claude-code/">Claude Code</a>
+          <a class="nav-cta" href="/hermes-agent/what-is-hermes-agent/">从第 1 章开始</a>
         </nav>
         <button class="mobile-menu-btn" id="menu-toggle" aria-label="打开菜单" aria-expanded="false">
           <span class="menu-bar"></span>
@@ -138,19 +116,19 @@ const hermesGuide = {
       <main>
         <section class="hero hero-guide" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Claude Code · 18 章</p>
-            <h1 id="hero-title">系统掌握 <span>Claude Code</span></h1>
+            <p class="eyebrow">Hermes Agent · 14 章</p>
+            <h1 id="hero-title">系统掌握 <span>Hermes Agent</span></h1>
             <p class="hero-lede">
-              这不是聊天教程，而是一份面向工程师的 Agentic Coding 指南：从心智模型与安装上手，到代理循环、Plan Mode、项目记忆、Hooks / Skills / SubAgents / MCP，再到完整工作流与生态集成。
+              Nous Research 出品的模型无关自主 Agent：不绑定 IDE，可跑 CLI、TUI、Gateway 与 Cron。本指南从 closed learning loop、记忆与 Skill，到工具审批、多平台网关、架构拆解与自测验收。
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="/claude-code/what-is-claude-code/">从第 1 章开始</a>
-              <a class="btn btn-secondary" href="/claude-code/installation-setup/">直接安装配置</a>
+              <a class="btn btn-primary" href="/hermes-agent/what-is-hermes-agent/">从第 1 章开始</a>
+              <a class="btn btn-secondary" href="/hermes-agent/installation-setup/">直接安装配置</a>
             </div>
             <ul class="hero-highlights" aria-label="指南亮点">
-              <li>本地仓库上下文 + Shell / Git 感知</li>
-              <li>Plan Mode 先规划再执行</li>
-              <li>Hooks、Skills、SubAgents、MCP 扩展体系</li>
+              <li>MEMORY.md / USER.md 与 Skill 自改进闭环</li>
+              <li>70+ 工具、MCP 与多 backend 执行环境</li>
+              <li>Gateway 20+ 平台与 Cron 定时推送</li>
             </ul>
           </div>
 
@@ -169,16 +147,16 @@ const hermesGuide = {
 
         <section class="metric-strip" aria-label="指南概览">
           <div class="metric">
-            <strong>18</strong>
-            <span>章节，从认知到实战闭环</span>
+            <strong>14</strong>
+            <span>章节，从入门到架构与自测</span>
           </div>
           <div class="metric">
-            <strong>7</strong>
+            <strong>4</strong>
             <span>部分，按学习路径递进编排</span>
           </div>
           <div class="metric">
-            <strong>CC</strong>
-            <span>面向 Claude Code 的专属知识库</span>
+            <strong>闭环</strong>
+            <span>记忆、Skill 与 Curator 自改进</span>
           </div>
           <div class="metric">
             <strong>中文</strong>
@@ -215,42 +193,56 @@ const hermesGuide = {
           </div>
         </section>
 
-        <section class="section guide-related" aria-labelledby="hermes-title">
+        <section class="section guide-related" aria-labelledby="claude-title">
           <div class="section-header">
             <p>more agent tracks</p>
-            <h2 id="hermes-title">Hermes Agent 漫游指南</h2>
-            <p>{hermesGuide.summary}</p>
+            <h2 id="claude-title">Claude Code 漫游指南</h2>
+            <p>{claudeGuide.summary}</p>
           </div>
 
           <div class="guide-related-panel">
             <article class="guide-related-promo">
               <div class="guide-related-promo-top">
-                <h3>Hermes Agent</h3>
-                <span class="track-status track-status-live">已上线 · 14 章</span>
+                <h3>Claude Code</h3>
+                <span class="track-status track-status-live">已上线 · 25 章</span>
               </div>
               <p>
-                侧重长期驻留、多平台 Gateway 与自编写 Skill；可与 Claude Code 配合：本地改代码，VPS 上跑 Hermes 定时巡检。
+                侧重本地仓库上下文与工程交付；可与 Hermes 配合：Claude Code 改代码，Hermes 在 VPS 上跑 Gateway 巡检与 Cron 提醒。
               </p>
               <div class="guide-related-actions">
-                <a class="btn btn-primary" href={hermesGuide.href}>进入专题目录</a>
-                <a class="btn btn-secondary" href={hermesGuide.startHref}>从第 1 章开始</a>
+                <a class="btn btn-primary" href={claudeGuide.href}>进入专题目录</a>
+                <a class="btn btn-secondary" href={claudeGuide.startHref}>从第 1 章开始</a>
               </div>
             </article>
 
             <article class="catalog-part guide-related-catalog">
               <header class="catalog-part-head">
-                <span>已发布章节</span>
-                <h3>入门与核心机制</h3>
+                <span>官方文档</span>
+                <h3>Hermes 延伸阅读</h3>
               </header>
               <ul class="chapter-list">
-                {hermesGuide.chapters.map((chapter) => (
-                  <li>
-                    <a href={chapter.href}>
-                      <span class="chapter-num">{chapter.n}</span>
-                      <span class="chapter-title">{chapter.title}</span>
-                    </a>
-                  </li>
-                ))}
+                <li>
+                  <a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noopener noreferrer">
+                    <span class="chapter-num">↗</span>
+                    <span class="chapter-title">Hermes 官方文档</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/NousResearch/hermes-agent"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span class="chapter-num">↗</span>
+                    <span class="chapter-title">GitHub 仓库</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/hermes-agent/series-summary-and-self-test/">
+                    <span class="chapter-num">14</span>
+                    <span class="chapter-title">系列总结与自测</span>
+                  </a>
+                </li>
               </ul>
             </article>
           </div>
@@ -258,9 +250,9 @@ const hermesGuide = {
 
         <section class="section" aria-labelledby="closing-title">
           <div class="closing-band">
-            <h2 id="closing-title">准备好把 Claude Code 变成日常工程能力了吗？</h2>
-            <p>从第 1 章理解 Agentic Coding 范式，或跳到安装配置直接开干。章节正文位于 /claude-code/ 路径下。</p>
-            <a class="btn btn-primary" href="/claude-code/what-is-claude-code/">开始第 1 章</a>
+            <h2 id="closing-title">准备好在一台机器上长期跑 Hermes 了吗？</h2>
+            <p>从第 1 章理解 closed learning loop，或跳到安装配置直接开干。章节正文位于 /hermes-agent/ 路径下。</p>
+            <a class="btn btn-primary" href="/hermes-agent/what-is-hermes-agent/">开始第 1 章</a>
           </div>
         </section>
       </main>

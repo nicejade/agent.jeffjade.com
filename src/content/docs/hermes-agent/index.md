@@ -24,26 +24,26 @@ sidebar:
 | # | 主题 | 状态 |
 | --- | --- | --- |
 | 4 | [记忆、学习与 Skill](/hermes-agent/memory-learning-skills/) — `MEMORY.md`、`skill_manage`、Curator、会话检索 | 已发布 |
-| 5 | 配置与个性化 — `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md`、Profile | 撰写中 |
-| 6 | 工具系统 — Toolsets、沙箱执行环境、审批流、MCP | 撰写中 |
+| 5 | [配置与个性化](/hermes-agent/configuration-personalization/) — `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md`、Profile | 已发布 |
+| 6 | [工具系统](/hermes-agent/tools-system/) — Toolsets、沙箱执行环境、审批流、MCP | 已发布 |
 
 ## 第三部分：实战
 
 | # | 主题 | 状态 |
 | --- | --- | --- |
-| 7 | 消息网关 — `hermes gateway setup`、多平台与 Cron | 撰写中 |
-| 8 | 技能系统实战 — `SKILL.md`、Skills Hub、`hermes curator` | 撰写中 |
-| 9 | 高级特性 — Voice、浏览器、子 Agent、ACP | 撰写中 |
+| 7 | [消息网关](/hermes-agent/messaging-gateway/) — `hermes gateway setup`、多平台与 Cron | 已发布 |
+| 8 | [技能系统实战](/hermes-agent/skills-in-practice/) — `SKILL.md`、Skills Hub、`hermes curator` | 已发布 |
+| 9 | [高级特性](/hermes-agent/advanced-features/) — Voice、浏览器、子 Agent、ACP | 已发布 |
 
 ## 第四部分：进阶
 
 | # | 主题 | 状态 |
 | --- | --- | --- |
-| 10 | 安全、性能与最佳实践 | 撰写中 |
-| 11 | 架构拆解 — Agent Loop、Prompt 组装、工具注册表 | 撰写中 |
-| 12 | 从零实现类似 Agent | 撰写中 |
-| 13 | 贡献与社区 | 撰写中 |
-| 14 | 系列总结与自测 | 撰写中 |
+| 10 | [安全、性能与最佳实践](/hermes-agent/security-performance-best-practices/) — 审批、容器、`hermes doctor`、压缩与缓存 | 已发布 |
+| 11 | [架构拆解](/hermes-agent/architecture-deep-dive/) — Agent Loop、Prompt 组装、`registry` 与 Gateway 数据流 | 已发布 |
+| 12 | [从零实现类似 Agent](/hermes-agent/build-your-own-agent/) — 分阶段实现路线图与常见陷阱 | 已发布 |
+| 13 | [贡献与社区](/hermes-agent/contributing-and-community/) — Skills Hub、PR、Trajectory 与 Atropos | 已发布 |
+| 14 | [系列总结与自测](/hermes-agent/series-summary-and-self-test/) — 能力边界、自测清单、下一步项目 | 已发布 |
 
 ## 官方资源
 
