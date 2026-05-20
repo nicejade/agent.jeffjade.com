@@ -6,21 +6,6 @@ const title = '智能体漫游 | agent.jeffjade.com';
 const description =
   '专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。';
 
-const pillars = [
-  {
-    title: '实用教程',
-    body: '按任务拆解机制与步骤，从安装配置到 Hooks、Skills、MCP，形成可复用的学习路径。',
-  },
-  {
-    title: '案例演示',
-    body: '用真实仓库与命令展示 Agent 如何读代码、改文件、跑测试，结论可对照验证。',
-  },
-  {
-    title: '持续更新',
-    body: '跟进主流 Agent 能力与边界变化，把新特性与踩坑经验写回文档。',
-  },
-];
-
 const tracks = [
   {
     name: 'Claude Code',
@@ -108,21 +93,6 @@ const structuredData = {
               <a class="button primary" href="/claude-code/">探索 Claude Code</a>
               <a class="button" href="/claude-code-guide/what-is-claude-code/">阅读第 1 章</a>
             </div>
-          </div>
-        </section>
-
-        <section class="section kicker" aria-labelledby="pillars-title">
-          <div class="section-header section-header-center">
-            <p>learn · build · ship</p>
-            <h2 id="pillars-title">三条路径，把 Agent 用进真实工作</h2>
-          </div>
-          <div class="path-grid">
-            {pillars.map((pillar) => (
-              <article class="path-card path-card-minimal">
-                <h3>{pillar.title}</h3>
-                <p>{pillar.body}</p>
-              </article>
-            ))}
           </div>
         </section>
 
