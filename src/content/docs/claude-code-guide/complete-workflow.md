@@ -7,7 +7,7 @@ sidebar:
 
 *「提示工程也学了，Plan Mode 也会切了，但真接手一个陌生 repo、修一个红 CI、或从零加功能时，仍不知道先开口说什么、在哪一步停。」*
 
-上一章 [提示工程](/claude-code/prompt-engineering/) 讲的是**怎么说**；本章讲的是**按什么顺序做**。同一套 [代理循环](/claude-code/agent-loop/) 在不同任务里，入口提示、权限模式、是否开子代理、何时 commit 都不一样。
+上一章 [提示工程](/claude-code-guide/prompt-engineering/) 讲的是**怎么说**；本章讲的是**按什么顺序做**。同一套 [代理循环](/claude-code-guide/agent-loop/) 在不同任务里，入口提示、权限模式、是否开子代理、何时 commit 都不一样。
 
 官方分任务食谱见 [Common workflows](https://code.claude.com/docs/en/common-workflows)；高层原则见 [Best practices](https://code.claude.com/docs/en/best-practices)。本章把它们串成一条你可直接照着走的实战链，并标明每步应链接的本系列章节。
 
@@ -25,12 +25,12 @@ sidebar:
 
 | 阶段 | 你的目标 | 常用模式 | 本系列延伸阅读 |
 |------|----------|----------|----------------|
-| 理解 | 建立心智模型 | 只读 + 子代理探索 | [first-session](/claude-code/first-session/)、[SubAgents](/claude-code/subagents/) |
-| 设计 | 对齐改什么、怎么验收 | [Plan Mode](/claude-code/plan-mode/) | [prompt-engineering](/claude-code/prompt-engineering/) |
-| 实现 | 改码并自测 | default / acceptEdits | [agent-loop](/claude-code/agent-loop/) |
-| 验证 | 测试、lint、构建 | 提示里写死命令 | [Hooks](/claude-code/hooks/) |
-| 审查 | 找遗漏与风格问题 | 第二会话或只读子代理 | [prompt-engineering](/claude-code/prompt-engineering/#writer--reviewer-双会话) |
-| 提交 | commit、PR、CI | `gh`、worktree | 本章 Git 节；[生态集成](/claude-code/ecosystem-integration/) |
+| 理解 | 建立心智模型 | 只读 + 子代理探索 | [first-session](/claude-code-guide/first-session/)、[SubAgents](/claude-code-guide/subagents/) |
+| 设计 | 对齐改什么、怎么验收 | [Plan Mode](/claude-code-guide/plan-mode/) | [prompt-engineering](/claude-code-guide/prompt-engineering/) |
+| 实现 | 改码并自测 | default / acceptEdits | [agent-loop](/claude-code-guide/agent-loop/) |
+| 验证 | 测试、lint、构建 | 提示里写死命令 | [Hooks](/claude-code-guide/hooks/) |
+| 审查 | 找遗漏与风格问题 | 第二会话或只读子代理 | [prompt-engineering](/claude-code-guide/prompt-engineering/#writer--reviewer-双会话) |
+| 提交 | commit、PR、CI | `gh`、worktree | 本章 Git 节；[生态集成](/claude-code-guide/ecosystem-integration/) |
 
 **动手：** 用 30 秒判断你**此刻**处于哪一列。若同时在「理解」和「实现」，先停实现，补设计或缩小范围。
 
@@ -47,7 +47,7 @@ cd /path/to/your-repo
 claude
 ```
 
-在子目录启动会让 Agent 默认「视野」变小。见 [第一个会话](/claude-code/first-session/#启动会话)。
+在子目录启动会让 Agent 默认「视野」变小。见 [第一个会话](/claude-code-guide/first-session/#启动会话)。
 
 ### 2. 写入或更新 CLAUDE.md
 
@@ -55,7 +55,7 @@ claude
 /init
 ```
 
-然后人工删减：只保留 Agent 猜不到的命令、测试方式、禁止路径。见 [CLAUDE.md 的艺术](/claude-code/claude-md/)。
+然后人工删减：只保留 Agent 猜不到的命令、测试方式、禁止路径。见 [CLAUDE.md 的艺术](/claude-code-guide/claude-md/)。
 
 ### 3. 预置权限与常用命令
 
@@ -139,7 +139,7 @@ authentication 是在哪些文件里实现的？它们如何协作？
 
 ## 工作流 B：调试
 
-**目标：** 复现 → 定位根因 → 最小修复 → 回归验证。对应 [提示工程](/claude-code/prompt-engineering/) 里的「带验收修复」。
+**目标：** 复现 → 定位根因 → 最小修复 → 回归验证。对应 [提示工程](/claude-code-guide/prompt-engineering/) 里的「带验收修复」。
 
 ### 1. 把现象变成可复现
 
@@ -178,7 +178,7 @@ authentication 是在哪些文件里实现的？它们如何协作？
 | 相关 lint | `npm run lint` 或等价 |
 | 回归范围 | 若改动面大，跑更广测试集 |
 
-若同一 bug 纠正三轮仍失败，按 [提示工程](/claude-code/prompt-engineering/#agent-迷茫时的信号) **`/clear` 并重写初始提示**，带上已排除的假设。
+若同一 bug 纠正三轮仍失败，按 [提示工程](/claude-code-guide/prompt-engineering/#agent-迷茫时的信号) **`/clear` 并重写初始提示**，带上已排除的假设。
 
 ### 5. 回滚与试错
 
@@ -195,7 +195,7 @@ authentication 是在哪些文件里实现的？它们如何协作？
 1. **Git 提交点**：重构前 `git commit` 或至少 `git stash`，保证能 `git diff` / `git reset`。  
 2. **小步**：一次只动一个模块或一种机械替换。  
 3. **每步跑测试**：写进提示，不要靠记忆。  
-4. **可选 worktree**：实验性大改可用 `claude --worktree refactor-auth` 隔离分支，见 [SubAgents worktree](/claude-code/subagents/#git-worktree-实验) 与官方 [Worktrees](https://code.claude.com/docs/en/worktrees)。
+4. **可选 worktree**：实验性大改可用 `claude --worktree refactor-auth` 隔离分支，见 [SubAgents worktree](/claude-code-guide/subagents/#git-worktree-实验) 与官方 [Worktrees](https://code.claude.com/docs/en/worktrees)。
 
 ### 典型提示序列
 
@@ -220,7 +220,7 @@ authentication 是在哪些文件里实现的？它们如何协作？
 不要改样式文件与路由配置。
 ```
 
-大规模迁移可先让 Agent **列出文件清单**，你确认后再 `claude -p` 批处理或 `/batch` 类技能，见 [Skills 捆绑命令](/claude-code/skills/#捆绑技能与内置命令)。
+大规模迁移可先让 Agent **列出文件清单**，你确认后再 `claude -p` 批处理或 `/batch` 类技能，见 [Skills 捆绑命令](/claude-code-guide/skills/#捆绑技能与内置命令)。
 
 ### 重构后审查
 
@@ -248,7 +248,7 @@ claude --permission-mode plan
 /plan 为公开 API 增加按 IP 的速率限制：列出要改的文件、中间件插入点、测试策略与回滚方式。不要改代码。
 ```
 
-审查计划是否包含 [Plan Mode 一章](/claude-code/plan-mode/#一份好计划应包含什么) 的四要素：范围、步骤、决策、验收。不足则要求补充后再批准 `ExitPlanMode`。
+审查计划是否包含 [Plan Mode 一章](/claude-code-guide/plan-mode/#一份好计划应包含什么) 的四要素：范围、步骤、决策、验收。不足则要求补充后再批准 `ExitPlanMode`。
 
 ### 2. 实现段
 
@@ -259,7 +259,7 @@ claude --permission-mode plan
 每完成一步更新任务状态，并跑 `npm test -- middleware`。
 ```
 
-复杂功能可拆多会话：规划会话产 `SPEC.md` 或计划文件，**新会话**只负责实现，见 [提示工程](/claude-code/prompt-engineering/#大功能让-claude-先采访你)。
+复杂功能可拆多会话：规划会话产 `SPEC.md` 或计划文件，**新会话**只负责实现，见 [提示工程](/claude-code-guide/prompt-engineering/#大功能让-claude-先采访你)。
 
 ### 3. 测试驱动变体
 
@@ -304,7 +304,7 @@ claude --permission-mode plan
 分析 NotificationService 的实现，列出我可能遗漏的边界条件，并各给一个测试用例建议。
 ```
 
-测试逻辑稳定后，可做成 [Skill](/claude-code/skills/)：`/test-module src/foo`，避免每次粘贴长提示。
+测试逻辑稳定后，可做成 [Skill](/claude-code-guide/skills/)：`/test-module src/foo`，避免每次粘贴长提示。
 
 ---
 
@@ -424,7 +424,7 @@ claude --worktree hotfix-502
 git log --oneline -20 | claude -p "用中文总结这些提交的主题与风险"
 ```
 
-无人值守流水线、GitHub Actions、`claude -p` 权限范围见下一章 [生态集成](/claude-code/ecosystem-integration/)。交互式实战仍以本机 `claude` 为主。
+无人值守流水线、GitHub Actions、`claude -p` 权限范围见下一章 [生态集成](/claude-code-guide/ecosystem-integration/)。交互式实战仍以本机 `claude` 为主。
 
 ---
 
@@ -460,7 +460,7 @@ git log --oneline -20 | claude -p "用中文总结这些提交的主题与风险
 不要写入密钥；用 repository secrets 占位符。
 ```
 
-**边界：** 生产部署、密钥轮换、合规审计应以团队流水线为准；Agent 输出必须经人工与 [生态集成](/claude-code/ecosystem-integration/) 中的策略审查。不要把 `.env` 内容贴进对话。
+**边界：** 生产部署、密钥轮换、合规审计应以团队流水线为准；Agent 输出必须经人工与 [生态集成](/claude-code-guide/ecosystem-integration/) 中的策略审查。不要把 `.env` 内容贴进对话。
 
 ---
 
@@ -488,7 +488,7 @@ git log --oneline -20 | claude -p "用中文总结这些提交的主题与风险
 
 不必每天都走满六段。修一个 typo：理解可跳过，设计可跳过，验证 + 提交即可。加跨模块功能：设计段几乎不可省。
 
-把重复三次以上的提示收成 [Skill](/claude-code/skills/)；把每次都要跑的检查收成 [Hook](/claude-code/hooks/)；把探索噪声交给 [SubAgent](/claude-code/subagents/)。
+把重复三次以上的提示收成 [Skill](/claude-code-guide/skills/)；把每次都要跑的检查收成 [Hook](/claude-code-guide/hooks/)；把探索噪声交给 [SubAgent](/claude-code-guide/subagents/)。
 
 ---
 
@@ -511,4 +511,4 @@ git log --oneline -20 | claude -p "用中文总结这些提交的主题与风险
 
 ---
 
-下一章：[生态深度集成](/claude-code/ecosystem-integration/)——VS Code 与桌面端、GitHub Actions、团队 `CLAUDE.md` 与企业权限，把本章的 Git/CI 片段扩展到协作与流水线环境。
+下一章：[生态深度集成](/claude-code-guide/ecosystem-integration/)——VS Code 与桌面端、GitHub Actions、团队 `CLAUDE.md` 与企业权限，把本章的 Git/CI 片段扩展到协作与流水线环境。

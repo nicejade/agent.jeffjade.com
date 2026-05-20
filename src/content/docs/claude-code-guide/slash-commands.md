@@ -7,7 +7,7 @@ sidebar:
 
 *「`/compact` 和 `/clear` 到底差在哪？为什么同事说 `/btw` 几乎不占上下文？」*
 
-[第一个会话](/claude-code/first-session/) 里你已经用过 `/help`、`/doctor` 和权限相关命令。本章把 Slash 命令当作**会话内的控制面板**系统讲清楚：怎么发现完整列表、日常该记哪些、按任务阶段怎么选，以及哪些能力会随版本和订阅变化。
+[第一个会话](/claude-code-guide/first-session/) 里你已经用过 `/help`、`/doctor` 和权限相关命令。本章把 Slash 命令当作**会话内的控制面板**系统讲清楚：怎么发现完整列表、日常该记哪些、按任务阶段怎么选，以及哪些能力会随版本和订阅变化。
 
 命令表以 Anthropic 官方 [Commands](https://code.claude.com/docs/en/commands) 为准；下文在 2026 年 3 月前后核对。内置命令与 bundled skills 合计会随版本增减，**以你本机输入 `/` 显示的列表为准**。
 
@@ -17,7 +17,7 @@ sidebar:
 
 以 `/` 开头、出现在**消息最前面**的输入，会被 CLI 当作指令处理，而不是普通聊天内容。命令名之后的文字通常作为**参数**传给该命令，例如 `/export my-session.txt`、`/compact 保留与 auth 相关的决策`。
 
-它和 [代理循环](/claude-code/agent-loop/) 里的工具有分工：
+它和 [代理循环](/claude-code-guide/agent-loop/) 里的工具有分工：
 
 | 机制 | 谁发起 | 典型用途 |
 |------|--------|----------|
@@ -59,7 +59,7 @@ sidebar:
 - **`/clear`**：换一道菜。上下文清空，适合功能 A 做完、要做无关功能 B。历史会话通过 `/resume` 仍可找回。
 - **`/compact`**：换盘子不换菜。把**同一条任务**的长对话压成摘要，腾出窗口继续修同一个问题。
 
-能向同事讲清这句区别，比多记十个冷门命令更有用。更长的上下文策略见 [上下文管理与多代理](/claude-code/context-management/)。
+能向同事讲清这句区别，比多记十个冷门命令更有用。更长的上下文策略见 [上下文管理与多代理](/claude-code-guide/context-management/)。
 
 ### `/btw`：不抢主线的旁白
 
@@ -85,7 +85,7 @@ sidebar:
 /permissions     # 设定 allow / ask / deny
 ```
 
-`/init` 会生成 starter `CLAUDE.md`；团队规范与分层记忆见 [CLAUDE.md 的艺术](/claude-code/claude-md/)。`/fewer-permission-prompts` 是 bundled skill，可扫描历史 transcript 并建议只读类 allow 规则，减少打断。
+`/init` 会生成 starter `CLAUDE.md`；团队规范与分层记忆见 [CLAUDE.md 的艺术](/claude-code-guide/claude-md/)。`/fewer-permission-prompts` 是 bundled skill，可扫描历史 transcript 并建议只读类 allow 规则，减少打断。
 
 ### 任务进行中
 
@@ -98,7 +98,7 @@ sidebar:
 | 看改了什么 | `/diff` |
 | 设持续目标 | `/goal <条件>` |
 
-计划模式与权限模式 `plan` 的关系，见 [Plan Mode](/claude-code/plan-mode/)。**没有单独的 `/execute` 命令**：批准计划后通过切换权限模式或让模型调用 `ExitPlanMode` 进入执行段。
+计划模式与权限模式 `plan` 的关系，见 [Plan Mode](/claude-code-guide/plan-mode/)。**没有单独的 `/execute` 命令**：批准计划后通过切换权限模式或让模型调用 `ExitPlanMode` 进入执行段。
 
 ### 并行与后台
 
@@ -109,7 +109,7 @@ sidebar:
 | `/tasks`（`/bashes`） | 列出本会话后台任务 |
 | `/batch <描述>` | bundled skill：拆分为多单元并在 worktree 中并行（需 git 仓库） |
 
-子代理与并行策略见 [SubAgents](/claude-code/subagents/) 与 [上下文管理](/claude-code/context-management/)。
+子代理与并行策略见 [SubAgents](/claude-code-guide/subagents/) 与 [上下文管理](/claude-code-guide/context-management/)。
 
 ### 提交前打磨
 
@@ -173,13 +173,13 @@ sidebar:
 | `/sandbox` | 切换沙箱 Bash |
 | `/login`、`/logout` | 账号登录登出 |
 
-自定义 Slash 命令与 bundled skills 共用同一套机制：在 `~/.claude/commands/` 或项目 `.claude/commands/` 放置 Markdown，或在 skills 目录定义。详见 [Skills](/claude-code/skills/)。MCP 服务器还可暴露 `/mcp__<server>__<prompt>` 形式命令。
+自定义 Slash 命令与 bundled skills 共用同一套机制：在 `~/.claude/commands/` 或项目 `.claude/commands/` 放置 Markdown，或在 skills 目录定义。详见 [Skills](/claude-code-guide/skills/)。MCP 服务器还可暴露 `/mcp__<server>__<prompt>` 形式命令。
 
 ---
 
 ## Bundled skills 与内置命令的区别
 
-官方表中标注 **[Skill]** 的条目（如 `/simplify`、`/loop`、`/batch`、`/debug`、`/claude-api`）是 **bundled skills**：本质是把一段提示交给 Claude 执行，你也可以在 [Skills](/claude-code/skills/) 中按同样方式自建。
+官方表中标注 **[Skill]** 的条目（如 `/simplify`、`/loop`、`/batch`、`/debug`、`/claude-api`）是 **bundled skills**：本质是把一段提示交给 Claude 执行，你也可以在 [Skills](/claude-code-guide/skills/) 中按同样方式自建。
 
 | 类型 | 例子 | 行为来源 |
 |------|------|----------|
@@ -275,4 +275,4 @@ sidebar:
 
 ---
 
-下一章：[代理循环与工具调用](/claude-code/agent-loop/)——Slash 命令管的是「会话怎么开」；循环管的是「任务怎么跑」。两章合在一起，你才能既控成本又控风险。
+下一章：[代理循环与工具调用](/claude-code-guide/agent-loop/)——Slash 命令管的是「会话怎么开」；循环管的是「任务怎么跑」。两章合在一起，你才能既控成本又控风险。

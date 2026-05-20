@@ -7,7 +7,7 @@ sidebar:
 
 *「帮我改进一下代码。」——二十分钟后 diff 满天飞，测试红了，你仍说不清最初要达成什么。」*
 
-[第一个会话](/claude-code/first-session/) 教会你启动与权限；[代理循环](/claude-code/agent-loop/) 教会你工具如何一轮轮执行。本章解决另一件事：**你怎么说话，才能让循环朝正确方向转、并在可接受的成本内停下。**
+[第一个会话](/claude-code-guide/first-session/) 教会你启动与权限；[代理循环](/claude-code-guide/agent-loop/) 教会你工具如何一轮轮执行。本章解决另一件事：**你怎么说话，才能让循环朝正确方向转、并在可接受的成本内停下。**
 
 Claude Code 不是「问一句答一句」的聊天框，而是能读仓库、跑命令、改文件的代理环境。提示的目标不是写出文学级指令，而是让 Agent **理解意图、能自检、知道何时该探索、何时该动手**。官方实践见 [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)；可复制范例见 [Prompt library](https://code.claude.com/docs/en/prompt-library) 与 [Common workflows](https://code.claude.com/docs/en/common-workflows)。
 
@@ -53,7 +53,7 @@ Claude Code 不是「问一句答一句」的聊天框，而是能读仓库、�
 | 把仪表盘做好看一点 | 附上设计截图；改完后截图对比，列出差异并修到一致 |
 | 构建失败了 | 粘贴完整报错；修到构建通过，不要 suppress 错误，要修根因 |
 
-与 [Plan Mode](/claude-code/plan-mode/) 的关系：计划阶段也要写清**验收标准**，批准执行后 Agent 才知道何时该停。
+与 [Plan Mode](/claude-code-guide/plan-mode/) 的关系：计划阶段也要写清**验收标准**，批准执行后 Agent 才知道何时该停。
 
 UI 类任务可配合 [Claude in Chrome](https://code.claude.com/docs/en/chrome) 等能力做视觉对比，机制以你安装版本为准。
 
@@ -61,7 +61,7 @@ UI 类任务可配合 [Claude in Chrome](https://code.claude.com/docs/en/chrome)
 
 ## 先探索、再规划、再实现
 
-大任务若一上来就 Edit，容易**解决错问题**。推荐四段节奏，与 [Plan Mode](/claude-code/plan-mode/) 和内置 Plan 子代理一致：
+大任务若一上来就 Edit，容易**解决错问题**。推荐四段节奏，与 [Plan Mode](/claude-code-guide/plan-mode/) 和内置 Plan 子代理一致：
 
 ```
 探索（只读弄清现状）
@@ -131,7 +131,7 @@ UI 类任务可配合 [Claude in Chrome](https://code.claude.com/docs/en/chrome)
 
 ## 把上下文给对，而不是给满
 
-上下文窗口是 [代理循环](/claude-code/agent-loop/) 里最先耗尽的资源。塞满无关文件，模型会更易「忘记」早期的约束。策略是：**只给决策所需的信息，其余让 Agent 用工具自己取。**
+上下文窗口是 [代理循环](/claude-code-guide/agent-loop/) 里最先耗尽的资源。塞满无关文件，模型会更易「忘记」早期的约束。策略是：**只给决策所需的信息，其余让 Agent 用工具自己取。**
 
 ### 用 `@` 而不是口述路径
 
@@ -141,7 +141,7 @@ UI 类任务可配合 [Claude in Chrome](https://code.claude.com/docs/en/chrome)
 
 CLI 会注入文件内容，比「请读 package.json」可靠。多文件：`@src/a.ts @src/b.ts 对比两者边界`。
 
-详见 [第一个会话](/claude-code/first-session/#把信息交给-claude)。
+详见 [第一个会话](/claude-code-guide/first-session/#把信息交给-claude)。
 
 ### 其它输入方式
 
@@ -171,7 +171,7 @@ CLI 会注入文件内容，比「请读 package.json」可靠。多文件：`@s
 用子代理调查 token 刷新实现和是否已有 OAuth 工具函数，只把结论和文件路径列表返回给我。
 ```
 
-机制见 [SubAgents](/claude-code/subagents/)。原则：**高体积中间结果进子代理，主会话留结论与下一步。** 窗口快到顶时的 handoff 与 `/clear` 组合剧本见 [上下文管理与多代理架构](/claude-code/context-management/)。
+机制见 [SubAgents](/claude-code-guide/subagents/)。原则：**高体积中间结果进子代理，主会话留结论与下一步。** 窗口快到顶时的 handoff 与 `/clear` 组合剧本见 [上下文管理与多代理架构](/claude-code-guide/context-management/)。
 
 ---
 
@@ -336,7 +336,7 @@ spec 写好后，**新开一个会话**专门实现，主上下文只服务执�
 用 gh 查看 issue <编号>，实现修复，跑 lint 与测试，写 conventional commit，开 PR 并链上 issue。
 ```
 
-稳定重复的流程应升级为 [Skills](/claude-code/skills/) 的 `SKILL.md`，而不是每次粘贴整段。
+稳定重复的流程应升级为 [Skills](/claude-code-guide/skills/) 的 `SKILL.md`，而不是每次粘贴整段。
 
 ---
 
@@ -350,7 +350,7 @@ spec 写好后，**新开一个会话**专门实现，主上下文只服务执�
 | 每次 Edit 后必须跑 formatter | | | | ✅ |
 | 禁止动 `.env` | 可写 | ✅ | | ✅ deny |
 
-[CLAUDE.md](/claude-code/claude-md/) 过长会导致规则被忽略；流程性内容迁到 Skills。必须 deterministic 的步骤用 [Hooks](/claude-code/hooks/)。
+[CLAUDE.md](/claude-code-guide/claude-md/) 过长会导致规则被忽略；流程性内容迁到 Skills。必须 deterministic 的步骤用 [Hooks](/claude-code-guide/hooks/)。
 
 ---
 
@@ -358,11 +358,11 @@ spec 写好后，**新开一个会话**专门实现，主上下文只服务执�
 
 不必把所有技巧写进一条提示，环境配置承担「默认值」：
 
-- **`/init` + CLAUDE.md**：持久事实，减少重复解释。见 [CLAUDE.md 的艺术](/claude-code/claude-md/)。
-- **`/permissions`、auto mode、sandbox**：减少弹窗打断。见 [安装与配置](/claude-code/installation-setup/)。
+- **`/init` + CLAUDE.md**：持久事实，减少重复解释。见 [CLAUDE.md 的艺术](/claude-code-guide/claude-md/)。
+- **`/permissions`、auto mode、sandbox**：减少弹窗打断。见 [安装与配置](/claude-code-guide/installation-setup/)。
 - **Skills**：`/deploy` 类可重复流程。
 - **SubAgents**：大探索、并行调研。
-- **MCP**：issue、数据库、浏览器等外部系统，见 [MCP](/claude-code/mcp/)。
+- **MCP**：issue、数据库、浏览器等外部系统，见 [MCP](/claude-code-guide/mcp/)。
 - **CLI 工具 `gh`、`jq`**：比让模型拼 raw API 更省上下文。
 
 提示负责**这次任务**；配置负责**每个会话的默认行为**。
@@ -413,7 +413,7 @@ spec 写好后，**新开一个会话**专门实现，主上下文只服务执�
 | 总问你已经说过的事 | CLAUDE.md 缺失或过长 | `/init` 或精简记忆 |
 | 审查遗漏明显 bug | 单会话自审 | 第二会话或子代理 review |
 
-用量与窗口见 `/cost`、`/context`；更系统的成本与幻觉应对见 [局限性与应对](/claude-code/limitations/)。
+用量与窗口见 `/cost`、`/context`；更系统的成本与幻觉应对见 [局限性与应对](/claude-code-guide/limitations/)。
 
 ---
 
@@ -436,4 +436,4 @@ spec 写好后，**新开一个会话**专门实现，主上下文只服务执�
 
 ---
 
-下一章：[完整实战工作流](/claude-code/complete-workflow/)——把本章方法论落到代码理解、调试、重构、新功能与协作提交的端到端路径上。
+下一章：[完整实战工作流](/claude-code-guide/complete-workflow/)——把本章方法论落到代码理解、调试、重构、新功能与协作提交的端到端路径上。

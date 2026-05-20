@@ -13,9 +13,6 @@ pnpm preview
 
 ## Content
 
-- `/get-started/` - Agent fundamentals.
-- `/claude-code/` - Claude Code workflow.
-- `/hermes-agent/` - hermes-agent route.
-- `/patterns/agent-os/` - Agent OS mental model.
-- `/playbooks/non-engineers/` - Non-engineer playbooks.
-- `/seo-aeo/` - SEO and AEO strategy.
+- `/` - Site home (智能体漫游).
+- `/claude-code/` - Claude Code guide landing and chapter catalog.
+- `/claude-code-guide/` - Claude Code tutorial chapters (Starlight docs).

@@ -119,7 +119,7 @@ Claude Code 的上下文窗口有限。官方 memory 文档说明，`CLAUDE.md` 
 一次真实改动可以这样组织：
 
 ```text
-阅读 @src/content/docs/claude-code/reflection.md 和 @CLAUDE.md。
+阅读 @src/content/docs/claude-code-guide/reflection.md 和 @CLAUDE.md。
 目标：把文章改成机制清晰、可执行、带失败模式的教程。
 边界：不要改其它章节。
 验收：运行 pnpm build，检查是否有破折号、省略号、括号说明。
@@ -302,4 +302,4 @@ Agent 更适合处理：
 
 这套检查的目的，是给速度加刹车。Agentic Coding 的收益来自循环：定义目标，提供上下文，执行改动，验证反馈，沉淀规则。循环越清楚，Agent 越像工具；循环越含混，Agent 越像噪声放大器。
 
-回到 /claude-code/ 可以按需重读前面章节。下一步可从一个真实小任务开始：先让 Claude Code 写计划，再让另一个会话只读审查计划，最后只实现第一步。
+回到 /claude-code-guide/ 可以按需重读前面章节。下一步可从一个真实小任务开始：先让 Claude Code 写计划，再让另一个会话只读审查计划，最后只实现第一步。

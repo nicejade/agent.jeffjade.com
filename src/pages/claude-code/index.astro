@@ -1,0 +1,216 @@
+---
+import '../../styles/global.css';
+
+const site = 'https://agent.jeffjade.com';
+const pageUrl = `${site}/claude-code/`;
+const title = 'Claude Code 漫游指南 | 智能体漫游';
+const description =
+  '18 章系统掌握 Claude Code：从 Agentic Coding 心智模型、安装上手、Slash 命令、代理循环与 Plan Mode，到 CLAUDE.md、Hooks、Skills、SubAgents、MCP 与完整实战工作流。';
+
+const parts = [
+  {
+    label: '第一部分',
+    title: '基础认知',
+    chapters: [
+      { n: 1, title: 'Claude Code 是什么', href: '/claude-code-guide/what-is-claude-code/' },
+      { n: 2, title: '10 倍提升效率', href: '/claude-code-guide/core-advantages/' },
+    ],
+  },
+  {
+    label: '第二部分',
+    title: '快速上手',
+    chapters: [
+      { n: 3, title: '安装与配置', href: '/claude-code-guide/installation-setup/' },
+      { n: 4, title: '第一个会话', href: '/claude-code-guide/first-session/' },
+      { n: 5, title: 'Slash 命令', href: '/claude-code-guide/slash-commands/' },
+    ],
+  },
+  {
+    label: '第三部分',
+    title: '工作原理',
+    chapters: [
+      { n: 6, title: '代理循环与工具', href: '/claude-code-guide/agent-loop/' },
+      { n: 7, title: 'Plan Mode', href: '/claude-code-guide/plan-mode/' },
+    ],
+  },
+  {
+    label: '第四部分',
+    title: '项目记忆',
+    chapters: [{ n: 8, title: 'CLAUDE.md 的艺术', href: '/claude-code-guide/claude-md/' }],
+  },
+  {
+    label: '第五部分',
+    title: '高级扩展',
+    chapters: [
+      { n: 9, title: 'Hooks', href: '/claude-code-guide/hooks/' },
+      { n: 10, title: 'Skills', href: '/claude-code-guide/skills/' },
+      { n: 11, title: 'SubAgents', href: '/claude-code-guide/subagents/' },
+      { n: 12, title: 'MCP', href: '/claude-code-guide/mcp/' },
+    ],
+  },
+  {
+    label: '第六部分',
+    title: '实战与最佳实践',
+    chapters: [
+      { n: 13, title: '提示工程秘诀', href: '/claude-code-guide/prompt-engineering/' },
+      { n: 14, title: '完整实战工作流', href: '/claude-code-guide/complete-workflow/' },
+      { n: 15, title: '生态深度集成', href: '/claude-code-guide/ecosystem-integration/' },
+    ],
+  },
+  {
+    label: '第七部分',
+    title: '反思与进阶',
+    chapters: [
+      { n: 16, title: '局限性与应对', href: '/claude-code-guide/limitations/' },
+      { n: 17, title: 'AI 时代的开发者', href: '/claude-code-guide/reflection/' },
+    ],
+  },
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  url: pageUrl,
+  inLanguage: 'zh-CN',
+  description,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: '智能体漫游',
+    url: site,
+  },
+};
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f5f7" />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={`${site}/og.svg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-JXTFG9M3EK"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JXTFG9M3EK');
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="home-nav" aria-label="主导航">
+        <a class="brand-mark" href="/">
+          <span class="brand-glyph" aria-hidden="true">智</span>
+          <span>智能体漫游</span>
+        </a>
+        <nav class="nav-links" aria-label="站点导航">
+          <a href="/">站点首页</a>
+          <a class="nav-cta" href="/claude-code-guide/what-is-claude-code/">从第 1 章开始</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero hero-guide" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">Claude Code · 18 章</p>
+            <h1 id="hero-title">系统掌握 <span>Claude Code</span></h1>
+            <p class="hero-lede">
+              这不是聊天教程，而是一份面向工程师的 Agentic Coding 指南：从心智模型与安装上手，到代理循环、Plan Mode、项目记忆、Hooks / Skills / SubAgents / MCP，再到完整工作流与生态集成。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="/claude-code-guide/">进入文档目录</a>
+              <a class="button" href="/claude-code-guide/installation-setup/">直接安装配置</a>
+            </div>
+            <ul class="hero-highlights" aria-label="指南亮点">
+              <li>本地仓库上下文 + Shell / Git 感知</li>
+              <li>Plan Mode 先规划再执行</li>
+              <li>Hooks、Skills、SubAgents、MCP 扩展体系</li>
+            </ul>
+          </div>
+
+          <aside class="hero-aside" aria-label="目录结构">
+            <p class="aside-label">目录结构</p>
+            <ol class="aside-parts">
+              {parts.map((part) => (
+                <li>
+                  <span class="aside-part-name">{part.label}</span>
+                  <span class="aside-part-title">{part.title}</span>
+                </li>
+              ))}
+            </ol>
+          </aside>
+        </section>
+
+        <section class="metric-strip" aria-label="指南概览">
+          <div class="metric">
+            <strong>18</strong>
+            <span>章节，从认知到实战闭环</span>
+          </div>
+          <div class="metric">
+            <strong>7</strong>
+            <span>部分，按学习路径递进编排</span>
+          </div>
+          <div class="metric">
+            <strong>CC</strong>
+            <span>面向 Claude Code 的专属知识库</span>
+          </div>
+          <div class="metric">
+            <strong>中文</strong>
+            <span>面向中文读者的系统整理</span>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="catalog-title">
+          <div class="section-header">
+            <p>table of contents</p>
+            <h2 id="catalog-title">按部分浏览全部章节</h2>
+            <p>进入文档后，侧边栏仅展示本指南的章节导航，不会被其他主题分散注意力。</p>
+          </div>
+
+          <div class="catalog-grid">
+            {parts.map((part) => (
+              <article class="catalog-part">
+                <header class="catalog-part-head">
+                  <span>{part.label}</span>
+                  <h3>{part.title}</h3>
+                </header>
+                <ul class="chapter-list">
+                  {part.chapters.map((chapter) => (
+                    <li>
+                      <a href={chapter.href}>
+                        <span class="chapter-num">{chapter.n}</span>
+                        <span class="chapter-title">{chapter.title}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <div class="closing-band">
+            <h2>准备好把 Claude Code 变成日常工程能力了吗？</h2>
+            <p>从第 1 章理解 Agentic Coding 范式，或跳到安装配置直接开干。章节正文位于 /claude-code-guide/ 路径下。</p>
+            <a class="button primary" href="/claude-code-guide/what-is-claude-code/">开始第 1 章</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="home-footer">
+        <p>智能体漫游 · agent.jeffjade.com · Built with Astro, Starlight and Tailwind CSS.</p>
+      </footer>
+    </div>
+  </body>
+</html>

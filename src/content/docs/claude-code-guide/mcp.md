@@ -7,7 +7,7 @@ sidebar:
 
 *「每次查 JIRA 需求都要把标题和描述复制进对话；GitHub PR 的 diff 要先在浏览器看完再人工概括给 Claude。」*
 
-提示词和 [CLAUDE.md](/claude-code/claude-md/) 解决「告诉模型什么」， [Skills](/claude-code/skills/) 解决「可复用的流程模板」，[Hooks](/claude-code/hooks/) 解决「到点必跑的脚本」。但还有一类问题它们都解决不了：**模型需要直接访问外部系统的实时数据**，而你成了人肉 API——从 JIRA 粘贴需求、从 Sentry 复制报错、从数据库导出 CSV 再贴进对话。
+提示词和 [CLAUDE.md](/claude-code-guide/claude-md/) 解决「告诉模型什么」， [Skills](/claude-code-guide/skills/) 解决「可复用的流程模板」，[Hooks](/claude-code-guide/hooks/) 解决「到点必跑的脚本」。但还有一类问题它们都解决不了：**模型需要直接访问外部系统的实时数据**，而你成了人肉 API——从 JIRA 粘贴需求、从 Sentry 复制报错、从数据库导出 CSV 再贴进对话。
 
 MCP（Model Context Protocol）让 Claude Code **直接连接**外部工具与数据源。你不再搬运数据，模型自己查询、自己操作。官方说明见 [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp)，协议规范见 [modelcontextprotocol.io](https://modelcontextprotocol.io)。
 
@@ -402,7 +402,7 @@ claude mcp serve
 
 ### 独占控制：`managed-mcp.json`
 
-系统管理员将 `managed-mcp.json` 部署到系统级目录（macOS 为 `/Library/Application Support/ClaudeCode/`，Linux 为 `/etc/claude-code/`），用户无法自行添加或修改 MCP Server。
+系统管理员将 `managed-mcp.json` 部署到系统级目录（macOS 为 `/Library/Application Support/ClaudeCode/`，Linux 为 `/etc/claude-code-guide/`），用户无法自行添加或修改 MCP Server。
 
 格式与 `.mcp.json` 相同：
 
@@ -521,4 +521,4 @@ MCP Server 有权执行命令、访问文件、发起网络请求。需要保持
 
 ---
 
-下一章：[提示工程秘诀](/claude-code/prompt-engineering/)——具体性、迭代、上下文管理，让 Claude Code 的输出从「还行」变成「可靠」。
+下一章：[提示工程秘诀](/claude-code-guide/prompt-engineering/)——具体性、迭代、上下文管理，让 Claude Code 的输出从「还行」变成「可靠」。

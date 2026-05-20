@@ -7,9 +7,9 @@ sidebar:
 
 *「我在 CLAUDE.md 里写了禁止动 `.env`，模型还是改了一次；每次 Edit 完还要自己跑 Prettier。」*
 
-[CLAUDE.md](/claude-code/claude-md/) 和权限规则告诉模型**应该怎么做**，但模型仍可能偏离或漏掉步骤。Hooks 在 Claude Code **生命周期固定节点**上运行你定义的命令，不依赖模型是否「记得」执行。官方入门见 [Automate workflows with hooks](https://code.claude.com/docs/en/hooks-guide)，事件与 JSON 格式见 [Hooks reference](https://code.claude.com/docs/en/hooks)。
+[CLAUDE.md](/claude-code-guide/claude-md/) 和权限规则告诉模型**应该怎么做**，但模型仍可能偏离或漏掉步骤。Hooks 在 Claude Code **生命周期固定节点**上运行你定义的命令，不依赖模型是否「记得」执行。官方入门见 [Automate workflows with hooks](https://code.claude.com/docs/en/hooks-guide)，事件与 JSON 格式见 [Hooks reference](https://code.claude.com/docs/en/hooks)。
 
-本章目标：理解 Hooks 在 [代理循环](/claude-code/agent-loop/) 中的位置，能配置一条可验证的 Hook，并知道何时用 Hook、何时改用 Skills 或权限规则。
+本章目标：理解 Hooks 在 [代理循环](/claude-code-guide/agent-loop/) 中的位置，能配置一条可验证的 Hook，并知道何时用 Hook、何时改用 Skills 或权限规则。
 
 ---
 
@@ -30,7 +30,7 @@ Hooks 不是「更聪明的提示」，而是**事件驱动的拦截器**：在�
 
 ## 在代理循环中的位置
 
-上一章 [代理循环](/claude-code/agent-loop/) 里，模型反复「推理 → 选工具 → 执行 → 读结果」。Hooks 落在这条链路的壳层上：
+上一章 [代理循环](/claude-code-guide/agent-loop/) 里，模型反复「推理 → 选工具 → 执行 → 读结果」。Hooks 落在这条链路的壳层上：
 
 ```
 用户提交提示 (UserPromptSubmit)
@@ -48,7 +48,7 @@ PostToolUse / PostToolUseFailure
 模型继续或结束回合 (Stop)
 ```
 
-**检查顺序**：据 [代理循环](/claude-code/agent-loop/) 与官方权限文档，**Hook 早于 allow 规则**。适合放组织级策略：即使用户本地配置了较宽的 `allow`，`PreToolUse` 仍可 `deny` 危险操作。
+**检查顺序**：据 [代理循环](/claude-code-guide/agent-loop/) 与官方权限文档，**Hook 早于 allow 规则**。适合放组织级策略：即使用户本地配置了较宽的 `allow`，`PreToolUse` 仍可 `deny` 危险操作。
 
 **动手：** 在空目录执行 `claude`，输入 `/hooks`，确认能看到事件列表。尚无配置时，各事件旁计数为 0。记住这个只读面板的位置，后面调试会用到。
 
@@ -302,7 +302,7 @@ chmod +x .claude/hooks/block-rm.sh
 | 上下文 | 与会话共享 | 注入 SKILL.md | 独立上下文 |
 | 适合 | 格式化、拦截、通知 | 可复用工作流 | 大任务拆分 |
 
-[Plan Mode](/claude-code/plan-mode/) 解决「先想再做」；Hooks 解决「到了这一步**必须**发生什么」。三者可同时存在：计划里写测试命令，CLAUDE.md 写目录约束，Hook 在 `PostToolUse` 跑 linter。
+[Plan Mode](/claude-code-guide/plan-mode/) 解决「先想再做」；Hooks 解决「到了这一步**必须**发生什么」。三者可同时存在：计划里写测试命令，CLAUDE.md 写目录约束，Hook 在 `PostToolUse` 跑 linter。
 
 ---
 
@@ -333,7 +333,7 @@ chmod +x .claude/hooks/block-rm.sh
 
 **不适合：**
 
-- 用 Hook 实现整段业务工作流，应改用 [Skills](/claude-code/skills/)
+- 用 Hook 实现整段业务工作流，应改用 [Skills](/claude-code-guide/skills/)
 - 用 `PostToolUse` 试图「撤销」已写入的文件，应在 `PreToolUse` 拦截
 - 把密钥写进 Hook 命令行；应用环境变量或密钥管理
 - 用大量 `prompt` Hook 替代代码审查，成本高且不稳定
@@ -369,4 +369,4 @@ chmod +x .claude/hooks/block-rm.sh
 
 ---
 
-下一章：[Skills 技能](/claude-code/skills/)——把可复用工作流写成 SKILL.md，让 Claude 在需要时主动加载领域流程，与 Hooks 的「到点必跑」形成互补。
+下一章：[Skills 技能](/claude-code-guide/skills/)——把可复用工作流写成 SKILL.md，让 Claude 在需要时主动加载领域流程，与 Hooks 的「到点必跑」形成互补。

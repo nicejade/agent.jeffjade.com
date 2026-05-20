@@ -7,7 +7,7 @@ sidebar:
 
 *「个人在终端里用得顺手，但团队要统一权限、PR 里要能 @ 机器人、JetBrains 同事也要 diff 进 IDE。」*
 
-[完整实战工作流](/claude-code/complete-workflow/) 讲的是单人如何在仓库里完成任务。本章讲**工具链与组织**：编辑器里怎么接、CI 里怎么跑、策略怎么下发、同事怎么一起用。机制仍建立在 [代理循环](/claude-code/agent-loop/)、[CLAUDE.md](/claude-code/claude-md/) 与 [Hooks](/claude-code/hooks/) 之上。
+[完整实战工作流](/claude-code-guide/complete-workflow/) 讲的是单人如何在仓库里完成任务。本章讲**工具链与组织**：编辑器里怎么接、CI 里怎么跑、策略怎么下发、同事怎么一起用。机制仍建立在 [代理循环](/claude-code-guide/agent-loop/)、[CLAUDE.md](/claude-code-guide/claude-md/) 与 [Hooks](/claude-code-guide/hooks/) 之上。
 
 官方入口：[Use Claude Code in VS Code](https://code.claude.com/docs/en/vs-code)、[JetBrains IDEs](https://code.claude.com/docs/en/jetbrains)、[GitHub Actions](https://code.claude.com/docs/en/github-actions)、[Admin setup](https://code.claude.com/docs/en/admin-setup)。
 
@@ -42,7 +42,7 @@ Anthropic 提供 [Claude Code 扩展](https://marketplace.visualstudio.com/items
 ### 前置条件
 
 - VS Code **1.98.0+**
-- Anthropic 账号登录，或按 [第三方 API](/claude-code/third-party-api/) 配置提供商
+- Anthropic 账号登录，或按 [第三方 API](/claude-code-guide/third-party-api/) 配置提供商
 - 扩展内包含 CLI，高级能力仍可在终端调用
 
 ### 安装与打开
@@ -60,10 +60,10 @@ Anthropic 提供 [Claude Code 扩展](https://marketplace.visualstudio.com/items
 | `@` 与选区 | `Alt+K` / `Option+K` 插入 `@file#L1-10`；选区自动进上下文 |
 | 多会话 | 多 Tab/多窗口并行，图标颜色提示待权限或已完成 |
 | 会话历史 | 图形化浏览、重命名、恢复本地与部分远程会话 |
-| 插件 `/plugins` | 图形化管理 [Plugins](/claude-code/mcp/) 与市场源 |
+| 插件 `/plugins` | 图形化管理 [Plugins](/claude-code-guide/mcp/) 与市场源 |
 | `@browser` | 配合 [Claude in Chrome](https://code.claude.com/docs/en/chrome) 测 Web UI |
 
-提示框底部可切换 **default / plan / acceptEdits** 等权限模式，对应 [Plan Mode](/claude-code/plan-mode/) 与 [安装章](/claude-code/installation-setup/) 中的模式表。扩展设置 `claudeCode.initialPermissionMode` 可设默认值。
+提示框底部可切换 **default / plan / acceptEdits** 等权限模式，对应 [Plan Mode](/claude-code-guide/plan-mode/) 与 [安装章](/claude-code-guide/installation-setup/) 中的模式表。扩展设置 `claudeCode.initialPermissionMode` 可设默认值。
 
 ### 扩展 vs CLI：何时用哪边
 
@@ -118,7 +118,7 @@ WSL2 下若提示未检测到 IDE，多为防火墙或 NAT 问题，见官方 [W
 
 ### 安全提示
 
-JetBrains 下若开启自动接受编辑，Claude 可能改动 IDE 会加载的配置文件，风险高于纯终端。团队可要求 **manual approval** 模式，敏感仓库配合 [权限 deny](/claude-code/installation-setup/) 与 [Hooks](/claude-code/hooks/)。
+JetBrains 下若开启自动接受编辑，Claude 可能改动 IDE 会加载的配置文件，风险高于纯终端。团队可要求 **manual approval** 模式，敏感仓库配合 [权限 deny](/claude-code-guide/installation-setup/) 与 [Hooks](/claude-code-guide/hooks/)。
 
 ---
 
@@ -127,7 +127,7 @@ JetBrains 下若开启自动接受编辑，Claude 可能改动 IDE 会加载的�
 无官方 GUI 插件时，标准路径是 **终端 + CLI**：
 
 1. 在项目根用内置终端跑 `claude`
-2. 用 [CLAUDE.md](/claude-code/claude-md/) 与 [Skills](/claude-code/skills/) 固化流程
+2. 用 [CLAUDE.md](/claude-code-guide/claude-md/) 与 [Skills](/claude-code-guide/skills/) 固化流程
 3. 需要 IDE diff 时，在 VS Code/JetBrains 开同仓库并用 `/ide` 或扩展
 
 Neovim/Emacs 用户常把终端分屏或 tmux 与编辑器并排；`@` 引用在 CLI 中同样可用。组织若统一 JetBrains/VS Code，可为这两类配插件，其余编辑器保持 CLI 文档即可。
@@ -150,7 +150,7 @@ Neovim/Emacs 用户常把终端分屏或 tmux 与编辑器并排；`@` 引用在
 
 - PR/Issue 评论里实现功能、修 bug、回答问题
 - 定时生成报告、同步文档
-- 在 workflow 的 `prompt` 中调用仓库 [Skills](/claude-code/skills/)，例如 `/code-review:...`
+- 在 workflow 的 `prompt` 中调用仓库 [Skills](/claude-code-guide/skills/)，例如 `/code-review:...`
 - 与 [GitHub Code Review](https://code.claude.com/docs/en/code-review) 配合做自动审查（产品能力与 Action 略有不同，以官方说明为准）
 
 ### 快速安装
@@ -222,7 +222,7 @@ jobs:
 - **API Token**：随任务复杂度与仓库大小变化
 - 优化：评论里 `@claude` 指令要具体；`claude_args` 设合理 `--max-turns`；用 concurrency 限制并行
 
-与 [complete-workflow](/claude-code/complete-workflow/#工作流-fgit-与-pr) 的分工：本地 `gh` 适合交互式提交；Action 适合「PR 上留痕、异步实现、定时任务」。
+与 [complete-workflow](/claude-code-guide/complete-workflow/#工作流-fgit-与-pr) 的分工：本地 `gh` 适合交互式提交；Action 适合「PR 上留痕、异步实现、定时任务」。
 
 ---
 
@@ -260,7 +260,7 @@ git diff origin/main...HEAD | claude -p "列出安全风险，输出 JSON" --out
 | `settings.local.json` | 否 | 个人覆盖 |
 | `.claude/skills/`、`hooks/`、`agents/` | 建议是 | 可 review 的流程与策略 |
 
-原则与 [CLAUDE.md 一章](/claude-code/claude-md/) 一致：**短、高频、可验证**；长流程进 Skills，硬约束进 Hooks 或 `permissions.deny`。
+原则与 [CLAUDE.md 一章](/claude-code-guide/claude-md/) 一致：**短、高频、可验证**；长流程进 Skills，硬约束进 Hooks 或 `permissions.deny`。
 
 ### 权限与安全策略（仓库级）
 
@@ -289,7 +289,7 @@ git diff origin/main...HEAD | claude -p "列出安全风险，输出 JSON" --out
 
 ### Hooks 与审计
 
-组织级拦截用 [Hooks](/claude-code/hooks/)：`PreToolUse` 拦危险 Bash、写操作日志进 SIEM。企业可 `allowManagedHooksOnly`，仅运行托管 Hook。
+组织级拦截用 [Hooks](/claude-code-guide/hooks/)：`PreToolUse` 拦危险 Bash、写操作日志进 SIEM。企业可 `allowManagedHooksOnly`，仅运行托管 Hook。
 
 开发者跑 `/status` 可看到是否加载 **Enterprise managed settings** 及来源 `(remote)`、`(file)`、`(plist)` 等。
 
@@ -302,7 +302,7 @@ git diff origin/main...HEAD | claude -p "列出安全风险，输出 JSON" --out
 | 步骤 | 决策内容 |
 |------|----------|
 | API 提供商 | Teams/Enterprise、Console、Bedrock、Vertex、Foundry |
-| 策略下发 | Server-managed、plist/注册表、`/etc/claude-code/managed-settings.json` |
+| 策略下发 | Server-managed、plist/注册表、`/etc/claude-code-guide/managed-settings.json` |
 | 强制项 | `permissions.deny`、沙箱、`allowedMcpServers`、`allowManagedHooksOnly` |
 | 可观测性 | [Analytics](https://code.claude.com/docs/en/analytics)、OpenTelemetry [Monitoring](https://code.claude.com/docs/en/monitoring-usage) |
 | 数据 | [Data usage](https://code.claude.com/docs/en/data-usage)、ZDR 等 |
@@ -313,7 +313,7 @@ git diff origin/main...HEAD | claude -p "列出安全风险，输出 JSON" --out
 
 沙箱与 `deny WebFetch` 不同：若允许 Bash，`curl` 仍可能出站；敏感环境应开 [sandboxing](https://code.claude.com/docs/en/sandboxing) 的网络域白名单。
 
-国内或自建网关场景见本系列 [第三方 API](/claude-code/third-party-api/) 与官方 [LLM gateway](https://code.claude.com/docs/en/llm-gateway)。
+国内或自建网关场景见本系列 [第三方 API](/claude-code-guide/third-party-api/) 与官方 [LLM gateway](https://code.claude.com/docs/en/llm-gateway)。
 
 ---
 
@@ -323,7 +323,7 @@ git diff origin/main...HEAD | claude -p "列出安全风险，输出 JSON" --out
 
 | 阶段 | 动作 | 成功标志 |
 |------|------|----------|
-| 1. 试点 | 1～2 个 repo 入库 `CLAUDE.md` + 示例 Skill | 能完成 [complete-workflow](/claude-code/complete-workflow/) 练习 B |
+| 1. 试点 | 1～2 个 repo 入库 `CLAUDE.md` + 示例 Skill | 能完成 [complete-workflow](/claude-code-guide/complete-workflow/) 练习 B |
 | 2. 规范 | 统一 `settings.json` deny、PR 模板提醒审查 diff | 无 `.env` 误提交事件 |
 | 3. CI | 启用 `@claude` 或 `-p` 审查，先只读后实现 | PR 上有可追溯 bot 输出 |
 | 4. 扩展 | 插件、MCP、子代理模板入库 | 重复流程 `/command` 化 |
@@ -394,4 +394,4 @@ git diff origin/main...HEAD | claude -p "列出安全风险，输出 JSON" --out
 
 ---
 
-下一章：[局限性与应对](/claude-code/limitations/)——上下文、幻觉、成本与安全边界的系统梳理，以及与本章企业策略相衔接的排障清单。
+下一章：[局限性与应对](/claude-code-guide/limitations/)——上下文、幻觉、成本与安全边界的系统梳理，以及与本章企业策略相衔接的排障清单。

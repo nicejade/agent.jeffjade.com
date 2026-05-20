@@ -15,13 +15,13 @@ sidebar:
 
 ## 先建立正确预期
 
-Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本地助手**：能读仓库、跑命令、改文件。它**不会**自动具备：
+Claude Code 是 [代理循环](/claude-code-guide/agent-loop/) 驱动的**高权限本地助手**：能读仓库、跑命令、改文件。它**不会**自动具备：
 
 - 对你业务领域无误的先验
 - 对每次工具结果的物理世界验证
 - 对「组织政治」或「用户真实意图」的独立判断
 
-你的角色从「手写每一行」转向「定义目标、设边界、验收结果」。工具放大产能，**判断力仍是你的**。这与 [提示工程](/claude-code/prompt-engineering/) 里「带验收的提示」、[完整工作流](/claude-code/complete-workflow/) 里「研究→审查→提交」是同一套纪律。
+你的角色从「手写每一行」转向「定义目标、设边界、验收结果」。工具放大产能，**判断力仍是你的**。这与 [提示工程](/claude-code-guide/prompt-engineering/) 里「带验收的提示」、[完整工作流](/claude-code-guide/complete-workflow/) 里「研究→审查→提交」是同一套纪律。
 
 ---
 
@@ -52,11 +52,11 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 | `/compact` | 同一任务历史太长，还要接着做 |
 | `/clear` | 换无关任务；同一 bug 纠正多次仍失败时重写提示 |
 | `/rename` + `claude --resume` | 清窗口前给会话起名，便于找回 |
-| [SubAgents](/claude-code/subagents/) | 大探索、长日志、全量测试输出隔离出去 |
-| [上下文管理与多代理](/claude-code/context-management/) | 70% 阈值 handoff、`/clear` 冷启动、A/B/C 组合剧本 |
-| 精简 [CLAUDE.md](/claude-code/claude-md/) | 只留高频规则；专项流程进 [Skills](/claude-code/skills/) |
+| [SubAgents](/claude-code-guide/subagents/) | 大探索、长日志、全量测试输出隔离出去 |
+| [上下文管理与多代理](/claude-code-guide/context-management/) | 70% 阈值 handoff、`/clear` 冷启动、A/B/C 组合剧本 |
+| 精简 [CLAUDE.md](/claude-code-guide/claude-md/) | 只留高频规则；专项流程进 [Skills](/claude-code-guide/skills/) |
 | 分块 Read | 要求「只读 L100-200」而非整文件 |
-| 关闭无用 [MCP](/claude-code/mcp/) | `/mcp` 查看，停用不用的服务器 |
+| 关闭无用 [MCP](/claude-code-guide/mcp/) | `/mcp` 查看，停用不用的服务器 |
 
 **动手：** 长会话中运行 `/context`，再 `/compact Focus on the failing test and the last diff`。若仍 thrashing，用子代理跑测试或 `/clear` 开新会话并带上更短的初始提示。
 
@@ -75,13 +75,13 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 ### 应对
 
-1. **可验证验收**：测试、构建、lint、截图对比，见 [提示工程](/claude-code/prompt-engineering/#最高杠杆让-agent-能验证自己的工作)。
+1. **可验证验收**：测试、构建、lint、截图对比，见 [提示工程](/claude-code-guide/prompt-engineering/#最高杠杆让-agent-能验证自己的工作)。
 2. **要求证据**：「改动基于 @file 第 N 行」「先 Read 再 Edit」。
-3. **第二双眼睛**：[Writer/Reviewer 双会话](/claude-code/prompt-engineering/#writer--reviewer-双会话) 或只读子代理审查。
+3. **第二双眼睛**：[Writer/Reviewer 双会话](/claude-code-guide/prompt-engineering/#writer--reviewer-双会话) 或只读子代理审查。
 4. **人工看 diff**：合并前你看 `/diff`，不只看 Agent 总结。
 5. **锁定依赖版本**：CLAUDE.md 写清框架版本，避免按「最新文档」瞎改。
 
-对安全敏感改动，用 [Hooks](/claude-code/hooks/) 或 `permissions.deny` 拦路径，不要只靠「模型记得别动 `.env`」。
+对安全敏感改动，用 [Hooks](/claude-code-guide/hooks/) 或 `permissions.deny` 拦路径，不要只靠「模型记得别动 `.env`」。
 
 ---
 
@@ -89,10 +89,10 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 | 边界 | 说明 | 变通 |
 |------|------|------|
-| 原生 GUI | 不能直接点你的桌面应用 | [MCP](/claude-code/mcp/)、[Claude in Chrome](https://code.claude.com/docs/en/chrome)、`@browser`（VS Code） |
+| 原生 GUI | 不能直接点你的桌面应用 | [MCP](/claude-code-guide/mcp/)、[Claude in Chrome](https://code.claude.com/docs/en/chrome)、`@browser`（VS Code） |
 | 精确数值/密码学 | 复杂证明、大数运算不可靠 | 用专用库 + 测试，勿让模型心算 |
 | 实时多人协作 | 不能替代同事即时沟通 | 用于个人/小团队异步任务 |
-| 非交互 CI | `-p` 无人工点权限，须预配置 allow | [生态集成](/claude-code/ecosystem-integration/#非交互模式与自建-ci) |
+| 非交互 CI | `-p` 无人工点权限，须预配置 allow | [生态集成](/claude-code-guide/ecosystem-integration/#非交互模式与自建-ci) |
 | 子代理嵌套 | 子代理不能再派子代理 | 主会话串联或 Skills `context: fork` |
 | Agent teams | 多实例、token 约 7x 量级（plan 模式队友） | 默认关闭；小任务、Sonnet 队友 |
 
@@ -108,7 +108,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 - 默认只读；Edit、Bash、MCP、网络请求需批准或规则
 - 写入一般限制在**启动目录及子目录**
-- [Sandbox](/claude-code/installation-setup/) 可对 Bash 做文件系统与网络隔离
+- [Sandbox](/claude-code-guide/installation-setup/) 可对 Bash 做文件系统与网络隔离
 - 可疑 Bash 即使曾 allowlist 也可能再次要求确认
 
 这些**不能**消除所有风险：你批准的 `Bash(npm test *)` 仍可能在项目内执行任意测试脚本；allow 的是**模式**，不是「永远信任模型」。
@@ -119,13 +119,13 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 |----------|------|
 | 习惯性「不再询问」通过宽泛 `Bash(*)` | 一次误判即可 `git push`、删库、外传 |
 | `bypassPermissions` 在非隔离环境 | 跳过全部确认 |
-| 后台 [SubAgent](/claude-code/subagents/#前台后台与权限) | 未预先批准的调用自动拒绝，也可能静默失败 |
+| 后台 [SubAgent](/claude-code-guide/subagents/#前台后台与权限) | 未预先批准的调用自动拒绝，也可能静默失败 |
 | 管道不可信内容进提示 | 提示注入：恶意文本诱导执行危险命令 |
 
 **实践：**
 
-- 敏感路径 `deny`：`Edit(.env)`、`Edit(**/secrets/**)`、`Bash(curl *)` 等，见 [生态集成](/claude-code/ecosystem-integration/#团队协作claudemd-与-claude)。
-- 用 [Hooks](/claude-code/hooks/) 做组织级二次拦截。
+- 敏感路径 `deny`：`Edit(.env)`、`Edit(**/secrets/**)`、`Bash(curl *)` 等，见 [生态集成](/claude-code-guide/ecosystem-integration/#团队协作claudemd-与-claude)。
+- 用 [Hooks](/claude-code-guide/hooks/) 做组织级二次拦截。
 - 不可信仓库用 [dev container](https://code.claude.com/docs/en/devcontainer) 或 VM。
 - Windows 上避免让 Claude 访问含 WebDAV 的路径，见官方安全说明。
 
@@ -138,7 +138,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 - 依赖与许可证：检查新增依赖是否合规
 - 注入：SQL、命令、XSS 需按栈做 review
 - 密钥：扫描 diff 是否出现 token；配合 secret scanning
-- MCP：只用可信来源；企业用 `allowedMcpServers`，见 [Admin setup](/claude-code/ecosystem-integration/#企业部署与管理员)
+- MCP：只用可信来源；企业用 `allowedMcpServers`，见 [Admin setup](/claude-code-guide/ecosystem-integration/#企业部署与管理员)
 
 漏洞报告走 [HackerOne](https://hackerone.com/4f1f16ba-10d3-4d09-9ecc-c721aad90f24/embedded_submissions/new)，勿公开披露未修复问题。
 
@@ -175,7 +175,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 | 短 CLAUDE.md + Skills | 减少每轮固定开销 |
 | CLI 优于 MCP | `gh`、`jq` 往往比挂大型 MCP 省描述 token |
 | 具体提示 | 避免「优化整个代码库」式宽泛扫描 |
-| [Plan Mode](/claude-code/plan-mode/) | 减少做错方向后的返工 token |
+| [Plan Mode](/claude-code-guide/plan-mode/) | 减少做错方向后的返工 token |
 | Hooks 预处理 | 日志过滤后再给模型，见 [Costs · hooks](https://code.claude.com/docs/en/costs#offload-processing-to-hooks-and-skills) |
 | 控制 extended thinking | `/effort`、`MAX_THINKING_TOKENS` 等，简单任务可降 |
 | 慎用 agent teams | 多实例并行，成本高 |
@@ -203,7 +203,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 勿在 `/feedback` 或调查中粘贴生产密钥。禁用非必要上报可设 `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`、`DISABLE_TELEMETRY` 等，见 [Data usage · Telemetry](https://code.claude.com/docs/en/data-usage#telemetry-services)。
 
-第三方 API 路径见 [第三方 API](/claude-code/third-party-api/)：数据策略由**提供商**决定，不等同 Anthropic 商用条款。
+第三方 API 路径见 [第三方 API](/claude-code-guide/third-party-api/)：数据策略由**提供商**决定，不等同 Anthropic 商用条款。
 
 ---
 
@@ -239,10 +239,10 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 | WSL 搜索慢/结果少 | 项目在 `/mnt/c/` | 迁到 `~/` 或缩小搜索范围；或改用原生 Windows |
 | 工具一直被 deny | 规则过严或模式不对 | `/permissions`；检查 plan 模式是否禁止 Edit |
 | Node 版本过旧 | 不满足 CLI 要求 | `/doctor` 提示；升级 Node |
-| Worktree 混乱 | 多会话改同一 repo | `git worktree list`；见 [complete-workflow](/claude-code/complete-workflow/#跨天任务会话与并行) |
+| Worktree 混乱 | 多会话改同一 repo | `git worktree list`；见 [complete-workflow](/claude-code-guide/complete-workflow/#跨天任务会话与并行) |
 | API 限流 | TPM/RPM 不足 | 降并发；Console 提额；团队分 workspace 限流 |
 
-问题反馈：`/feedback` 或 [GitHub issues](https://github.com/anthropics/claude-code/issues)。版本用 `claude --version` 核对。
+问题反馈：`/feedback` 或 [GitHub issues](https://github.com/anthropics/claude-code-guide/issues)。版本用 `claude --version` 核对。
 
 ---
 
@@ -270,7 +270,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 | 「订阅无限用就不省钱」 | 上下文与轮次仍消耗时间与额度 |
 | 「不用学代码了」 | 架构、调试、review、业务判断更值钱 |
 
-持续迭代个人与团队配置：[CLAUDE.md](/claude-code/claude-md/)、[Skills](/claude-code/skills/)、[Hooks](/claude-code/hooks/) 随项目演进；关注 Release Notes；把踩坑写回仓库 CONTRIBUTING。
+持续迭代个人与团队配置：[CLAUDE.md](/claude-code-guide/claude-md/)、[Skills](/claude-code-guide/skills/)、[Hooks](/claude-code-guide/hooks/) 随项目演进；关注 Release Notes；把踩坑写回仓库 CONTRIBUTING。
 
 ---
 
@@ -278,12 +278,12 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 | 局限 | 优先翻 |
 |------|--------|
-| 上下文满 | [context-management](/claude-code/context-management/)、[prompt-engineering](/claude-code/prompt-engineering/)、[subagents](/claude-code/subagents/) |
-| 乱改/先探索 | [plan-mode](/claude-code/plan-mode/) |
-| 权限事故 | [installation-setup](/claude-code/installation-setup/)、[hooks](/claude-code/hooks/)、[ecosystem-integration](/claude-code/ecosystem-integration/) |
+| 上下文满 | [context-management](/claude-code-guide/context-management/)、[prompt-engineering](/claude-code-guide/prompt-engineering/)、[subagents](/claude-code-guide/subagents/) |
+| 乱改/先探索 | [plan-mode](/claude-code-guide/plan-mode/) |
+| 权限事故 | [installation-setup](/claude-code-guide/installation-setup/)、[hooks](/claude-code-guide/hooks/)、[ecosystem-integration](/claude-code-guide/ecosystem-integration/) |
 | 成本飙升 | 本章降本表、[costs 官方](https://code.claude.com/docs/en/costs) |
-| 协作与 CI | [ecosystem-integration](/claude-code/ecosystem-integration/) |
-| 端到端任务 | [complete-workflow](/claude-code/complete-workflow/) |
+| 协作与 CI | [ecosystem-integration](/claude-code-guide/ecosystem-integration/) |
+| 端到端任务 | [complete-workflow](/claude-code-guide/complete-workflow/) |
 
 ---
 
@@ -306,4 +306,4 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 ---
 
-下一章：[AI 时代的开发者](/claude-code/reflection/)——从执行者到指挥者：能力重心、个人配置迭代，以及在 Agent 范式下什么值得长期投入。
+下一章：[AI 时代的开发者](/claude-code-guide/reflection/)——从执行者到指挥者：能力重心、个人配置迭代，以及在 Agent 范式下什么值得长期投入。

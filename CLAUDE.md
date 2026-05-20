@@ -8,12 +8,14 @@ Project goal: produce high-quality tutorial docs so readers understand mechanism
 
 ## Repository map
 
-1. `src/content/docs/claude-code/`: Claude Code tutorial chapters.
-2. `src/config/claude-code-sidebar.ts`: Claude Code guide sidebar order.
-3. `astro.config.mjs`: Starlight config, redirects, site metadata, global sidebar.
-4. `src/styles/global.css`: Global styles.
-5. `README.md`: Project overview and commands.
-6. `content.md`: Claude Code series chapter plan and topic intent.
+1. `src/content/docs/claude-code-guide/`: Claude Code tutorial chapters.
+2. `src/pages/claude-code/index.astro`: Claude Code guide landing at `/claude-code/`.
+3. `src/pages/index.astro`: Site home at `/`.
+4. `src/config/claude-code-sidebar.ts`: Claude Code guide sidebar order.
+5. `astro.config.mjs`: Starlight config, redirects, site metadata, global sidebar.
+6. `src/styles/global.css`: Global styles.
+7. `README.md`: Project overview and commands.
+8. `content.md`: Claude Code series chapter plan and topic intent.
 
 Read relevant local files before writing. Prefer citing existing file paths; avoid copying large blocks of context.
 
@@ -145,12 +147,13 @@ Before finishing a tutorial, check:
 
 ## Local conventions
 
-1. Existing docs live under `/claude-code/` as Starlight Markdown.
-2. Sidebar order matches `src/config/claude-code-sidebar.ts`.
-3. Chinese body text uses Chinese punctuation.
-4. Keep existing routes and redirects unless the task touches navigation.
-5. When adding a chapter, update the sidebar and prev or next links.
-6. When editing one chapter, do not rewrite unrelated chapters.
+1. Existing docs live under `/claude-code-guide/` as Starlight Markdown.
+2. Guide landing lives at `/claude-code/` as a custom Astro page.
+3. Sidebar order matches `src/config/claude-code-sidebar.ts`.
+4. Chinese body text uses Chinese punctuation.
+5. Keep existing routes and redirects unless the task touches navigation.
+6. When adding a chapter, update the sidebar and prev or next links.
+7. When editing one chapter, do not rewrite unrelated chapters.
 
 ## Workflow
 

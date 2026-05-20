@@ -7,7 +7,7 @@ sidebar:
 
 *「它刚才一连读了五个文件、跑了两遍测试，最后才回我一句话。这中间到底发生了什么？」*
 
-上一章你已跑通会话，并熟悉了 [Slash 命令](/claude-code/slash-commands/) 面板。本章把那种「它自己在干活」的直觉，换成可核对的一套机制：**代理循环**、**工具**、**权限**。读完后，你能根据终端里的工具名和权限弹窗，判断 Agent 处在循环的哪一步，以及为什么会被拦住或停下来。
+上一章你已跑通会话，并熟悉了 [Slash 命令](/claude-code-guide/slash-commands/) 面板。本章把那种「它自己在干活」的直觉，换成可核对的一套机制：**代理循环**、**工具**、**权限**。读完后，你能根据终端里的工具名和权限弹窗，判断 Agent 处在循环的哪一步，以及为什么会被拦住或停下来。
 
 官方机制说明见 [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop) 与 [How Claude Code works](https://code.claude.com/en/how-claude-code-works)。CLI 与 Agent SDK 共用同一套循环；下文以终端会话为主，并标注与 SDK 选项的对应关系。
 
@@ -82,7 +82,7 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 
 ### 只读工具也会消耗上下文
 
-`Read`、`Grep`、`Glob` 不触发编辑类批准，但并非「免费」。大仓库里广撒网式搜索会把大量路径和片段塞进上下文，带来费用和变慢。你在 [第一个会话](/claude-code/first-session/) 里学过的 `@` 引用和 `/compact`，就是在管这件事。
+`Read`、`Grep`、`Glob` 不触发编辑类批准，但并非「免费」。大仓库里广撒网式搜索会把大量路径和片段塞进上下文，带来费用和变慢。你在 [第一个会话](/claude-code-guide/first-session/) 里学过的 `@` 引用和 `/compact`，就是在管这件事。
 
 ### 同一轮里多个工具怎么跑
 
@@ -118,7 +118,7 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 | `/permissions` 与 settings | 工具能否执行，与模型想不想无关 |
 | 拒绝某次 Bash | 该轮工具结果变成「被拒绝」，模型常改道或向你说明 |
 
-重要边界：**提示词和 CLAUDE.md 管的是「它想做什么」；权限管的是「允许做什么」。** 在 `CLAUDE.md` 里写「禁止删库」不能代替 `deny` 规则。见 [Configure permissions](https://docs.anthropic.com/en/docs/claude-code/permissions)。
+重要边界：**提示词和 CLAUDE.md 管的是「它想做什么」；权限管的是「允许做什么」。** 在 `CLAUDE.md` 里写「禁止删库」不能代替 `deny` 规则。见 [Configure permissions](https://docs.anthropic.com/en/docs/claude-code-guide/permissions)。
 
 ---
 
@@ -138,7 +138,7 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 
 ## 权限：三层结构
 
-[官方权限文档](https://docs.anthropic.com/en/docs/claude-code/permissions) 把工具分成三类：
+[官方权限文档](https://docs.anthropic.com/en/docs/claude-code-guide/permissions) 把工具分成三类：
 
 | 类型 | 例子 | 首次使用 |
 |------|------|----------|
@@ -179,7 +179,7 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 |------|------|------|
 | `default` | 未在 allow 列表中的敏感操作逐个问 | 日常开发 |
 | `acceptEdits` | 自动接受工作区内编辑类操作 | 信任度高的迭代 |
-| `plan` | 只读探索，不改源码 | 与 [Plan Mode](/claude-code/plan-mode/) 配合 |
+| `plan` | 只读探索，不改源码 | 与 [Plan Mode](/claude-code-guide/plan-mode/) 配合 |
 | `dontAsk` | 未预批准的一律拒绝 | CI、严格环境 |
 | `bypassPermissions` | 跳过提示 | 仅隔离容器；有管理员可禁用 |
 
@@ -203,7 +203,7 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 
 ### Hook
 
-[Hooks](/claude-code/hooks/) 在工具执行前后插入你的脚本，可做格式化、审计或二次拒绝。检查顺序上 Hook 早于 allow 规则，适合组织级策略。
+[Hooks](/claude-code-guide/hooks/) 在工具执行前后插入你的脚本，可做格式化、审计或二次拒绝。检查顺序上 Hook 早于 allow 规则，适合组织级策略。
 
 ### 子代理 `Agent`
 
@@ -270,4 +270,4 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 
 ---
 
-下一章：[Plan Mode](/claude-code/plan-mode/)——在代理循环之上，把「想」和「做」拆开：先只读规划，再经你批准进入执行，减少灾难性乱改。
+下一章：[Plan Mode](/claude-code-guide/plan-mode/)——在代理循环之上，把「想」和「做」拆开：先只读规划，再经你批准进入执行，减少灾难性乱改。

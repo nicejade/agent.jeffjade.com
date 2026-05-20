@@ -189,4 +189,4 @@ Claude Code 一次性处理整条链路，遇到问题（比如搜索引擎依�
 
 ---
 
-理解了 Claude Code 是什么以及它的效率来源之后，下一章我们将进入实战：[安装与配置](/claude-code/installation-setup/)。
+理解了 Claude Code 是什么以及它的效率来源之后，下一章我们将进入实战：[安装与配置](/claude-code-guide/installation-setup/)。

@@ -15,7 +15,7 @@ sidebar:
 ## 第二部分：快速上手
 
 3. [安装与配置](./installation-setup/)——从零到可用的全流程
-4. [基于第三方 API](/claude-code/third-party-api/)——基于第三方 API 使用 Claude Code
+4. [基于第三方 API](/claude-code-guide/third-party-api/)——基于第三方 API 使用 Claude Code
 4. [第一个会话](./first-session/)——基础命令与交互模式
 5. [Slash 命令](./slash-commands/)——常用命令与分类查阅
 

@@ -4,65 +4,41 @@ import '../styles/global.css';
 const site = 'https://agent.jeffjade.com';
 const title = '智能体漫游 | agent.jeffjade.com';
 const description =
-  '18 章系统掌握 Claude Code：从 Agentic Coding 心智模型、安装上手、Slash 命令、代理循环与 Plan Mode，到 CLAUDE.md、Hooks、Skills、SubAgents、MCP 与完整实战工作流。';
+  '专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。';
 
-const parts = [
+const pillars = [
   {
-    label: '第一部分',
-    title: '基础认知',
-    chapters: [
-      { n: 1, title: 'Claude Code 是什么', href: '/claude-code/what-is-claude-code/' },
-      { n: 2, title: '10 倍提升效率', href: '/claude-code/core-advantages/' },
-    ],
+    title: '实用教程',
+    body: '按任务拆解机制与步骤，从安装配置到 Hooks、Skills、MCP，形成可复用的学习路径。',
   },
   {
-    label: '第二部分',
-    title: '快速上手',
-    chapters: [
-      { n: 3, title: '安装与配置', href: '/claude-code/installation-setup/' },
-      { n: 4, title: '第一个会话', href: '/claude-code/first-session/' },
-      { n: 5, title: 'Slash 命令', href: '/claude-code/slash-commands/' },
-    ],
+    title: '案例演示',
+    body: '用真实仓库与命令展示 Agent 如何读代码、改文件、跑测试，结论可对照验证。',
   },
   {
-    label: '第三部分',
-    title: '工作原理',
-    chapters: [
-      { n: 6, title: '代理循环与工具', href: '/claude-code/agent-loop/' },
-      { n: 7, title: 'Plan Mode', href: '/claude-code/plan-mode/' },
-    ],
+    title: '持续更新',
+    body: '跟进主流 Agent 能力与边界变化，把新特性与踩坑经验写回文档。',
+  },
+];
+
+const tracks = [
+  {
+    name: 'Claude Code',
+    status: '已上线',
+    statusClass: 'track-status-live',
+    summary: '18 章系统指南：Agentic Coding 心智模型、代理循环、Plan Mode 与完整工程工作流。',
+    href: '/claude-code/',
+    cta: '进入专题',
+    available: true,
   },
   {
-    label: '第四部分',
-    title: '项目记忆',
-    chapters: [{ n: 8, title: 'CLAUDE.md 的艺术', href: '/claude-code/claude-md/' }],
-  },
-  {
-    label: '第五部分',
-    title: '高级扩展',
-    chapters: [
-      { n: 9, title: 'Hooks', href: '/claude-code/hooks/' },
-      { n: 10, title: 'Skills', href: '/claude-code/skills/' },
-      { n: 11, title: 'SubAgents', href: '/claude-code/subagents/' },
-      { n: 12, title: 'MCP', href: '/claude-code/mcp/' },
-    ],
-  },
-  {
-    label: '第六部分',
-    title: '实战与最佳实践',
-    chapters: [
-      { n: 13, title: '提示工程秘诀', href: '/claude-code/prompt-engineering/' },
-      { n: 14, title: '完整实战工作流', href: '/claude-code/complete-workflow/' },
-      { n: 15, title: '生态深度集成', href: '/claude-code/ecosystem-integration/' },
-    ],
-  },
-  {
-    label: '第七部分',
-    title: '反思与进阶',
-    chapters: [
-      { n: 16, title: '局限性与应对', href: '/claude-code/limitations/' },
-      { n: 17, title: 'AI 时代的开发者', href: '/claude-code/reflection/' },
-    ],
+    name: 'Hermes Agent',
+    status: '筹备中',
+    statusClass: 'track-status-soon',
+    summary: '面向多工具编排与自动化场景的 Agent 专题，教程与案例正在整理。',
+    href: undefined,
+    cta: '即将推出',
+    available: false,
   },
 ];
 
@@ -110,94 +86,86 @@ const structuredData = {
           <span>智能体漫游</span>
         </a>
         <nav class="nav-links" aria-label="站点导航">
-          <a href="/claude-code/">阅读指南</a>
-          <a class="nav-cta" href="/claude-code/what-is-claude-code/">从第 1 章开始</a>
+          <a href="/claude-code/">Claude Code</a>
+          <a class="nav-cta" href="/claude-code/">开始学习</a>
         </nav>
       </header>
 
       <main>
-        <section class="hero hero-guide" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow">agent.jeffjade.com · 18 章</p>
-            <h1 id="hero-title">系统掌握 <span>Claude Code</span></h1>
-            <p class="hero-lede">
-              这不是聊天教程，而是一份面向工程师的 Agentic Coding 指南：从心智模型与安装上手，到代理循环、Plan Mode、项目记忆、Hooks / Skills / SubAgents / MCP，再到完整工作流与生态集成。
+        <section class="hero hero-portal" aria-labelledby="portal-title">
+          <div class="hero-scene" aria-hidden="true">
+            <span class="signal-line"></span>
+            <span class="signal-line"></span>
+            <span class="signal-line"></span>
+          </div>
+          <div class="hero-copy hero-copy-portal">
+            <p class="eyebrow">AI Agent · 中文知识库</p>
+            <h1 id="portal-title">智能体<span>漫游</span></h1>
+            <p class="hero-lede hero-lede-portal">
+              专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="/claude-code/">进入指南首页</a>
-              <a class="button" href="/claude-code/installation-setup/">直接安装配置</a>
+              <a class="button primary" href="/claude-code/">探索 Claude Code</a>
+              <a class="button" href="/claude-code-guide/what-is-claude-code/">阅读第 1 章</a>
             </div>
-            <ul class="hero-highlights" aria-label="指南亮点">
-              <li>本地仓库上下文 + Shell / Git 感知</li>
-              <li>Plan Mode 先规划再执行</li>
-              <li>Hooks、Skills、SubAgents、MCP 扩展体系</li>
-            </ul>
-          </div>
-
-          <aside class="hero-aside" aria-label="目录结构">
-            <p class="aside-label">目录结构</p>
-            <ol class="aside-parts">
-              {parts.map((part) => (
-                <li>
-                  <span class="aside-part-name">{part.label}</span>
-                  <span class="aside-part-title">{part.title}</span>
-                </li>
-              ))}
-            </ol>
-          </aside>
-        </section>
-
-        <section class="metric-strip" aria-label="指南概览">
-          <div class="metric">
-            <strong>16</strong>
-            <span>章节，从认知到实战闭环</span>
-          </div>
-          <div class="metric">
-            <strong>7</strong>
-            <span>部分，按学习路径递进编排</span>
-          </div>
-          <div class="metric">
-            <strong>CC</strong>
-            <span>面向 Claude Code 的专属知识库</span>
-          </div>
-          <div class="metric">
-            <strong>中文</strong>
-            <span>面向中文读者的系统整理</span>
           </div>
         </section>
 
-        <section class="section" aria-labelledby="catalog-title">
-          <div class="section-header">
-            <p>table of contents</p>
-            <h2 id="catalog-title">按部分浏览全部章节</h2>
-            <p>进入文档后，侧边栏仅展示本指南的章节导航，不会被其他主题分散注意力。</p>
+        <section class="section kicker" aria-labelledby="pillars-title">
+          <div class="section-header section-header-center">
+            <p>learn · build · ship</p>
+            <h2 id="pillars-title">三条路径，把 Agent 用进真实工作</h2>
           </div>
-
-          <div class="catalog-grid">
-            {parts.map((part) => (
-              <article class="catalog-part">
-                <header class="catalog-part-head">
-                  <span>{part.label}</span>
-                  <h3>{part.title}</h3>
-                </header>
-                <ul class="chapter-list">
-                  {part.chapters.map((chapter) => (
-                    <li>
-                      <a href={chapter.href}>
-                        <span class="chapter-num">{chapter.n}</span>
-                        <span class="chapter-title">{chapter.title}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+          <div class="path-grid">
+            {pillars.map((pillar) => (
+              <article class="path-card path-card-minimal">
+                <h3>{pillar.title}</h3>
+                <p>{pillar.body}</p>
               </article>
             ))}
           </div>
+        </section>
 
-          <div class="closing-band">
-            <h2>准备好把 Claude Code 变成日常工程能力了吗？</h2>
-            <p>从第 1 章理解 Agentic Coding 范式，或跳到安装配置直接开干。全部内容集中在 /claude-code/ 路径下。</p>
-            <a class="button primary" href="/claude-code/what-is-claude-code/">开始第 1 章</a>
+        <section class="section" aria-labelledby="tracks-title">
+          <div class="section-header">
+            <p>agent tracks</p>
+            <h2 id="tracks-title">选择你的 Agent 专题</h2>
+            <p>每个专题独立编排目录与侧边栏，阅读时只聚焦当前工具。</p>
+          </div>
+          <div class="track-grid">
+            {tracks.map((track) => (
+              <article class={`track-card ${track.available ? 'track-card-live' : 'track-card-muted'}`}>
+                <div class="track-card-top">
+                  <h3>{track.name}</h3>
+                  <span class={`track-status ${track.statusClass}`}>{track.status}</span>
+                </div>
+                <p>{track.summary}</p>
+                {track.available && track.href ? (
+                  <a class="track-link" href={track.href}>
+                    {track.cta}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M5 12h14M13 6l6 6-6 6"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                ) : (
+                  <span class="track-link track-link-disabled" aria-disabled="true">{track.cta}</span>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="portal-cta" aria-label="行动号召">
+          <div class="portal-cta-inner">
+            <h2>从 Claude Code 开始你的第一场 Agent 会话</h2>
+            <p>安装、权限、代理循环与 Plan Mode，按章节循序渐进。</p>
+            <a class="button primary" href="/claude-code-guide/installation-setup/">查看安装指南</a>
           </div>
         </section>
       </main>
