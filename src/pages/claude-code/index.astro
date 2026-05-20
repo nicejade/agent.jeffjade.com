@@ -1,5 +1,6 @@
 ---
 import '../../styles/global.css';
+import CriticalBodyReset from '../../components/CriticalBodyReset.astro';
 import Footer from '../../components/Footer.astro';
 import SeoExtras from '../../components/seo/SeoExtras.astro';
 import { GA_ID, OG_IMAGE, SITE_URL } from '../../config/site-seo';
@@ -90,6 +91,7 @@ const hermesGuide = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <CriticalBodyReset />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f5f5f7" />
@@ -120,19 +122,21 @@ const hermesGuide = {
   <body>
     <div class="site-shell">
       <header class="home-nav" aria-label="主导航">
-        <a class="brand-mark" href="/">
-          <img class="brand-glyph" src="/favicon.svg" alt="" width="30" height="30" aria-hidden="true" />
-          <span class="brand-text">智能体漫游</span>
-        </a>
-        <nav class="nav-links" id="nav-menu" aria-label="站点导航">
-          <a href="/">站点首页</a>
-          <a href="/hermes-agent/">Hermes Agent</a>
-          <a class="nav-cta" href="/claude-code/what-is-claude-code/">从第 1 章开始</a>
-        </nav>
-        <button class="mobile-menu-btn" id="menu-toggle" aria-label="打开菜单" aria-expanded="false">
-          <span class="menu-bar"></span>
-          <span class="menu-bar"></span>
-        </button>
+        <div class="home-nav-inner">
+          <a class="brand-mark" href="/">
+            <img class="brand-glyph" src="/favicon.svg" alt="" width="30" height="30" aria-hidden="true" />
+            <span class="brand-text">智能体漫游</span>
+          </a>
+          <nav class="nav-links" id="nav-menu" aria-label="站点导航">
+            <a href="/">站点首页</a>
+            <a href="/hermes-agent/">Hermes Agent</a>
+            <a class="nav-cta" href="/claude-code/what-is-claude-code/">从第 1 章开始</a>
+          </nav>
+          <button class="mobile-menu-btn" id="menu-toggle" aria-label="打开菜单" aria-expanded="false">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
       </header>
 
       <main>

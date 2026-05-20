@@ -4,6 +4,13 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 
+@layer base {
+  html,
+  body {
+    margin: 0;
+  }
+}
+
 @theme {
   --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-mono: "SF Mono", "Cascadia Code", "JetBrains Mono", ui-monospace, monospace;
@@ -63,6 +70,7 @@
 
 html:has(.site-shell) {
   background: var(--surface);
+  overflow-x: clip;
   scroll-behavior: smooth;
   text-rendering: geometricPrecision;
 }
@@ -133,13 +141,7 @@ svg {
   position: sticky;
   top: 0;
   z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: min(1200px, calc(100% - 48px));
-  min-height: 56px;
-  margin: 0 auto;
+  width: 100%;
   padding: 0.6rem 0;
 }
 
@@ -148,10 +150,21 @@ svg {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: rgba(251, 251, 253, 0.72);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-radius: 18px;
+  border-bottom: 1px solid var(--line);
+  background-color: rgba(251, 251, 253, 0.78);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+.home-nav-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(1200px, calc(100% - 48px));
+  min-height: 56px;
+  margin: 0 auto;
 }
 
 .brand-mark {
@@ -1903,7 +1916,7 @@ html:has(.site-shell) {
   .hero,
   .section,
   .metric-strip,
-  .home-nav,
+  .home-nav-inner,
   .home-footer-slot {
     width: min(100% - 24px, 1180px);
   }
@@ -1987,11 +2000,12 @@ html:has(.site-shell) {
     background: radial-gradient(circle, rgba(20, 184, 166, 0.14), transparent 70%);
   }
 
-  /* Nav */
+  /* Nav — match Starlight doc header (header.header) */
   .home-nav::before {
-    background: rgba(28, 29, 33, 0.68);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom-color: var(--soft-line);
+    background-color: rgba(11, 12, 15, 0.7);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
   }
 
   .brand-text,
