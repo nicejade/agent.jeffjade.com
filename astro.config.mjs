@@ -29,6 +29,12 @@ const claudeCodeGuideSlugs = [
   'ecosystem-integration',
   'limitations',
   'reflection',
+  'debug-error-recovery',
+  'token-economics',
+  'security-permissions',
+  'tdd-quality',
+  'team-organization',
+  'mental-model-migration',
 ];
 
 const claudeCodeLegacyNumberedRedirects = {

@@ -281,7 +281,11 @@ Claude Code 是 [代理循环](/claude-code-guide/agent-loop/) 驱动的**高权
 | 上下文满 | [context-management](/claude-code-guide/context-management/)、[prompt-engineering](/claude-code-guide/prompt-engineering/)、[subagents](/claude-code-guide/subagents/) |
 | 乱改/先探索 | [plan-mode](/claude-code-guide/plan-mode/) |
 | 权限事故 | [installation-setup](/claude-code-guide/installation-setup/)、[hooks](/claude-code-guide/hooks/)、[ecosystem-integration](/claude-code-guide/ecosystem-integration/) |
-| 成本飙升 | 本章降本表、[costs 官方](https://code.claude.com/docs/en/costs) |
+| 成本飙升 | [Token 经济学](/claude-code-guide/token-economics/)、[costs 官方](https://code.claude.com/docs/en/costs) |
+| 会话跑偏 | [调试与错误恢复](/claude-code-guide/debug-error-recovery/) |
+| 权限与沙箱 | [安全边界](/claude-code-guide/security-permissions/) |
+| AI 代码审查 | [TDD 与质量](/claude-code-guide/tdd-quality/) |
+| 团队规范 | [团队落地](/claude-code-guide/team-organization/) |
 | 协作与 CI | [ecosystem-integration](/claude-code-guide/ecosystem-integration/) |
 | 端到端任务 | [complete-workflow](/claude-code-guide/complete-workflow/) |
 

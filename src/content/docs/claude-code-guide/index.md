@@ -1,11 +1,11 @@
 ---
 title: Claude Code 漫游指南
-description: 从基础认知到高级扩展，18 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
+description: 从基础认知到进阶实践，24 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
 sidebar:
   order: 0
 ---
 
-[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。本指南从心智模型、快速上手、工作原理、项目记忆、高级扩展、实战方法到反思进阶，共 18 章，帮助你系统掌握 Claude Code。
+[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。本指南从心智模型、快速上手、工作原理、项目记忆、高级扩展、实战方法、反思进阶到进阶实践，共 24 章，帮助你系统掌握 Claude Code。
 
 ## 第一部分：基础认知
 
@@ -46,3 +46,12 @@ sidebar:
 
 17. [局限性与应对](./limitations/)——安全、成本与常见坑
 18. [AI Agent 时代的开发者](./reflection/)——角色转变与新技能体系
+
+## 第八部分：进阶实践
+
+19. [调试与错误恢复](./debug-error-recovery/)——失败信号、/rewind 与 CLAUDE.md 反馈闭环
+20. [Token 成本与会话经济学](./token-economics/)——/context、/usage 与按需加载规则
+21. [安全边界与权限心智](./security-permissions/)——allow/deny、沙箱与人类确认
+22. [测试驱动与质量保障](./tdd-quality/)——TDD、Hooks/CI 门禁与 diff 审查
+23. [团队与组织级落地](./team-organization/)——Managed 治理、PR 透明度与 onboarding
+24. [心智模型迁移](./mental-model-migration/)——意图式协作与认知分工

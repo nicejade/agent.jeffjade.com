@@ -56,4 +56,15 @@ export const claudeCodeSidebar = [
       { label: 'AI 时代的开发者', link: '/claude-code-guide/reflection/' },
     ],
   },
+  {
+    label: '第八部分 · 进阶实践',
+    items: [
+      { label: '调试与错误恢复', link: '/claude-code-guide/debug-error-recovery/' },
+      { label: 'Token 成本与会话经济学', link: '/claude-code-guide/token-economics/' },
+      { label: '安全边界与权限心智', link: '/claude-code-guide/security-permissions/' },
+      { label: '测试驱动与质量保障', link: '/claude-code-guide/tdd-quality/' },
+      { label: '团队与组织级落地', link: '/claude-code-guide/team-organization/' },
+      { label: '心智模型迁移', link: '/claude-code-guide/mental-model-migration/' },
+    ],
+  },
 ];
