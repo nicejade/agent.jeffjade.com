@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 const site = 'https://agent.jeffjade.com';
 const title = '智能体漫游 | agent.jeffjade.com';
@@ -11,19 +12,22 @@ const tracks = [
     name: 'Claude Code',
     status: '已上线',
     statusClass: 'track-status-live',
-    summary: '18 章系统指南：Agentic Coding 心智模型、代理循环、Plan Mode 与完整工程工作流。',
+    summary: '18 章系统教程：吃透 Agentic Coding 心智模型、代理循环、Plan Mode 与工程交付。',
     href: '/claude-code/',
     cta: '进入专题',
     available: true,
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
   },
   {
     name: 'Hermes Agent',
-    status: '筹备中',
-    statusClass: 'track-status-soon',
-    summary: '面向多工具编排与自动化场景的 Agent 专题，教程与案例正在整理。',
-    href: undefined,
-    cta: '即将推出',
-    available: false,
+    status: '连载中',
+    statusClass: 'track-status-live',
+    summary:
+      '入门 4 章已发布：closed learning loop、MEMORY.md 与 Skill、Gateway 与工具系统；配置、网关与架构等章节连载中。',
+    href: '/hermes-agent/',
+    cta: '进入专题',
+    available: true,
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
   },
 ];
 
@@ -44,7 +48,7 @@ const structuredData = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f5f5f7" />
+    <meta name="theme-color" content="#fbfbfd" />
     <link rel="canonical" href={site} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -65,84 +69,122 @@ const structuredData = {
   </head>
   <body>
     <div class="site-shell">
+      <!-- Ambient background orbs -->
+      <div class="bg-ambient" aria-hidden="true">
+        <div class="bg-orb bg-orb-top"></div>
+        <div class="bg-orb bg-orb-bottom"></div>
+      </div>
+
       <header class="home-nav" aria-label="主导航">
         <a class="brand-mark" href="/">
-          <span class="brand-glyph" aria-hidden="true">智</span>
-          <span>智能体漫游</span>
+          <img class="brand-glyph" src="/favicon.svg" alt="" width="30" height="30" aria-hidden="true" />
+          <span class="brand-text">智能体漫游</span>
         </a>
-        <nav class="nav-links" aria-label="站点导航">
+        <nav class="nav-links" id="nav-menu" aria-label="站点导航">
           <a href="/claude-code/">Claude Code</a>
+          <a href="/hermes-agent/">Hermes Agent</a>
           <a class="nav-cta" href="/claude-code/">开始学习</a>
         </nav>
+        <button class="mobile-menu-btn" id="menu-toggle" aria-label="打开菜单" aria-expanded="false">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
       </header>
 
       <main>
+        <!-- Hero -->
         <section class="hero hero-portal" aria-labelledby="portal-title">
-          <div class="hero-scene" aria-hidden="true">
-            <span class="signal-line"></span>
-            <span class="signal-line"></span>
-            <span class="signal-line"></span>
+          <div class="hero-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            AI Agent · 中文知识库
           </div>
-          <div class="hero-copy hero-copy-portal">
-            <p class="eyebrow">AI Agent · 中文知识库</p>
-            <h1 id="portal-title">智能体<span>漫游</span></h1>
-            <p class="hero-lede hero-lede-portal">
-              专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。
-            </p>
-            <div class="hero-actions">
-              <a class="button primary" href="/claude-code/">探索 Claude Code</a>
-              <a class="button" href="/claude-code-guide/what-is-claude-code/">阅读第 1 章</a>
-            </div>
+          <h1 id="portal-title" class="hero-title-portal">
+            智能体<span class="title-accent">漫游</span>
+          </h1>
+          <p class="hero-lede hero-lede-portal">
+            专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/claude-code/">
+              探索 Claude Code
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="btn btn-secondary" href="/hermes-agent/">探索 Hermes Agent</a>
           </div>
         </section>
 
+        <!-- Tracks -->
         <section class="section" aria-labelledby="tracks-title">
-          <div class="section-header">
-            <p>agent tracks</p>
-            <h2 id="tracks-title">选择你的 Agent 专题</h2>
-            <p>每个专题独立编排目录与侧边栏，阅读时只聚焦当前工具。</p>
+          <div class="section-header section-header-center">
+            <p class="section-kicker">agent tracks</p>
+            <h2 id="tracks-title" class="section-title">选择你的 Agent 专题</h2>
+            <p class="section-desc">每个专题独立编排目录与侧边栏，阅读时只聚焦当前工具。</p>
           </div>
           <div class="track-grid">
             {tracks.map((track) => (
               <article class={`track-card ${track.available ? 'track-card-live' : 'track-card-muted'}`}>
-                <div class="track-card-top">
-                  <h3>{track.name}</h3>
-                  <span class={`track-status ${track.statusClass}`}>{track.status}</span>
+                <div class="track-card-inner">
+                  <div class="track-icon" aria-hidden="true" set:html={track.icon} />
+                  <div class="track-card-top">
+                    <h3>{track.name}</h3>
+                    <span class={`track-status ${track.statusClass}`}>{track.status}</span>
+                  </div>
+                  <p>{track.summary}</p>
+                  {track.available && track.href ? (
+                    <a class="track-link" href={track.href}>
+                      {track.cta}
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M5 12h14M13 6l6 6-6 6"
+                          stroke="currentColor"
+                          stroke-width="1.75"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  ) : (
+                    <span class="track-link track-link-disabled" aria-disabled="true">{track.cta}</span>
+                  )}
                 </div>
-                <p>{track.summary}</p>
-                {track.available && track.href ? (
-                  <a class="track-link" href={track.href}>
-                    {track.cta}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path
-                        d="M5 12h14M13 6l6 6-6 6"
-                        stroke="currentColor"
-                        stroke-width="1.75"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                ) : (
-                  <span class="track-link track-link-disabled" aria-disabled="true">{track.cta}</span>
-                )}
               </article>
             ))}
           </div>
         </section>
 
+        <!-- Bottom CTA -->
         <section class="portal-cta" aria-label="行动号召">
           <div class="portal-cta-inner">
-            <h2>从 Claude Code 开始你的第一场 Agent 会话</h2>
-            <p>安装、权限、代理循环与 Plan Mode，按章节循序渐进。</p>
-            <a class="button primary" href="/claude-code-guide/installation-setup/">查看安装指南</a>
+            <h2>选一个专题，开始你的第一场 Agent 会话</h2>
+            <p>Claude Code 侧重代码库工程循环；Hermes Agent 侧重长期驻留、Skill 自改进与多平台 Gateway。</p>
+            <div class="hero-actions portal-cta-actions">
+              <a class="btn btn-primary" href="/claude-code-guide/installation-setup/">
+                Claude Code 安装
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="btn btn-secondary" href="/hermes-agent/installation-setup/">Hermes 安装与环境</a>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer class="home-footer">
-        <p>智能体漫游 · agent.jeffjade.com · Built with Astro, Starlight and Tailwind CSS.</p>
-      </footer>
+      <div class="home-footer-slot">
+        <Footer hydrate="load" />
+      </div>
     </div>
+
+    <script is:inline>
+      const btn = document.getElementById('menu-toggle');
+      const menu = document.getElementById('nav-menu');
+      btn?.addEventListener('click', () => {
+        const open = menu.classList.toggle('nav-open');
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+      });
+    </script>
   </body>
 </html>

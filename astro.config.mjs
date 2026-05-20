@@ -4,6 +4,7 @@ import svelte from '@astrojs/svelte';
 import tailwindcss from '@tailwindcss/vite';
 import starlightThemeRapide from 'starlight-theme-rapide';
 import { claudeCodeSidebar } from './src/config/claude-code-sidebar.ts';
+import { hermesAgentSidebar } from './src/config/hermes-agent-sidebar.ts';
 import { tableWrapIntegration } from './src/integrations/table-wrap.ts';
 
 const site = 'https://agent.jeffjade.com';
@@ -69,12 +70,27 @@ const claudeCodeRedirects = {
   ...claudeCodeSlugRedirects,
 };
 
+const hermesAgentGuideSlugs = [
+  'what-is-hermes-agent',
+  'installation-setup',
+  'first-conversation',
+  'memory-learning-skills',
+];
+
+const hermesAgentRedirects = Object.fromEntries([
+  ['/hermes-agent-guide/', '/hermes-agent/'],
+  ...hermesAgentGuideSlugs.map((slug) => [
+    `/hermes-agent-guide/${slug}/`,
+    `/hermes-agent/${slug}/`,
+  ]),
+]);
+
 export default defineConfig({
   site,
   image: {
     service: passthroughImageService(),
   },
-  redirects: claudeCodeRedirects,
+  redirects: { ...claudeCodeRedirects, ...hermesAgentRedirects },
   integrations: [
     svelte(),
     starlight({
@@ -104,7 +120,7 @@ export default defineConfig({
 				Footer: './src/components/Footer.astro',
       },
       customCss: ['./src/styles/global.css'],
-      sidebar: claudeCodeSidebar,
+      sidebar: [...claudeCodeSidebar, ...hermesAgentSidebar],
       head: [
         {
           tag: 'meta',

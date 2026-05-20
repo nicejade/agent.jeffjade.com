@@ -1,5 +1,6 @@
 ---
 import '../../styles/global.css';
+import Footer from '../../components/Footer.astro';
 
 const site = 'https://agent.jeffjade.com';
 const pageUrl = `${site}/claude-code/`;
@@ -67,6 +68,19 @@ const parts = [
   },
 ];
 
+const hermesGuide = {
+  href: '/hermes-agent/',
+  startHref: '/hermes-agent/what-is-hermes-agent/',
+  summary:
+    '模型无关的自主 Agent：closed learning loop、MEMORY.md 与 Skill、Gateway 与 70+ 工具。入门 4 章已发布，配置、工具与网关等章节连载中。',
+  chapters: [
+    { n: 1, title: '认识 Hermes Agent', href: '/hermes-agent/what-is-hermes-agent/' },
+    { n: 2, title: '安装与环境准备', href: '/hermes-agent/installation-setup/' },
+    { n: 3, title: '第一次对话', href: '/hermes-agent/first-conversation/' },
+    { n: 4, title: '记忆、学习与 Skill', href: '/hermes-agent/memory-learning-skills/' },
+  ],
+};
+
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -112,13 +126,18 @@ const structuredData = {
     <div class="site-shell">
       <header class="home-nav" aria-label="主导航">
         <a class="brand-mark" href="/">
-          <span class="brand-glyph" aria-hidden="true">智</span>
-          <span>智能体漫游</span>
+          <img class="brand-glyph" src="/favicon.svg" alt="" width="30" height="30" aria-hidden="true" />
+          <span class="brand-text">智能体漫游</span>
         </a>
-        <nav class="nav-links" aria-label="站点导航">
+        <nav class="nav-links" id="nav-menu" aria-label="站点导航">
           <a href="/">站点首页</a>
+          <a href="/hermes-agent/">Hermes Agent</a>
           <a class="nav-cta" href="/claude-code-guide/what-is-claude-code/">从第 1 章开始</a>
         </nav>
+        <button class="mobile-menu-btn" id="menu-toggle" aria-label="打开菜单" aria-expanded="false">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
       </header>
 
       <main>
@@ -130,8 +149,8 @@ const structuredData = {
               这不是聊天教程，而是一份面向工程师的 Agentic Coding 指南：从心智模型与安装上手，到代理循环、Plan Mode、项目记忆、Hooks / Skills / SubAgents / MCP，再到完整工作流与生态集成。
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="/claude-code-guide/">进入文档目录</a>
-              <a class="button" href="/claude-code-guide/installation-setup/">直接安装配置</a>
+              <a class="btn btn-primary" href="/claude-code-guide/">进入文档目录</a>
+              <a class="btn btn-secondary" href="/claude-code-guide/installation-setup/">直接安装配置</a>
             </div>
             <ul class="hero-highlights" aria-label="指南亮点">
               <li>本地仓库上下文 + Shell / Git 感知</li>
@@ -199,18 +218,71 @@ const structuredData = {
               </article>
             ))}
           </div>
+        </section>
 
+        <section class="section guide-related" aria-labelledby="hermes-title">
+          <div class="section-header">
+            <p>more agent tracks</p>
+            <h2 id="hermes-title">Hermes Agent 漫游指南</h2>
+            <p>{hermesGuide.summary}</p>
+          </div>
+
+          <div class="guide-related-panel">
+            <article class="guide-related-promo">
+              <div class="guide-related-promo-top">
+                <h3>Hermes Agent</h3>
+                <span class="track-status track-status-live">连载中 · 4 章已发布</span>
+              </div>
+              <p>
+                侧重长期驻留、多平台 Gateway 与自编写 Skill；可与 Claude Code 配合：本地改代码，VPS 上跑 Hermes 定时巡检。
+              </p>
+              <div class="guide-related-actions">
+                <a class="btn btn-primary" href={hermesGuide.href}>进入专题目录</a>
+                <a class="btn btn-secondary" href={hermesGuide.startHref}>从第 1 章开始</a>
+              </div>
+            </article>
+
+            <article class="catalog-part guide-related-catalog">
+              <header class="catalog-part-head">
+                <span>已发布章节</span>
+                <h3>入门与核心机制</h3>
+              </header>
+              <ul class="chapter-list">
+                {hermesGuide.chapters.map((chapter) => (
+                  <li>
+                    <a href={chapter.href}>
+                      <span class="chapter-num">{chapter.n}</span>
+                      <span class="chapter-title">{chapter.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="closing-title">
           <div class="closing-band">
-            <h2>准备好把 Claude Code 变成日常工程能力了吗？</h2>
+            <h2 id="closing-title">准备好把 Claude Code 变成日常工程能力了吗？</h2>
             <p>从第 1 章理解 Agentic Coding 范式，或跳到安装配置直接开干。章节正文位于 /claude-code-guide/ 路径下。</p>
-            <a class="button primary" href="/claude-code-guide/what-is-claude-code/">开始第 1 章</a>
+            <a class="btn btn-primary" href="/claude-code-guide/what-is-claude-code/">开始第 1 章</a>
           </div>
         </section>
       </main>
 
-      <footer class="home-footer">
-        <p>智能体漫游 · agent.jeffjade.com · Built with Astro, Starlight and Tailwind CSS.</p>
-      </footer>
+      <div class="home-footer-slot">
+        <Footer hydrate="load" />
+      </div>
     </div>
+
+    <script is:inline>
+      const btn = document.getElementById('menu-toggle');
+      const menu = document.getElementById('nav-menu');
+      btn?.addEventListener('click', () => {
+        const open = menu.classList.toggle('nav-open');
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+      });
+    </script>
   </body>
 </html>
