@@ -1,5 +1,12 @@
 ---
 import FooterSvelte from './Footer.svelte';
+
+interface Props {
+  /** Starlight 长文页用 visible；门户短页用 load，避免页脚未滚入视口时不渲染 */
+  hydrate?: 'visible' | 'load';
+}
+
+const { hydrate = 'visible' } = Astro.props;
 ---
 
-<FooterSvelte client:visible />
+{hydrate === 'load' ? <FooterSvelte client:load /> : <FooterSvelte client:visible />}

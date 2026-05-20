@@ -76,18 +76,18 @@
         <div class="grid grid-cols-2 flex-1 gap-10 lg:gap-12! justify-items-start">
           {#each footerInfoArr as item (item.title)}
             <div class="flex w-full flex-col items-start text-left">
-              <h3 class="text-sm m-0! font-bold tracking-[0.1em] text-[var(--sl-color-gray-2)] uppercase opacity-80 px-2.5 py-1.5">
+              <h3 class="text-sm m-0! font-bold tracking-[0.1em] text-[var(--sl-color-gray-2)] uppercase opacity-80 px-2 py-1">
                 {item.title}
               </h3>
 
-              <ul class="m-0! mt-4! list-none! p-0! space-y-3">
+              <ul class="m-0! mt-2.5! list-none! p-0! flex flex-col gap-1">
                 {#each item.branch as citem}
                   <li class="m-0! p-0!">
                     <a
                       href={citem.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="footer-hover inline-flex min-h-9 items-center rounded-lg px-2.5 py-1.5 text-sm text-[var(--sl-color-gray-3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-gray-4)] no-underline border-none"
+                      class="footer-hover footer-nav-link inline-flex items-center rounded-md px-2 py-2 text-sm leading-snug text-[var(--sl-color-gray-3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-gray-4)] no-underline border-none"
                     >
                       {citem.title}
                     </a>
@@ -104,9 +104,9 @@
         <p class="text-[var(--sl-color-gray-4)] text-[13px] font-medium tracking-wide">
           © {currentYear}
           <a
-            href="https://www.niceshare.site/"
-            class="footer-hover mx-1 inline-flex min-h-9 items-center rounded-lg px-2.5 py-1.5 text-[var(--sl-color-gray-3)] decoration-none no-underline border-none"
-          >niceshare.site</a>
+            href="https://agent.jeffjade.com/"
+            class="footer-hover footer-nav-link mx-1 inline-flex items-center rounded-md px-2 py-1 text-[13px] leading-snug text-[var(--sl-color-gray-3)] decoration-none no-underline border-none"
+          >agent.jeffjade.com</a>
           · 保留所有权利
         </p>
       </div>
@@ -118,6 +118,10 @@
   .custom-footer :global(.footer-brand) {
     padding-bottom: 0;
     margin-bottom: 0;
+  }
+
+  .custom-footer :global(.footer-nav-link) {
+    min-height: 0;
   }
 
   .custom-footer :global(.footer-hover) {
