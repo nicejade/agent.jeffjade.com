@@ -1,4 +1,17 @@
 <script>
+  import SocialIcon from './footer/SocialIcon.svelte';
+
+  const socialLinks = [
+    { href: 'https://github.com/nicejade', icon: 'github', label: 'Github' },
+    { href: 'https://x.com/MarshalXuan', icon: 'x', label: 'X | Twitter' },
+    { href: 'https://www.facebook.com/nice.jade.yang/', icon: 'facebook', label: 'Facebook | 脸书' },
+    { href: 'https://www.threads.com/@turingmind', icon: 'threads', label: 'Threads' },
+    { href: 'https://www.youtube.com/@MarshalXuan', icon: 'youtube', label: 'YouTube | 油管' },
+    { href: 'https://space.bilibili.com/690989854', icon: 'bilibili', label: 'Bilibili | 哔哩哔哩' },
+    { href: 'https://mastodon.social/@nicejade', icon: 'mastodon', label: 'Mastodon | 长毛象' },
+    { href: 'https://www.jeffjade.com/', icon: 'blogger', label: 'Blog | 博客' },
+  ];
+
   const footerInfoArr = [
     {
       title: '开源项目',
@@ -43,28 +56,20 @@
               “智能体漫游”专注于快速掌握主流 AI Agent，如 Claude Code、Hermes Agent 等。通过实用教程、案例演示和最新资讯，让开发者和 AI 爱好者轻松上手，探索智能体应用潜力，提升学习效率与实践能力。
             </p>
 
-            <div class="flex flex-wrap gap-1.5 items-center">
-              {#each [
-                { href: "https://github.com/nicejade", img: "github", alt: "Github" },
-                { href: "https://x.com/MarshalXuan", img: "x", alt: "X | Twitter" },
-                { href: "https://www.facebook.com/nice.jade.yang/", img: "facebook", alt: "Facebook | 脸书" },
-                { href: "https://www.threads.com/@turingmind", img: "threads", alt: "Threads" },
-                { href: "https://www.youtube.com/@MarshalXuan", img: "youtube", alt: "YouTube | 油管" },
-                { href: "https://space.bilibili.com/690989854", img: "bilibili", alt: "Bilibili | 哔哩哔哩" },
-                { href: "https://mastodon.social/@nicejade", img: "mastodon", alt: "Mastodon | 长毛象" },
-                { href: "https://www.jeffjade.com/", img: "blogger", alt: "Blog | 博客" }
-              ] as social}
+            <div class="flex flex-wrap gap-1.5 items-center" role="list" aria-label="社交媒体">
+              {#each socialLinks as social (social.href)}
                 <a
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="footer-hover group flex h-9 w-9 items-center justify-center rounded-lg bg-transparent text-[var(--sl-color-gray-3)] active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-gray-4)] no-underline border-none"
-                  title={social.alt}
+                  role="listitem"
+                  class="footer-social-link footer-hover group flex h-9 w-9 items-center justify-center rounded-lg bg-transparent text-[var(--sl-color-gray-3)] active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-gray-4)] no-underline border-none"
+                  title={social.label}
+                  aria-label={social.label}
                 >
-                  <img
+                  <SocialIcon
+                    name={social.icon}
                     class="h-5 w-5 opacity-65 transition-opacity duration-200 group-hover:opacity-100"
-                    src="https://www.niceshare.site/svgs/{social.img}.svg"
-                    alt={social.alt}
                   />
                 </a>
               {/each}
@@ -137,6 +142,10 @@
 
   :global(:root[data-theme='light']) .custom-footer :global(.footer-hover:hover) {
     background-color: #e8e8e8;
+    color: var(--sl-color-gray-2);
+  }
+
+  .custom-footer :global(.footer-social-link:hover) {
     color: var(--sl-color-gray-2);
   }
 </style>
