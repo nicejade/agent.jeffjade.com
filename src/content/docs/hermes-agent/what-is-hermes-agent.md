@@ -1,39 +1,45 @@
 ---
 title: 认识 Hermes Agent
-description: 弄清 Hermes Agent 是什么、closed learning loop 如何工作，以及它与聊天工具、IDE 副驾驶和 Agent 框架的差异。
+description: 弄清 Hermes Agent 是什么、闭环学习机制如何沉淀 Skill 与记忆，以及它与聊天工具、IDE 副驾驶和 Agent 框架的差异。
 sidebar:
   order: 1
 ---
 
 *「装一个能自己写 Skill、记住你偏好、还能在 Telegram 里回消息的 Agent，和再开一个 ChatGPT 窗口，差在哪里？」*
 
-如果你把 Hermes 当成「终端里的聊天机器人」，很容易在第一次配置 Gateway、Skill 或记忆文件时感到多余。Hermes 的设计目标不是替代你打字，而是**在长期运行中积累可复用的能力**：把一次复杂任务里摸索出的步骤写成 Skill，把环境事实写进 `MEMORY.md`，并在下次会话里直接调用。
+如果你把 Hermes 当成「终端里的聊天机器人」，很容易在第一次配置 Gateway、Skill 或记忆文件时感到多余。Hermes 面向的是长期任务：**在多轮、跨会话运行里把经验写成可复用能力**——复杂步骤落成 Skill，环境事实写进 `MEMORY.md`，下次会话直接调用，而不是每次从零解释。
 
 本章回答三个问题：Hermes 是什么、它靠什么「越用越强」、以及你该不该为它投入学习成本。
+
+**本章路线**：Agent Loop 与三项能力 → 闭环学习机制 → 与常见工具对比 → 运行形态与适用场景 → 决策边界。想先装起来可跳到 [安装与环境准备](./installation-setup/)。
 
 ## 基本单元：自主 Agent，而不是聊天窗口
 
 多数 AI 产品的基本单元是**一轮问答**：你输入，模型输出，会话结束或刷新后上下文清空。
 
-Hermes 的基本单元是 **Agent Loop**：接收意图 → 组装系统提示 → 调用模型 → 若返回工具调用则执行并再次调用模型 → 直到给出最终回复并持久化会话。同一套 `AIAgent` 类驱动 CLI、TUI、消息网关、定时任务和编辑器 ACP 集成，平台差异留在入口适配层，而不是散落在核心逻辑里。
+Hermes 的基本单元是 **Agent Loop**：接收意图 → 组装系统提示 → 调用模型 → 若返回工具调用则执行并再次调用模型 → 直到给出最终回复并持久化会话。同一套 `AIAgent` 类驱动 CLI、TUI、消息网关、定时任务和编辑器 ACP 集成；平台差异留在入口适配层，不散落在核心逻辑里。
 
 这意味着三件事：
 
 | 能力 | 可观察行为 | 对读者的意义 |
 | --- | --- | --- |
-| **工具执行** | 可读文件、跑终端、搜网页、控浏览器等 70+ 内置工具 | 回复不只停留在文字，可基于真实命令输出 |
+| **工具执行** | 可读文件、跑终端、搜网页、控浏览器等约 70 项内置工具，以当前 registry 为准；MCP 扩展另计 | 回复不只停留在文字，可基于真实命令输出 |
 | **跨会话状态** | `MEMORY.md`、`USER.md`、SQLite 会话库与 FTS5 检索 | 关键事实可保留，历史对话可搜索 |
 | **程序性记忆** | `~/.hermes/skills/` 下的 `SKILL.md`，由 `skill_manage` 创建与修订 | 复杂工作流可沉淀为可重复调用的「手册」 |
 
-三项能力组合起来，才构成官方所说的 [closed learning loop](https://hermes-agent.nousresearch.com/docs/)：在解决问题过程中写 Skill、维护记忆、检索旧会话，并由 **Curator** 在空闲时整理 Agent 自创建的 Skill，避免技能库无限膨胀。
+三项能力叠加，才形成 [Hermes 官方文档](https://hermes-agent.nousresearch.com/docs/) 所称的 **闭环学习机制**（英文产品文案写作 *closed learning loop*）：在解决问题时写 Skill、维护记忆、检索旧会话；空闲时由 **Curator** 整理 Agent 自建的 Skill，避免技能库无限膨胀。这里的「学习」指**工件越积越可用**，不是底层模型权重在变。
 
-## Closed learning loop：机制，不是口号
+## 闭环学习机制：四类外部工件
 
-「自改进」容易被理解成模型变聪明。在 Hermes 里，更准确的描述是：**Agent 拥有自己可读写的外部工件**，系统提示引导它在合适时机更新这些工件。
+「自改进」容易被理解成模型变聪明。在 Hermes 里，更准确的描述是：**Agent 拥有自己可读写的外部工件**，系统提示引导它在合适时机更新这些工件。四类工件构成闭环：
+
+```text
+执行任务 → 写入 Skill / 记忆 / 会话库 → 下次会话注入或检索 → Curator 归档冗余
+```
 
 ### 1. 声明式记忆：`MEMORY.md` 与 `USER.md`
 
-路径默认为 `~/.hermes/memories/`。Agent 通过 `memory` 工具增删改条目；会话开始时，内容以 **frozen snapshot** 注入系统提示，会话中途写入磁盘，但**不会**立刻改变当前会话里的系统提示块。这样设计是为了保持提示前缀稳定，便于 Prompt Caching，新记忆在**下一次会话**生效。
+路径默认为 `~/.hermes/memories/`。Agent 通过 `memory` 工具增删改条目。会话开始时，磁盘内容以**冻结快照**（官方称 *frozen snapshot*）注入系统提示：会话中途仍可写入磁盘，但**不会**立刻改写当前会话里的记忆块。这样保持提示前缀稳定，便于 Prompt Caching；新内容在**下一次会话**生效。
 
 - `MEMORY.md`：环境、项目惯例、踩坑记录等，约 2200 字符上限。
 - `USER.md`：沟通偏好、角色信息等，约 1375 字符上限。
@@ -42,9 +48,9 @@ Hermes 的基本单元是 **Agent Loop**：接收意图 → 组装系统提示 �
 
 ### 2. 程序性记忆：Skill
 
-Skill 是带 YAML 前言的 Markdown 文档，兼容 [agentskills.io](https://agentskills.io/) 开放标准。系统提示里通常只放 **Level 0** 索引（名称与描述）；需要时再 `skill_view` 加载全文，避免一次性塞满上下文。
+Skill 是带 YAML 前言的 Markdown 文档，兼容 [agentskills.io](https://agentskills.io/) 开放标准。系统提示里通常只放**索引层**（名称与描述，文档称 Level 0）；需要时再 `skill_view` 加载全文，避免一次性塞满上下文。
 
-官方 [Skills 文档](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills) 写明：在完成**复杂任务（例如 5 次以上工具调用）**、踩坑后找到可行路径、或用户纠正做法等情况下，Agent 应倾向用 `skill_manage` 保存或修订 Skill。Hub 上的第三方 Skill **只能由用户**通过 `hermes skills install` 安装，Agent 不能自行拉取未信任包。
+官方 [Skills 文档](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills) 写明：在完成复杂任务、踩坑后找到可行路径、或用户纠正做法等情况下，Agent 应倾向用 `skill_manage` 保存或修订 Skill。文档常以「5 次以上工具调用」作复杂任务示例。Hub 上的第三方 Skill **只能由用户**通过 `hermes skills install` 安装，Agent 不能自行拉取未信任包。
 
 ### 3. 会话检索：`session_search`
 
@@ -63,8 +69,8 @@ Agent 自创建的 Skill 可能越积越多。[Curator](https://hermes-agent.nou
 | 主要界面 | CLI、TUI、20+ 消息平台、Cron | 编辑器内或网页 | 脚本/实验项目 | 需自建服务 |
 | 跨会话记忆 | 内置文件 + SessionDB + 可选插件 | 通常弱或会话级 | 实现差异大 | 自行接向量库 |
 | 工作流沉淀 | 一等公民 Skill + Curator | 少见 | 少见标准化 | 自行设计 |
-| 自改进闭环 | 官方默认路径 | 一般无 | 易漂移、难维护 | 无默认实现 |
-| 模型选择 | `hermes model`，多 Provider，要求 **≥64K** 上下文 | 绑定厂商 | 视配置 | 任意 |
+| 经验沉淀闭环 | 官方默认路径 | 一般无 | 易漂移、难维护 | 无默认实现 |
+| 模型选择 | `hermes model`，多 Provider；[Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) 要求 **≥64K** 上下文才通过启动校验，自托管见 [Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers) 各后端 | 绑定厂商 | 视配置 | 任意 |
 
 与本站 [Claude Code 专题](/claude-code/what-is-claude-code/) 的关系：Claude Code 强在**绑定代码库、高权限本地工程循环**；Hermes 强在**长期驻留、多平台触达、自编写 Skill 与网关自动化**。二者可并存：例如在仓库里用 Claude Code 改代码，在 VPS 上用 Hermes 跑定时巡检并把结果推到 Telegram。
 
@@ -74,7 +80,7 @@ Agent 自创建的 Skill 可能越积越多。[Curator](https://hermes-agent.nou
 
 官方定位强调：Hermes 可以跑在低价 VPS、远程 SSH 主机，或通过 Daytona、Modal 等后端在沙箱里执行终端命令。你用 Telegram 发消息，实际命令可能在云端环境执行。
 
-终端后端包括 local、docker、ssh、daytona、modal、singularity 等（以 [Architecture](https://hermes-agent.nousresearch.com/docs/developer-guide/architecture) 当前列表为准）。**同一套 Agent 核心**，换的是命令执行的 blast radius。
+终端后端包括 local、docker、ssh、daytona、modal、singularity 等，完整列表见官方 [Architecture](https://hermes-agent.nousresearch.com/docs/developer-guide/architecture)。**同一套 Agent 核心**，换的是命令执行的影响范围：本地 shell、容器隔离或远程主机。
 
 消息侧，单个 Gateway 进程可对接 Telegram、Discord、Slack、WhatsApp、Signal、飞书、企业微信、QQ 等适配器，并支持自然语言 Cron 与跨平台投递。细节留到后续「消息网关」一章。
 
@@ -97,7 +103,7 @@ Agent 自创建的 Skill 可能越积越多。[Curator](https://hermes-agent.nou
 ## 最小认知图
 
 ```text
-你（CLI / Telegram / Cron …）
+你（CLI、Telegram、Cron 等入口）
         │
         ▼
   入口：CLI · Gateway · Cron · ACP
@@ -105,23 +111,23 @@ Agent 自创建的 Skill 可能越积越多。[Curator](https://hermes-agent.nou
         ▼
   AIAgent：组 prompt → 调模型 → 执行工具 → 循环
         │
-        ├─ Tools（终端、文件、网页、浏览器 …）
+        ├─ Tools（终端、文件、网页、浏览器等）
         ├─ Skills（SKILL.md，渐进加载）
-        ├─ Memory（MEMORY.md / USER.md，frozen snapshot）
+        ├─ Memory（MEMORY.md / USER.md，冻结快照）
         └─ Sessions（SQLite + FTS5）
 ```
 
-## 苏格拉底式反思
+## 自检问题
 
 1. 你目前工作流里，哪些步骤每次都要重新解释一遍？它们适合写成 Skill，还是写进 `AGENTS.md`？
-2. 若 Agent 自动写入的记忆有一条是错的，你会如何发现并修正？这如何影响你对「自改进」的信任边界？
+2. 若 Agent 自动写入的记忆有一条是错的，你会如何发现并修正？这如何影响你对「越用越强」的信任边界？
 3. 你愿意把命令执行放在 local 还是 docker/远程？这与你在 IM 里使用 Gateway 的风险承受度是否一致？
 
 ## 读者自测
 
 - [ ] 用一句话说明 Agent Loop 与「单轮聊天」的区别。
 - [ ] 说出 `MEMORY.md` 与 Skill 各解决哪类问题。
-- [ ] 解释 frozen snapshot：为何 mid-session 改记忆不会立刻出现在系统提示里。
+- [ ] 解释冻结快照：为何会话中途改记忆不会立刻出现在系统提示里。
 
 ---
 

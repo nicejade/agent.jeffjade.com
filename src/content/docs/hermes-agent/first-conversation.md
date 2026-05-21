@@ -5,9 +5,11 @@ sidebar:
   order: 3
 ---
 
-*「`hermes doctor` 全绿，但一开口就 401 或空回复——多半是 Provider 没配对，而不是 Hermes 没装好。」*
+*「`hermes doctor` 全绿，但一开口就 401 或空回复。先查 `hermes model` 与 `~/.hermes/.env`，再怀疑安装步骤。」*
 
 上一章你已经能让 `hermes` 命令跑起来。本章只做一件事：**在本机完成一轮可验证的多轮对话**，并确认 `hermes --continue` 能恢复同一会话。官方 [Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) 的规则同样适用：若还无法正常聊天，先不要叠 Gateway、Cron 或大量 Skill。
+
+**本章路线（必读）**：配置 `hermes model` → 启动 `hermes` 或 `hermes --tui` → 发可验证的首条消息 → `hermes --continue` 恢复 → 熟悉核心 Slash。**可选 · CLI 进阶**：`@` 上下文引用，见本章后半「可选」一节。
 
 ## 本章要解决的三个问题
 
@@ -32,7 +34,7 @@ hermes model
 | Nous Portal | `hermes model` → 选 Nous Portal → 浏览器 OAuth |
 | OpenRouter | 在 `~/.hermes/.env` 写入 `OPENROUTER_API_KEY`，或在向导里填写 |
 | Anthropic API Key | `export ANTHROPIC_API_KEY=...` 或 `hermes config set` |
-| Anthropic OAuth | 需 Claude Max 且已购买 extra usage credits；Pro 订阅不能走此 OAuth 路径 |
+| Anthropic OAuth | 需 Claude Max 且已购买 extra usage credits；Pro 订阅不能走此 OAuth 路径。OAuth 路径偶发配额或工具调用报错，以官方 issue 与 `hermes doctor` 为准；求稳可改用 `ANTHROPIC_API_KEY` |
 | 自托管 Ollama / vLLM | `hermes model` → Custom endpoint，并**显式设置足够大的 context** |
 
 ### 两个「换模型」命令别混用
@@ -62,11 +64,9 @@ hermes config set OPENROUTER_API_KEY sk-or-...
 
 ### 上下文下限：至少 64K
 
-官方要求模型具备 **至少 64,000 tokens** 的上下文窗口。窗口过小会在启动时被拒绝，或在多步工具调用中迅速耗尽上下文。主流托管模型通常满足；自托管时必须主动设置，例如 Ollama 的 `OLLAMA_CONTEXT_LENGTH=65536`、llama.cpp 的 `-c 65536`、LM Studio 加载时 `--context-length 64000`。详见 [Providers — Minimum context](https://hermes-agent.nousresearch.com/docs/integrations/providers) 与各后端小节。
+[Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) 要求模型具备 **至少 64,000 tokens** 上下文；窗口过小会在启动时被拒绝，或在多步工具调用中迅速耗尽上下文。主流托管模型通常满足。自托管须按后端单独配置：Ollama 文档建议 agent 场景至少 16k～32k，且 Hermes 启动校验仍以 64K 为准，常见做法为 `OLLAMA_CONTEXT_LENGTH=65536`；llama.cpp 用 `-c 65536`；LM Studio 用 `--context-length 64000`。详见 [Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers) 中 Ollama、LM Studio 等小节与 [Context Length Detection](https://hermes-agent.nousresearch.com/docs/integrations/providers#context-length-detection)。
 
-### 辅助模型提示
-
-即使用 Nous Portal 或 OAuth 作为主模型，部分侧任务仍可能走 **auxiliary** 路由。默认 `auxiliary.*.provider: auto` 表示与主模型相同；可在 `hermes model` 的「Auxiliary models」里单独指定更便宜的模型用于压缩、视觉等。见 [Configuration — Auxiliary Models](https://hermes-agent.nousresearch.com/docs/user-guide/configuration#auxiliary-models)。
+侧任务压缩、视觉等可走 **auxiliary** 模型，首轮对话可保持默认 `auto`，需要时再在 `hermes model` 的 Auxiliary models 或 [Configuration](https://hermes-agent.nousresearch.com/docs/user-guide/configuration#auxiliary-models) 中单独指定。
 
 ## 第二步：启动 CLI 或 TUI
 
@@ -171,58 +171,7 @@ hermes sessions list
 | 运行中再按 Enter 发新消息 | 中断当前任务，转向新指令 |
 | `Ctrl+C` | 中断 |
 
-长任务中若只想**轻推方向**而不打断工具循环，可用 `/steer 请关注 auth 模块`：内容会在当前工具完成后注入，见官方 Slash 文档。
-
-### `/goal` 与自动化续跑
-
-`/goal <描述>` 设置跨轮目标，由辅助模型判断是否完成；未完成时 Agent 可能自动续跑，默认预算约 20 轮。任意真实用户消息会抢占该循环。适合明确终点任务；日常探索不必开启。机制与预算见 [记忆、学习与 Skill](./memory-learning-skills/#持久目标-persistent-goals)；官方 [Persistent Goals](https://hermes-agent.nousresearch.com/docs/user-guide/features/goals)。
-
-## 上下文引用（@ 语法）
-
-在 CLI 输入框里，可用 `@` 把文件、目录或 diff **展开进当前消息**，无需让 Agent 先猜路径再 `read_file`。依据官方 [Context References](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references)。
-
-### 支持的写法
-
-| 语法 | 作用 |
-| --- | --- |
-| `@file:src/main.py` | 注入文件全文 |
-| `@file:src/main.py:10-25` | 注入行范围（1 起始，含首尾） |
-| `@folder:src/components` | 目录树与元数据（最多 200 项） |
-| `@diff` | 工作区 `git diff` |
-| `@staged` | `git diff --staged` |
-| `@git:5` | 最近 N 次提交与 patch（N 上限 10） |
-| `@url:https://example.com` | 抓取网页正文 |
-
-示例：
-
-```text
-审查 @file:src/auth.py:50-80，并对照 @diff 看是否有回归
-```
-
-多条引用可同句并存；句末 `,` `.` `?` 等会从引用尾部自动剥离。输入 `@` 会触发 Tab 补全（类型与路径）。
-
-### 与 session_search 的差异
-
-| 维度 | `@` 引用 | `session_search` |
-| --- | --- | --- |
-| 内容来源 | 当前工作区文件 / git / URL | `state.db` 历史消息 |
-| 时机 | 发送前展开到用户消息 | 对话中工具按需查询 |
-| 成本 | 占用上下文（见下表限额） | FTS 查询，无额外 LLM |
-| 平台 | **主要支持 CLI** | CLI 与 Gateway |
-
-Telegram、Discord 等 Gateway **不会**展开 `@`；消息原样进 Agent，仍可用 `read_file` 等工具。配置章对敏感路径有交叉说明。
-
-### 大小与安全边界
-
-| 阈值 | 行为 |
-| --- | --- |
-| 软限（约上下文 25%） | 追加警告，仍展开 |
-| 硬限（约 50%） | 拒绝展开，原消息不变 |
-| 敏感路径 | `~/.ssh/`、`~/.hermes/.env` 等阻断 |
-| 工作区外路径 | 拒绝并警告 |
-| 二进制文件 | 拒绝 |
-
-大文件请用行范围 `@file:path:100-200`，避免一次注入整库。压缩会话后，引用内容会进入摘要而非逐字保留。
+长任务中若只想**轻推方向**而不打断工具循环，可用 `/steer 请关注 auth 模块`：内容会在当前工具完成后注入，见官方 Slash 文档。跨轮自动续跑可用 `/goal`，日常首轮对话不必开启，机制见 [记忆、学习与 Skill](./memory-learning-skills/#持久目标-persistent-goals)。
 
 ## CLI 与 TUI 怎么选
 
@@ -240,12 +189,37 @@ Telegram、Discord 等 Gateway **不会**展开 `@`；消息原样进 Agent，�
 
 因此第一次对话成功的本质是：**Provider 认证正确 + 上下文足够 + 工具后端可达**。`hermes doctor` 不保证三者同时成立。
 
+## 可选 · CLI 进阶：上下文引用（@ 语法）
+
+首轮对话成功后，可在 CLI 输入框用 `@` 把文件、目录或 diff **展开进当前消息**，无需让 Agent 先猜路径再 `read_file`。依据官方 [Context References](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references)。Telegram、Discord 等 Gateway **不会**展开 `@`，仍可用 `read_file` 等工具。
+
+| 语法 | 作用 |
+| --- | --- |
+| `@file:src/main.py` | 注入文件全文 |
+| `@file:src/main.py:10-25` | 注入行范围（1 起始，含首尾） |
+| `@folder:src/components` | 目录树与元数据（最多 200 项） |
+| `@diff` | 工作区 `git diff` |
+| `@staged` | `git diff --staged` |
+| `@git:5` | 最近 N 次提交与 patch（N 上限 10） |
+| `@url:https://example.com` | 抓取网页正文 |
+
+示例：`审查 @file:src/auth.py:50-80，并对照 @diff 看是否有回归`。大文件用行范围，避免一次注入整库。
+
+| 维度 | `@` 引用 | `session_search` |
+| --- | --- | --- |
+| 内容来源 | 当前工作区文件 / git / URL | `state.db` 历史消息 |
+| 时机 | 发送前展开到用户消息 | 对话中工具按需查询 |
+| 成本 | 占用上下文；软限约 25%、硬限约 50% 会警告或拒绝 | FTS 查询，无额外 LLM |
+| 平台 | 主要支持 CLI | CLI 与 Gateway |
+
+敏感路径如 `~/.ssh/`、`~/.hermes/.env` 会被阻断；工作区外与二进制文件会拒绝展开。
+
 ## 故障模式
 
 | 现象 | 可能原因 | 处理 |
 | --- | --- | --- |
 | 空回复或反复 401 | Key 过期、OAuth 需重登、模型 ID 写错 | `hermes model` 重配；查 `~/.hermes/.env` |
-| 启动报 context 过小 | 自托管默认 4k～8k | 按 Providers 文档把 context 提到 ≥64K |
+| 启动报 context 过小 | 自托管默认 4k～8k | 按 [Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) 与 [Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers) 把 context 提到 ≥64K |
 | 工具执行失败 | `terminal.backend` 为 docker 但 daemon 未起 | `/status` 看工作目录与 backend；`hermes doctor` |
 | `--continue` 进了错会话 | 多 Profile 或多台机器 | `hermes sessions list`，必要时 `/new` 命名会话 |
 | `/model` 切不过去 | 目标 Provider 从未在 `hermes model` 里配置 | 退出会话后跑 `hermes model` |

@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-*「文档写 curl 一行装好，终端却报 command not found——问题多半不在 Hermes，而在 PATH 或 Shell 没 reload。」*
+*「文档写 curl 一行装好，终端却报 command not found。问题多半不在 Hermes，而在 PATH 或 Shell 未 reload。」*
 
 本章目标很具体：在你的机器上得到可执行的 `hermes` 命令，并用 `hermes doctor` 确认依赖与配置没有阻塞项。**先不要**急着配置 Telegram 或大量 Skill；官方 [Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) 也建议：**先完成一轮正常对话，再叠 Gateway 等能力**。
 
@@ -28,6 +28,7 @@ sidebar:
 | **pip** | 已有 Python 工具链、CI | `pip install hermes-agent`，版本跟 PyPI 标签 |
 | **Windows PowerShell 脚本** | 原生 Windows（早期 beta） | 数据在 `%LOCALAPPDATA%\hermes\` |
 | **手动克隆** | 贡献者、指定分支 | 见官方 Contributing 中的 Development Setup |
+| **Nix / NixOS** | 声明式环境 | 见官方 [Nix Setup](https://hermes-agent.nousresearch.com/docs/getting-started/nix-setup) |
 
 以下命令以官方 [Installation](https://hermes-agent.nousresearch.com/docs/getting-started/installation) 为准；若你阅读时文档已更新，以官网为准。
 
@@ -74,7 +75,9 @@ hermes postinstall
 iex (irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1)
 ```
 
-安装后**新开** PowerShell 窗口，再运行 `hermes doctor`。原生路径与 WSL 使用不同的数据目录，二者可并存。
+安装后**新开** PowerShell 窗口，再运行 `hermes doctor`。用户数据在 `%LOCALAPPDATA%\hermes\`，与 WSL 下的 `~/.hermes/` 分离，二者可并存。
+
+也可使用官方 **Hermes Desktop** 图形安装器：首次启动会调用同一套 `install.ps1`，与 CLI 共用数据目录。详见 [Installation](https://hermes-agent.nousresearch.com/docs/getting-started/installation) 与 [Windows Native](https://hermes-agent.nousresearch.com/docs/user-guide/windows-native)。
 
 ## 安装器实际做了什么
 
@@ -161,7 +164,7 @@ hermes doctor → hermes model → hermes setup → hermes sessions list
 
 ## 动手练习
 
-1. 执行安装命令后运行 `hermes --version`，记录版本号（撰写时可对照 PyPI 上 v0.14.x 量级）。
+1. 执行安装命令后运行 `hermes --version`，并对照 [PyPI hermes-agent](https://pypi.org/project/hermes-agent/) 当前 release 标签是否一致。
 2. 运行 `hermes doctor`，对每一条 warning 判断：属于「尚未配置 Provider」还是「必须立刻修复」。
 3. 故意在新终端不 source profile 执行 `hermes`，复现 `command not found`，再修复 PATH。
 
