@@ -2,7 +2,7 @@
 title: Skills：构建可重用提示模板与工作流
 description: 用 SKILL.md 把重复流程写成可懒加载的技能，支持斜杠调用与模型自动选用，并与 CLAUDE.md、Hooks 分工协作。
 sidebar:
-  order: 9
+  order: 10
 ---
 
 *「每次提 PR 都要粘贴同一段审查清单；CLAUDE.md 已经长到每次会话都占一大块上下文。」*
@@ -12,6 +12,8 @@ sidebar:
 Skills 把流程写进 `SKILL.md`。正文**只在被调用时**进入上下文，长参考材料平时几乎不占窗口。官方说明见 [Extend Claude with skills](https://code.claude.com/docs/en/skills)，内置斜杠命令与捆绑技能见 [Commands](https://code.claude.com/docs/en/commands)。
 
 本章目标：理解 Skills 的加载与触发模型，能写一个可验证的个人或项目技能，并知道何时用 Skill、何时继续用 CLAUDE.md 或 Hook。
+
+**第六部分 · Skill 体系**（社区精选、目录导读、团队自建）见 [编码向社区精选](/claude-code/skill-recommendations/)、[社区技能目录导读](/claude-code/skill-catalog/)、[团队 Skill 实战](/claude-code/skills-team-playbook/)。建议先读完本章再进入该部分。
 
 ---
 
@@ -383,5 +385,7 @@ git status --short
 - [ ] 能说出 Skills 与 CLAUDE.md、Hooks、SubAgents 的分工  
 
 ---
+
+社区精选与 Superpowers 安装见 [编码向社区精选](/claude-code/skill-recommendations/)。团队自建见 [团队 Skill 实战](/claude-code/skills-team-playbook/)。
 
 下一章：[SubAgents](/claude-code/subagents/)——在独立上下文中委派探索、规划与并行任务，并与 Skills 的 `context: fork`、预加载技能配合使用。

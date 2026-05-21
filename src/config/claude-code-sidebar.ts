@@ -41,7 +41,15 @@ export const claudeCodeSidebar = [
     ],
   },
   {
-    label: '第六部分 · 实战与最佳实践',
+    label: '第六部分 · Skill 体系',
+    items: [
+      { label: '编码向社区精选', link: '/claude-code/skill-recommendations/' },
+      { label: '社区技能目录导读', link: '/claude-code/skill-catalog/' },
+      { label: '团队 Skill 实战', link: '/claude-code/skills-team-playbook/' },
+    ],
+  },
+  {
+    label: '第七部分 · 实战与最佳实践',
     items: [
       { label: '提示工程秘诀', link: '/claude-code/prompt-engineering/' },
       { label: '完整实战工作流', link: '/claude-code/complete-workflow/' },
@@ -50,14 +58,14 @@ export const claudeCodeSidebar = [
     ],
   },
   {
-    label: '第七部分 · 反思与进阶',
+    label: '第八部分 · 反思与进阶',
     items: [
       { label: '局限性与应对', link: '/claude-code/limitations/' },
       { label: 'AI 时代的开发者', link: '/claude-code/reflection/' },
     ],
   },
   {
-    label: '第八部分 · 进阶实践',
+    label: '第九部分 · 进阶实践',
     items: [
       { label: '调试与错误恢复', link: '/claude-code/debug-error-recovery/' },
       { label: 'Token 成本与会话经济学', link: '/claude-code/token-economics/' },
@@ -65,6 +73,12 @@ export const claudeCodeSidebar = [
       { label: '测试驱动与质量保障', link: '/claude-code/tdd-quality/' },
       { label: '团队与组织级落地', link: '/claude-code/team-organization/' },
       { label: '心智模型迁移', link: '/claude-code/mental-model-migration/' },
+    ],
+  },
+  {
+    label: '第十部分 · 排障速查',
+    items: [
+      { label: '常见问题排查', link: '/claude-code/troubleshooting-faq/' },
     ],
   },
 ];

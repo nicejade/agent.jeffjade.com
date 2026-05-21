@@ -2,7 +2,7 @@
 title: 上下文管理与多代理架构
 description: 当上下文用到 80% 仍在大改十几个文件时会发生什么，以及用 SubAgents、/handoff 与 /clear 组合成可恢复的长任务工作流。
 sidebar:
-  order: 11
+  order: 16
 ---
 
 *「上下文已经 80%，它还在改第十四个文件。测试绿了，但我已经说不清它还记得最初要动哪条业务规则。」*
@@ -289,4 +289,4 @@ identify the three most complex functions, and return only a summary.
 
 ---
 
-下一章：[MCP](/claude-code/mcp/)——连接 GitHub、数据库、浏览器等外部系统，并控制 MCP 工具定义对主窗口的占用。
+上一章：[团队 Skill 实战](/claude-code/skills-team-playbook/) · 下一章：[提示工程秘诀](/claude-code/prompt-engineering/)——窗口用到 80% 时的 handoff 与 `/clear` 组合。

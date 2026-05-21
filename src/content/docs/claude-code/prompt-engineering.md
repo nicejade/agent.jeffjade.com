@@ -2,7 +2,7 @@
 title: 高效提示工程的秘诀
 description: 在 Agentic Coding 里用可验证目标、分阶段节奏与上下文管理指挥 Claude Code，而不是堆长提示或逐步遥控。
 sidebar:
-  order: 13
+  order: 17
 ---
 
 *「帮我改进一下代码。」——二十分钟后 diff 满天飞，测试红了，你仍说不清最初要达成什么。」*
@@ -436,4 +436,4 @@ spec 写好后，**新开一个会话**专门实现，主上下文只服务执�
 
 ---
 
-下一章：[完整实战工作流](/claude-code/complete-workflow/)——把本章方法论落到代码理解、调试、重构、新功能与协作提交的端到端路径上。
+上一章：[上下文管理与多代理架构](/claude-code/context-management/) · 下一章：[完整实战工作流](/claude-code/complete-workflow/)——把本章方法论落到代码理解、调试、重构、新功能与协作提交的端到端路径上。

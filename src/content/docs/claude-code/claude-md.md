@@ -74,7 +74,7 @@ Claude Code 提供两套互补机制：
 - Code Review 指出「它本该知道」的仓库约定
 - 你刚在上个会话里打过的说明，这次又要再打一遍
 
-若某条说明只属于**单一子目录**或**多步流程**，优先考虑 [`.claude/rules/`](#organize-with-rules) 的路径规则，或第五部分的 [Skills](/claude-code/skills/)，而不是全部堆进根 `CLAUDE.md`。
+若某条说明只属于**单一子目录**或**多步流程**，优先考虑 [`.claude/rules/`](#organize-with-rules) 的路径规则，或第六部分的 [Skill 体系](/claude-code/skills/)，而不是全部堆进根 `CLAUDE.md`。
 
 ---
 

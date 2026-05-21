@@ -2,7 +2,7 @@
 title: Hooks：自动化、安全校验与生命周期控制
 description: 在代理循环的关键节点插入确定性脚本，用 PreToolUse、PostToolUse、Stop 等事件实现格式化、拦截危险操作与外部通知。
 sidebar:
-  order: 8
+  order: 9
 ---
 
 *「我在 CLAUDE.md 里写了禁止动 `.env`，模型还是改了一次；每次 Edit 完还要自己跑 Prettier。」*
@@ -369,4 +369,4 @@ chmod +x .claude/hooks/block-rm.sh
 
 ---
 
-下一章：[Skills 技能](/claude-code/skills/)——把可复用工作流写成 SKILL.md，让 Claude 在需要时主动加载领域流程，与 Hooks 的「到点必跑」形成互补。
+下一章：[Skills 技能](/claude-code/skills/)——把可复用工作流写成 SKILL.md；社区精选见 [第六部分](/claude-code/skill-recommendations/)。

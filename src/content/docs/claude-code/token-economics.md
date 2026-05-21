@@ -2,7 +2,7 @@
 title: Token 成本感知与会话经济学
 description: 用 /context、/usage 与 statusline 监测窗口占用，判断何时 /compact 或新开会话，并用 paths 规则与大文件策略控制 monorepo 扫描成本。
 sidebar:
-  order: 19
+  order: 23
 ---
 
 *「我让 Claude『看一下整个 monorepo 有没有类似实现』，十分钟后测试才跑完。账单里那一格上下文占用，我直到变慢才想起来去看。」*

@@ -521,4 +521,4 @@ MCP Server 有权执行命令、访问文件、发起网络请求。需要保持
 
 ---
 
-下一章：[提示工程秘诀](/claude-code/prompt-engineering/)——具体性、迭代、上下文管理，让 Claude Code 的输出从「还行」变成「可靠」。
+下一章：[编码向社区精选](/claude-code/skill-recommendations/)——第六部分：Superpowers 等社区技能包；机制与编写见 [Skills](/claude-code/skills/)。

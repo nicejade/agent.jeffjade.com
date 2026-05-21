@@ -2,7 +2,7 @@
 title: Claude Code 完整实战工作流
 description: 从接手陌生代码、调试与重构，到新功能、测试、PR 与并行会话，把提示工程与 Plan Mode 落成可重复的端到端路径。
 sidebar:
-  order: 14
+  order: 18
 ---
 
 *「提示工程也学了，Plan Mode 也会切了，但真接手一个陌生 repo、修一个红 CI、或从零加功能时，仍不知道先开口说什么、在哪一步停。」*
@@ -220,7 +220,7 @@ authentication 是在哪些文件里实现的？它们如何协作？
 不要改样式文件与路由配置。
 ```
 
-大规模迁移可先让 Agent **列出文件清单**，你确认后再 `claude -p` 批处理或 `/batch` 类技能，见 [Skills 捆绑命令](/claude-code/skills/#捆绑技能与内置命令)。
+大规模迁移可先让 Agent **列出文件清单**，你确认后再 `claude -p` 批处理或 `/batch` 类技能，见 [Slash 命令](/claude-code/slash-commands/)。
 
 ### 重构后审查
 
