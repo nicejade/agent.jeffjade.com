@@ -2,7 +2,7 @@
 title: 高级特性
 description: 掌握 Voice 与视觉输入、浏览器自动化、execute_code 与 delegate_task 子 Agent，以及在编辑器中通过 hermes acp 使用 Hermes。
 sidebar:
-  order: 9
+  order: 11
 ---
 
 *「开了 Voice 和 browser toolset，Token 账单却暴涨——多半是云端浏览器与流式 TTS 叠在默认主模型上，而没有用 auxiliary 或子 Agent 分流。」*
@@ -23,6 +23,8 @@ sidebar:
 | `hermes acp` | VS Code / Zed 等 | 编辑器内 diff、审批、工作区 cwd | 与 CLI 相同 Provider |
 
 这些能力**默认不全开**。用 `hermes tools` 按平台勾选；ACP 使用精简的 `hermes-acp` toolset，不含 `cronjob`、`send_message` 等。
+
+需要 Web UI 或第三方聊天前端时，可启用 Gateway 附带的 [OpenAI 兼容 API Server](./architecture-deep-dive/#api-serveropenai-兼容)，与下表能力正交。
 
 ## Voice：CLI 麦克风与 Gateway 语音
 
@@ -342,4 +344,4 @@ VS Code 示例（手动注册）：
 
 ---
 
-下一章：[安全、性能与最佳实践](./security-performance-best-practices/)，汇总审批、容器隔离、Prompt Caching 与 `auxiliary.*` 调优。
+下一章：[安全、性能与最佳实践](./security-performance-best-practices/)，汇总 Checkpoints、审批、容器隔离、成本控制与 `hermes doctor`。

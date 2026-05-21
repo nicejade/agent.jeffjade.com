@@ -220,6 +220,19 @@ hermes curator restore my-workflow
 
 审查模型走 `auxiliary.curator` 槽位，可在 `hermes model` 里指定比主模型更便宜的模型。
 
+## 持久目标（Persistent Goals）
+
+`/goal <描述>` 在会话元数据里保存**跨轮站立目标**：每轮结束后辅助模型（`goal_judge`）用 JSON 判定 `done` 或 `continue`，未完成则自动注入续跑提示，默认最多约 20 轮续跑（`goals.max_turns`）。用户任意真实消息会**抢占**续跑循环。
+
+| 机制 | 说明 |
+| --- | --- |
+| 判定 | `auxiliary.goal_judge`，宜配便宜快模型 |
+| 失败开放 | 法官出错视为 `continue`，预算兜底 |
+| 持久化 | `SessionDB.state_meta`，`/resume` 可恢复 |
+| 与 memory | memory 存事实；goal 存**本轮任务终点** |
+
+子目标：`/subgoal` 追加条件，法官须同时满足原目标与全部 subgoal。适合「修完 lint 且补回归测试」类可验证终点；探索性闲聊不必开。入口提示见 [第一次对话](./first-conversation/#goal-与自动化续跑)。官方 [Persistent Goals](https://hermes-agent.nousresearch.com/docs/user-guide/features/goals)。
+
 ## 可选：外部记忆插件
 
 内置 `MEMORY.md` / `USER.md` 与插件**并存**，不互相替换：
@@ -227,9 +240,46 @@ hermes curator restore my-workflow
 ```bash
 hermes memory setup
 hermes memory status
+hermes memory off
 ```
 
-Honcho、Mem0、Hindsight 等提供语义检索、知识图谱等能力。选型见 [Memory Providers](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory-providers)。插件再强，也建议保留内置记忆层作为始终在场的精炼事实。
+### 外部记忆插件生态对比
+
+同时只能激活**一个**外部 provider；内置记忆始终在场。
+
+| Provider | 定位 | 接入 | 数据归属 | 典型坑点 |
+| --- | --- | --- | --- | --- |
+| **Honcho** | 跨会话用户建模、 dialectic 推理 | `hermes memory setup` → honcho；`honcho.json` | Honcho Cloud 或自建 | `contextCadence` / `dialecticCadence` 配错导致成本或延迟飙升 |
+| **OpenViking** | 向量 + 结构化检索 | `memory.provider: openviking` | 依部署 | 需单独服务与索引维护 |
+| **Mem0** | 托管记忆 API | setup 向导 | Mem0 云 | 与内置 memory 重复写入时需理解镜像规则 |
+| **Hindsight** | 长期反思型记忆 | provider 切换 | 服务商 | 延迟预取失败时表现为「偶发健忘」 |
+| **Holographic** | 实验性/领域特化 | provider 切换 | 依实现 | 文档迭代快，以官方为准 |
+| **RetainDB** | 本地/自托管 DB | provider 切换 | 本机或内网 | 备份与迁移需自行规划 |
+| **ByteRover** | 字节级/代码向记忆 | provider 切换 | 依产品 | 大仓库索引耗时 |
+| **Supermemory** | 第三方记忆 SaaS | provider 切换 | 服务商 | 密钥与合规审查 |
+
+共性机制（官方）：注入 provider 上下文、每轮预取、回合同步、会话结束抽取、镜像内置 `memory` 写入，并增加 provider 专用工具。
+
+**决策边界**：外部插件不能替代 `MEMORY.md` 的「始终在场精炼事实」；应用 Skill 存流程。新后端应发布**独立插件**，不进核心 `plugins/memory/` 树（见 [插件系统](./plugins-system/)）。
+
+选型详解：[Memory Providers](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory-providers)。
+
+## 记忆失效与修正
+
+| 信号 | 可能原因 | 处理 |
+| --- | --- | --- |
+| 行为与 `USER.md` 矛盾 | frozen snapshot 或过时条目 | 新会话；`memory` replace；人工编辑 `~/.hermes/memories/` |
+| 重复矛盾事实 | 多次 `add` 未合并 | 让 Agent `replace` 合并；或手工删段 |
+| 外部 provider「幻觉记忆」 | 错误同步 | `hermes memory off` 对比；清 provider 侧数据 |
+| Skill 与 memory 重复 | 分工不清 | 事实留 memory，流程迁 Skill |
+
+```bash
+hermes memory status    # 当前 provider
+# 直接编辑（谨慎）：
+${EDITOR:-nano} ~/.hermes/memories/MEMORY.md
+```
+
+触发 Curator 不会修 memory 文件；应用 `memory` 工具或人工编辑。若错误已进 Skill，用 [技能系统实战](./skills-in-practice/) 的 `pin` / `restore` 流程。
 
 ## 数据流总览
 

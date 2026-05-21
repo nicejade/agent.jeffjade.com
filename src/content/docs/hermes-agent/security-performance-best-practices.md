@@ -2,7 +2,7 @@
 title: 安全、性能与最佳实践
 description: 掌握七层安全模型、hermes doctor 体检、auxiliary 与压缩缓存调优，以及 Gateway 生产部署清单。
 sidebar:
-  order: 10
+  order: 12
 ---
 
 *「Gateway 已上线，YOLO 也开了，某天 Agent 在宿主机上跑了 rm -rf——你才发现 terminal.backend 仍是 local。」*
@@ -26,6 +26,60 @@ sidebar:
 | 7 | 输入净化 | terminal 工作目录 allowlist |
 
 单层失效不应拖垮全部：Gateway 开了 allowlist，但 backend 仍是 `local`，属于「身份对了、执行面仍危险」的常见组合。
+
+## Checkpoints 与 /rollback
+
+Hermes 可在**破坏性写操作前**自动快照工作目录，并用 `/rollback` 恢复。实现上使用 `~/.hermes/checkpoints/store/` 的**共享 shadow git 仓库**，不触碰项目自身的 `.git`。依据官方 [Checkpoints & Rollback](https://hermes-agent.nousresearch.com/docs/user-guide/checkpoints-and-rollback)。
+
+**默认关闭**（v2 opt-in）：存储会随时间增长，多数用户只用 Git 即可。
+
+```bash
+hermes chat --checkpoints
+```
+
+或全局：
+
+```yaml
+checkpoints:
+  enabled: true
+  max_snapshots: 20
+  max_total_size_mb: 500
+  max_file_size_mb: 10
+  auto_prune: true
+  retention_days: 7
+```
+
+### 何时自动快照
+
+每目录每轮至多一次，触发于：
+
+- `write_file`、`patch`
+- 破坏性终端命令：`rm`、`mv`、`sed -i`、重定向 `>`、`git reset`/`clean`/`checkout` 等
+
+### 会话内恢复
+
+| 命令 | 作用 |
+| --- | --- |
+| `/rollback` | 列出检查点 |
+| `/rollback <N>` | 恢复检查点 N，并撤销上一轮对话 |
+| `/rollback diff <N>` | 预览差异 |
+| `/rollback <N> <file>` | 仅恢复单文件 |
+
+```bash
+hermes checkpoints status
+hermes checkpoints prune
+hermes checkpoints clear-legacy
+```
+
+### 与 Git 工作流协同
+
+| 做法 | 说明 |
+| --- | --- |
+| 日常开发 | 仍以 Git commit 为真相源 |
+| Agent 试错 | checkpoints 快速回到 Agent 改乱前 |
+| 并行 Agent | 配合 [git worktree](https://hermes-agent.nousresearch.com/docs/user-guide/git-worktrees) + checkpoints |
+
+**不可逆操作**：已 `git push`、已发外部消息、已调支付 API、共享库已 migration 等。checkpoint 只覆盖 shadow 跟踪的工作区文件；超大文件与超大目录会跳过。PATH 无 `git` 时功能透明禁用。
 
 ## 命令审批：manual、smart、off 与 YOLO
 
@@ -173,6 +227,53 @@ prompt_caching:
 
 `security.allow_lazy_installs: false` 可禁止运行时 `pip install` 可选依赖，适合隔离网络，但需事先装好对应 extra。
 
+## 成本控制框架
+
+账单暴涨通常来自**隐性乘数**，而非单次对话。
+
+| 成本大头 | 机制 | 抑制手段 |
+| --- | --- | --- |
+| 子 Agent | `delegate_task` 多轮 × 全工具 | 只回收摘要；Kanban 拆长期任务 |
+| 云浏览器 | Browserbase 等按会话/分钟 | 本地 Chromium；任务结束关会话 |
+| 流式 TTS | Voice 长回复朗读 | CLI 关 TTS；Gateway 限平台 |
+| 长上下文 | 每轮塞满 `@file` 全文 | 行范围引用；`/compress` |
+| 续跑目标 | `/goal` 默认 20 轮 | 收紧 `goals.max_turns`；便宜 `goal_judge` |
+
+### auxiliary 实测收益
+
+为 **compression**、**vision**、**approval smart**、**goal_judge**、**curator** 指定便宜模型，常比降主模型档位更安全。约束：**compression 模型上下文不得小于主模型**，否则长会话「健忘」。用 `/usage` 对比压缩前后 token。
+
+### Prompt Caching 生效条件
+
+- 系统提示前缀跨轮稳定（frozen memory、`AGENTS.md` 少动）
+- 避免频繁 `/model` 换提供商
+- Anthropic 经官方或 OpenRouter 时配置 `prompt_caching.cache_ttl`
+
+### hermes logs 审计示例
+
+```bash
+hermes logs --follow --level INFO
+hermes logs --grep "TOOL_CALL"
+```
+
+结合 Gateway `gateway.log` 与 `~/.hermes/logs/curator/`，可回溯「哪次 Cron / 哪条会话」触发大量工具。详见 [高级特性](./advanced-features/) 成本表与官方 [Tips](https://hermes-agent.nousresearch.com/docs/guides/tips)。
+
+## Web Dashboard 远程访问
+
+```bash
+hermes dashboard    # 默认 http://127.0.0.1:9119
+```
+
+面板含会话历史、Kanban、Cron 等（随版本迭代）。**默认仅本机回环**，适合 VPS 上 `ssh -L 9119:127.0.0.1:9119 user@vps` 转发。
+
+若必须远程直连：
+
+1. 置于反向代理 后并启用 TLS。
+2. 设强认证，勿裸奔 `0.0.0.0`。
+3. 与 [API Server](./architecture-deep-dive/#api-serveropenai-兼容) 的 `API_SERVER_KEY` 分开管理。
+
+误用边界：Dashboard 能查看会话与触发操作，权限等同能登录该 Hermes 主机的用户。
+
 ## 生产 Gateway 检查清单
 
 1. 显式 allowlist 或 pairing，禁止全局 `ALLOW_ALL`。
@@ -224,4 +325,4 @@ prompt_caching:
 
 ---
 
-下一章：[架构拆解](./architecture-deep-dive/)，从 `AIAgent`、`tools/registry.py` 到 Gateway 与 Cron 数据流。
+下一章：[插件系统（Plugins）](./plugins-system/)，扩展工具、钩子与记忆后端而不改核心仓库。

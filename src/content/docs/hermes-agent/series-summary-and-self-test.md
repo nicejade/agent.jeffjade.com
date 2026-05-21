@@ -1,13 +1,13 @@
 ---
 title: 系列总结与自测
-description: 串联 Hermes 全系列 14 章能力地图，给出可勾选自测项、能力边界与下一步真实项目建议。
+description: 串联 Hermes 全系列 17 章能力地图，给出可勾选自测项、能力边界与下一步真实项目建议。
 sidebar:
-  order: 14
+  order: 17
 ---
 
 *「教程都看完了，真要在一台 VPS 上长期跑 Gateway，却说不出会先检查 allowlist 还是 terminal.backend。」*
 
-本章不重复各章细节，而是帮你**验收是否真会用了**：用一张能力地图对照 14 章，用自测清单暴露缺口，并给出可落地的下一步项目。若你同时学习本站 [Claude Code 漫游指南](/claude-code/)，文末有二者分工说明。
+本章不重复各章细节，而是帮你**验收是否真会用了**：用一张能力地图对照 17 章，用自测清单暴露缺口，并给出可落地的下一步项目。若你同时学习本站 [Claude Code 漫游指南](/claude-code/)，文末有二者分工说明。
 
 ## 系列在解决什么问题
 
@@ -23,7 +23,7 @@ Hermes Agent 的主轴可以收成一句：
 | 跨会话状态 | `MEMORY.md`、`USER.md`、SessionDB + FTS5 |
 | 程序性记忆 | `SKILL.md` 与渐进披露，而非每轮重讲流程 |
 
-## 全系列地图（14 章）
+## 全系列地图（17 章）
 
 ### 入门：能跑起来
 
@@ -31,33 +31,36 @@ Hermes Agent 的主轴可以收成一句：
 | --- | --- | --- |
 | 1 | [认识 Hermes Agent](./what-is-hermes-agent/) | 说清 Agent Loop 与 closed loop，判断该不该用 Hermes |
 | 2 | [安装与环境准备](./installation-setup/) | `hermes doctor`、理解 `~/.hermes/` 布局 |
-| 3 | [第一次对话](./first-conversation/) | `hermes model`、多轮对话、`hermes --continue`、≥64K 上下文 |
+| 3 | [第一次对话](./first-conversation/) | `hermes model`、@ 引用、多轮对话、`hermes --continue` |
 
 ### 核心机制：懂规则
 
 | 章 | 主题 | 你应该能 |
 | --- | --- | --- |
-| 4 | [记忆、学习与 Skill](./memory-learning-skills/) | frozen snapshot、`memory` 与 `skill_manage`、Curator 角色 |
-| 5 | [配置与个性化](./configuration-personalization/) | `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md`、Profile |
+| 4 | [记忆、学习与 Skill](./memory-learning-skills/) | frozen snapshot、`/goal`、记忆插件、`skill_manage` |
+| 5 | [配置与个性化](./configuration-personalization/) | routing/fallback/凭据池、Profile、`SOUL.md` |
 | 6 | [工具系统](./tools-system/) | toolsets、`hermes tools`、审批与 backend |
 
 ### 实战：日常干活
 
 | 章 | 主题 | 你应该能 |
 | --- | --- | --- |
-| 7 | [消息网关](./messaging-gateway/) | `hermes gateway setup`、allowlist/pairing、Cron deliver |
-| 8 | [技能系统实战](./skills-in-practice/) | 合格 `SKILL.md`、Hub/tap、`hermes curator` |
-| 9 | [高级特性](./advanced-features/) | Voice/vision/browser、`execute_code`、`delegate_task`、ACP |
+| 7 | [消息网关](./messaging-gateway/) | Gateway、Dashboard、Cron deliver |
+| 8 | [技能系统实战](./skills-in-practice/) | Skill 生命周期、Hub、`hermes curator` |
+| 9 | [事件钩子](./event-hooks/) | 三类钩子与 `pre_tool_call` 阻断 |
+| 10 | [Kanban 看板](./kanban-multi-agent-board/) | 与 `delegate_task` 取舍、dispatcher |
+| 11 | [高级特性](./advanced-features/) | Voice/browser、`delegate_task`、ACP |
 
 ### 进阶：边界与延伸
 
 | 章 | 主题 | 你应该能 |
 | --- | --- | --- |
-| 10 | [安全、性能与最佳实践](./security-performance-best-practices/) | 七层安全、auxiliary、压缩与 Prompt Caching |
-| 11 | [架构拆解](./architecture-deep-dive/) | `AIAgent`、`registry`、`COMMAND_REGISTRY`、三条数据流 |
-| 12 | [从零实现类似 Agent](./build-your-own-agent/) | 九阶段 MVP 与常见陷阱 |
-| 13 | [贡献与社区](./contributing-and-community/) | Skill vs Tool、Hub/PR、Trajectory |
-| 14 | 本章 | 自测通过、选好下一个真实项目 |
+| 12 | [安全、性能与最佳实践](./security-performance-best-practices/) | Checkpoints、成本控制、`hermes doctor` |
+| 13 | [插件系统](./plugins-system/) | `plugins.enabled`、记忆 provider |
+| 14 | [架构拆解](./architecture-deep-dive/) | Agent Loop、API Server、Gateway 数据流 |
+| 15 | [从零实现类似 Agent](./build-your-own-agent/) | 九阶段 MVP 与常见陷阱 |
+| 16 | [贡献与社区](./contributing-and-community/) | Skill vs Tool、批处理轨迹、Atropos |
+| 17 | 本章 | 自测通过、选好下一个真实项目 |
 
 ## 能力边界：Hermes 擅长与不擅长
 

@@ -249,6 +249,38 @@ instruction: |
 
 **不要**用社区流传的固定「15 次」阈值替代官方 **5+ tool calls** 表述；那是非官方口径。
 
+## Skill 完整生命周期
+
+从创建到 Hub 发布，可视为状态机：
+
+```text
+创建 (手写 / skill_manage / hermes skills install)
+    → 使用计数上升
+    → 长期未用 → stale (Curator)
+    → 更久未用 → archive (.archive/)
+    → 可 curator restore / pin 冻结
+    → 可选 hermes skills publish → agentskills.io
+    → 他人 hermes skills install 拉取
+```
+
+| 阶段 | 谁触发 | 磁盘表现 |
+| --- | --- | --- |
+| 创建 | 用户 install、Agent `skill_manage` | `~/.hermes/skills/<cat>/<name>/SKILL.md` |
+| 活跃 | 被 `/skill` 或 `skill_view` 使用 | 计数更新 |
+| stale | Curator 确定性规则（约 30 天未用） | 标记，仍可读 |
+| archive | 约 90 天未用 | 移入 `.archive/` |
+| pin | 用户 `hermes curator pin` | 跳过归档 |
+| 发布 | `hermes skills publish` | 进入 Hub/tap 生态 |
+| 安装 | 他人 `hermes skills install` | `.hub/lock.json` 记录 |
+
+```bash
+hermes skills publish my-workflow    # 发布到 Hub（需满足官方检查）
+hermes skills update
+hermes skills uninstall my-workflow
+```
+
+**误用**：未 `pin` 的生产 Skill 可能被 Curator 归档；Agent **不能**自行 `install` 未信任 Hub 包。
+
 ## Curator：实战运维
 
 Curator 在 CLI 启动或 Gateway 空闲时检查：默认距上次 ≥ 7 天且空闲 ≥ 2 小时则 fork 维护 Agent。
@@ -337,4 +369,4 @@ Skill 声明的 `metadata.hermes.config` 写入 `config.yaml` 的 `skills.config
 
 ---
 
-下一章：[高级特性](./advanced-features/)，展开 Voice、浏览器与子 Agent、`hermes acp`、`execute_code` 等。
+下一章：[事件钩子（Event Hooks）](./event-hooks/)，在 Gateway、Plugin 与 Shell 三层扩展生命周期逻辑。

@@ -17,33 +17,36 @@ sidebar:
 | --- | --- | --- |
 | 1 | [认识 Hermes Agent](/hermes-agent/what-is-hermes-agent/) — 定位、学习闭环、工具对比与适用边界 | 已发布 |
 | 2 | [安装与环境准备](/hermes-agent/installation-setup/) — 安装、`hermes doctor`、平台差异与故障排查 | 已发布 |
-| 3 | [第一次对话](/hermes-agent/first-conversation/) — `hermes model`、CLI/TUI、Slash 命令、`hermes --continue` | 已发布 |
+| 3 | [第一次对话](/hermes-agent/first-conversation/) — `hermes model`、CLI/TUI、@ 引用、`hermes --continue` | 已发布 |
 
 ## 第二部分：核心机制
 
 | # | 主题 | 状态 |
 | --- | --- | --- |
-| 4 | [记忆、学习与 Skill](/hermes-agent/memory-learning-skills/) — `MEMORY.md`、`skill_manage`、Curator、会话检索 | 已发布 |
-| 5 | [配置与个性化](/hermes-agent/configuration-personalization/) — `config.yaml`、`.env`、`SOUL.md`、`AGENTS.md`、Profile | 已发布 |
+| 4 | [记忆、学习与 Skill](/hermes-agent/memory-learning-skills/) — `MEMORY.md`、持久目标、`skill_manage`、记忆插件、Curator | 已发布 |
+| 5 | [配置与个性化](/hermes-agent/configuration-personalization/) — `config.yaml`、路由/回退/凭据池、`SOUL.md`、Profile | 已发布 |
 | 6 | [工具系统](/hermes-agent/tools-system/) — Toolsets、沙箱执行环境、审批流、MCP | 已发布 |
 
 ## 第三部分：实战
 
 | # | 主题 | 状态 |
 | --- | --- | --- |
-| 7 | [消息网关](/hermes-agent/messaging-gateway/) — `hermes gateway setup`、多平台与 Cron | 已发布 |
-| 8 | [技能系统实战](/hermes-agent/skills-in-practice/) — `SKILL.md`、Skills Hub、`hermes curator` | 已发布 |
-| 9 | [高级特性](/hermes-agent/advanced-features/) — Voice、浏览器、子 Agent、ACP | 已发布 |
+| 7 | [消息网关](/hermes-agent/messaging-gateway/) — `hermes gateway setup`、多平台、Dashboard 与 Cron | 已发布 |
+| 8 | [技能系统实战](/hermes-agent/skills-in-practice/) — `SKILL.md`、Hub、Skill 生命周期、`hermes curator` | 已发布 |
+| 9 | [事件钩子（Event Hooks）](/hermes-agent/event-hooks/) — Gateway / Plugin / Shell 钩子与阻断策略 | 已发布 |
+| 10 | [Kanban 多 Agent 看板](/hermes-agent/kanban-multi-agent-board/) — 持久任务板与 `delegate_task` 取舍 | 已发布 |
+| 11 | [高级特性](/hermes-agent/advanced-features/) — Voice、浏览器、子 Agent、ACP | 已发布 |
 
 ## 第四部分：进阶
 
 | # | 主题 | 状态 |
 | --- | --- | --- |
-| 10 | [安全、性能与最佳实践](/hermes-agent/security-performance-best-practices/) — 审批、容器、`hermes doctor`、压缩与缓存 | 已发布 |
-| 11 | [架构拆解](/hermes-agent/architecture-deep-dive/) — Agent Loop、Prompt 组装、`registry` 与 Gateway 数据流 | 已发布 |
-| 12 | [从零实现类似 Agent](/hermes-agent/build-your-own-agent/) — 分阶段实现路线图与常见陷阱 | 已发布 |
-| 13 | [贡献与社区](/hermes-agent/contributing-and-community/) — Skills Hub、PR、Trajectory 与 Atropos | 已发布 |
-| 14 | [系列总结与自测](/hermes-agent/series-summary-and-self-test/) — 能力边界、自测清单、下一步项目 | 已发布 |
+| 12 | [安全、性能与最佳实践](/hermes-agent/security-performance-best-practices/) — Checkpoints、审批、容器、成本控制、`hermes doctor` | 已发布 |
+| 13 | [插件系统（Plugins）](/hermes-agent/plugins-system/) — 通用插件、记忆与上下文引擎 | 已发布 |
+| 14 | [架构拆解](/hermes-agent/architecture-deep-dive/) — Agent Loop、API Server、Gateway 数据流 | 已发布 |
+| 15 | [从零实现类似 Agent](/hermes-agent/build-your-own-agent/) — 分阶段实现路线图与常见陷阱 | 已发布 |
+| 16 | [贡献与社区](/hermes-agent/contributing-and-community/) — Skills Hub、批处理轨迹、Atropos | 已发布 |
+| 17 | [系列总结与自测](/hermes-agent/series-summary-and-self-test/) — 能力边界、自测清单、下一步项目 | 已发布 |
 
 ## 官方资源
 

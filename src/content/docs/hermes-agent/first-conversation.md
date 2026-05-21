@@ -175,7 +175,54 @@ hermes sessions list
 
 ### `/goal` 与自动化续跑
 
-`/goal <描述>` 设置跨轮目标，由辅助模型判断是否完成；未完成时 Agent 可能自动续跑，默认预算约 20 轮。任意真实用户消息会抢占该循环。适合明确终点任务；日常探索不必开启。详见 [Persistent Goals](https://hermes-agent.nousresearch.com/docs/user-guide/features/goals)。
+`/goal <描述>` 设置跨轮目标，由辅助模型判断是否完成；未完成时 Agent 可能自动续跑，默认预算约 20 轮。任意真实用户消息会抢占该循环。适合明确终点任务；日常探索不必开启。机制与预算见 [记忆、学习与 Skill](./memory-learning-skills/#持久目标-persistent-goals)；官方 [Persistent Goals](https://hermes-agent.nousresearch.com/docs/user-guide/features/goals)。
+
+## 上下文引用（@ 语法）
+
+在 CLI 输入框里，可用 `@` 把文件、目录或 diff **展开进当前消息**，无需让 Agent 先猜路径再 `read_file`。依据官方 [Context References](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references)。
+
+### 支持的写法
+
+| 语法 | 作用 |
+| --- | --- |
+| `@file:src/main.py` | 注入文件全文 |
+| `@file:src/main.py:10-25` | 注入行范围（1 起始，含首尾） |
+| `@folder:src/components` | 目录树与元数据（最多 200 项） |
+| `@diff` | 工作区 `git diff` |
+| `@staged` | `git diff --staged` |
+| `@git:5` | 最近 N 次提交与 patch（N 上限 10） |
+| `@url:https://example.com` | 抓取网页正文 |
+
+示例：
+
+```text
+审查 @file:src/auth.py:50-80，并对照 @diff 看是否有回归
+```
+
+多条引用可同句并存；句末 `,` `.` `?` 等会从引用尾部自动剥离。输入 `@` 会触发 Tab 补全（类型与路径）。
+
+### 与 session_search 的差异
+
+| 维度 | `@` 引用 | `session_search` |
+| --- | --- | --- |
+| 内容来源 | 当前工作区文件 / git / URL | `state.db` 历史消息 |
+| 时机 | 发送前展开到用户消息 | 对话中工具按需查询 |
+| 成本 | 占用上下文（见下表限额） | FTS 查询，无额外 LLM |
+| 平台 | **主要支持 CLI** | CLI 与 Gateway |
+
+Telegram、Discord 等 Gateway **不会**展开 `@`；消息原样进 Agent，仍可用 `read_file` 等工具。配置章对敏感路径有交叉说明。
+
+### 大小与安全边界
+
+| 阈值 | 行为 |
+| --- | --- |
+| 软限（约上下文 25%） | 追加警告，仍展开 |
+| 硬限（约 50%） | 拒绝展开，原消息不变 |
+| 敏感路径 | `~/.ssh/`、`~/.hermes/.env` 等阻断 |
+| 工作区外路径 | 拒绝并警告 |
+| 二进制文件 | 拒绝 |
+
+大文件请用行范围 `@file:path:100-200`，避免一次注入整库。压缩会话后，引用内容会进入摘要而非逐字保留。
 
 ## CLI 与 TUI 怎么选
 
@@ -234,4 +281,4 @@ hermes sessions list
 
 ---
 
-下一章：[记忆、学习与 Skill](./memory-learning-skills/)，弄清 `MEMORY.md` 的 frozen snapshot、`skill_manage` 与 Curator 如何支撑 closed learning loop。
+下一章：[记忆、学习与 Skill](./memory-learning-skills/)，弄清 `MEMORY.md` 的 frozen snapshot、`skill_manage`、持久目标与 Curator 如何支撑 closed learning loop。

@@ -2,7 +2,7 @@
 title: 从零实现类似 Agent
 description: 按九阶段路线图实现 Agent 循环、工具注册表、冻结记忆与 Skill 披露、Gateway 与 MCP，并避开常见架构陷阱。
 sidebar:
-  order: 12
+  order: 15
 ---
 
 *「只想做一个能调工具和记住偏好的 CLI，却先写了 Telegram 网关——结果三周过去，循环还没跑通。」*

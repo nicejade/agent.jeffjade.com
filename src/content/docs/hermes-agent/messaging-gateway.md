@@ -294,6 +294,18 @@ display:
 
 聊天中可看到 `💻 ls -la` 类进度提示。`/background` 会 fork 独立 Agent，结果回到**发起该命令的同一聊天**。
 
+## Web Dashboard 与运维面板
+
+除消息平台外，可用浏览器查看会话、Kanban、定时任务等：
+
+```bash
+hermes dashboard
+```
+
+默认监听 `127.0.0.1:9119`。与 Gateway 并行时常驻；VPS 上建议 SSH 端口转发，远程暴露须加 TLS 与认证，见 [安全、性能与最佳实践](./security-performance-best-practices/#web-dashboard-远程访问)。
+
+Kanban 看板、多 board 切换、建卡与归档在 Dashboard 与 `hermes kanban` CLI 间共享同一 SQLite，见 [Kanban 多 Agent 看板](./kanban-multi-agent-board/)。
+
 ## 与 CLI、Profile、工具章的衔接
 
 | 主题 | 关联 |
@@ -302,6 +314,7 @@ display:
 | Toolsets | `hermes tools` 按平台开关；Telegram 默认 `hermes-telegram` |
 | 终端 backend | Gateway 上 `terminal` 仍受 `terminal.backend` 约束 |
 | 记忆与 Skill | 同一 `MEMORY.md` 与 `~/.hermes/skills/`，Gateway 会话写入 `state.db` |
+| API Server | Gateway 启动后可开 OpenAI 兼容 HTTP，见 [架构拆解](./architecture-deep-dive/#api-serveropenai-兼容) |
 
 **不要**在未配 Provider 时先起 Gateway：错误会出现在每个聊天里，排查成本更高。
 
@@ -348,4 +361,4 @@ display:
 
 ---
 
-下一章：[技能系统实战](./skills-in-practice/)，展开 `SKILL.md` 结构、Skills Hub 安装、`hermes curator` 与手写 Skill 工作流。
+下一章：[技能系统实战](./skills-in-practice/)，展开 `SKILL.md`、Hub 安装、Skill 生命周期与 Curator。

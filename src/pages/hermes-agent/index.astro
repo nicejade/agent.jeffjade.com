@@ -9,7 +9,7 @@ const site = SITE_URL;
 const pageUrl = `${site}/hermes-agent/`;
 const title = 'Hermes Agent 漫游指南 | 智能体漫游';
 const description =
-  '14 章系统掌握 Hermes Agent：closed learning loop、MEMORY.md 与 Skill、工具系统与 Gateway、安全与架构拆解，以及从零实现与社区贡献。';
+  '17 章系统掌握 Hermes Agent：closed learning loop、Hooks 与 Kanban、Gateway 与插件、Checkpoints 与 API Server，以及架构拆解与社区贡献。';
 
 const parts = [
   {
@@ -36,7 +36,9 @@ const parts = [
     chapters: [
       { n: 7, title: '消息网关', href: '/hermes-agent/messaging-gateway/' },
       { n: 8, title: '技能系统实战', href: '/hermes-agent/skills-in-practice/' },
-      { n: 9, title: '高级特性', href: '/hermes-agent/advanced-features/' },
+      { n: 9, title: '事件钩子', href: '/hermes-agent/event-hooks/' },
+      { n: 10, title: 'Kanban 多 Agent 看板', href: '/hermes-agent/kanban-multi-agent-board/' },
+      { n: 11, title: '高级特性', href: '/hermes-agent/advanced-features/' },
     ],
   },
   {
@@ -44,14 +46,15 @@ const parts = [
     title: '进阶',
     chapters: [
       {
-        n: 10,
+        n: 12,
         title: '安全、性能与最佳实践',
         href: '/hermes-agent/security-performance-best-practices/',
       },
-      { n: 11, title: '架构拆解', href: '/hermes-agent/architecture-deep-dive/' },
-      { n: 12, title: '从零实现类似 Agent', href: '/hermes-agent/build-your-own-agent/' },
-      { n: 13, title: '贡献与社区', href: '/hermes-agent/contributing-and-community/' },
-      { n: 14, title: '系列总结与自测', href: '/hermes-agent/series-summary-and-self-test/' },
+      { n: 13, title: '插件系统', href: '/hermes-agent/plugins-system/' },
+      { n: 14, title: '架构拆解', href: '/hermes-agent/architecture-deep-dive/' },
+      { n: 15, title: '从零实现类似 Agent', href: '/hermes-agent/build-your-own-agent/' },
+      { n: 16, title: '贡献与社区', href: '/hermes-agent/contributing-and-community/' },
+      { n: 17, title: '系列总结与自测', href: '/hermes-agent/series-summary-and-self-test/' },
     ],
   },
 ];
@@ -120,7 +123,7 @@ const claudeGuide = {
       <main>
         <section class="hero hero-guide" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Hermes Agent · 14 章</p>
+            <p class="eyebrow">Hermes Agent · 17 章</p>
             <h1 id="hero-title">系统掌握 <span>Hermes Agent</span></h1>
             <p class="hero-lede">
               Nous Research 出品的模型无关自主 Agent：不绑定 IDE，可跑 CLI、TUI、Gateway 与 Cron。本指南从 closed learning loop、记忆与 Skill，到工具审批、多平台网关、架构拆解与自测验收。

@@ -2,7 +2,7 @@
 title: 架构拆解
 description: 读懂 AIAgent 循环、Prompt 组装顺序、tools/registry 与 COMMAND_REGISTRY，以及 CLI、Gateway、Cron 如何共用同一核心。
 sidebar:
-  order: 11
+  order: 14
 ---
 
 *「改了 `tools/foo.py` 却未生效——多半是没搞清 import 时自注册，而不是少写了一条 import。」*
@@ -210,6 +210,52 @@ Scheduler tick → jobs.json 到期任务
 ```
 
 Cron 任务是 **Agent 任务**而非裸 shell；存储在 `~/.hermes/cron/`（Profile 下路径随 `HERMES_HOME` 变化）。
+
+## API Server（OpenAI 兼容）
+
+Gateway 进程可附带 HTTP API，把 Hermes 暴露为 OpenAI 格式后端，供 Open WebUI、LobeChat、LibreChat 等连接。依据 [API Server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server)。
+
+### 启用
+
+在 `~/.hermes/.env`：
+
+```bash
+API_SERVER_ENABLED=true
+API_SERVER_KEY=change-me-local-dev
+API_SERVER_HOST=127.0.0.1
+API_SERVER_PORT=8642
+```
+
+启动 Gateway 后出现 `[API Server] listening on http://127.0.0.1:8642`。
+
+### 最小验证
+
+```bash
+curl http://127.0.0.1:8642/v1/chat/completions \
+  -H "Authorization: Bearer change-me-local-dev" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "hermes-agent", "messages": [{"role": "user", "content": "Hello"}]}'
+```
+
+### 主要端点
+
+| 端点 | 用途 |
+| --- | --- |
+| `POST /v1/chat/completions` | 无状态多轮；`messages` 自带历史 |
+| `POST /v1/responses` | 服务端存链；`previous_response_id` |
+| `POST /v1/runs` | 长跑任务 + SSE 事件 |
+| `GET /v1/models` | 前端发现模型名 |
+| `GET /health` | 健康检查 |
+
+前端发来的 `system` / `instructions` **叠加**在 Hermes 核心系统提示之上，工具、memory、Skill 仍可用。
+
+### 安全与多用户
+
+- 非回环绑定（如 `0.0.0.0`）时 **必须** 设 `API_SERVER_KEY`。
+- 浏览器直连需窄化 `API_SERVER_CORS_ORIGINS`；多数前端走服务端转发，无需 CORS。
+- 多用户：每用户一个 [Profile](./configuration-personalization/)，不同 `API_SERVER_PORT` 与 Key。
+
+**误用**：API Server 等同开放完整 toolset 含 `terminal`；公网暴露等于远程 shell。交互形态见 [高级特性](./advanced-features/) 与 Open WebUI 官方集成文。
 
 ## 会话存储与压缩谱系
 

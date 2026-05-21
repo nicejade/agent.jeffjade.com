@@ -22,6 +22,8 @@ export const hermesAgentSidebar = [
     items: [
       { label: '消息网关', link: '/hermes-agent/messaging-gateway/' },
       { label: '技能系统实战', link: '/hermes-agent/skills-in-practice/' },
+      { label: '事件钩子（Event Hooks）', link: '/hermes-agent/event-hooks/' },
+      { label: 'Kanban 多 Agent 看板', link: '/hermes-agent/kanban-multi-agent-board/' },
       { label: '高级特性', link: '/hermes-agent/advanced-features/' },
     ],
   },
@@ -29,6 +31,7 @@ export const hermesAgentSidebar = [
     label: 'Hermes Agent · 进阶',
     items: [
       { label: '安全、性能与最佳实践', link: '/hermes-agent/security-performance-best-practices/' },
+      { label: '插件系统（Plugins）', link: '/hermes-agent/plugins-system/' },
       { label: '架构拆解', link: '/hermes-agent/architecture-deep-dive/' },
       { label: '从零实现类似 Agent', link: '/hermes-agent/build-your-own-agent/' },
       { label: '贡献与社区', link: '/hermes-agent/contributing-and-community/' },

@@ -63,6 +63,53 @@ hermes config migrate      # 交互式补全新选项
 
 辅助模型可在 `hermes model` 流程里配置；`approval` 在 `approvals.mode: smart` 时用于风险分类。
 
+### Provider Routing：按任务分流
+
+**Provider Routing** 在**同一次请求**里按规则把不同子任务送到不同 Provider/模型，例如「主对话走 Anthropic，压缩摘要走 OpenRouter 上的便宜模型」。适合成本/延迟/质量三角里刻意分工，而非简单主备。
+
+```yaml
+# 示意：键名与结构以官方文档为准
+provider_routing:
+  rules:
+    - match: { task: compression }
+      provider: openrouter
+      model: google/gemini-3-flash-preview
+```
+
+**决策边界**：规则过多会增加排障难度；先保证 `auxiliary.*` 默认值正确，再叠 routing。详见 [Provider Routing](https://hermes-agent.nousresearch.com/docs/user-guide/features/provider-routing)。
+
+### Fallback Providers：主备切换
+
+当主 Provider **请求失败**（超时、5xx、配额）时，按列表依次尝试备用端点。这是**可用性**机制，不是「同一轮里两个模型各答一半」。
+
+```yaml
+fallback_providers:
+  - provider: anthropic
+    model: anthropic/claude-sonnet-4-6
+  - provider: openrouter
+    model: anthropic/claude-sonnet-4.6
+```
+
+**决策边界**：fallback 链过长会掩盖根因；应配合 `hermes logs` 看首次失败原因。与 routing 区别：routing 是计划内分流，fallback 是错误后逃生。详见 [Fallback Providers](https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers)。
+
+### Credential Pools：多 Key 轮换
+
+同一 Provider 配置**多个 API Key**，在配额或限流时轮换，降低单 Key 触顶导致的全站不可用。
+
+```yaml
+credential_pools:
+  openrouter:
+    keys:
+      - ${OPENROUTER_API_KEY_1}
+      - ${OPENROUTER_API_KEY_2}
+```
+
+**决策边界**：池子不能解决「模型本身不存在」类错误；密钥仍只放 `.env`。详见 [Credential Pools](https://hermes-agent.nousresearch.com/docs/user-guide/features/credential-pools)。
+
+### 上下文引用（@）与配置
+
+CLI 的 `@file` / `@diff` 等展开受工作区根与 `security` 设置约束；Gateway 不展开 `@`。在仓库根用 `AGENTS.md` 写明「大文件用行范围引用」，与 [第一次对话](./first-conversation/#上下文引用-语法) 配合。官方 [Context References](https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references)。
+
 ## `.env`：只放秘密与部署变量
 
 典型条目：

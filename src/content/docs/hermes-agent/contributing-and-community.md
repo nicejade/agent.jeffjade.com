@@ -2,7 +2,7 @@
 title: 贡献与社区
 description: 弄清 Skill 与 Tool 的贡献路径、Skills Hub 发布、核心仓库 PR 规范，以及 Trajectory 与 Atropos 训练管线关系。
 sidebar:
-  order: 13
+  order: 16
 ---
 
 *「写了个很好用的部署脚本，直接提 PR 加进 tools/——审阅者让你改成 Skill，并说明为何不该进核心仓库。」*
@@ -173,7 +173,7 @@ agent:
 
 ### 批处理：`batch_runner`
 
-`batch_runner.py` 用多进程并行跑提示列表，**主要目的就是产 trajectory**。输出常带 `prompt_index`、`tool_stats`、`api_calls` 等字段；无推理内容的样本会被丢弃，避免污染训练集。具体 CLI 子命令以你安装版本的 `hermes --help` 与仓库 `batch_runner.py` 为准。
+官方 [Batch Processing](https://hermes-agent.nousresearch.com/docs/user-guide/features/batch-processing) 描述并行跑提示列表、checkpoint 续跑与 toolset 分布采样。仓库内 `batch_runner.py` 用多进程执行，**主要目的就是产 trajectory**。输出常带 `prompt_index`、`tool_stats`、`api_calls` 等字段；无推理内容的样本会被丢弃，避免污染训练集。具体 CLI 子命令以你安装版本的 `hermes --help` 与仓库 `batch_runner.py` 为准。
 
 加载示例：
 

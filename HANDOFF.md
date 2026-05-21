@@ -59,6 +59,76 @@
 
 ---
 
+## 缺口与增补计划（v2）
+
+> 依据：对照 [Hermes 官方文档](https://hermes-agent.nousresearch.com/docs/) 与 [llms.txt](https://hermes-agent.nousresearch.com/docs/llms.txt) 复盘 14 章覆盖度，下列条目为「完全缺失 / 深度不足 / 研究视角缺位」三类增量。每条标注**新增章节**或**现章扩写**，含建议落点。
+
+### 高优先级（先补）
+
+- [x] **Event Hooks（事件钩子）** — 新增章节  
+  - 文稿：`src/content/docs/hermes-agent/event-hooks.md`  
+  - 范围：Gateway hooks（`HOOK.yaml` + `handler.py`）、Plugin hooks（`ctx.register_hook()`，含 `pre_tool_call` 拦截、`pre_llm_call` 注入上下文、`transform_tool_result`、`transform_llm_output` 等）、Shell hooks（`config.yaml` 内 shell 脚本）。  
+  - 建议位置：实战分组，置于「高级特性」之前；侧栏新增条目。  
+  - 必含：三种钩子矩阵、最小可跑示例、阻断/放行决策表、与审批/沙箱的关系。
+- [x] **Checkpoints & Rollback** — 并入安全章  
+  - 落点：`src/content/docs/hermes-agent/security-performance-best-practices.md`  
+  - 范围：写文件前自动快照工作目录、`/rollback`、`checkpoints.enabled` 与 `hermes chat --checkpoints`、与 git 工作流的协同与冲突。  
+  - 建议位置：「安全、性能与最佳实践」内新增独立小节，或单列实战短章。  
+  - 必含：触发条件、快照路径、回滚边界（不可逆操作清单）。
+- [x] **Context References（@ 引用语法）** — 现章扩写  
+  - 落点：`first-conversation.md`、`configuration-personalization.md`  
+  - 范围：`@file`、`@dir`、`@diff`、`@url` 展开规则；超长内容截断；与 `session_search` 的差异。  
+  - 落点：「第一次对话」补成独立小节，并在「配置与个性化」交叉引用。
+
+### 中优先级
+
+- [x] **Kanban 多 Agent 看板** — 新增章节  
+  - 文稿：`src/content/docs/hermes-agent/kanban-multi-agent-board.md`  
+  - 范围：Multi-Agent Board、worker lanes、卡片状态机、与 `delegate_task` 的取舍。  
+  - 建议位置：实战分组，紧邻「高级特性」。
+- [x] **Plugins 系统** — 新增章节  
+  - 文稿：`src/content/docs/hermes-agent/plugins-system.md`  
+  - 范围：通用插件 / 记忆插件 / 上下文引擎三类、`hermes plugins` CLI、与 Hooks 和 Skill 的边界。  
+  - 建议位置：进阶分组，置于「架构拆解」之前。
+- [x] **Persistent Goals** — 现章扩写  
+  - 范围：`/goal` 跨会话目标、辅助模型判定、预算与抢占、与 MEMORY.md 的关系。  
+  - 落点：「记忆、学习与 Skill」新增小节，「第一次对话」保留入口提示。
+- [x] **Web Dashboard** — 现章扩写  
+  - 范围：浏览器面板能力清单、远程访问与鉴权、VPS 长跑场景。  
+  - 落点：「消息网关」或「安全、性能与最佳实践」中并入运维小节。
+- [x] **API Server（OpenAI 兼容）** — 现章扩写  
+  - 范围：`hermes server` 启动、Open WebUI / LobeChat / LibreChat 接入步骤、鉴权与限流。  
+  - 落点：「架构拆解」补操作小节；「高级特性」交叉链接。
+
+### 现章补强（深度不足）
+
+- [x] **记忆插件生态对比** — 落点「记忆、学习与 Skill」  
+  - 覆盖 Honcho、OpenViking、Mem0、Hindsight、Holographic、RetainDB、ByteRover、Supermemory：定位、接入命令、数据归属、典型坑点、对比表。
+- [x] **Provider Routing / Fallback / Credential Pools** — 落点「配置与个性化」  
+  - 三机制各给一段独立 YAML 与决策边界（按成本/速度/质量分流、主备切换、多 Key 轮换），避免再合并叙述。
+- [x] **Batch Processing 与 RL Training** — 落点「贡献与社区」  
+  - 批跑命令、ShareGPT 轨迹格式、Atropos 训练管线对接。
+- [x] **记忆失效与修正** — 落点「记忆、学习与 Skill」  
+  - 错误记忆识别信号、`hermes memory` CLI、手动编辑、Curator 触发清理。
+- [x] **Skill 完整生命周期闭环** — 落点「技能系统实战」  
+  - 创建 → 使用计数 → stale 判定 → archive → 手动 pin → `hermes skills publish` 到 agentskills.io → 从 Hub 安装；附状态机图。
+- [x] **成本控制框架** — 落点「安全、性能与最佳实践」  
+  - 大头识别（子 Agent / 云浏览器 / 流式 TTS）、`auxiliary.*` 实测收益、Prompt Caching 生效条件、`hermes logs` 审计示例。
+
+### 站点与配套（v2 调整）
+
+- [x] 侧栏 `src/config/hermes-agent-sidebar.ts` 新增 Event Hooks / Kanban / Plugins 条目；同步落地页 `src/pages/hermes-agent/index.astro`（17 章）。
+- [x] 漫游指南索引 `src/content/docs/hermes-agent/index.md` 已更新。
+- [x] `astro.config.mjs` 已补充 `event-hooks`、`kanban-multi-agent-board`、`plugins-system` 重定向 slug。
+
+### 撰写顺序建议
+
+1. 先做高优先级三项（Hooks / Checkpoints / @ 引用）：补完日常安全与扩展底盘。
+2. 中优先级按读者路径推进：Kanban → Plugins → Persistent Goals → Web Dashboard → API Server。
+3. 现章补强穿插进行；每次只动目标章，不重写无关章节。
+
+---
+
 ## 撰写约定（摘自 CLAUDE.md）
 
 - Frontmatter：`title`、`description`、`sidebar.order`
@@ -119,3 +189,5 @@ Hermes 是模型无关的自主 Agent：**闭环自改进**（`skill_manage` + `
 | 2026-05-20 | 完成进阶第 10–12 章（安全与性能、架构拆解、从零实现），更新侧栏与漫游指南 |
 | 2026-05-20 | 完成进阶第 13–14 章（贡献与社区、系列总结与自测），Hermes 正文章节全部完结 |
 | 2026-05-20 | Hermes 专题落地页、首页/Claude 落地页交叉链接、`hermes-agent-guide` 全 slug 重定向 |
+| 2026-05-21 | 对照官方文档复盘 14 章覆盖度，新增「缺口与增补计划（v2）」：高优先级 3 项（Event Hooks / Checkpoints / @ 引用）、中优先级 5 项、现章补强 6 项 |
+| 2026-05-21 | v2 增补全部完成：新增 3 章（event-hooks、kanban、plugins）+ 10 章扩写；系列 17 章，侧栏/索引/落地页/重定向已同步 |
