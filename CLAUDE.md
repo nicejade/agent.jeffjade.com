@@ -108,6 +108,16 @@ Unless an existing chapter already has a stronger local pattern, use:
 8. Practice prompts or checklists as needed.
 9. In a series, link to the next related chapter.
 
+## Tutorial depth review
+
+When reviewing or revising docs, check three dimensions together:
+
+1. Learning progression: give readers one small runnable success path before advanced variants, command catalogs, provider matrices, or architecture internals. For long or dense chapters, add a route map near the top and label optional or deep sections.
+2. Narrative clarity: every table, command block, and prompt example needs a setup sentence explaining when to use it and an expected signal or output. Prefer one running scenario across a chapter over many unrelated snippets. Define mixed English terms on first use.
+3. Content rigor: volatile claims about products, model names, defaults, limits, permissions, pricing, storage paths, and security behavior need current official sources or local code evidence. Separate verified facts, recommendations, and inference. If not rechecked, say readers should verify against official docs before publishing.
+
+Also mark commands that can discard state, alter credentials, push, deploy, or change permissions as risky, and pair them with snapshot, confirmation, or rollback guidance.
+
 ## Writing style
 
 1. Direct, specific, calm.
