@@ -29,7 +29,13 @@ export const claudeCodeSidebar = [
   },
   {
     label: '第四部分 · 项目记忆',
-    items: [{ label: 'CLAUDE.md 的艺术', link: '/claude-code/claude-md/' }],
+    items: [
+      { label: '项目记忆总览', link: '/claude-code/claude-md/' },
+      { label: 'CLAUDE.md 编写与维护', link: '/claude-code/claude-md-authoring/' },
+      { label: '自动记忆与 /memory', link: '/claude-code/auto-memory/' },
+      { label: 'Monorepo 与多工具记忆', link: '/claude-code/memory-monorepo-ecosystem/' },
+      { label: '团队记忆落地', link: '/claude-code/memory-team-playbook/' },
+    ],
   },
   {
     label: '第五部分 · 高级扩展',

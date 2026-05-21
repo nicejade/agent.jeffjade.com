@@ -2,7 +2,7 @@
 title: 调试与错误恢复
 description: 识别 Agent Loop 的失败信号，用 /rewind、/clear、Plan Mode 与 CLAUDE.md 反馈闭环把跑偏的会话拉回正轨，而不是只会「再问一遍」。
 sidebar:
-  order: 22
+  order: 26
 ---
 
 *「它改了三轮，测试绿了，但改的是错误分支上的鉴权。我本能想再发一条消息纠正，可上一轮已经污染了上下文。」*
@@ -162,7 +162,7 @@ claude --resume   # 列出可恢复会话
 | 测试通过但断言过弱 | `改 auth 必须跑 pnpm test auth && pnpm test integration` |
 | 探索时扫全库 | `先用 Glob 限定 src/api/，禁止根目录无范围 Grep` |
 
-路径相关规则放进 `.claude/rules/` 的 `paths` frontmatter，避免根 `CLAUDE.md` 膨胀，见 [CLAUDE.md 的艺术](/claude-code/claude-md/#organize-with-rules)。
+路径相关规则放进 `.claude/rules/` 的 `paths` frontmatter，避免根 `CLAUDE.md` 膨胀，见 [CLAUDE.md 编写与维护](/claude-code/claude-md-authoring/#organize-with-rules)。
 
 ### 反馈闭环模板
 

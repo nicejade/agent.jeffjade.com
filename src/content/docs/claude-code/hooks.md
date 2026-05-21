@@ -2,12 +2,12 @@
 title: Hooks：自动化、安全校验与生命周期控制
 description: 在代理循环的关键节点插入确定性脚本，用 PreToolUse、PostToolUse、Stop 等事件实现格式化、拦截危险操作与外部通知。
 sidebar:
-  order: 9
+  order: 13
 ---
 
 *「我在 CLAUDE.md 里写了禁止动 `.env`，模型还是改了一次；每次 Edit 完还要自己跑 Prettier。」*
 
-[CLAUDE.md](/claude-code/claude-md/) 和权限规则告诉模型**应该怎么做**，但模型仍可能偏离或漏掉步骤。Hooks 在 Claude Code **生命周期固定节点**上运行你定义的命令，不依赖模型是否「记得」执行。官方入门见 [Automate workflows with hooks](https://code.claude.com/docs/en/hooks-guide)，事件与 JSON 格式见 [Hooks reference](https://code.claude.com/docs/en/hooks)。
+[项目记忆](/claude-code/claude-md/) 与权限规则告诉模型**应该怎么做**，但模型仍可能偏离或漏掉步骤。Hooks 在 Claude Code **生命周期固定节点**上运行你定义的命令，不依赖模型是否「记得」执行。官方入门见 [Automate workflows with hooks](https://code.claude.com/docs/en/hooks-guide)，事件与 JSON 格式见 [Hooks reference](https://code.claude.com/docs/en/hooks)。
 
 本章目标：理解 Hooks 在 [代理循环](/claude-code/agent-loop/) 中的位置，能配置一条可验证的 Hook，并知道何时用 Hook、何时改用 Skills 或权限规则。
 
@@ -369,4 +369,4 @@ chmod +x .claude/hooks/block-rm.sh
 
 ---
 
-下一章：[Skills 技能](/claude-code/skills/)——把可复用工作流写成 SKILL.md；社区精选见 [第六部分](/claude-code/skill-recommendations/)。
+上一章：[团队记忆落地](/claude-code/memory-team-playbook/) · 下一章：[Skills 技能](/claude-code/skills/)——把可复用工作流写成 SKILL.md；社区精选见 [第六部分](/claude-code/skill-recommendations/)。

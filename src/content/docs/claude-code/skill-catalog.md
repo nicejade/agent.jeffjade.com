@@ -2,7 +2,7 @@
 title: 社区技能目录导读
 description: 用官方 Discover 与分类框架自行发现 Plugin 与 Skill，按场景选型而不维护全量清单。
 sidebar:
-  order: 14
+  order: 18
 ---
 
 *「精选三章不够，我想按场景自己找更多技能，但怕装到恶意 Plugin 或描述把上下文撑爆。」*

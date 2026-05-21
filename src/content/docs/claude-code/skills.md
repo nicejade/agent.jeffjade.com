@@ -2,7 +2,7 @@
 title: Skills：构建可重用提示模板与工作流
 description: 用 SKILL.md 把重复流程写成可懒加载的技能，支持斜杠调用与模型自动选用，并与 CLAUDE.md、Hooks 分工协作。
 sidebar:
-  order: 10
+  order: 14
 ---
 
 *「每次提 PR 都要粘贴同一段审查清单；CLAUDE.md 已经长到每次会话都占一大块上下文。」*

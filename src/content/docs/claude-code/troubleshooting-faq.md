@@ -2,7 +2,7 @@
 title: Claude Code 常见问题排查
 description: 覆盖安装报错、登录循环、API 速率限制、性能卡顿、文件搜索异常、配置失效与 IDE 集成故障，按症状分类快速定位并恢复。
 sidebar:
-  order: 28
+  order: 32
 ---
 
 *「claude 命令敲下去，终端只回了一行 command not found。你检查了 Node.js 版本，重装了 npm 包，问题依旧。Google 搜出来的第一条是去年九月的 Reddit 帖子，三楼的回答已经不适用了。」*

@@ -2,7 +2,7 @@
 title: 团队与组织级落地
 description: 划分 Managed 与项目 CLAUDE.md 的治理职责，在 PR 流程中标注 AI 贡献并保证可追溯，让新成员通过 Claude Code 快速获得项目上下文。
 sidebar:
-  order: 26
+  order: 30
 ---
 
 *「每个人本地的 CLAUDE.md 都不一样，PR 里看不出哪段是人写的。新人问：该信仓库里的文档，还是老员工嘴里的习惯？」*

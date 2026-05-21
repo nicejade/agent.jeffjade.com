@@ -2,7 +2,7 @@
 title: SubAgents：上下文隔离与复杂任务拆解
 description: 学会用 SubAgents 实现独立上下文、工具约束与并行执行，把探索、审查、实验性改动挡在主会话之外。
 sidebar:
-  order: 11
+  order: 15
 ---
 
 *「让它全库搜一遍鉴权实现，主会话里塞了几十份文件片段；接着改代码时模型已经记不住我最初只要动 middleware。」*

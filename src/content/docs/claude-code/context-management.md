@@ -2,7 +2,7 @@
 title: 上下文管理与多代理架构
 description: 当上下文用到 80% 仍在大改十几个文件时会发生什么，以及用 SubAgents、/handoff 与 /clear 组合成可恢复的长任务工作流。
 sidebar:
-  order: 16
+  order: 20
 ---
 
 *「上下文已经 80%，它还在改第十四个文件。测试绿了，但我已经说不清它还记得最初要动哪条业务规则。」*
@@ -151,7 +151,7 @@ Create a HANDOFF.md file in the project root with this exact structure:
 如果项目根目录存在 HANDOFF.md，在做任何事之前先读它。
 ```
 
-[CLAUDE.md 加载机制](/claude-code/claude-md/#加载机制什么时候读到从哪读) 保证每次 `/clear` 后新会话仍会看到这条规则，从而主动打开 `HANDOFF.md`。
+[CLAUDE.md 加载机制](/claude-code/memory-monorepo-ecosystem/#loading-mechanism) 保证每次 `/clear` 后新会话仍会看到这条规则，从而主动打开 `HANDOFF.md`。
 
 ### 第三步：约定触发时机
 

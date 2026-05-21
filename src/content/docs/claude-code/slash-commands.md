@@ -85,7 +85,7 @@ sidebar:
 /permissions     # 设定 allow / ask / deny
 ```
 
-`/init` 会生成 starter `CLAUDE.md`；团队规范与分层记忆见 [CLAUDE.md 的艺术](/claude-code/claude-md/)。`/fewer-permission-prompts` 是 bundled skill，可扫描历史 transcript 并建议只读类 allow 规则，减少打断。
+`/init` 会生成 starter `CLAUDE.md`；团队规范与分层记忆见 [第四部分 · 项目记忆](/claude-code/claude-md/)。`/fewer-permission-prompts` 是 bundled skill，可扫描历史 transcript 并建议只读类 allow 规则，减少打断。
 
 ### 任务进行中
 

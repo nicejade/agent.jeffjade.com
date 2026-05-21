@@ -2,7 +2,7 @@
 title: 编码向社区 Skill 精选
 description: 安装与验证 Superpowers、Karpathy 准则、UI UX Pro Max 等编码相关社区技能包，并组合使用。
 sidebar:
-  order: 13
+  order: 17
 ---
 
 *「我会写 SKILL.md 了，但不知道该装哪些社区包；装完 Superpowers 后 Agent 先问设计、再写计划、最后才动代码。」*

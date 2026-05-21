@@ -2,7 +2,7 @@
 title: 高效提示工程的秘诀
 description: 在 Agentic Coding 里用可验证目标、分阶段节奏与上下文管理指挥 Claude Code，而不是堆长提示或逐步遥控。
 sidebar:
-  order: 17
+  order: 21
 ---
 
 *「帮我改进一下代码。」——二十分钟后 diff 满天飞，测试红了，你仍说不清最初要达成什么。」*
@@ -358,7 +358,7 @@ spec 写好后，**新开一个会话**专门实现，主上下文只服务执�
 
 不必把所有技巧写进一条提示，环境配置承担「默认值」：
 
-- **`/init` + CLAUDE.md**：持久事实，减少重复解释。见 [CLAUDE.md 的艺术](/claude-code/claude-md/)。
+- **`/init` + CLAUDE.md**：持久事实，减少重复解释。见 [CLAUDE.md 编写与维护](/claude-code/claude-md-authoring/)。
 - **`/permissions`、auto mode、sandbox**：减少弹窗打断。见 [安装与配置](/claude-code/installation-setup/)。
 - **Skills**：`/deploy` 类可重复流程。
 - **SubAgents**：大探索、并行调研。

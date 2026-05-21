@@ -2,7 +2,7 @@
 title: MCP：为 Claude Code 接入外部工具与服务
 description: 通过 Model Context Protocol 将 GitHub、数据库、Sentry 等外部工具接入 Claude Code，让模型直接查询、操作外部系统而不依赖粘贴数据。
 sidebar:
-  order: 12
+  order: 16
 ---
 
 *「每次查 JIRA 需求都要把标题和描述复制进对话；GitHub PR 的 diff 要先在浏览器看完再人工概括给 Claude。」*
