@@ -2,12 +2,12 @@
 title: 编码向社区 Skill 精选
 description: 安装与验证 Superpowers、Karpathy 准则、UI UX Pro Max 等编码相关社区技能包，并组合使用。
 sidebar:
-  order: 17
+  order: 18
 ---
 
 *「我会写 SKILL.md 了，但不知道该装哪些社区包；装完 Superpowers 后 Agent 先问设计、再写计划、最后才动代码。」*
 
-上一章 [Skills](/claude-code/skills/) 已讲机制与编写。本章只回答**装什么、怎么验**；从社区包提炼团队模式见 [团队 Skill 实战](/claude-code/skills-team-playbook/)。更多场景分类见 [社区技能目录导读](/claude-code/skill-catalog/)。
+上一章 [MCP 协议](/claude-code/mcp/) 结束第五部分高级扩展。Plugin 机制见 [Plugins 插件](/claude-code/plugins/)。本章只回答**装什么、怎么验**；从社区包提炼团队模式见 [团队 Skill 实战](/claude-code/skills-team-playbook/)。更多场景分类见 [社区技能目录导读](/claude-code/skill-catalog/)。
 
 ---
 

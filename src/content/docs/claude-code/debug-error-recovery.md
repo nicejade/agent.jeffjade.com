@@ -2,7 +2,7 @@
 title: 调试与错误恢复
 description: 识别 Agent Loop 的失败信号，用 /rewind、/clear、Plan Mode 与 CLAUDE.md 反馈闭环把跑偏的会话拉回正轨，而不是只会「再问一遍」。
 sidebar:
-  order: 26
+  order: 27
 ---
 
 *「它改了三轮，测试绿了，但改的是错误分支上的鉴权。我本能想再发一条消息纠正，可上一轮已经污染了上下文。」*

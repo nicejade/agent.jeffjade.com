@@ -287,7 +287,7 @@ git status --short
 
 ## 与子代理的配合
 
-两种组合方式（详见下一章 [SubAgents](/claude-code/subagents/)）：
+两种组合方式（详见 [SubAgents](/claude-code/subagents/)）：
 
 | 方式 | 谁写任务 | 谁提供系统能力 |
 |------|----------|----------------|
@@ -298,15 +298,15 @@ git status --short
 
 ---
 
-## Skills、Hooks、SubAgents 如何分工
+## Skills、Hooks、SubAgents、Plugins 如何分工
 
-| 维度 | Skills | Hooks | SubAgents |
-|------|--------|-------|-----------|
-| 触发 | `/name` 或模型选用 | 生命周期事件 | 主代理委派 |
-| 确定性 | 中 | 高 | 中 |
-| 上下文 | 与会话共享；`fork` 时隔离 | 共享 | 默认隔离 |
-| 适合 | 可复用流程、清单、领域手册 | 格式化、拦截、通知 | 探索、并行、大任务拆分 |
-| 不适合 | 必须每次工具后都执行的动作 | 整段业务流程 | 一句就能说完的琐事 |
+| 维度 | Skills | Hooks | SubAgents | Plugins |
+|------|--------|-------|-----------|---------|
+| 触发 | `/name` 或模型选用 | 生命周期事件 | 主代理委派 | 安装后包内组件生效 |
+| 确定性 | 中 | 高 | 中 | 中 |
+| 上下文 | 与会话共享；`fork` 时隔离 | 共享 | 默认隔离 | 取决于包内技能与子代理 |
+| 适合 | 可复用流程、清单、领域手册 | 格式化、拦截、通知 | 探索、并行、大任务拆分 | 跨项目分发整套能力 |
+| 不适合 | 必须每次工具后都执行的动作 | 整段业务流程 | 一句就能说完的琐事 | 一两句项目事实 |
 
 记忆口诀：
 
@@ -314,6 +314,7 @@ git status --short
 - **Skills**：某类任务**怎么做**（可很长，但懒加载）。
 - **Hooks**：某时刻**必须发生什么**（脚本保证）。
 - **SubAgents**：需要**另一段上下文**去执行的任务块。
+- **Plugins**：把 Skills、Hooks、MCP 等打成可安装包；机制见 [Plugins](/claude-code/plugins/)。
 
 ---
 
@@ -321,7 +322,7 @@ git status --short
 
 1. **项目技能入仓**：把 `.claude/skills/` 与 `.claude/settings.json` 一并 review；技能里 `allowed-tools` 会在用户信任工作区后生效，恶意技能可扩大工具权限。
 2. **个人技能放本机**：`~/.claude/skills/` 适合个人 commit 模板、私有 checklist，不要写密钥。
-3. **插件分发**：在插件 `skills/` 目录打包，通过 [Plugins](https://code.claude.com/docs/en/plugins) 安装。
+3. **插件分发**：成熟流程可打包进 Plugin，经 marketplace 安装；见 [Plugins 插件](/claude-code/plugins/)。
 4. **与 CLAUDE.md 拆分**：CLAUDE.md 保留 200 行以内的高频事实；超过且偏流程的内容迁到 Skill，用 `paths` 或清晰 `description` 限制触发范围。
 5. **描述预算**：技能很多时，未常用技能的 `description` 可能被截断。运行 `/doctor` 查看 listing 预算；可调 `skillListingBudgetFraction` 或对低优先级技能设 `skillOverrides` 为 `name-only`。详见 [Troubleshooting](https://code.claude.com/docs/en/skills#troubleshooting)。
 
@@ -382,10 +383,10 @@ git status --short
 - [ ] 在 `~/.claude/skills/` 或 `.claude/skills/` 创建过一个含 `description` 的 `SKILL.md`  
 - [ ] 用自然语言与 `/skill-name` 各触发成功一次  
 - [ ] 理解 `` !`command` `` 注入的是命令输出而非命令本身  
-- [ ] 能说出 Skills 与 CLAUDE.md、Hooks、SubAgents 的分工  
+- [ ] 能说出 Skills 与 CLAUDE.md、Hooks、SubAgents、Plugins 的分工  
 
 ---
 
 社区精选与 Superpowers 安装见 [编码向社区精选](/claude-code/skill-recommendations/)。团队自建见 [团队 Skill 实战](/claude-code/skills-team-playbook/)。
 
-下一章：[SubAgents](/claude-code/subagents/)——在独立上下文中委派探索、规划与并行任务，并与 Skills 的 `context: fork`、预加载技能配合使用。
+下一章：[Plugins 插件](/claude-code/plugins/)——通过 marketplace 安装技能包、Hooks、MCP 与子代理；再读 [SubAgents](/claude-code/subagents/) 理解隔离委派。

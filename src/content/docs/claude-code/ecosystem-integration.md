@@ -2,7 +2,7 @@
 title: Claude Code 与生态的深度集成
 description: 在 VS Code、JetBrains 与终端中落地开发体验，用 GitHub Actions 与托管策略把 Claude Code 纳入团队工作流与企业合规。
 sidebar:
-  order: 23
+  order: 24
 ---
 
 *「个人在终端里用得顺手，但团队要统一权限、PR 里要能 @ 机器人、JetBrains 同事也要 diff 进 IDE。」*
@@ -60,7 +60,7 @@ Anthropic 提供 [Claude Code 扩展](https://marketplace.visualstudio.com/items
 | `@` 与选区 | `Alt+K` / `Option+K` 插入 `@file#L1-10`；选区自动进上下文 |
 | 多会话 | 多 Tab/多窗口并行，图标颜色提示待权限或已完成 |
 | 会话历史 | 图形化浏览、重命名、恢复本地与部分远程会话 |
-| 插件 `/plugins` | 图形化管理 [Plugins](/claude-code/mcp/) 与市场源 |
+| 插件 `/plugins` | 图形化管理 [Plugins](/claude-code/plugins/) 与市场源 |
 | `@browser` | 配合 [Claude in Chrome](https://code.claude.com/docs/en/chrome) 测 Web UI |
 
 提示框底部可切换 **default / plan / acceptEdits** 等权限模式，对应 [Plan Mode](/claude-code/plan-mode/) 与 [安装章](/claude-code/installation-setup/) 中的模式表。扩展设置 `claudeCode.initialPermissionMode` 可设默认值。

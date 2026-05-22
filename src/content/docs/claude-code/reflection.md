@@ -2,7 +2,7 @@
 title: 反思与进阶：AI Agent 时代的开发者
 description: 用 Claude Code 训练需求分解、上下文管理、验证判断与个人工作流，把 Agentic Coding 变成可复用能力。
 sidebar:
-  order: 25
+  order: 26
 ---
 
 *「Claude Code 按你的要求实现了一个功能，测试也绿了。PR review 时，另一个人问：为什么状态放在 middleware，而没有放在 service 层？你忽然发现，代码是 Agent 写的，架构理由却必须由你承担。」*

@@ -42,6 +42,7 @@ export const claudeCodeSidebar = [
     items: [
       { label: 'Hooks 机制', link: '/claude-code/hooks/' },
       { label: 'Skills 技能', link: '/claude-code/skills/' },
+      { label: 'Plugins 插件', link: '/claude-code/plugins/' },
       { label: 'SubAgents', link: '/claude-code/subagents/' },
       { label: 'MCP 协议', link: '/claude-code/mcp/' },
     ],

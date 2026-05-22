@@ -2,7 +2,7 @@
 title: Claude Code 完整实战工作流
 description: 从接手陌生代码、调试与重构，到新功能、测试、PR 与并行会话，把提示工程与 Plan Mode 落成可重复的端到端路径。
 sidebar:
-  order: 22
+  order: 23
 ---
 
 *「提示工程也学了，Plan Mode 也会切了，但真接手一个陌生 repo、修一个红 CI、或从零加功能时，仍不知道先开口说什么、在哪一步停。」*

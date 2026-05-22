@@ -1,8 +1,8 @@
 # Claude Code 指南：第五部分 Plugins 章与 skill-catalog 优化 — 设计说明
 
 **日期**：2026-05-22  
-**状态**：待实现  
-**用户确认**：2026-05-22 — 推荐范围 **B**；信息架构方案 **1**；四节设计全部通过  
+**状态**：已实现（2026-05-22）  
+**用户确认**：2026-05-22 — 推荐范围 **B**；信息架构方案 **1**；四节设计全部通过；选型自检措辞已确认  
 
 **目标**：第五部分新增独立 Plugins 机制章；第六部分 `skill-catalog` 纠错并纳入 `anthropics/skills`、`garrytan/gstack`；全站 33 → 34 章，sidebar 与 prev/next 一致。
 
@@ -121,6 +121,13 @@ Hooks → Skills → Plugins → SubAgents → MCP → skill-recommendations（�
 
 ### 4.1 纠错与统一
 
+**安装前自检（本站归纳，非官方固定术语）** — 替换原「选型四维」标题与条文：
+
+1. **信任与透明度**：来源是否可信；能否阅读仓库与 Discover 的 **Will install** 清单；第三方重点看 `allowed-tools`。（GitHub star 仅作参考，不能代替审查。）
+2. **权限与治理**：是否扩大 Bash/Edit 等；团队是否允许该 marketplace 与 User/Project/Local scope。
+3. **上下文成本**：安装前在 Discover 看 **Context cost**；多包共存后用 `/doctor` 查技能 listing，必要时 `skillOverrides` 折叠。
+4. **重复与冲突**：是否与已装 Plugin 重名或流程重叠（如多个端到端方法论包；见 superpowers#355）。
+
 1. **安装形态三元说明**（置于「如何自己发现」后）：
    - **Plugin 市场**：`/plugin marketplace add` + `/plugin install`
    - **anthropics/skills 市场**：`anthropic-agent-skills` 下的 `document-skills` / `example-skills`
@@ -139,7 +146,7 @@ Hooks → Skills → Plugins → SubAgents → MCP → skill-recommendations（�
 ### 4.3 保留原则
 
 - 本站 **不维护** 50+ 行全量 Plugin 表（延续 2026-05-21 设计）。
-- 分类导读 + 代表项 + 官方 Discover 四维选型框架。
+- 分类导读 + 代表项 + 安装前自检四条（本站归纳）。
 
 ---
 

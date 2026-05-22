@@ -2,7 +2,7 @@
 title: MCP：为 Claude Code 接入外部工具与服务
 description: 通过 Model Context Protocol 将 GitHub、数据库、Sentry 等外部工具接入 Claude Code，让模型直接查询、操作外部系统而不依赖粘贴数据。
 sidebar:
-  order: 16
+  order: 17
 ---
 
 *「每次查 JIRA 需求都要把标题和描述复制进对话；GitHub PR 的 diff 要先在浏览器看完再人工概括给 Claude。」*
@@ -12,6 +12,8 @@ sidebar:
 MCP（Model Context Protocol）让 Claude Code **直接连接**外部工具与数据源。你不再搬运数据，模型自己查询、自己操作。官方说明见 [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp)，协议规范见 [modelcontextprotocol.io](https://modelcontextprotocol.io)。
 
 本章目标：理解 MCP 的架构与三种接入方式，能添加第一个 MCP Server 并验证连通性，知道什么场景该用 MCP、什么场景不该引入。
+
+许多外部集成也可通过官方 [Plugin](/claude-code/plugins/) 预配置 MCP Server，例如 `github@claude-plugins-official`。需要理解打包关系时先读 Plugins 章；本章侧重协议与自建 MCP。
 
 ---
 

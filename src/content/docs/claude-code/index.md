@@ -1,13 +1,13 @@
 ---
 title: Claude Code 漫游指南
-description: 从基础认知到进阶实践，33 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
+description: 从基础认知到进阶实践，34 章系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
 sidebar:
   order: 0
 ---
 
-[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。本指南从心智模型、快速上手、工作原理、项目记忆、高级扩展、Skill 体系、实战方法、反思进阶到进阶实践，共 **33 章**，帮助你系统掌握 Claude Code。
+[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。本指南从心智模型、快速上手、工作原理、项目记忆、高级扩展、Skill 体系、实战方法、反思进阶到进阶实践，共 **34 章**，帮助你系统掌握 Claude Code。
 
-**阅读路径：** [Skills](./skills/) 在第五部分讲机制；[第六部分 · Skill 体系](#第六部分skill-体系) 讲社区包与团队落地，请先读完 Skills 再进入第六部分。第四部分五章以 [团队记忆落地](./memory-team-playbook/) 为终点，再进入 Hooks。
+**阅读路径：** 第五部分含 [Skills](./skills/) 与 [Plugins](./plugins/)；[第六部分 · Skill 体系](#第六部分skill-体系) 讲社区包与团队落地。建议顺序：Skills → Plugins → SubAgents → MCP，再进入第六部分。第四部分五章以 [团队记忆落地](./memory-team-playbook/) 为终点，再进入 Hooks。
 
 ## 第一部分：基础认知
 
@@ -38,36 +38,37 @@ sidebar:
 
 14. [Hooks](./hooks/)——自动化、安全校验与生命周期控制
 15. [Skills](./skills/)——可重用提示模板与工作流（`/claude-code/skills/`）
-16. [SubAgents](./subagents/)——上下文隔离与任务拆解
-17. [MCP 协议](./mcp/)——连接外部工具与服务
+16. [Plugins](./plugins/)——marketplace 安装与 Skill、MCP 等扩展边界
+17. [SubAgents](./subagents/)——上下文隔离与任务拆解
+18. [MCP 协议](./mcp/)——连接外部工具与服务
 
 ## 第六部分：Skill 体系
 
-18. [编码向社区精选](./skill-recommendations/)——Superpowers、Karpathy、UI UX Pro Max
-19. [社区技能目录导读](./skill-catalog/)——按场景发现 Plugin，不维护全量表
-20. [团队 Skill 实战](./skills-team-playbook/)——从社区包到团队自建（本部分终点；需先读第五部分 Skills）
+19. [编码向社区精选](./skill-recommendations/)——Superpowers、Karpathy、UI UX Pro Max
+20. [社区技能目录导读](./skill-catalog/)——按场景发现 Plugin 与 Skill，不维护全量表
+21. [团队 Skill 实战](./skills-team-playbook/)——从社区包到团队自建（本部分终点；需先读第五部分 Skills）
 
 ## 第七部分：实战与最佳实践
 
-21. [提示工程秘诀](./prompt-engineering/)——高效沟通方法论
-22. [完整实战工作流](./complete-workflow/)——从理解到部署
-23. [上下文管理与多代理架构](./context-management/)——窗口满载、handoff 与组合工作流
-24. [生态集成](./ecosystem-integration/)——IDE、CI/CD 与团队协作
+22. [提示工程秘诀](./prompt-engineering/)——高效沟通方法论
+23. [完整实战工作流](./complete-workflow/)——从理解到部署
+24. [上下文管理与多代理架构](./context-management/)——窗口满载、handoff 与组合工作流
+25. [生态集成](./ecosystem-integration/)——IDE、CI/CD 与团队协作
 
 ## 第八部分：反思与进阶
 
-25. [局限性与应对](./limitations/)——安全、成本与常见坑
-26. [AI Agent 时代的开发者](./reflection/)——角色转变与新技能体系
+26. [局限性与应对](./limitations/)——安全、成本与常见坑
+27. [AI Agent 时代的开发者](./reflection/)——角色转变与新技能体系
 
 ## 第九部分：进阶实践
 
-27. [调试与错误恢复](./debug-error-recovery/)——失败信号、/rewind 与 CLAUDE.md 反馈闭环
-28. [Token 成本与会话经济学](./token-economics/)——/context、/usage 与按需加载规则
-29. [安全边界与权限心智](./security-permissions/)——allow/deny、沙箱与人类确认
-30. [测试驱动与质量保障](./tdd-quality/)——TDD、Hooks/CI 门禁与 diff 审查
-31. [团队与组织级落地](./team-organization/)——Managed 治理、PR 透明度与 onboarding
-32. [心智模型迁移](./mental-model-migration/)——意图式协作与认知分工
+28. [调试与错误恢复](./debug-error-recovery/)——失败信号、/rewind 与 CLAUDE.md 反馈闭环
+29. [Token 成本与会话经济学](./token-economics/)——/context、/usage 与按需加载规则
+30. [安全边界与权限心智](./security-permissions/)——allow/deny、沙箱与人类确认
+31. [测试驱动与质量保障](./tdd-quality/)——TDD、Hooks/CI 门禁与 diff 审查
+32. [团队与组织级落地](./team-organization/)——Managed 治理、PR 透明度与 onboarding
+33. [心智模型迁移](./mental-model-migration/)——意图式协作与认知分工
 
 ## 第十部分：排障速查
 
-33. [常见问题排查](./troubleshooting-faq/)——安装、登录、API、性能与 IDE 集成
+34. [常见问题排查](./troubleshooting-faq/)——安装、登录、API、性能与 IDE 集成

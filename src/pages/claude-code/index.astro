@@ -9,7 +9,7 @@ const site = SITE_URL;
 const pageUrl = `${site}/claude-code/`;
 const title = 'Claude Code 漫游指南 | 智能体漫游';
 const description =
-  '33 章系统掌握 Claude Code：从 Agentic Coding 心智模型、安装上手、代理循环与 Plan Mode，到项目记忆五章、Hooks / Skills / MCP、Skill 体系与完整实战工作流。';
+  '34 章系统掌握 Claude Code：从 Agentic Coding 心智模型、安装上手、代理循环与 Plan Mode，到项目记忆五章、Hooks / Skills / Plugins / MCP、Skill 体系与完整实战工作流。';
 
 const parts = [
   {
@@ -55,53 +55,54 @@ const parts = [
     chapters: [
       { n: 14, title: 'Hooks', href: '/claude-code/hooks/' },
       { n: 15, title: 'Skills', href: '/claude-code/skills/' },
-      { n: 16, title: 'SubAgents', href: '/claude-code/subagents/' },
-      { n: 17, title: 'MCP', href: '/claude-code/mcp/' },
+      { n: 16, title: 'Plugins', href: '/claude-code/plugins/' },
+      { n: 17, title: 'SubAgents', href: '/claude-code/subagents/' },
+      { n: 18, title: 'MCP', href: '/claude-code/mcp/' },
     ],
   },
   {
     label: '第六部分',
     title: 'Skill 体系',
     chapters: [
-      { n: 18, title: '编码向社区精选', href: '/claude-code/skill-recommendations/' },
-      { n: 19, title: '社区技能目录导读', href: '/claude-code/skill-catalog/' },
-      { n: 20, title: '团队 Skill 实战', href: '/claude-code/skills-team-playbook/' },
+      { n: 19, title: '编码向社区精选', href: '/claude-code/skill-recommendations/' },
+      { n: 20, title: '社区技能目录导读', href: '/claude-code/skill-catalog/' },
+      { n: 21, title: '团队 Skill 实战', href: '/claude-code/skills-team-playbook/' },
     ],
   },
   {
     label: '第七部分',
     title: '实战与最佳实践',
     chapters: [
-      { n: 21, title: '提示工程秘诀', href: '/claude-code/prompt-engineering/' },
-      { n: 22, title: '完整实战工作流', href: '/claude-code/complete-workflow/' },
-      { n: 23, title: '上下文管理与多代理', href: '/claude-code/context-management/' },
-      { n: 24, title: '生态深度集成', href: '/claude-code/ecosystem-integration/' },
+      { n: 22, title: '提示工程秘诀', href: '/claude-code/prompt-engineering/' },
+      { n: 23, title: '完整实战工作流', href: '/claude-code/complete-workflow/' },
+      { n: 24, title: '上下文管理与多代理', href: '/claude-code/context-management/' },
+      { n: 25, title: '生态深度集成', href: '/claude-code/ecosystem-integration/' },
     ],
   },
   {
     label: '第八部分',
     title: '反思与进阶',
     chapters: [
-      { n: 25, title: '局限性与应对', href: '/claude-code/limitations/' },
-      { n: 26, title: 'AI 时代的开发者', href: '/claude-code/reflection/' },
+      { n: 26, title: '局限性与应对', href: '/claude-code/limitations/' },
+      { n: 27, title: 'AI 时代的开发者', href: '/claude-code/reflection/' },
     ],
   },
   {
     label: '第九部分',
     title: '进阶实践',
     chapters: [
-      { n: 27, title: '调试与错误恢复', href: '/claude-code/debug-error-recovery/' },
-      { n: 28, title: 'Token 成本与会话经济学', href: '/claude-code/token-economics/' },
-      { n: 29, title: '安全边界与权限心智', href: '/claude-code/security-permissions/' },
-      { n: 30, title: '测试驱动与质量保障', href: '/claude-code/tdd-quality/' },
-      { n: 31, title: '团队与组织级落地', href: '/claude-code/team-organization/' },
-      { n: 32, title: '心智模型迁移', href: '/claude-code/mental-model-migration/' },
+      { n: 28, title: '调试与错误恢复', href: '/claude-code/debug-error-recovery/' },
+      { n: 29, title: 'Token 成本与会话经济学', href: '/claude-code/token-economics/' },
+      { n: 30, title: '安全边界与权限心智', href: '/claude-code/security-permissions/' },
+      { n: 31, title: '测试驱动与质量保障', href: '/claude-code/tdd-quality/' },
+      { n: 32, title: '团队与组织级落地', href: '/claude-code/team-organization/' },
+      { n: 33, title: '心智模型迁移', href: '/claude-code/mental-model-migration/' },
     ],
   },
   {
     label: '第十部分',
     title: '排障速查',
-    chapters: [{ n: 33, title: '常见问题排查', href: '/claude-code/troubleshooting-faq/' }],
+    chapters: [{ n: 34, title: '常见问题排查', href: '/claude-code/troubleshooting-faq/' }],
   },
 ];
 
@@ -176,7 +177,7 @@ const hermesGuide = {
       <main>
         <section class="hero hero-guide" aria-labelledby="hero-title">
           <div class="hero-copy">
-            <p class="eyebrow">Claude Code · 33 章</p>
+            <p class="eyebrow">Claude Code · 34 章</p>
             <h1 id="hero-title">系统掌握 <span>Claude Code</span></h1>
             <p class="hero-lede">
               这不是聊天教程，而是一份面向工程师的 Agentic Coding 指南：从心智模型与安装上手，到代理循环、Plan Mode、项目记忆、Hooks / Skills / SubAgents / MCP，再到完整工作流与生态集成。
@@ -207,7 +208,7 @@ const hermesGuide = {
 
         <section class="metric-strip" aria-label="指南概览">
           <div class="metric">
-            <strong>33</strong>
+            <strong>34</strong>
             <span>章节，从认知到实战闭环</span>
           </div>
           <div class="metric">

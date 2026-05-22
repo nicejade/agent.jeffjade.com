@@ -2,7 +2,7 @@
 title: 团队 Skill 实战
 description: 从 Superpowers 等社区包提炼六条可迁移模式，用练习与决策表落地团队自己的 SKILL.md 与组织 Plugin。
 sidebar:
-  order: 19
+  order: 20
 ---
 
 *「社区包装了一堆流程，我们真正需要的是团队自己的 PR 检查单和发布步骤，能进 Git、能 code review。」*

@@ -2,7 +2,7 @@
 title: 测试驱动协作与代码质量保障
 description: 用 TDD 约束 Claude Code 先写失败测试再实现，以 Hooks 与 CI 为 AI 输出设质量门禁，并用 diff、覆盖率与安全扫描做合并前审查。
 sidebar:
-  order: 29
+  order: 30
 ---
 
 *「Agent 说测试全绿了。上线后才发现断言只检查了 mock 返回值，真实鉴权路径从未执行。」*

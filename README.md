@@ -85,7 +85,7 @@ agent.jeffjade.com/
 
 ### Claude Code 教程
 
-**状态：已上线（33 章）**
+**状态：已上线（34 章）**
 
 | 区块 | 主题 | 状态 |
 | --- | --- | --- |
@@ -94,7 +94,7 @@ agent.jeffjade.com/
 | 第二部分 | 快速上手（安装、第三方 API、首会话、Slash） | 已发布 |
 | 第三部分 | 工作原理（代理循环、Plan Mode） | 已发布 |
 | 第四部分 | 项目记忆（总览、编写、自动记忆、Monorepo、团队落地，5 章） | 已发布 |
-| 第五部分 | 高级扩展（Hooks、Skills、SubAgents、MCP） | 已发布 |
+| 第五部分 | 高级扩展（Hooks、Skills、Plugins、SubAgents、MCP） | 已发布 |
 | 第六部分 | Skill 体系（社区精选、目录导读、团队实战） | 已发布 |
 | 第七部分 | 实战与最佳实践 | 已发布 |
 | 第八部分 | 反思与进阶 | 已发布 |
