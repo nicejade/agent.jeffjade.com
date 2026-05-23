@@ -235,13 +235,14 @@ alias cc-deepseek='ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" ANTHR
   "env": {
     "ANTHROPIC_AUTH_TOKEN": "sk-your-deepseek-api-key",
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-	  "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek-v4-pro",
 
     "API_TIMEOUT_MS": "3000000",
     "DISABLE_TELEMETRY": "1",
-    "DISABLE_ERROR_REPORTING": "1"
+    "DISABLE_ERROR_REPORTING": "1",
 
     "CLAUDE_CODE_ATTRIBUTION_HEADER": "0",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
@@ -270,6 +271,19 @@ alias cc-deepseek='ANTHROPIC_BASE_URL="https://api.deepseek.com/anthropic" ANTHR
   "skipDangerousModePermissionPrompt": true
 }
 ```
+
+### 模型别名映射环境变量
+
+使用第三方网关时，Claude Code 内部的 `opus`、`sonnet`、`haiku` 等别名不会自动对应代理侧的真实模型 ID。以下环境变量指定别名解析结果；值须为提供商支持的**完整模型 ID**（参见官方 [模型配置](https://code.claude.com/docs/en/model-config) 与 [环境变量](https://code.claude.com/docs/en/env-vars) 文档）。
+
+| 环境变量 | 描述 |
+|---------|------|
+| `ANTHROPIC_DEFAULT_OPUS_MODEL` | `opus` 别名，或 Plan Mode 激活时 `opusplan` 所使用的模型。 |
+| `ANTHROPIC_DEFAULT_SONNET_MODEL` | `sonnet` 别名，或 Plan Mode 未激活时 `opusplan` 所使用的模型。 |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL` | `haiku` 别名，或后台功能所使用的模型。 |
+| `CLAUDE_CODE_SUBAGENT_MODEL` | 所有子代理与 Agent 团队使用的模型。会覆盖单次调用的 `model` 参数，以及子代理定义 frontmatter 中的 `model`。设为 `inherit` 则走常规模型解析。 |
+
+上文 JSON 示例中，DeepSeek 的 `deepseek-v4-pro` 等 ID 即通过上述变量把 Claude Code 别名映射到代理侧模型；换提供商时只需改值，不必改会话里的 `/model` 习惯。
 
 ### 📋 各参数说明
 
