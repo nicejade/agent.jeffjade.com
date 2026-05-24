@@ -190,7 +190,7 @@ sidebar:
 
 | 命令 | 用途 |
 |------|------|
-| `/loop [间隔] [提示]` | 在会话保持打开时重复执行；省略间隔时 Claude 自定节奏 |
+| `/loop [间隔] [提示]` | 在会话保持打开时重复执行；与云端 Routines 区别见 [Routines 与定时自动化](/claude-code/routines-automation/) |
 | `/batch <描述>` | 大规模并行改动编排 |
 | `/debug [描述]` | 会话级 debug 日志分析 |
 | `/simplify [焦点]` | 并行审查并修复近期改动 |
@@ -207,6 +207,8 @@ sidebar:
 | `/mobile`（`/ios`、`/android`） | 显示移动端下载二维码 |
 | `/voice [hold\|tap\|off]` | 语音听写 |
 | `/chrome` | Claude in Chrome 相关设置 |
+
+语音、Chrome、`/fast`、statusline 等体验增强说明见 [Chrome 与 Web UI 测试](/claude-code/chrome-browser-testing/#体验增强cli)。
 
 这些命令**并非每个账号都显示**，常依赖 claude.ai 订阅、平台或企业配置。
 
@@ -230,7 +232,7 @@ sidebar:
 
 **系统：** `/config`、`/help`、`/exit`、`/doctor`、`/debug`、`/feedback`、`/heapdump`
 
-**云与供应商向导：** `/setup-bedrock`、`/setup-vertex`、`/web-setup`、`/schedule`（`/routines`）
+**云与供应商向导：** `/setup-bedrock`、`/setup-vertex`、`/web-setup`、`/schedule`（`/routines`，见 [Routines 与定时自动化](/claude-code/routines-automation/)）
 
 部分命令会**随版本移除或改名**，例如旧版 `/vim` 已改为在 `/config` 中切换编辑器模式；`/pr-comments` 在较新版本已移除，应直接让 Claude 读 PR 评论。读到第三方 cheatsheet 时，先用 `/` 面板核对。
 
@@ -275,4 +277,4 @@ sidebar:
 
 ---
 
-下一章：[代理循环与工具调用](/claude-code/agent-loop/)——Slash 命令管的是「会话怎么开」；循环管的是「任务怎么跑」。两章合在一起，你才能既控成本又控风险。
+下一章：[多平台运行环境全览](/claude-code/platforms-overview/)——Slash 命令管「会话怎么开」；先选对 CLI、IDE 或 Web 入口，再进入代理循环。

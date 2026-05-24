@@ -2,7 +2,7 @@
 title: Claude Code 常见问题排查
 description: 覆盖安装报错、登录循环、API 速率限制、性能卡顿、文件搜索异常、配置失效与 IDE 集成故障，按症状分类快速定位并恢复。
 sidebar:
-  order: 33
+  order: 43
 ---
 
 *「claude 命令敲下去，终端只回了一行 command not found。你检查了 Node.js 版本，重装了 npm 包，问题依旧。Google 搜出来的第一条是去年九月的 Reddit 帖子，三楼的回答已经不适用了。」*
@@ -275,4 +275,4 @@ Claude Code 的 CLI、桌面应用和 Web 版共享同一内核，所以运行�
 
 ---
 
-回到 [Claude Code 漫游指南](/claude-code/) 按需查阅其他章节。也可从 [调试与错误恢复](/claude-code/debug-error-recovery/) 了解 Agent 行为层面的故障识别与恢复。
+上一章：[CLI 与配置查阅](/claude-code/cli-and-settings-reference/) · 回到 [Claude Code 漫游指南](/claude-code/) 按需查阅其他章节。也可从 [调试与错误恢复](/claude-code/debug-error-recovery/) 了解 Agent 行为层面的故障识别与恢复。

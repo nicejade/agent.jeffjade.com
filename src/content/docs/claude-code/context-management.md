@@ -2,7 +2,7 @@
 title: 上下文管理与多代理架构
 description: 当上下文用到 80% 仍在大改十几个文件时会发生什么，以及用 SubAgents、/handoff 与 /clear 组合成可恢复的长任务工作流。
 sidebar:
-  order: 21
+  order: 24
 ---
 
 *「上下文已经 80%，它还在改第十四个文件。测试绿了，但我已经说不清它还记得最初要动哪条业务规则。」*
@@ -223,6 +223,8 @@ identify the three most complex functions, and return only a summary.
 /clear 开新会话                    ← CLAUDE.md 引导读 HANDOFF.md
     ↓
 继续实现；必要时再派 Subagent
+    ↓
+需多会话互相质疑同一假设？→ [Agent Teams](/claude-code/agent-teams/)（高成本，慎用）
     ↓
 仍失真？→ /compact 或再 handoff   ← 方案 A
 ```

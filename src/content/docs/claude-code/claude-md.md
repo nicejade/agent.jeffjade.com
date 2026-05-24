@@ -2,7 +2,7 @@
 title: 项目记忆总览
 description: 理解 CLAUDE.md 与自动记忆如何跨会话加载，以及记忆与 Hook、Skill、权限的分工，作为第四部分路线图入口。
 sidebar:
-  order: 8
+  order: 10
 ---
 
 *「Plan Mode 里的计划写得挺好，可一批准执行，它又跑了 `npm test` 而不是我们仓库里的 `pnpm test`。」*

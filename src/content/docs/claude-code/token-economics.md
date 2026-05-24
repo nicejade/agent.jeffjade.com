@@ -2,7 +2,7 @@
 title: Token 成本感知与会话经济学
 description: 用 /context、/usage 与 statusline 监测窗口占用，判断何时 /compact 或新开会话，并用 paths 规则与大文件策略控制 monorepo 扫描成本。
 sidebar:
-  order: 28
+  order: 36
 ---
 
 *「我让 Claude『看一下整个 monorepo 有没有类似实现』，十分钟后测试才跑完。账单里那一格上下文占用，我直到变慢才想起来去看。」*
@@ -136,6 +136,18 @@ paths:
 
 ---
 
+## 模型别名与 `opusplan`
+
+`/model` 中的 **opusplan** 等混合策略在规划阶段与执行阶段可能切换不同底层模型。网关用户须用 `ANTHROPIC_DEFAULT_OPUS_MODEL`、`ANTHROPIC_DEFAULT_SONNET_MODEL` 映射到提供商真实 model ID，见 [第三方 API](/claude-code/third-party-api/#模型别名与环境变量) 与 [Model config](https://code.claude.com/docs/en/model-config)。
+
+---
+
+## OpenTelemetry 与团队分析
+
+企业可启用 [Monitoring](https://code.claude.com/docs/en/monitoring-usage) 与 [Analytics](https://code.claude.com/docs/en/analytics) 看采用率与用量。自建服务嵌入 [Agent SDK](/claude-code/agent-sdk/) 时，见 [SDK Observability](https://code.claude.com/docs/en/agent-sdk/observability) 导出 trace/metrics。
+
+---
+
 ## 降本检查表
 
 | 问题 | 动作 |
@@ -166,4 +178,4 @@ paths:
 
 ---
 
-下一章：[安全边界与权限心智](/claude-code/security-permissions/)——`--dangerously-skip-permissions` 的真实代价、allow/deny 设计，以及沙箱与人类确认边界。
+下一章：[沙箱隔离机制](/claude-code/sandboxing/)——OS 层文件与网络隔离；再读 [安全边界与权限心智](/claude-code/security-permissions/)。

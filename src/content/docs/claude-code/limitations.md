@@ -2,7 +2,7 @@
 title: Claude Code 的局限性与应对策略
 description: 正视上下文、幻觉、权限与成本边界，用可操作的缓解手段与排障路径，把 Claude Code 放在「放大器」而非「自动驾驶」的位置。
 sidebar:
-  order: 25
+  order: 32
 ---
 
 *「它看起来很自信，测试也绿了，上线后才发现改错了分支上的鉴权逻辑。」*
@@ -92,9 +92,18 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 | 原生 GUI | 不能直接点你的桌面应用 | [MCP](/claude-code/mcp/)、[Claude in Chrome](https://code.claude.com/docs/en/chrome)、`@browser`（VS Code） |
 | 精确数值/密码学 | 复杂证明、大数运算不可靠 | 用专用库 + 测试，勿让模型心算 |
 | 实时多人协作 | 不能替代同事即时沟通 | 用于个人/小团队异步任务 |
-| 非交互 CI | `-p` 无人工点权限，须预配置 allow | [生态集成](/claude-code/ecosystem-integration/#非交互模式与自建-ci) |
+| 非交互 CI | `-p` 无人工点权限，须预配置 allow | [CI/CD 集成](/claude-code/ci-cd-integrations/#非交互-claude-p-任意-ci) |
 | 子代理嵌套 | 子代理不能再派子代理 | 主会话串联或 Skills `context: fork` |
-| Agent teams | 多实例、token 约 7x 量级（plan 模式队友） | 默认关闭；小任务、Sonnet 队友 |
+| Agent teams | 多实例、token 约 7x 量级（plan 模式队友） | [Agent Teams 章](/claude-code/agent-teams/)；小任务用 SubAgents |
+
+### 功能与 API 提供商（发布前核对官方）
+
+| 能力 | 通常需要 | 仅 Bedrock/Vertex/Foundry 时 |
+|------|----------|------------------------------|
+| [Web 版](/claude-code/platforms-overview/#web-版claudeaicode) | Anthropic API / Teams | 可能不可用 |
+| [Routines](/claude-code/routines-automation/) | 同上 | 可能不可用 |
+| [GitHub Code Review](https://code.claude.com/docs/en/code-review) | 同上 | 可能不可用 |
+| 本地 CLI + `-p` | 对应提供商凭证 | 一般可用 |
 
 [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) 在隔离 VM 中跑，边界与本地不同，见官方 [Cloud execution security](https://code.claude.com/docs/en/security#cloud-execution-security)。
 
@@ -108,7 +117,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 - 默认只读；Edit、Bash、MCP、网络请求需批准或规则
 - 写入一般限制在**启动目录及子目录**
-- [Sandbox](/claude-code/installation-setup/) 可对 Bash 做文件系统与网络隔离
+- [沙箱隔离](/claude-code/sandboxing/) 可对 Bash 做文件系统与网络隔离
 - 可疑 Bash 即使曾 allowlist 也可能再次要求确认
 
 这些**不能**消除所有风险：你批准的 `Bash(npm test *)` 仍可能在项目内执行任意测试脚本；allow 的是**模式**，不是「永远信任模型」。
@@ -124,7 +133,7 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 **实践：**
 
-- 敏感路径 `deny`：`Edit(.env)`、`Edit(**/secrets/**)`、`Bash(curl *)` 等，见 [生态集成](/claude-code/ecosystem-integration/#团队协作claudemd-与-claude)。
+- 敏感路径 `deny`：`Edit(.env)`、`Edit(**/secrets/**)`、`Bash(curl *)` 等，见 [生态集成 · 团队协作](/claude-code/ecosystem-integration/#团队协作claudemd-与-claude)。
 - 用 [Hooks](/claude-code/hooks/) 做组织级二次拦截。
 - 不可信仓库用 [dev container](https://code.claude.com/docs/en/devcontainer) 或 VM。
 - Windows 上避免让 Claude 访问含 WebDAV 的路径，见官方安全说明。
@@ -310,4 +319,4 @@ Claude Code 是 [代理循环](/claude-code/agent-loop/) 驱动的**高权限本
 
 ---
 
-下一章：[AI 时代的开发者](/claude-code/reflection/)——从执行者到指挥者：能力重心、个人配置迭代，以及在 Agent 范式下什么值得长期投入。
+上一章：[Chrome 与 Web UI 测试](/claude-code/chrome-browser-testing/) · 下一章：[AI 时代的开发者](/claude-code/reflection/)——从执行者到指挥者：能力重心、个人配置迭代，以及在 Agent 范式下什么值得长期投入。

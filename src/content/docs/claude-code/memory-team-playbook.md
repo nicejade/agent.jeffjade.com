@@ -2,7 +2,7 @@
 title: 团队记忆落地
 description: 划分 Managed 与项目 CLAUDE.md 职责，建立记忆文件的 PR 评审与晋升节奏，完成第四部分团队向终点练习。
 sidebar:
-  order: 12
+  order: 14
 ---
 
 *「每个人本地的 CLAUDE.md 都不一样，PR 里看不出记忆文件该不该 merge；IT 下发的合规条和工程约定混在同一文件里。」*

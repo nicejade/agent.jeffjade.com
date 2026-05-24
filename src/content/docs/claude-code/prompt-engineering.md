@@ -2,7 +2,7 @@
 title: 高效提示工程的秘诀
 description: 在 Agentic Coding 里用可验证目标、分阶段节奏与上下文管理指挥 Claude Code，而不是堆长提示或逐步遥控。
 sidebar:
-  order: 22
+  order: 25
 ---
 
 *「帮我改进一下代码。」——二十分钟后 diff 满天飞，测试红了，你仍说不清最初要达成什么。」*

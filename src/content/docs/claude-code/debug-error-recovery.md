@@ -2,7 +2,7 @@
 title: 调试与错误恢复
 description: 识别 Agent Loop 的失败信号，用 /rewind、/clear、Plan Mode 与 CLAUDE.md 反馈闭环把跑偏的会话拉回正轨，而不是只会「再问一遍」。
 sidebar:
-  order: 27
+  order: 35
 ---
 
 *「它改了三轮，测试绿了，但改的是错误分支上的鉴权。我本能想再发一条消息纠正，可上一轮已经污染了上下文。」*
@@ -207,4 +207,4 @@ claude --resume   # 列出可恢复会话
 
 ---
 
-下一章：[Token 成本感知与会话经济学](/claude-code/token-economics/)——用 `/context`、`/usage` 与按需规则建立成本意识，避免每次扫全库才知道账单。
+上一章：[Routines 与定时自动化](/claude-code/routines-automation/) · 下一章：[Token 成本感知与会话经济学](/claude-code/token-economics/)——用 `/context`、`/usage` 与按需规则建立成本意识，避免每次扫全库才知道账单。

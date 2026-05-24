@@ -2,7 +2,7 @@
 title: Plugins：通过市场扩展 Claude Code
 description: 理解 Plugin 与 marketplace 的安装模型，区分 Plugin、Skill、Hook、SubAgent、MCP，并选型官方与社区高价值扩展。
 sidebar:
-  order: 15
+  order: 17
 ---
 
 *「我想一次装上 GitHub 集成、PR 审查技能和 TypeScript LSP，但不想在五个配置文件里分别手配。」*
@@ -130,6 +130,20 @@ cd ~/.claude/skills/gstack && ./setup
 ```
 
 `./setup` 会配置 Claude Code 并建议在 `CLAUDE.md` 中引用 gstack 浏览等约定。团队共享可用仓库内的 `gstack-team-init` 流程，见上游 README。
+
+---
+
+## 创建与分发 marketplace（作者向）
+
+团队自建 Plugin 市场见 [Create plugin marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) 与 [Create plugins](https://code.claude.com/docs/en/plugins)：
+
+1. 在仓库内组织 `plugins/` 目录与 `plugin.json` 清单。
+2. 托管 git 仓库或静态 URL 作为 marketplace 源。
+3. 同事执行 `/plugin marketplace add your-org/your-marketplace`。
+4. `plugin install name@marketplace-id`，scope 选 User / Project / Local。
+5. 在 PR 中 review「Will install」权限与 Context cost。
+
+与 [团队 Skill 实战](/claude-code/skills-team-playbook/) 衔接：成熟 Skill 可打包进 Plugin 再分发。
 
 ---
 

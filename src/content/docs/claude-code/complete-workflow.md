@@ -2,7 +2,7 @@
 title: Claude Code 完整实战工作流
 description: 从接手陌生代码、调试与重构，到新功能、测试、PR 与并行会话，把提示工程与 Plan Mode 落成可重复的端到端路径。
 sidebar:
-  order: 23
+  order: 26
 ---
 
 *「提示工程也学了，Plan Mode 也会切了，但真接手一个陌生 repo、修一个红 CI、或从零加功能时，仍不知道先开口说什么、在哪一步停。」*
@@ -511,4 +511,4 @@ git log --oneline -20 | claude -p "用中文总结这些提交的主题与风险
 
 ---
 
-下一章：[生态深度集成](/claude-code/ecosystem-integration/)——VS Code 与桌面端、GitHub Actions、团队 `CLAUDE.md` 与企业权限，把本章的 Git/CI 片段扩展到协作与流水线环境。
+下一章：[生态深度集成](/claude-code/ecosystem-integration/)——组织层集成总览：团队 `CLAUDE.md`、企业策略与推广节奏；本机选型见 [多平台运行环境](/claude-code/platforms-overview/)，流水线见 [CI/CD 集成](/claude-code/ci-cd-integrations/)，程序化嵌入见 [Agent SDK](/claude-code/agent-sdk/)。

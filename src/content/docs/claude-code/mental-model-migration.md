@@ -2,7 +2,7 @@
 title: 从工具使用到心智模型迁移
 description: 从搜索引擎式提问转向意图式协作，判断何时放手让 Agent 自主、何时细粒度干预，并划定不应外包的认知分工。
 sidebar:
-  order: 32
+  order: 41
 ---
 
 *「我还是在写『帮我找一下 X 在哪』，同事却用一句话描述业务结果，让 Agent 自己规划读哪些文件。同样的工具，差的是提问范式。」*
@@ -148,4 +148,4 @@ flowchart TD
 
 ---
 
-本系列第八部分至此收尾。回到 [Claude Code 漫游指南](/claude-code/) 按需重读；也可从 [完整实战工作流](/claude-code/complete-workflow/) 挑一个真实 ticket，用意图式提示 + Plan + TDD + 人审 diff 走通一整条链。
+下一章：[CLI 与配置查阅](/claude-code/cli-and-settings-reference/)（查阅章，非跟读）· 再读 [常见问题排查](/claude-code/troubleshooting-faq/)。回到 [漫游指南](/claude-code/) 可按需重读各章。

@@ -2,7 +2,7 @@
 title: Hooks：自动化、安全校验与生命周期控制
 description: 在代理循环的关键节点插入确定性脚本，用 PreToolUse、PostToolUse、Stop 等事件实现格式化、拦截危险操作与外部通知。
 sidebar:
-  order: 13
+  order: 15
 ---
 
 *「我在 CLAUDE.md 里写了禁止动 `.env`，模型还是改了一次；每次 Edit 完还要自己跑 Prettier。」*

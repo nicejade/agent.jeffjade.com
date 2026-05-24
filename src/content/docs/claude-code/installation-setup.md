@@ -310,29 +310,9 @@ Claude Code 有两个更新通道：
 
 `DISABLE_AUTOUPDATER` 只禁用后台自动检查，`claude update` 仍然可用。如果需要完全阻止所有更新路径（包括手动），使用 `DISABLE_UPDATES`。
 
-## IDE 集成
+## IDE 与图形客户端
 
-Claude Code 是终端原生的，但它提供了多个 IDE 插件来增强开发体验。
-
-### VS Code 插件
-
-在 VS Code 插件市场搜索 "Claude Code" 安装官方插件。安装后：
-
-- 终端中的 `claude` 和 VS Code 共享同一个 `~/.claude/` 状态目录
-- 插件提供侧边栏 UI，可在图形界面中管理会话
-
-### Claude Code Desktop
-
-如果你更喜欢图形界面而不是终端，Claude Code 提供了桌面应用：
-
-- [macOS 下载](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect)
-- Windows 从 [claude.com/download](https://claude.com/download) 下载
-
-桌面版和 CLI 共享同一套状态文件，你可以在终端和桌面应用之间来回切换。
-
-### JetBrains 插件
-
-JetBrains 插件目前仍在发展中，功能覆盖不如 VS Code 插件完善。如果你是 JetBrains 用户，建议先通过终端直接使用 CLI，或关注 [官方更新动态](https://code.claude.com/docs/en/overview)。
+Claude Code 以终端为内核，也可通过 VS Code/Cursor 扩展、JetBrains 插件、Desktop 与 Web 使用。安装步骤、选型矩阵、扩展与 CLI 差异见 [多平台运行环境全览](/claude-code/platforms-overview/)。
 
 ### 终端内使用的最佳实践
 

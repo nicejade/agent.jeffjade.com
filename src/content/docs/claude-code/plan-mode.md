@@ -2,7 +2,7 @@
 title: Plan Mode：先规划再执行
 description: 在代理循环之上用 Plan Mode 把探索与改码拆开，经你批准后再执行，减少灾难性乱改与跑偏循环。
 sidebar:
-  order: 7
+  order: 9
 ---
 
 *「它说已经修好了，测试却红了一片；再让它修，又动了三个无关文件。」*

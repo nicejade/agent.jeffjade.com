@@ -2,7 +2,7 @@
 title: 自动记忆与 /memory
 description: 配置与审计 Auto Memory，用 /memory 管理 MEMORY.md，并把应团队共享的条目晋升到 CLAUDE.md。
 sidebar:
-  order: 10
+  order: 12
 ---
 
 *「界面闪过 Writing memory，但我不知道它记了什么；同事仓库里的约定它记住了，团队却看不见。」*

@@ -2,7 +2,7 @@
 title: 反思与进阶：AI Agent 时代的开发者
 description: 用 Claude Code 训练需求分解、上下文管理、验证判断与个人工作流，把 Agentic Coding 变成可复用能力。
 sidebar:
-  order: 26
+  order: 33
 ---
 
 *「Claude Code 按你的要求实现了一个功能，测试也绿了。PR review 时，另一个人问：为什么状态放在 middleware，而没有放在 service 层？你忽然发现，代码是 Agent 写的，架构理由却必须由你承担。」*
@@ -302,4 +302,4 @@ Agent 更适合处理：
 
 这套检查的目的，是给速度加刹车。Agentic Coding 的收益来自循环：定义目标，提供上下文，执行改动，验证反馈，沉淀规则。循环越清楚，Agent 越像工具；循环越含混，Agent 越像噪声放大器。
 
-回到 [漫游指南](/claude-code/) 可以按需重读前面章节。若你希望把本章的宏观反思落成**可操作的恢复、成本、权限与协作习惯**，请继续阅读第八部分进阶实践，从 [调试与错误恢复](/claude-code/debug-error-recovery/) 开始。
+回到 [漫游指南](/claude-code/) 可以按需重读前面章节。下一章：[Routines 与定时自动化](/claude-code/routines-automation/)——把宏观反思落到可排程的自动化；再进入 [调试与错误恢复](/claude-code/debug-error-recovery/) 等第九部分实践章。

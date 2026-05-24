@@ -2,7 +2,7 @@
 title: Claude Code 的工作原理：代理循环与工具调用
 description: 把 Agent Loop、一轮与多轮工具调用、内置工具与权限规则串成可观察的机制，读懂 Claude Code 何时继续、何时停下。
 sidebar:
-  order: 6
+  order: 8
 ---
 
 *「它刚才一连读了五个文件、跑了两遍测试，最后才回我一句话。这中间到底发生了什么？」*
@@ -195,7 +195,7 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 
 ### 沙箱
 
-[沙箱](https://code.claude.com/en/sandboxing) 在操作系统层限制进程能访问的路径与网络，对「脚本自己 open 文件」类绕过 Read 规则的行为更有效。高敏感仓库可启用，并与 deny 规则叠加。
+沙箱在操作系统层限制 Bash 进程的路径与网络，与 allow/deny 叠加使用。机制、`/sandbox` 开关与环境选型见 [沙箱隔离机制](/claude-code/sandboxing/)。
 
 ### 网络
 
@@ -270,4 +270,4 @@ Claude Code 通过**具名工具**操作环境，而不是只在聊天框里贴�
 
 ---
 
-下一章：[Plan Mode](/claude-code/plan-mode/)——在代理循环之上，把「想」和「做」拆开：先只读规划，再经你批准进入执行，减少灾难性乱改。
+上一章：[多平台运行环境全览](/claude-code/platforms-overview/) · 下一章：[Plan Mode](/claude-code/plan-mode/)——在代理循环之上，把「想」和「做」拆开：先只读规划，再经你批准进入执行，减少灾难性乱改。

@@ -2,7 +2,7 @@
 title: 安全边界与权限心智
 description: 理解 bypassPermissions 与 --dangerously-skip-permissions 的权衡，用 allow/deny 规则与沙箱隔离风险，并明确哪些操作必须人类最后确认。
 sidebar:
-  order: 29
+  order: 38
 ---
 
 *「为了不被弹窗打断，我加了 `--dangerously-skip-permissions`。一周后才发现 `.env` 被改过，而 deny 列表里从没写过 `Edit(.env*)`。」*
@@ -37,6 +37,22 @@ Claude Code 的权限系统回答一个问题：**哪类工具调用可以在无
 3. **管理员可禁用 bypass**：managed settings 中 `permissions.disableBypassPermissionsMode: "disable"` 可组织级关闭。
 
 推断：若团队有人长期 bypass 且无 deny，等价于给 Agent 接近 root 的 shell 与写盘权。
+
+---
+
+## 权限模式（permission modes）补充
+
+除上表外，官方 [Permission modes](https://code.claude.com/docs/en/permission-modes) 还包括 **auto mode** 等变体：在组织信任域内自动批准部分工具，具体 allow/block 由 [auto mode config](https://code.claude.com/docs/en/auto-mode-config) 与 managed 策略定义。
+
+| 切换方式 | 说明 |
+|----------|------|
+| CLI `Shift+Tab` | 循环切换模式 |
+| VS Code / Desktop | 提示框底部模式选择器 |
+| `settings.json` | `initialPermissionMode` 等 |
+
+**managed policies：** 企业可在 managed settings 中强制 `permissions.deny`、禁用 bypass、限制 MCP。开发者用 `/status` 查看 `Enterprise managed settings (remote)` 是否生效。与项目 `.claude/settings.json` 冲突时，以官方 [precedence](https://code.claude.com/docs/en/settings#settings-files) 为准。
+
+OS 层隔离见 [沙箱隔离机制](/claude-code/sandboxing/)，不要与 permission mode 混为一谈。
 
 ---
 
@@ -188,4 +204,4 @@ GitHub Actions 跑 `claude -p` 时，应用**最小权限** secrets、只读默�
 
 ---
 
-下一章：[测试驱动协作与代码质量保障](/claude-code/tdd-quality/)——先红测试再实现、Hooks 与 CI 门禁，以及 diff 与安全扫描审查 AI 输出。
+上一章：[沙箱隔离机制](/claude-code/sandboxing/) · 下一章：[测试驱动协作与代码质量保障](/claude-code/tdd-quality/)——先红测试再实现、Hooks 与 CI 门禁，以及 diff 与安全扫描审查 AI 输出。

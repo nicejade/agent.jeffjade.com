@@ -2,7 +2,7 @@
 title: 团队 Skill 实战
 description: 从 Superpowers 等社区包提炼六条可迁移模式，用练习与决策表落地团队自己的 SKILL.md 与组织 Plugin。
 sidebar:
-  order: 20
+  order: 23
 ---
 
 *「社区包装了一堆流程，我们真正需要的是团队自己的 PR 检查单和发布步骤，能进 Git、能 code review。」*
@@ -87,7 +87,7 @@ Superpowers 的 `writing-skills` 把「如何写技能」本身做成技能。
 ## 组织 Plugin 与治理
 
 1. 在内部仓库 `skills/` 目录维护 `SKILL.md` 树。  
-2. 按官方 [Plugins](https://code.claude.com/docs/en/plugins) 打包并发布到团队 marketplace。  
+2. 按 [Plugins 章 · 创建 marketplace](/claude-code/plugins/#创建与分发-marketplace作者向) 与官方 [Plugins](https://code.claude.com/docs/en/plugins) 打包并发布。  
 3. `plugin install` 写入项目或 Managed 推荐列表；新人 onboarding 文档只链 marketplace 名与版本。  
 4. 与 [团队与组织级落地](/claude-code/team-organization/) 中的 PR review、Managed CLAUDE.md 对齐。
 

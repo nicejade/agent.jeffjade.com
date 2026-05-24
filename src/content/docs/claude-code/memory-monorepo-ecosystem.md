@@ -2,7 +2,7 @@
 title: Monorepo 与多工具记忆
 description: 掌握 CLAUDE.md 向上拼接与向下懒加载，用 claudeMdExcludes 排除无关记忆，并与 AGENTS.md、Cursor 规则共存。
 sidebar:
-  order: 11
+  order: 13
 ---
 
 *「在 monorepo 的 `apps/web` 里启动 Claude，却加载了隔壁团队的 CLAUDE.md；Cursor 里改的是 `.cursor/rules`，同事用 Claude Code 完全看不到。」*

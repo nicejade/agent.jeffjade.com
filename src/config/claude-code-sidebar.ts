@@ -18,6 +18,7 @@ export const claudeCodeSidebar = [
       { label: '基于第三方 API', link: '/claude-code/third-party-api/' },
       { label: '第一个会话', link: '/claude-code/first-session/' },
       { label: 'Slash 命令', link: '/claude-code/slash-commands/' },
+      { label: '多平台运行环境全览', link: '/claude-code/platforms-overview/' },
     ],
   },
   {
@@ -44,6 +45,7 @@ export const claudeCodeSidebar = [
       { label: 'Skills 技能', link: '/claude-code/skills/' },
       { label: 'Plugins 插件', link: '/claude-code/plugins/' },
       { label: 'SubAgents', link: '/claude-code/subagents/' },
+      { label: 'Agent Teams 与多会话协作', link: '/claude-code/agent-teams/' },
       { label: 'MCP 协议', link: '/claude-code/mcp/' },
     ],
   },
@@ -62,6 +64,10 @@ export const claudeCodeSidebar = [
       { label: '完整实战工作流', link: '/claude-code/complete-workflow/' },
       { label: '上下文管理与多代理', link: '/claude-code/context-management/' },
       { label: '生态深度集成', link: '/claude-code/ecosystem-integration/' },
+      { label: 'Agent SDK 程序化调用', link: '/claude-code/agent-sdk/' },
+      { label: 'CI/CD 与代码审查集成', link: '/claude-code/ci-cd-integrations/' },
+      { label: '远程会话与 Channels', link: '/claude-code/remote-sessions-channels/' },
+      { label: 'Chrome 与 Web UI 测试', link: '/claude-code/chrome-browser-testing/' },
     ],
   },
   {
@@ -74,8 +80,10 @@ export const claudeCodeSidebar = [
   {
     label: '第九部分 · 进阶实践',
     items: [
+      { label: 'Routines 与定时自动化', link: '/claude-code/routines-automation/' },
       { label: '调试与错误恢复', link: '/claude-code/debug-error-recovery/' },
       { label: 'Token 成本与会话经济学', link: '/claude-code/token-economics/' },
+      { label: '沙箱隔离机制', link: '/claude-code/sandboxing/' },
       { label: '安全边界与权限心智', link: '/claude-code/security-permissions/' },
       { label: '测试驱动与质量保障', link: '/claude-code/tdd-quality/' },
       { label: '团队与组织级落地', link: '/claude-code/team-organization/' },
@@ -85,6 +93,7 @@ export const claudeCodeSidebar = [
   {
     label: '第十部分 · 排障速查',
     items: [
+      { label: 'CLI 与配置查阅', link: '/claude-code/cli-and-settings-reference/' },
       { label: '常见问题排查', link: '/claude-code/troubleshooting-faq/' },
     ],
   },

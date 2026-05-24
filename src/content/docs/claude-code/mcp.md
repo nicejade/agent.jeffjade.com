@@ -2,7 +2,7 @@
 title: MCP：为 Claude Code 接入外部工具与服务
 description: 通过 Model Context Protocol 将 GitHub、数据库、Sentry 等外部工具接入 Claude Code，让模型直接查询、操作外部系统而不依赖粘贴数据。
 sidebar:
-  order: 17
+  order: 20
 ---
 
 *「每次查 JIRA 需求都要把标题和描述复制进对话；GitHub PR 的 diff 要先在浏览器看完再人工概括给 Claude。」*
@@ -26,6 +26,8 @@ MCP（Model Context Protocol）让 Claude Code **直接连接**外部工具与�
 | `!` 命令注入 | 命令输出 | 否（一次性） | 调用时快照 | 低 |
 | **MCP** | **外部系统直接提供** | **是** | **按需查询** | **中** |
 | [渠道（Channels）](https://code.claude.com/docs/en/channels) | 外部事件推送 | 是，被动接收 | 事件驱动 | 中 |
+
+**Channels 深入阅读：** 与 Hooks 不同，Channels 把 CI 失败、监控告警等**推入**已打开会话。配置契约、reply 工具与 sender 白名单见 [远程会话与 Channels](/claude-code/remote-sessions-channels/)。
 
 MCP 的核心差异：**模型可以自行决定何时、以什么参数去查询外部系统**，而不是被动接受你提供的数据。这让 Claude Code 从「听你描述外部世界」变成「自己去看外部世界」。
 
@@ -523,4 +525,4 @@ MCP Server 有权执行命令、访问文件、发起网络请求。需要保持
 
 ---
 
-下一章：[编码向社区精选](/claude-code/skill-recommendations/)——第六部分：Superpowers 等社区技能包；机制与编写见 [Skills](/claude-code/skills/)。
+上一章：[Agent Teams 与多会话协作](/claude-code/agent-teams/) · 下一章：[编码向社区精选](/claude-code/skill-recommendations/)——第六部分：Superpowers 等社区技能包；机制与编写见 [Skills](/claude-code/skills/)。

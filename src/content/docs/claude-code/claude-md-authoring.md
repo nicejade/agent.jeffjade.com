@@ -2,7 +2,7 @@
 title: CLAUDE.md 编写与维护
 description: 用分层文件、路径 rules 与 /init 写出可验证的项目记忆，控制 200 行预算并避免与 Skill 重复堆叠。
 sidebar:
-  order: 9
+  order: 11
 ---
 
 *「根目录 CLAUDE.md 已经 300 行，模型还是跑错测试命令；同事又在里面贴了整份 API 文档。」*

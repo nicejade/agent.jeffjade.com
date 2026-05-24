@@ -2,7 +2,7 @@
 title: SubAgents：上下文隔离与复杂任务拆解
 description: 学会用 SubAgents 实现独立上下文、工具约束与并行执行，把探索、审查、实验性改动挡在主会话之外。
 sidebar:
-  order: 16
+  order: 18
 ---
 
 *「让它全库搜一遍鉴权实现，主会话里塞了几十份文件片段；接着改代码时模型已经记不住我最初只要动 middleware。」*
@@ -74,7 +74,7 @@ Claude Code 自带若干子代理，一般无需你手动注册。主模型按�
 
 Explore 被调用时，主模型还会指定 thoroughness：`quick`、`medium` 或 `very thorough`，控制探索深度。
 
-**边界：** 内置子代理在同一**会话**内工作。若要许多互不关联的会话并行、在统一界面监控，见官方 [background agents](https://code.claude.com/en/agent-view)；若要多个会话互相通信，见 [agent teams](https://code.claude.com/en/agent-teams)（实验能力，环境变量启用）。本章聚焦单会话内的 SubAgents。
+**边界：** 单会话内委派见本章。多会话互通信与共享任务板见 [Agent Teams](/claude-code/agent-teams/)；仅统一监控多会话见官方 [agent view](https://code.claude.com/docs/en/agent-view)。
 
 ---
 
@@ -437,4 +437,4 @@ Fork 与**命名子代理**对比：前者共享历史与系统提示，后者�
 
 ---
 
-上一章：[Plugins 插件](/claude-code/plugins/) · 下一章：[MCP 协议](/claude-code/mcp/)——用 Model Context Protocol 把 GitHub、数据库、浏览器等外部系统接到 Claude Code，并学会把 MCP 只 scoped 给特定子代理以节省主会话上下文。第五部分结束后进入 [编码向社区精选](/claude-code/skill-recommendations/)。
+上一章：[Plugins 插件](/claude-code/plugins/) · 下一章：[Agent Teams 与多会话协作](/claude-code/agent-teams/)——多会话互通信与并行审查；再读 [MCP 协议](/claude-code/mcp/)。第五部分结束后进入 [编码向社区精选](/claude-code/skill-recommendations/)。
