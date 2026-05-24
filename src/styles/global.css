@@ -260,10 +260,32 @@ svg {
   -webkit-backdrop-filter: blur(12px);
 }
 
+.nav-links-group {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.nav-links-cta {
+  display: contents;
+}
+
+.nav-menu-divider {
+  display: none;
+}
+
+.nav-item-chevron {
+  display: none;
+  flex-shrink: 0;
+  opacity: 0.45;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
 .nav-links a {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
+  gap: 0.35rem;
   padding: 0 0.85rem;
   border-radius: 8px;
   color: rgba(17, 17, 20, 0.68);
@@ -271,12 +293,21 @@ svg {
   font-weight: 540;
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.18s ease, background 0.18s ease;
+  transition: color 0.18s ease, background 0.18s ease, transform 0.15s ease;
+}
+
+.nav-item-label {
+  flex: 1;
+  min-width: 0;
 }
 
 .nav-links a:hover {
   color: var(--ink);
   background: rgba(17, 17, 20, 0.05);
+}
+
+.nav-links a:active {
+  transform: scale(0.98);
 }
 
 .nav-links a[aria-current='page']:not(.nav-cta) {
@@ -289,11 +320,53 @@ svg {
   color: #fff;
   background: var(--brand-blue);
   font-weight: 580;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.22);
 }
 
 .nav-links a.nav-cta:hover {
   color: #fff;
   background: #005ec2;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.32);
+}
+
+.nav-links a.nav-cta svg {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+/* Mobile menu backdrop */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+  border: 0;
+  background: rgba(17, 17, 20, 0.22);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.nav-backdrop.nav-backdrop-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.nav-menu-open {
+  overflow: hidden;
+}
+
+@keyframes nav-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .brand-mark:focus-visible,
@@ -337,6 +410,16 @@ svg {
   border-radius: 2px;
   background: var(--ink);
   transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.mobile-menu-btn[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(0, 113, 227, 0.22);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+.mobile-menu-btn[aria-expanded="true"] .menu-bar {
+  background: var(--brand-blue);
 }
 
 .mobile-menu-btn[aria-expanded="true"] .menu-bar:first-child {
@@ -742,10 +825,15 @@ svg {
   .nav-links a,
   .mobile-menu-btn,
   .menu-bar,
+  .nav-backdrop,
   .catalog-part,
   .home-nav::before,
   .skip-link {
     transition: none;
+  }
+
+  .nav-links.nav-open {
+    animation: none;
   }
 
   .track-card-live:hover,
@@ -833,16 +921,6 @@ svg {
   color: var(--ink);
   font-size: 0.95rem;
   font-weight: 620;
-}
-
-.nav-links a.nav-cta {
-  color: #fff;
-  background: var(--brand-blue);
-}
-
-.nav-links a.nav-cta:hover {
-  color: #fff;
-  background: #005ec2;
 }
 
 .catalog-grid {
@@ -1937,8 +2015,13 @@ html:has(.site-shell) {
   .button,
   .nav-links a,
   .mobile-menu-btn,
-  .menu-bar {
+  .menu-bar,
+  .nav-backdrop {
     transition: none;
+  }
+
+  .nav-links.nav-open {
+    animation: none;
   }
 
   .track-card-live:hover,
@@ -1964,21 +2047,79 @@ html:has(.site-shell) {
   .nav-links.nav-open {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 10px);
     right: 0;
-    min-width: 180px;
-    padding: 0.35rem;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.88);
+    z-index: 50;
+    width: min(280px, calc(100vw - 48px));
+    min-width: 0;
+    padding: 0.5rem;
+    border: 1px solid rgba(17, 17, 20, 0.08);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: saturate(180%) blur(24px);
     -webkit-backdrop-filter: saturate(180%) blur(24px);
-    box-shadow: 0 4px 24px rgba(17, 17, 20, 0.1);
+    box-shadow:
+      0 1px 2px rgba(17, 17, 20, 0.04),
+      0 8px 32px rgba(17, 17, 20, 0.12),
+      0 24px 48px rgba(17, 17, 20, 0.08);
+    animation: nav-menu-enter 0.22s ease-out;
+    overflow: hidden;
+  }
+
+  .nav-links.nav-open .nav-links-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .nav-links.nav-open .nav-links-cta {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .nav-links.nav-open .nav-menu-divider {
+    display: block;
+    height: 1px;
+    margin: 0.35rem 0.25rem;
+    background: var(--soft-line);
   }
 
   .nav-links.nav-open a {
+    display: flex;
+    box-sizing: border-box;
     width: 100%;
-    justify-content: flex-start;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: space-between;
+    padding: 0 0.9rem;
+    font-size: 0.9375rem;
+  }
+
+  .nav-links.nav-open .nav-item-chevron {
+    display: block;
+  }
+
+  .nav-links.nav-open a:hover .nav-item-chevron,
+  .nav-links.nav-open a:focus-visible .nav-item-chevron {
+    opacity: 0.75;
+    transform: translateX(2px);
+  }
+
+  .nav-links.nav-open a.nav-cta {
+    justify-content: center;
+    margin-top: 0.1rem;
+    font-weight: 600;
+    box-shadow: none;
+  }
+
+  .nav-backdrop.nav-backdrop-open {
+    display: block;
   }
 
   .mobile-menu-btn {
@@ -2148,10 +2289,24 @@ html:has(.site-shell) {
   }
 
   .nav-links.nav-open {
-    background: rgba(28, 29, 33, 0.88);
+    background: rgba(28, 29, 33, 0.94);
+    border-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: saturate(180%) blur(24px);
     -webkit-backdrop-filter: saturate(180%) blur(24px);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.2),
+      0 8px 32px rgba(0, 0, 0, 0.35),
+      0 24px 48px rgba(0, 0, 0, 0.25);
+  }
+
+  .nav-backdrop {
+    background: rgba(0, 0, 0, 0.48);
+  }
+
+  .mobile-menu-btn[aria-expanded="true"] {
+    background: rgba(28, 29, 33, 0.92);
+    border-color: rgba(94, 177, 255, 0.28);
+    box-shadow: 0 0 0 3px rgba(94, 177, 255, 0.12);
   }
 
   .mobile-menu-btn {

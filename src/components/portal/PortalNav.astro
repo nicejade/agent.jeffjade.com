@@ -11,6 +11,8 @@ interface Props {
 
 const { items } = Astro.props;
 const pathname = Astro.url.pathname;
+const navItems = items.filter((item) => item.variant !== 'cta');
+const ctaItem = items.find((item) => item.variant === 'cta');
 
 function isActive(href: string): boolean {
   if (href === '/') {
@@ -19,9 +21,12 @@ function isActive(href: string): boolean {
   const normalized = href.endsWith('/') ? href : `${href}/`;
   return pathname === href || pathname === normalized.slice(0, -1) || pathname.startsWith(normalized);
 }
+
+const chevronIcon = `<svg class="nav-item-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ---
 
 <a class="skip-link" href="#main-content">跳到主内容</a>
+<div class="nav-backdrop" id="nav-backdrop" aria-hidden="true" hidden></div>
 <header class="home-nav" aria-label="主导航">
   <div class="home-nav-inner">
     <a class="brand-mark" href="/">
@@ -29,16 +34,37 @@ function isActive(href: string): boolean {
       <span class="brand-text">智能体漫游</span>
     </a>
     <nav class="nav-links" id="nav-menu" aria-label="站点导航">
+      <div class="nav-links-group">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              <span class="nav-item-label">{item.label}</span>
+              <span set:html={chevronIcon} />
+            </a>
+          ))
+        }
+      </div>
       {
-        items.map((item) => (
-          <a
-            href={item.href}
-            class:list={[{ 'nav-cta': item.variant === 'cta' }]}
-            aria-current={isActive(item.href) ? 'page' : undefined}
-          >
-            {item.label}
-          </a>
-        ))
+        ctaItem && (
+          <>
+            <div class="nav-menu-divider" aria-hidden="true"></div>
+            <div class="nav-links-cta">
+              <a
+                href={ctaItem.href}
+                class="nav-cta"
+                aria-current={isActive(ctaItem.href) ? 'page' : undefined}
+              >
+                {ctaItem.label}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </>
+        )
       }
     </nav>
     <button
@@ -59,22 +85,31 @@ function isActive(href: string): boolean {
   function initPortalMobileNav() {
     const btn = document.getElementById('menu-toggle');
     const menu = document.getElementById('nav-menu');
+    const backdrop = document.getElementById('nav-backdrop');
     const nav = document.querySelector('.home-nav');
     if (!btn || !menu || btn.dataset.bound === 'true') return;
 
     btn.dataset.bound = 'true';
 
-    const close = () => {
-      menu.classList.remove('nav-open');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', '打开菜单');
-    };
-
-    btn.addEventListener('click', () => {
-      const open = menu.classList.toggle('nav-open');
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle('nav-open', open);
+      backdrop?.classList.toggle('nav-backdrop-open', open);
+      if (backdrop) {
+        backdrop.hidden = !open;
+        backdrop.setAttribute('aria-hidden', String(!open));
+      }
+      document.body.classList.toggle('nav-menu-open', open);
       btn.setAttribute('aria-expanded', String(open));
       btn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+    };
+
+    const close = () => setOpen(false);
+
+    btn.addEventListener('click', () => {
+      setOpen(!menu.classList.contains('nav-open'));
     });
+
+    backdrop?.addEventListener('click', close);
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') close();
@@ -94,6 +129,7 @@ function isActive(href: string): boolean {
 
     const onScroll = () => {
       nav?.classList.toggle('home-nav-scrolled', window.scrollY > 8);
+      if (menu.classList.contains('nav-open')) close();
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
