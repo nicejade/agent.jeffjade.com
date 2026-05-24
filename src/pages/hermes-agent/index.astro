@@ -2,6 +2,8 @@
 import '../../styles/global.css';
 import CriticalBodyReset from '../../components/CriticalBodyReset.astro';
 import Footer from '../../components/Footer.astro';
+import PortalNav from '../../components/portal/PortalNav.astro';
+import PortalThemeMeta from '../../components/portal/PortalThemeMeta.astro';
 import SeoExtras from '../../components/seo/SeoExtras.astro';
 import { GA_ID, OG_IMAGE, SITE_URL } from '../../config/site-seo';
 
@@ -75,7 +77,7 @@ const claudeGuide = {
     <CriticalBodyReset />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f5f5f7" />
+    <PortalThemeMeta />
     <link rel="canonical" href={pageUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -102,25 +104,15 @@ const claudeGuide = {
   </head>
   <body>
     <div class="site-shell">
-      <header class="home-nav" aria-label="主导航">
-        <div class="home-nav-inner">
-          <a class="brand-mark" href="/">
-            <img class="brand-glyph" src="/favicon.svg" alt="" width="30" height="30" aria-hidden="true" />
-            <span class="brand-text">智能体漫游</span>
-          </a>
-          <nav class="nav-links" id="nav-menu" aria-label="站点导航">
-            <a href="/">站点首页</a>
-            <a href="/claude-code/">Claude Code</a>
-            <a class="nav-cta" href="/hermes-agent/what-is-hermes-agent/">从第 1 章开始</a>
-          </nav>
-          <button class="mobile-menu-btn" id="menu-toggle" aria-label="打开菜单" aria-expanded="false">
-            <span class="menu-bar"></span>
-            <span class="menu-bar"></span>
-          </button>
-        </div>
-      </header>
+      <PortalNav
+        items={[
+          { href: '/', label: '站点首页' },
+          { href: '/claude-code/', label: 'Claude Code' },
+          { href: '/hermes-agent/what-is-hermes-agent/', label: '从第 1 章开始', variant: 'cta' },
+        ]}
+      />
 
-      <main>
+      <main id="main-content">
         <section class="hero hero-guide" aria-labelledby="hero-title">
           <div class="hero-copy">
             <p class="eyebrow">Hermes Agent · 17 章</p>
@@ -173,7 +165,7 @@ const claudeGuide = {
 
         <section class="section" aria-labelledby="catalog-title">
           <div class="section-header">
-            <p>table of contents</p>
+            <p class="section-kicker">table of contents</p>
             <h2 id="catalog-title">按部分浏览全部章节</h2>
             <p>进入文档后，侧边栏仅展示本指南的章节导航，不会被其他主题分散注意力。</p>
           </div>
@@ -202,7 +194,7 @@ const claudeGuide = {
 
         <section class="section guide-related" aria-labelledby="claude-title">
           <div class="section-header">
-            <p>more agent tracks</p>
+            <p class="section-kicker">more agent tracks</p>
             <h2 id="claude-title">Claude Code 漫游指南</h2>
             <p>{claudeGuide.summary}</p>
           </div>
@@ -271,14 +263,5 @@ const claudeGuide = {
       </div>
     </div>
 
-    <script is:inline>
-      const btn = document.getElementById('menu-toggle');
-      const menu = document.getElementById('nav-menu');
-      btn?.addEventListener('click', () => {
-        const open = menu.classList.toggle('nav-open');
-        btn.setAttribute('aria-expanded', String(open));
-        btn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
-      });
-    </script>
   </body>
 </html>

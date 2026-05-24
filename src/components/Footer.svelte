@@ -63,7 +63,7 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   role="listitem"
-                  class="footer-social-link footer-hover group flex h-9 w-9 items-center justify-center rounded-lg bg-transparent text-[var(--sl-color-gray-3)] active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-gray-4)] no-underline border-none"
+                  class="footer-social-link footer-hover group flex h-11 w-11 items-center justify-center rounded-lg bg-transparent text-[var(--sl-color-gray-3)] active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-accent)] no-underline border-none"
                   title={social.label}
                   aria-label={social.label}
                 >
@@ -96,7 +96,7 @@
                       href={citem.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="footer-hover footer-nav-link inline-flex items-center rounded-md px-2 py-2 text-sm leading-snug text-[var(--sl-color-gray-3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-gray-4)] no-underline border-none"
+                      class="footer-hover footer-nav-link inline-flex min-h-11 items-center rounded-md px-2.5 py-2 text-sm leading-snug text-[var(--sl-color-gray-3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sl-color-accent)] no-underline border-none"
                     >
                       {citem.title}
                     </a>

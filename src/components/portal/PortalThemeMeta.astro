@@ -1,0 +1,11 @@
+---
+interface Props {
+  light?: string;
+  dark?: string;
+}
+
+const { light = '#fbfbfd', dark = '#0c0d10' } = Astro.props;
+---
+
+<meta name="theme-color" content={light} media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content={dark} media="(prefers-color-scheme: dark)" />

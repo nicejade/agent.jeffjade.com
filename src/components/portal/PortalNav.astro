@@ -1,0 +1,103 @@
+---
+export interface PortalNavItem {
+  href: string;
+  label: string;
+  variant?: 'default' | 'cta';
+}
+
+interface Props {
+  items: PortalNavItem[];
+}
+
+const { items } = Astro.props;
+const pathname = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === '/') {
+    return pathname === '/';
+  }
+  const normalized = href.endsWith('/') ? href : `${href}/`;
+  return pathname === href || pathname === normalized.slice(0, -1) || pathname.startsWith(normalized);
+}
+---
+
+<a class="skip-link" href="#main-content">跳到主内容</a>
+<header class="home-nav" aria-label="主导航">
+  <div class="home-nav-inner">
+    <a class="brand-mark" href="/">
+      <img class="brand-glyph" src="/favicon.svg" alt="" width="30" height="30" aria-hidden="true" />
+      <span class="brand-text">智能体漫游</span>
+    </a>
+    <nav class="nav-links" id="nav-menu" aria-label="站点导航">
+      {
+        items.map((item) => (
+          <a
+            href={item.href}
+            class:list={[{ 'nav-cta': item.variant === 'cta' }]}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <button
+      type="button"
+      class="mobile-menu-btn"
+      id="menu-toggle"
+      aria-controls="nav-menu"
+      aria-label="打开菜单"
+      aria-expanded="false"
+    >
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  function initPortalMobileNav() {
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('nav-menu');
+    const nav = document.querySelector('.home-nav');
+    if (!btn || !menu || btn.dataset.bound === 'true') return;
+
+    btn.dataset.bound = 'true';
+
+    const close = () => {
+      menu.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', '打开菜单');
+    };
+
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('nav-open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') close();
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!menu.classList.contains('nav-open')) return;
+      const target = event.target;
+      if (target instanceof Node && !menu.contains(target) && !btn.contains(target)) {
+        close();
+      }
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', close);
+    });
+
+    const onScroll = () => {
+      nav?.classList.toggle('home-nav-scrolled', window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  initPortalMobileNav();
+</script>
