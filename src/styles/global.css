@@ -1117,19 +1117,27 @@ body.nav-menu-open {
     -webkit-text-fill-color: transparent;
   }
 
-  /* Mobile menu toggle: global svg sizing overflows the 2rem circle without flex centering */
-  starlight-menu-button button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
+  /* Mobile menu toggle: only style when visible (<50rem). Unscoped display:flex overrides md:sl-hidden. */
+  @media (max-width: 49.999rem) {
+    starlight-menu-button button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    starlight-menu-button button svg {
+      width: 1.125rem !important;
+      height: 1.125rem !important;
+      font-size: 1.125rem !important;
+      flex-shrink: 0;
+    }
   }
 
-  starlight-menu-button button svg {
-    width: 1.125rem !important;
-    height: 1.125rem !important;
-    font-size: 1.125rem !important;
-    flex-shrink: 0;
+  @media (min-width: 50rem) {
+    starlight-menu-button {
+      display: none;
+    }
   }
 
   /* Pagefind clear (X) in mobile search bar */
