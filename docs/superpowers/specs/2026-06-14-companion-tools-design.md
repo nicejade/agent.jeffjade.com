@@ -1,8 +1,10 @@
 # Claude Code 指南：配套工具精选 — 设计说明
 
-**日期**：2026-06-14  
-**状态**：已实现（2026-06-14）  
-**决策摘要**：全景清单（本机工作流 + 外部集成外延）+ 混合深度（5 类核心工具展开 + 附录对照表）；sidebar 插入第二部分「快速上手」，`third-party-api` 与 `first-session` 之间。
+**日期**：2026-06-14（初版）· 2026-06-14（附录扩充 rev.2）  
+**状态**：初版已实现；**附录扩充待实现**  
+**决策摘要**：全景清单（本机工作流 + 外部集成外延）+ 混合深度（四层核心工具展开 + 双附录）；sidebar 插入第二部分「快速上手」，`third-party-api` 与 `first-session` 之间。
+
+**Rev.2 决策（2026-06-14 批准）**：采用**方案 2（双附录）**——四层正文不动；新增「本机进阶工具一览」分类附录表；「外延：扩展阅读对照表」保留专章索引，删除原三行本机候选小表。
 
 ---
 
@@ -36,6 +38,8 @@
 4. 用 tmux 或 zellij 搭一个最小「Claude 专用」布局；
 5. 用 lazygit 浏览 Agent 批量改动并按 hunk 暂存；
 6. 知道 gh、MCP、CI、Chrome 等外延能力应去读哪篇专章。
+7. 按场景在本机进阶附录中查到 fzf、direnv、watchexec、MCP server 等与 Claude Code 的配合方式及最小验证信号。
+8. 理解黄金搭档组合如何在 tmux/zellij 布局中叠用。
 
 ---
 
@@ -89,7 +93,8 @@
 ### 3.1 章首
 
 - **开场场景**：API 配好后的四类摩擦（换提供商、多会话抢工作区、终端断线、大 diff 难 review）。
-- **路由图**：四层本机工作流 + 外延附录；标注必读 / 可选 / 链到专章。
+- **路由图**：四层本机工作流 + 本机进阶附录 + 外延专章索引；标注必读 / 可选 / 按需查阅 / 链到专章。
+- **路由表增补一行**：`进阶 | 见本机进阶工具一览 | 终端提速、测试闭环、MCP 扩展 | 按需查阅`。
 - **与 API 章关系**：机制读 `third-party-api`，工具化读本章。
 
 ### 3.2 连接层：CC Switch（最深）
@@ -184,8 +189,103 @@ cd ../myproject-feature-a && claude
 
 - 最小套装：CC Switch + worktree + lazygit；
 - 终端重度：上述 + tmux 或 zellij。
+- **交叉引用（rev.2）**：推荐组合段末加一句，指向「本机进阶工具一览」，供终端重度用户补 fzf、direnv、watchexec 等。
 
-### 3.7 外延层：扩展阅读对照表（附录，简短）
+### 3.7 本机进阶工具一览（rev.2 新增，分类附录）
+
+**位置**：「选型与组合」之后、「外延：扩展阅读对照表」之前。
+
+**导读**：四层核心工具装好后，可按场景补 CLI 与 MCP；本节为索引，不写安装教程。
+
+**表结构（五张场景表统一三列）**：
+
+| 列 | 说明 |
+|----|------|
+| 工具 | 名称 + 官方链接 |
+| 与 Claude Code 的关系 | 1～2 句可观察行为 |
+| 最小信号 | 装好后一条验证命令或场景 |
+
+每张表前各有一句「何时查这张表」。
+
+**3.7.1 终端与 Shell 增强**
+
+| 工具 | 关系要点 | 最小信号 |
+|------|----------|----------|
+| [fzf](https://github.com/junegunn/fzf) | 模糊搜历史命令、文件路径；多 worktree 切换时少敲路径 | `Ctrl+R` 或 `fzf` 能列出最近命令 |
+| [zoxide](https://github.com/ajeetdsouza/zoxide) | 智能 `cd`，多项目并行时快速跳转 | `z docs` 类短别名能进常用目录 |
+| [direnv](https://direnv.net/) | 进目录自动加载/卸载 env；每个 worktree 独立 `.envrc` | 进 worktree 目录后 env 与主目录不同 |
+| [atuin](https://github.com/atuinhq/atuin) | Shell 历史跨会话、可语义搜索；找回给 Claude 用过的长命令 | `atuin search deploy` 能命中历史 |
+
+**3.7.2 文件与代码浏览**
+
+| 工具 | 关系要点 | 最小信号 |
+|------|----------|----------|
+| [ripgrep](https://github.com/BurntSushi/ripgrep) (`rg`) | Claude Code 也会调用；本机安装后大型 monorepo 搜索更快 | `rg "pattern" --files-with-matches` 有结果 |
+| [fd](https://github.com/sharkdp/fd) | `find` 的现代替代；Agent 找文件时受益 | `fd companion-tools` 能定位文件 |
+| [bat](https://github.com/sharkdp/bat) | 带高亮的 `cat`；审阅 Agent 生成文件更舒适 | `bat companion-tools.md` 有语法高亮 |
+| [yazi](https://github.com/sxyazi/yazi) / [ranger](https://github.com/ranger/ranger) | 终端文件管理器；tmux pane 常驻，快速看 Agent 改了哪些文件 | 打开后能预览 diff 前文件树 |
+
+**3.7.3 开发流程**
+
+| 工具 | 关系要点 | 最小信号 |
+|------|----------|----------|
+| [gh](https://cli.github.com/) | 终端创建 PR、review、merge；与 worktree 工作流配合 | `gh pr create` 或 `gh pr list` 正常 |
+| [watchexec](https://github.com/watchexec/watchexec) / [entr](https://eradman.com/entrproject/) | 文件变动自动跑测试；Agent 改完即反馈 | 保存文件后终端自动触发测试 |
+| [just](https://github.com/casey/just) | 比 Makefile 友好的任务入口；写入 [CLAUDE.md](/claude-code/claude-md/) 供 Agent 调用 | `just test` 跑通项目任务 |
+| [pre-commit](https://pre-commit.com/) | 提交前自动格式化、lint | `git commit` 触发 hook 且通过 |
+
+**3.7.4 MCP 生态**
+
+表前说明：配置步骤见 [MCP 协议章](/claude-code/mcp/)，此处只列场景与代表 server（[modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)、[Playwright MCP](https://github.com/microsoft/playwright-mcp)）。
+
+| 代表 | 与 Claude Code 的关系 |
+|------|----------------------|
+| mcp-server-filesystem | 精细控制 Claude Code 可访问目录 |
+| mcp-server-github | 直接操作 Issues、PR、仓库，不限于本地 git |
+| mcp-server-postgres / sqlite | 查 schema、调试 SQL，少来回粘贴 |
+| Playwright MCP | 真实浏览器做 E2E、UI 验证 |
+
+**3.7.5 可观测性**
+
+| 工具 | 关系要点 | 最小信号 |
+|------|----------|----------|
+| [bottom](https://github.com/ClementTsang/bottom) / [htop](https://htop.dev/) | Agent 跑密集任务时看 CPU/内存 | 任务期间占用率可见 |
+| [lnav](https://lnav.org/) | 智能日志查看；与 Claude 分析日志同步跟进 | `lnav app.log` 能高亮解析 |
+
+**3.7.6 黄金搭档组合**
+
+树前一句：「四层核心工具装好后，可按下面组合叠进 tmux/zellij 布局。」
+
+```
+tmux / zellij
+├── pane 1: Claude Code（主力）
+├── pane 2: lazygit（随时看 diff）
+├── pane 3: watchexec（自动跑测试）
+└── pane 4: yazi（文件预览）
+
+git worktree × direnv → 多任务并行，环境隔离
+gh CLI × lazygit → PR 全流程不出终端
+ripgrep + fzf → Claude Code 搜索提速
+just + pre-commit → 标准化任务入口 + 质量守门
+MCP servers → Claude Code 直连数据库 / GitHub
+```
+
+**3.7.7 优先上手**
+
+独立小段，四条 bullet：
+
+1. **direnv** — worktree 必备，环境随目录切换
+2. **gh CLI** — 配合 PR 工作流，详读链 [CI/CD 章](/claude-code/ci-cd-integrations/)
+3. **watchexec** — 自动测试闭环，Agent 改完即验证
+4. **项目适配的 MCP server** — 按栈选 database / GitHub / Playwright
+
+**去重规则（rev.2）**：
+
+- `gh`：本机进阶表写工具价值；外延表保留一行并链 CI/CD 章
+- `direnv` / `fzf` / `just`：从外延「本机更多候选」移除，完整条目在本节分类表
+- `MCP`：本节列代表 server 与场景；外延表保留「链到 MCP 章」索引行
+
+### 3.8 外延层：扩展阅读对照表（专章索引，rev.2 精简）
 
 **外部集成**（每项一行 + 链到本系列专章，不展开命令）：
 
@@ -197,13 +297,11 @@ cd ../myproject-feature-a && claude
 | 组织策略 | managed settings | [生态深度集成](/claude-code/ecosystem-integration/) |
 | IDE 壳层 | VS Code/Cursor 扩展 | [多平台运行环境全览](/claude-code/platforms-overview/) |
 
-**本机类更多候选**（各一行，无深度）：
+**节末（rev.2）**：加一句「本机 CLI 工具清单见上一节。」
 
-- direnv：目录级 env 隔离；
-- fzf：快速 `@` 文件引用辅助；
-- just / make：把 `pnpm test` 等固化为 Claude 可引用命令（链 [CLAUDE.md](/claude-code/claude-md/)）。
+~~**本机类更多候选**（rev.1，已删除）~~：direnv、fzf、just 已迁入 3.7。
 
-### 3.8 章末（对齐系列惯例）
+### 3.9 章末（对齐系列惯例）
 
 - **失败模式**：CC Switch 与 shell env 冲突；worktree 忘 merge 清理；tmux 会话 attach 错项目；lazygit 误 stage 全文件。
 - **决策边界**：何时不必装任何配套工具（单一原生 API + IDE 扩展足够）。
@@ -223,11 +321,15 @@ cd ../myproject-feature-a && claude
 5.  risky 命令（如覆盖全局 git 配置）若有则标注；
 6. 表格前有一句「何时用这张表」。
 
-**篇幅预期**：正文约 180～250 行（含 CC Switch 深度块）；附录表控制在 30 行内。
+**篇幅预期（rev.1）**：正文约 180～250 行（含 CC Switch 深度块）；附录表控制在 30 行内。
+
+**篇幅预期（rev.2）**：四层正文不变；新增本机进阶附录约 70～85 行；全文约 350 行。
 
 ---
 
 ## 5. 实现清单
+
+### 5.1 初版（已完成）
 
 - [x] 新建 `companion-tools.md`
 - [x] 更新 `claude-code-sidebar.ts`
@@ -236,6 +338,15 @@ cd ../myproject-feature-a && claude
 - [x] 更新 `first-session`、`slash-commands`、`platforms-overview` 的 `sidebar.order`
 - [x] 写前检索 CC Switch docs/changelog
 - [x] `pnpm build` 通过
+
+### 5.2 附录扩充 rev.2（待实现）
+
+- [ ] 更新章首「本章路由」表，增补「进阶」行
+- [ ] 「选型与组合」段末加交叉引用至本机进阶节
+- [ ] 新增「本机进阶工具一览」：五张场景表 + 黄金搭档 + 优先上手
+- [ ] 精简「外延」节：删除三行本机候选表，节末加回链句
+- [ ] 自检清单可增补一题：能说出 direnv + worktree 的配合
+- [ ] `pnpm build` 通过
 
 ---
 
@@ -247,18 +358,39 @@ cd ../myproject-feature-a && claude
 - 不评测商业闭源工具排名；
 - 不在此 spec 阶段改 `index.md` 漫游指南（可选后续：加一句「配 API 后读配套工具」）。
 
+**Rev.2 追加非目标**：
+
+- 不写 fzf、direnv、watchexec 等进阶工具的安装教程；
+- 不把 MCP server 配置步骤搬进 3.7 分类表；
+- 不重复 CI/CD、MCP 专章正文。
+
 ---
 
-## 7. Spec 自检（2026-06-14）
+## 7. Spec 自检
+
+### 7.1 初版（2026-06-14）
 
 | 检查项 | 结果 |
 |--------|------|
 | 无 TBD / 占位 | 通过 |
 | 架构与章节分工一致 | 通过 |
 | 单章可实现 | 通过；order 顺延为机械改动 |
-| 歧义 | 已明确 CC Switch 步骤以官方为准；核心工具列表固定为 5 类 |
+| 歧义 | 已明确 CC Switch 步骤以官方为准；核心工具列表固定为四层 |
 | 与用户确认一致 | 全景 C + sidebar A + 混合 C + 核心工具用户指定 + 附录 brief_table |
+
+### 7.2 Rev.2（2026-06-14）
+
+| 检查项 | 结果 |
+|--------|------|
+| 无 TBD / 占位 | 通过 |
+| 架构与 3.1～3.9 一致 | 通过；双附录边界清晰 |
+| 单章可实现 | 通过；仅改 `companion-tools.md` |
+| 歧义 | gh/MCP 去重规则已写；MCP 表两列、其余三列 |
+| 与用户确认一致 | 方案 2 + 分类附录 A + 三节设计全部批准 |
 
 ---
 
-**审批记录**：用户在 2026-06-14 对话中确认「整体 OK」。
+**审批记录**：
+
+- 2026-06-14：初版「整体 OK」
+- 2026-06-14 rev.2：用户确认「符合预期，采取方案 2」；三节设计「批准」
