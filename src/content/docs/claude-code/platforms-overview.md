@@ -2,7 +2,7 @@
 title: 多平台运行环境全览
 description: 在 CLI、VS Code、JetBrains、Desktop 与 Web 之间选对入口，理解 diff、并行会话与 MCP 配置的差异。
 sidebar:
-  order: 7
+  order: 8
 ---
 
 *「同事用 PyCharm 插件，你在 Cursor 里装扩展，CI 里跑 `claude -p`——它们是不是同一套 Claude Code？」*

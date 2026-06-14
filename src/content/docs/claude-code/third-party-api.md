@@ -420,4 +420,4 @@ Claude Code 依赖以下 Anthropic Messages API 特性，请确认你的第三�
 
 ---
 
-下一章：[启动你的第一个会话](/claude-code/first-session/)，把本章配置好的环境用起来——我们开始真正和 Claude Code 对话。
+下一章：[配套工具精选](/claude-code/companion-tools/)——用 CC Switch、worktree 等把 API 配置与会话工作流理顺；再读 [启动你的第一个会话](/claude-code/first-session/)，开始第一次对话。

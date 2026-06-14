@@ -2,7 +2,7 @@
 title: Slash 命令与常用功能
 description: 用 / 命令面板管理上下文、模型、权限与会话；掌握日常最常用命令，并知道如何查全量列表与自定义扩展。
 sidebar:
-  order: 6
+  order: 7
 ---
 
 *「`/compact` 和 `/clear` 到底差在哪？为什么同事说 `/btw` 几乎不占上下文？」*

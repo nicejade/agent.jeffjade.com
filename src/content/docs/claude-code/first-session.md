@@ -2,7 +2,7 @@
 title: 启动你的第一个 Claude Code 会话
 description: 掌握基础命令、交互模式、权限管理，完成从启动到第一个成功任务的完整流程。
 sidebar:
-  order: 5
+  order: 6
 ---
 
 *「我已经装好了 Claude Code，接下来该说什么？」*
@@ -260,4 +260,4 @@ Claude Code 能执行 Bash、改文件。若全无确认，一次误判就可能
 
 ---
 
-下一章：[Slash 命令与常用功能](/claude-code/slash-commands/)——把会话控制面板系统过一遍；再读 [代理循环与工具调用](/claude-code/agent-loop/)，理解命令背后的执行机制。
+上一章：[配套工具精选](/claude-code/companion-tools/) · 下一章：[Slash 命令与常用功能](/claude-code/slash-commands/)——把会话控制面板系统过一遍；再读 [代理循环与工具调用](/claude-code/agent-loop/)，理解命令背后的执行机制。
