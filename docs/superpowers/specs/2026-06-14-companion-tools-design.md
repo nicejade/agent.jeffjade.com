@@ -1,7 +1,7 @@
 # Claude Code 指南：配套工具精选 — 设计说明
 
 **日期**：2026-06-14  
-**状态**：待实现  
+**状态**：已实现（2026-06-14）  
 **决策摘要**：全景清单（本机工作流 + 外部集成外延）+ 混合深度（5 类核心工具展开 + 附录对照表）；sidebar 插入第二部分「快速上手」，`third-party-api` 与 `first-session` 之间。
 
 ---
@@ -229,13 +229,13 @@ cd ../myproject-feature-a && claude
 
 ## 5. 实现清单
 
-- [ ] 新建 `companion-tools.md`
-- [ ] 更新 `claude-code-sidebar.ts`
-- [ ] 修改 `third-party-api.md` 文末下一章链接
-- [ ] 修改 `first-session.md` 上一章链接（若有）
-- [ ] 更新 `first-session`、`slash-commands`、`platforms-overview` 的 `sidebar.order`
-- [ ] 写前检索 CC Switch docs/changelog
-- [ ] `pnpm build` 通过
+- [x] 新建 `companion-tools.md`
+- [x] 更新 `claude-code-sidebar.ts`
+- [x] 修改 `third-party-api.md` 文末下一章链接
+- [x] 修改 `first-session.md` 上一章链接（若有）
+- [x] 更新 `first-session`、`slash-commands`、`platforms-overview` 的 `sidebar.order`
+- [x] 写前检索 CC Switch docs/changelog
+- [x] `pnpm build` 通过
 
 ---
 
