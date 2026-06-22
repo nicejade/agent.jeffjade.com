@@ -302,4 +302,4 @@ Agent 更适合处理：
 
 这套检查的目的，是给速度加刹车。Agentic Coding 的收益来自循环：定义目标，提供上下文，执行改动，验证反馈，沉淀规则。循环越清楚，Agent 越像工具；循环越含混，Agent 越像噪声放大器。
 
-回到 [漫游指南](/claude-code/) 可以按需重读前面章节。下一章：[Routines 与定时自动化](/claude-code/routines-automation/)——把宏观反思落到可排程的自动化；再进入 [调试与错误恢复](/claude-code/debug-error-recovery/) 等第九部分实践章。
+回到 [漫游指南](/claude-code/) 可以按需重读前面章节。下一章：[`/goal` 与跨轮持续目标](/claude-code/goal-mode/)——设定可验证终点，让 Claude 跨轮自主续跑；再进入 [Routines 与定时自动化](/claude-code/routines-automation/) 与 [调试与错误恢复](/claude-code/debug-error-recovery/) 等第九部分实践章。

@@ -2,7 +2,7 @@
 title: 安全边界与权限心智
 description: 理解 bypassPermissions 与 --dangerously-skip-permissions 的权衡，用 allow/deny 规则与沙箱隔离风险，并明确哪些操作必须人类最后确认。
 sidebar:
-  order: 38
+  order: 39
 ---
 
 *「为了不被弹窗打断，我加了 `--dangerously-skip-permissions`。一周后才发现 `.env` 被改过，而 deny 列表里从没写过 `Edit(.env*)`。」*

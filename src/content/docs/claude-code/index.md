@@ -1,11 +1,11 @@
 ---
 title: Claude Code 漫游指南
-description: 从基础认知到进阶实践，42 章教程正文与排障速查，系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
+description: 从基础认知到进阶实践，43 章教程正文与排障速查，系统掌握 Claude Code——高权限、本地上下文感知的 Agentic Coding 工具。
 sidebar:
   order: 0
 ---
 
-[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。本指南从心智模型、快速上手、工作原理、项目记忆、高级扩展、Skill 体系、实战方法、反思进阶到进阶实践，共 **42 章教程正文 + 排障速查**，帮助你系统掌握 Claude Code。
+[Claude Code](https://code.claude.com/docs/en/overview) 是 Anthropic 面向软件开发的 agentic coding 工具。本指南从心智模型、快速上手、工作原理、项目记忆、高级扩展、Skill 体系、实战方法、反思进阶到进阶实践，共 **43 章教程正文 + 排障速查**，帮助你系统掌握 Claude Code。
 
 **阅读路径：** 第五部分建议 **Skills → Plugins → SubAgents → Agent Teams → MCP**，再进入第六部分 Skill 体系。第四部分五章以 [团队记忆落地](./memory-team-playbook/) 为终点，再进入 Hooks。
 
@@ -72,17 +72,18 @@ sidebar:
 
 ## 第九部分：进阶实践
 
-34. [Routines 与定时自动化](./routines-automation/)——`/loop`、定时任务与云端 Routines
-35. [调试与错误恢复](./debug-error-recovery/)——失败信号、/rewind 与反馈闭环
-36. [Token 成本与会话经济学](./token-economics/)——/context、/usage 与按需加载规则
-37. [沙箱隔离机制](./sandboxing/)——文件系统与网络隔离
-38. [安全边界与权限心智](./security-permissions/)——allow/deny、权限模式与人类确认
-39. [测试驱动与质量保障](./tdd-quality/)——TDD、Hooks/CI 门禁与 diff 审查
-40. [团队与组织级落地](./team-organization/)——Managed 治理、PR 透明度与 onboarding
-41. [心智模型迁移](./mental-model-migration/)——意图式协作与认知分工
+34. [`/goal` 与跨轮持续目标](./goal-mode/)——可验证终点与跨轮自主续跑
+35. [Routines 与定时自动化](./routines-automation/)——`/loop`、定时任务与云端 Routines
+36. [调试与错误恢复](./debug-error-recovery/)——失败信号、/rewind 与反馈闭环
+37. [Token 成本与会话经济学](./token-economics/)——/context、/usage 与按需加载规则
+38. [沙箱隔离机制](./sandboxing/)——文件系统与网络隔离
+39. [安全边界与权限心智](./security-permissions/)——allow/deny、权限模式与人类确认
+40. [测试驱动与质量保障](./tdd-quality/)——TDD、Hooks/CI 门禁与 diff 审查
+41. [团队与组织级落地](./team-organization/)——Managed 治理、PR 透明度与 onboarding
+42. [心智模型迁移](./mental-model-migration/)——意图式协作与认知分工
 
 ## 第十部分：排障速查
 
-42. [CLI 与配置查阅](./cli-and-settings-reference/)——flags、settings 与 env-vars 速查（查阅章）
+43. [CLI 与配置查阅](./cli-and-settings-reference/)——flags、settings 与 env-vars 速查（查阅章）
 
-43. [常见问题排查](./troubleshooting-faq/)——安装、登录、API、性能与 IDE 集成（排障速查）
+44. [常见问题排查](./troubleshooting-faq/)——安装、登录、API、性能与 IDE 集成（排障速查）

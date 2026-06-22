@@ -2,7 +2,7 @@
 title: CLI 与配置查阅
 description: 速查常用 CLI 标志、settings.json 顶层键与环境变量，发布前对照官方完整参考。
 sidebar:
-  order: 42
+  order: 43
 ---
 
 *「文档里散落的 `--allowedTools` 和 `ANTHROPIC_DEFAULT_SONNET_MODEL` 想在一页里对上号。」*

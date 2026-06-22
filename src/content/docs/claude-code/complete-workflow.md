@@ -28,7 +28,7 @@ sidebar:
 | 理解 | 建立心智模型 | 只读 + 子代理探索 | [first-session](/claude-code/first-session/)、[SubAgents](/claude-code/subagents/) |
 | 设计 | 对齐改什么、怎么验收 | [Plan Mode](/claude-code/plan-mode/) | [prompt-engineering](/claude-code/prompt-engineering/) |
 | 实现 | 改码并自测 | default / acceptEdits | [agent-loop](/claude-code/agent-loop/) |
-| 验证 | 测试、lint、构建 | 提示里写死命令 | [Hooks](/claude-code/hooks/) |
+| 验证 | 测试、lint、构建 | 提示里写死命令，或多步任务用 [`/goal`](/claude-code/goal-mode/) | [Hooks](/claude-code/hooks/) |
 | 审查 | 找遗漏与风格问题 | 第二会话或只读子代理 | [prompt-engineering](/claude-code/prompt-engineering/#writer--reviewer-双会话) |
 | 提交 | commit、PR、CI | `gh`、worktree | 本章 Git 节；[生态集成](/claude-code/ecosystem-integration/) |
 

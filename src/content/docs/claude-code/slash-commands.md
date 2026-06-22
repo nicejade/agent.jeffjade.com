@@ -96,7 +96,7 @@ sidebar:
 | 上下文快满 | `/context`，再 `/compact` |
 | 旁问一句 | `/btw` |
 | 看改了什么 | `/diff` |
-| 设持续目标 | `/goal <条件>` |
+| 设持续目标 | [`/goal <条件>`](/claude-code/goal-mode/)：跨轮续跑直到可验证终点；机制见专章 |
 
 计划模式与权限模式 `plan` 的关系，见 [Plan Mode](/claude-code/plan-mode/)。**没有单独的 `/execute` 命令**：批准计划后通过切换权限模式或让模型调用 `ExitPlanMode` 进入执行段。
 

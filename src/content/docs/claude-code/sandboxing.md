@@ -2,7 +2,7 @@
 title: 沙箱隔离机制
 description: 理解沙箱 Bash 的文件系统与网络隔离，选对内置沙箱、dev container 或 VM 并做可验证实验。
 sidebar:
-  order: 37
+  order: 38
 ---
 
 *「开了 allow 列表，Agent 仍可能用 curl 出站——沙箱和 deny 到底差在哪？」*

@@ -2,24 +2,25 @@
 title: Routines 与定时自动化
 description: 区分会话内 `/loop`、定时任务与云端 Routines，在关机后仍能跑团队级自动化。
 sidebar:
-  order: 34
+  order: 35
 ---
 
 *「`/loop` 要开着终端；我想要每天九点自动审查 main 上的依赖漏洞。」*
 
-Claude Code 有三层「自动化」，容易混用：**会话内循环**、**会话内定时**、**云端 Routines**。官方：[Routines](https://code.claude.com/docs/en/routines)、[Scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks)、bundled skill `/loop`（见 [Commands](https://code.claude.com/docs/en/commands)）。
+Claude Code 有**四层**「让会话继续干活」的机制，容易混用：**条件续跑**、**会话内循环**、**会话内定时**、**云端 Routines**。官方：[goal](https://code.claude.com/docs/en/goal)、[Routines](https://code.claude.com/docs/en/routines)、[Scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks)、bundled skill `/loop`（见 [Commands](https://code.claude.com/docs/en/commands)）。`/goal` 机制见专章 [`/goal` 与跨轮持续目标](/claude-code/goal-mode/)。
 
 ---
 
-## 三层对照
+## 四层对照
 
 | 层 | 入口 | 运行位置 | 终端要开着吗 | 典型用途 |
 |----|------|----------|--------------|----------|
-| **Bundled `/loop`** | `/loop [间隔] [提示]` | 本机当前会话 | **是** | 重复尝试直到满足条件 |
+| **`/goal`** | `/goal <条件>` | 本机当前会话 | **是** | 直到测试绿、验收满足等可验证终点 |
+| **Bundled `/loop`** | `/loop [间隔] [提示]` | 本机当前会话 | **是** | 按间隔重复尝试 |
 | **会话内定时** | `/schedule`、cron 工具 | 本机当前会话 | **是** | 轮询、提醒、会话内周期任务 |
 | **Routines** | Web、Desktop、`/schedule` 向导 | Anthropic 托管云 | **否** | 每日 review、依赖审计、GitHub 事件 |
 
-**记忆：** `/loop` 是「别关这个终端」；Routines 是「像 cron 一样在云上跑」。
+**记忆：** `/goal` 是「跑到条件满足」；`/loop` 是「别关这个终端、按间隔重试」；Routines 是「像 cron 一样在云上跑」。
 
 ---
 
@@ -88,16 +89,16 @@ Claude Code 有三层「自动化」，容易混用：**会话内循环**、**�
 
 ## 继续读下一章之前
 
-1. 三层自动化哪一层要开着终端？  
-2. 仅 Bedrock 凭证时 Routines 可能怎样？  
-3. 每日依赖扫描你会选 Routines 还是 Action？
+1. 四层自动化哪一层要开着终端？  
+2. `/goal` 与 `/loop` 的「下一 turn」触发条件有何不同？  
+3. 仅 Bedrock 凭证时 Routines 可能怎样？
 
 自检：
 
-- [ ] 能区分 `/loop` 与 Routines  
+- [ ] 能区分 `/goal`、`/loop` 与 Routines  
 - [ ] 知道 `/schedule` 应链到本章  
 - [ ] 读过官方 routines 创建步骤  
 
 ---
 
-上一章：[AI Agent 时代的开发者](/claude-code/reflection/) · 下一章：[调试与错误恢复](/claude-code/debug-error-recovery/)
+上一章：[`/goal` 与跨轮持续目标](/claude-code/goal-mode/) · 下一章：[调试与错误恢复](/claude-code/debug-error-recovery/)

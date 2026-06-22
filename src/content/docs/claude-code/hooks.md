@@ -61,7 +61,7 @@ PostToolUse / PostToolUseFailure
 | 节奏 | 代表事件 | 何时触发 | 本章重点用途 |
 |------|----------|----------|--------------|
 | 每会话一次 | `SessionStart`, `SessionEnd` | 启动、恢复、退出 | 注入环境说明、清理临时文件 |
-| 每回合一次 | `UserPromptSubmit`, `Stop` | 提交提示后、模型结束回复时 | 输入审计、完成通知 |
+| 每回合一次 | `UserPromptSubmit`, `Stop` | 提交提示后、模型结束回复时 | 输入审计、完成通知；会话内快捷版见 [`/goal`](/claude-code/goal-mode/) |
 | 每次工具调用 | `PreToolUse`, `PostToolUse` | 工具执行前后 | 拦截命令、自动格式化 |
 
 常用扩展事件（按需查阅 reference）：

@@ -81,6 +81,7 @@ export const claudeCodeSidebar = [
   {
     label: '第九部分 · 进阶实践',
     items: [
+      { label: '/goal 与跨轮持续目标', link: '/claude-code/goal-mode/' },
       { label: 'Routines 与定时自动化', link: '/claude-code/routines-automation/' },
       { label: '调试与错误恢复', link: '/claude-code/debug-error-recovery/' },
       { label: 'Token 成本与会话经济学', link: '/claude-code/token-economics/' },
