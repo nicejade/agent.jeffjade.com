@@ -146,6 +146,23 @@ agent.jeffjade.com/
 
 Hermes 系列进度与官方文档索引见 [`HANDOFF.md`](./HANDOFF.md)。
 
+## 相关链接
+
+- [清风明月轩](https://www.lovejade.cn/?ref=github.com)
+- [逍遥自在轩](https://www.niceshare.site/?ref=github.com)
+- [晚晴幽草轩](https://www.jeffjade.com/nicelinks?ref=github.com)
+- [慧悟万象阁](https://meta.niceshare.site/?ref=github.com)
+- [逸趣游乐坊](https://play.niceshare.site/?ref=github.com)
+- [蓝河文档馆](https://blueos.niceshare.site/?ref=github.com)
+- [玉桃文飨轩](https://share.lovejade.cn/?ref=github.com)
+- [缘知随心庭](https://fine.niceshare.site/?ref=github.com)
+- [静轩之别苑](https://quickapp.lovejade.cn/?ref=github.com)
+- [悠然宜想亭](https://forum.lovejade.cn/?ref=github.com)
+- [SegmentFault](https://segmentfault.com/u/jeffjade)
+- [X（MarshalXuan）](https://x.com/MarshalXuan)
+- [FaceBook（MarshalXuan）](https://www.facebook.com/MarshalXuan/)
+- [@MarshalXuan](https://www.youtube.com/@MarshalXuan)
+
 ## 许可与链接
 
 - 线上站点：https://agent.jeffjade.com
